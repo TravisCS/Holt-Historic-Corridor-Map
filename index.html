@@ -12,20 +12,20 @@
 <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
 <script>const GKEY="AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY&loading=async&callback=gmReady&v=weekly"></script>
-<script src="data/hotels.js?v=20261102"></script>
-<script src="data/businesses.js?v=20261102"></script>
-<script src="data/pomona.js?v=20261102"></script>
-<script src="data/ontario.js?v=20261102"></script>
-<script src="data/transit.js?v=20261102"></script>
-<script src="data/holt.js?v=20261102"></script>
-<script src="data/city_limits.js?v=20261102"></script>
-<script src="data/fairplex.js?v=20261102"></script>
+<script src="data/hotels.js?v=20261102b"></script>
+<script src="data/businesses.js?v=20261102b"></script>
+<script src="data/pomona.js?v=20261102b"></script>
+<script src="data/ontario.js?v=20261102b"></script>
+<script src="data/transit.js?v=20261102b"></script>
+<script src="data/holt.js?v=20261102b"></script>
+<script src="data/city_limits.js?v=20261102b"></script>
+<script src="data/fairplex.js?v=20261102b"></script>
 <style>
 :root{
   /* dark palette shared with the California BEAD map: dark panels, light ink, a cool blue accent */
   --bg:#141816; --panel:#1f2522; --ink:#ebeee9; --muted:#a8b0ab; --rule:#38403b; --chip:#2a312d;
   --accent:#8cc3dc; --link:#8ab4f8; --shadow:0 1px 6px rgba(0,0,0,.6);
-  --ont:#c8402f; --pom:#3fae7a; --tr:#a98bf0; --biz:#2bb0c4; --gap:#f2c744; --spine:#e8862a;
+  --ont:#c8402f; --pom:#3fae7a; --tr:#a98bf0;--hsr:#ff5ca8; --biz:#2bb0c4; --gap:#f2c744; --spine:#e8862a;
   --serif:"Times New Roman", Times, "Liberation Serif", "Nimbus Roman", serif;
   color-scheme:dark;
 }
@@ -116,6 +116,8 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .wvm{width:11px;height:11px;border-radius:50%;background:var(--tr);border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);position:relative;box-sizing:border-box}
 .stm{width:12px;height:12px;border-radius:2px;background:#d9d9d9;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);position:relative;box-sizing:border-box}
 .stm.al{background:#4aa3ff}
+.hsm{width:13px;height:13px;background:var(--hsr);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);transform:rotate(45deg);box-sizing:border-box}
+#rpList a.far{opacity:.72}#rpList a.far .nm::after{content:" (off the map)";color:var(--muted);font-weight:400;font-size:.85em}
 .cl{display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(20,24,22,.72);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);font:700 10.5px var(--serif);color:#fff;box-sizing:border-box;cursor:pointer}
 .cl span{font-variant-numeric:tabular-nums}
 .cl.h{border-color:var(--ont)}.cl.b{border-color:var(--biz)}.cl.p{border-color:var(--pom)}.cl.o{border-color:var(--ont)}
@@ -123,6 +125,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .leaflet-marker-icon:active .bz,.leaflet-marker-icon:active .mk{filter:brightness(1.25)}
 .lm{background:rgba(31,37,34,.85);color:var(--ink);border:1px solid var(--rule);border-radius:10px;padding:0 7px;font:italic 10.5px var(--serif);white-space:nowrap;transform:translate(-50%,0);opacity:.95}
 .lm.gap{background:rgba(31,37,34,.85);color:var(--gap);font-style:normal;font-weight:700}
+.lm.hsr{background:rgba(31,37,34,.85);color:var(--hsr);font-style:normal;font-weight:700}
 .lm.spine{background:rgba(31,37,34,.85);color:var(--spine);font-style:normal;font-weight:700;letter-spacing:.05em}
 .leaflet-tooltip{background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:4px 8px;font-family:var(--serif);font-size:13px;box-shadow:var(--shadow)}
 .leaflet-tooltip.cltip{width:max-content;max-width:250px;white-space:normal;line-height:1.3;padding:6px 9px}.cltip .dim{color:var(--muted)}.cltip i{color:var(--muted);font-size:12px}
@@ -197,7 +200,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   #titlecard h1{font-size:16.5px}
   #titlecard .notice{display:none}#titlecard .tagmin{display:block}
   #titlecard .kpis{font-size:13px}
-  .vtabs{gap:3px}.vtabs button{font-size:12.5px;padding:3px 7px}
+  .vtabs{gap:3px}.vtabs button{font-size:12px;padding:3px 5.5px}
   #legend{top:auto;bottom:calc(8px + env(safe-area-inset-bottom,0px));right:max(10px,env(safe-area-inset-right,0px));left:max(10px,env(safe-area-inset-left,0px));width:auto;max-height:46vh}
   .leaflet-top.leaflet-left{top:calc(132px + env(safe-area-inset-top,0px))}
   #titlecard.min ~ .leaflet-container .leaflet-top.leaflet-left{top:calc(60px + env(safe-area-inset-top,0px))}
@@ -270,7 +273,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 <div class="ks"><div class="kst">Hotels</div><div class="ksn">Marker color is the tier; bigger dot, more rooms (the count is on the card and in the hover label).</div><div class="kr"><span class="ksw"><span style="color:#c8402f;font-size:1.3em">&#9679;</span></span><div class="kl">Full service or convention hotel</div></div><div class="kr"><span class="ksw"><span style="color:#e3a93a;font-size:1.3em">&#9679;</span></span><div class="kl">Select service</div></div><div class="kr"><span class="ksw"><span style="color:#3fae7a;font-size:1.3em">&#9679;</span></span><div class="kl">Extended stay</div></div><div class="kr"><span class="ksw"><span style="color:#9a8be0;font-size:1.3em">&#9679;</span></span><div class="kl">Economy</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;border:2px dashed #fff"></span></span><div class="kl">Planned, not yet open</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#e3a93a;outline:2px dashed rgba(255,255,255,.8);outline-offset:1px"></span></span><div class="kl">Hotel in Pomona, Montclair or Claremont</div></div></div>
 <div class="ks"><div class="kst">Grouped places</div><div class="ksn">When dots would overlap, they merge into one ring with a count. Zoom in or tap the ring to split it.</div><div class="kr"><span class="ksw"><span style="display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid #c8402f;background:rgba(20,24,22,.7);color:#fff;font-size:9px;line-height:14px;text-align:center;font-weight:700">3</span></span><div class="kl">Three hotels grouped here</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid #2bb0c4;background:rgba(20,24,22,.7);color:#fff;font-size:9px;line-height:14px;text-align:center;font-weight:700">16</span></span><div class="kl">Sixteen businesses along Holt grouped here</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid #3fae7a;background:rgba(20,24,22,.7);color:#fff;font-size:9px;line-height:14px;text-align:center;font-weight:700">12</span></span><div class="kl">Twelve Pomona assets grouped here</div></div></div>
 <div class="ks"><div class="kst">Assets</div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #3fae7a"></span></span><div class="kl">Pomona asset: Fairplex, cricket, arts, dining, transit hub</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #c8402f"></span></span><div class="kl">Ontario asset: airport, Convention Center, downtown, civic</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2bb0c4;border:2px solid #fff"></span></span><div class="kl">Business along Holt, colored by category (see the Legend)</div></div></div>
-<div class="ks"><div class="kst">Transit</div><div class="kr"><span class="ksw"><span style="color:#a98bf0;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">West Valley Connector BRT route on Holt</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #a98bf0"></span></span><div class="kl">West Valley Connector station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #8d8d8d"></span></span><div class="kl">Metrolink station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #4aa3ff"></span></span><div class="kl">Metro A Line station</div></div><div class="kr"><span class="ksw"><span style="color:#f2c744;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">The gap: Pomona Transit Center to Fairplex, about two miles</div></div></div>
+<div class="ks"><div class="kst">Transit</div><div class="kr"><span class="ksw"><span style="color:#ff5ca8;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">High-speed rail and its links: Brightline West stub to Las Vegas (solid), the proposed ONT Connector (dashed), the planned Cucamonga to Pomona North shuttle (highlight on the Metrolink track) and the Rancho Cucamonga hub (diamond). Lines are schematic.</div></div><div class="kr"><span class="ksw"><span style="color:#a98bf0;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">West Valley Connector BRT route on Holt</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #a98bf0"></span></span><div class="kl">West Valley Connector station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #8d8d8d"></span></span><div class="kl">Metrolink station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #4aa3ff"></span></span><div class="kl">Metro A Line station</div></div><div class="kr"><span class="ksw"><span style="color:#f2c744;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">The gap: Pomona Transit Center to Fairplex, about two miles</div></div></div>
 <div class="ks"><div class="kst">Corridor and boundaries</div><div class="kr"><span class="ksw"><span style="color:#e8862a;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Holt spine (centerline)</div></div><div class="kr"><span class="ksw"><span style="color:#e6c84a;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Ontario city limits</div></div><div class="kr"><span class="ksw"><span style="color:#6ccfdc;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Montclair city limits</div></div><div class="kr"><span class="ksw"><span style="color:#7fd39b;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Pomona city limits</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:10px;background:rgba(0,0,0,.5);border:1px solid #888"></span></span><div class="kl">Shaded: outside the corridor box (the map will not pan there)</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:10px;background:rgba(140,195,220,.18);border:1.5px solid #8cc3dc"></span></span><div class="kl">Fairplex campus outlines and labels (halls, grandstand, lots, gates), shown from zoom 15</div></div></div>
 </div></div>
 
@@ -299,6 +302,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>Hotels are the properties from the Ontario Hotel Map that fall inside the box: Ontario hotels from the GOCAL roster and the City's info sheets, and Pomona, Montclair and Claremont hotels from directory listings checked against official sites and meetings directories, with room counts and sources on each card <a href="#ref1" class="cite">[1]</a> <a href="#ref2" class="cite">[2]</a> <a href="#ref3" class="cite">[3]</a>.</li>
       <li>Pomona and Ontario assets are the venues, districts, stations and civic anchors a partnership would be built around; each card names the official page it was read from.</li>
       <li>Businesses along Holt are restaurants, shops and services on or within about a quarter mile of Holt between Euclid Avenue and the Pomona Transit Center: every named business tagged in OpenStreetMap in that band, plus businesses named by official and press sources, placed by address with the US Census Bureau geocoder. Churches, schools and parks from OpenStreetMap are left out. The list is a sample of the corridor, not a census of it.</li>
+      <li>High-speed rail and its links: Brightline West station, time and speed facts from <a href="https://www.brightlinewest.com/about-us/faq" target="_blank" rel="noopener">Brightline West's FAQ</a> and <a href="https://www.brightlinewest.com/overview/project" target="_blank" rel="noopener">project overview</a>; the ONT Connector from the state CEQA record <a href="https://ceqanet.lci.ca.gov/2022070039" target="_blank" rel="noopener">SCH 2022070039</a>; the Rancho Cucamonga to Pomona North service from <a href="https://www.gosbcta.com/project/rancho-cucamonga-to-pomona-north-rail-connector-project/" target="_blank" rel="noopener">SBCTA's project page</a>. The rail lines on this layer are schematic, not engineered alignments, and no opening dates are stated beyond what those pages say.</li>
       <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
       <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
@@ -311,7 +315,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 
 <script>
 /* ---------- constants and helpers ---------- */
-const BOUNDS=L.latLngBounds([[34.025,-117.80],[34.105,-117.565]]);
+const BOUNDS=L.latLngBounds([[34.025,-117.80],[34.112,-117.548]]);
 const CAT={full:{c:'#c8402f',l:'Full service / convention'},select:{c:'#e3a93a',l:'Select service'},ext:{c:'#3fae7a',l:'Extended stay'},econ:{c:'#9a8be0',l:'Economy'},plan:{c:'#c8402f',l:'Planned'}};
 const BIZCAT={'Restaurant':'#e05a3a','Cafe or bakery':'#e3a93a','Bar or brewery':'#b48cf5','Market or grocery':'#3fae7a','Retail':'#2bb0c4','Auto':'#b08968','Services':'#8fa3b0','Civic or cultural':'#5a9bf0','Health':'#f06292','Education':'#c9a26b','Lodging':'#9e9e9e'};
 const POMCAT={'Fairplex':'#3fae7a','Arts Colony':'#b48cf5','Downtown dining':'#e3a93a','Transit hub':'#bdbdbd','Civic':'#5a9bf0','Montclair':'#2bb0c4'};
@@ -374,10 +378,10 @@ L.polygon([[[-89,-179.9],[-89,179.9],[89,179.9],[89,-179.9]],[[BOUNDS.getSouth()
 document.getElementById('tMask').onchange=e=>e.target.checked?maskG.addTo(map):map.removeLayer(maskG);
 
 /* zoom buttons */
-const ZOOMS=[['Whole corridor',null,'All'],['Fairplex',[[34.078,-117.785],[34.098,-117.752]]],['Downtown Pomona',[[34.052,-117.758],[34.066,-117.742]],'Pomona'],['Montclair',[[34.057,-117.712],[34.070,-117.682]]],['Downtown Ontario',[[34.058,-117.658],[34.070,-117.642]],'Ontario'],['ONT and Convention Center',[[34.052,-117.612],[34.074,-117.580]],'ONT']];
+const ZOOMS=[['Whole corridor',null,'All'],['Fairplex',[[34.078,-117.785],[34.098,-117.752]]],['Downtown Pomona',[[34.052,-117.758],[34.066,-117.742]],'Pomona'],['Montclair',[[34.057,-117.712],[34.070,-117.682]]],['Downtown Ontario',[[34.058,-117.658],[34.070,-117.642]],'Ontario'],['ONT and Convention Center',[[34.052,-117.612],[34.074,-117.580]],'ONT'],['Rail: Las Vegas to Pomona',[[34.050,-117.765],[34.112,-117.548]],'Rail','rail']];
 /* Zoom tabs in the title card: one per part of the corridor. The lit tab is the last one chosen; dragging or zooming by hand clears it. */
 const vt=document.getElementById('viewTabs');let viewLock=false;
-ZOOMS.forEach((z,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected',String(k===0));b.title=z[0];b.textContent=z[2]||z[0];b.onclick=()=>{setViewTab(k);viewLock=true;map.closePopup();z[1]?map.fitBounds(z[1],{padding:[10,10]}):map.fitBounds(BOUNDS);if(phone())setLegend(false);};vt.appendChild(b);});
+ZOOMS.forEach((z,k)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected',String(k===0));b.title=z[0];b.textContent=z[2]||z[0];b.onclick=()=>{setViewTab(k);viewLock=true;map.closePopup();if(z[3]==='rail'){openRailPanel(z[1]);return;}z[1]?map.fitBounds(z[1],{padding:[10,10]}):map.fitBounds(BOUNDS);if(phone())setLegend(false);};vt.appendChild(b);});
 function setViewTab(k){[...vt.children].forEach((x,i)=>x.setAttribute('aria-selected',String(i===k)));}
 map.on('moveend',()=>{viewLock=false;});map.on('movestart',()=>{if(!viewLock)setViewTab(-1);});
 
@@ -463,6 +467,17 @@ if(TR.wvc){const c=TR.wvc;const g=L.layerGroup();L.polyline(c.pts,{color:'#14181
 (TR.rail||[]).forEach(r=>{const g=L.layerGroup();const col=r.id==='aline'?'#4aa3ff':r.id==='sbl'?'#5fcf8a':'#d9a66b';r.pts.forEach(seg=>{L.polyline(seg,{color:'#141816',weight:4,opacity:.4}).addTo(g);L.polyline(seg,{color:col,weight:2,opacity:.9,dashArray:r.dash?'6 5':null}).addTo(g).bindPopup(linePop(r),POP).bindTooltip(r.name,{sticky:true});});trItems.push({key:r.id,layer:g,sw:swatch(r.dash?'dash':'ln',col),html:r.name.split(' (')[0],n:''});});
 if(TR.stations){const g=L.layerGroup();TR.stations.forEach(s=>{const al=s.sys==='Metro A Line';const m=L.marker([s.lat,s.lng],{icon:L.divIcon({className:'',html:`<div class="stm${al?' al':''}"></div>`,iconSize:[12,12],iconAnchor:[6,6],popupAnchor:[0,-6]}),zIndexOffset:700}).addTo(g);m.bindTooltip(s.n);m.bindPopup(`<h2>${nameHTML(s)}</h2><p class="addr">${esc(s.a||'')}${s.a?'. ':''}${esc(s.sys)}${s.lines?': '+esc(s.lines):''}.<br>${gmaps(s.n+' station',s.a||'')}</p><span class="badge tr">Transit connects</span>${s.kv?`<div class="kv">${s.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div>`:''}<p class="seas"><i>About</i>${s.d||''}</p><p class="seas"><i>Sources</i>${srcLinks(s.src)}</p><p class="note">${esc(s.note||'Station placed from OpenStreetMap and the operator\'s address.')}</p>`,POP);});trItems.push({key:'rs',layer:g,sw:'<span class="sw sq" style="background:#fff;border-color:#8d8d8d"></span>',html:'Metrolink and Metro A Line stations',n:TR.stations.length});}
 (TR.gaps||[]).forEach(gp=>{const g=L.layerGroup();const col=gp.id==='gap'?'#f2c744':'#f7e3a1';L.polyline(gp.pts,{color:'#141816',weight:6,opacity:.45}).addTo(g);const ln=L.polyline(gp.pts,{color:col,weight:3.5,opacity:.95,dashArray:'7 6',lineCap:'round'}).addTo(g).bindPopup(linePop(gp),POP).bindTooltip(gp.name,{sticky:true});const mid=ln.getBounds().getCenter();L.marker(gp.label||mid,{icon:L.divIcon({className:'',html:`<div class="lm gap">${esc(gp.short||gp.name)}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(g);trItems.push({key:gp.id,layer:g,sw:swatch('ln',col),html:gp.name.split(':')[0],n:''});});
+/* ---------- high-speed rail and its links ---------- */
+const hsrG=L.layerGroup();
+if(typeof HSR!=='undefined'){const HC='#ff5ca8';const sbl=(TR.rail||[]).find(r=>r.id==='sbl');
+ HSR.lines.forEach(c=>{let segs;if(c.from==='sbl'&&sbl){segs=sbl.pts.map(seg=>seg.filter(p=>p[1]>=c.lngRange[0]&&p[1]<=c.lngRange[1])).filter(seg=>seg.length>1);}else segs=[c.pts];
+  segs.forEach(seg=>{if(c.from)L.polyline(seg,{color:HC,weight:9,opacity:.32,lineCap:'round'}).addTo(hsrG).bindPopup(linePop(c),POP).bindTooltip(c.name.split(':')[0],{sticky:true});
+   else{L.polyline(seg,{color:'#141816',weight:6,opacity:.45}).addTo(hsrG);L.polyline(seg,{color:HC,weight:3.5,opacity:.95,dashArray:c.dash?'7 6':null,lineCap:'round'}).addTo(hsrG).bindPopup(linePop(c),POP).bindTooltip(c.name.split(':')[0],{sticky:true});}});
+  if(c.label)L.marker(c.labelAt,{icon:L.divIcon({className:'',html:`<div class="lm hsr">${esc(c.label)}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(hsrG);});
+ const h=HSR.hub;const hm=L.marker([h.lat,h.lng],{icon:L.divIcon({className:'',html:'<div class="hsm"></div>',iconSize:[15,15],iconAnchor:[7.5,7.5],popupAnchor:[0,-8]}),zIndexOffset:800}).addTo(hsrG);hm.bindTooltip(h.n);
+ hm.bindPopup(`<h2>${esc(h.n)}</h2><p class="addr">${esc(h.a)}.<br>${gmaps('Rancho Cucamonga Metrolink Station',h.a)}</p><span class="badge tr">Transit connects</span><div class="kv">${h.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div><p class="seas"><i>About</i>${h.d}</p><p class="seas"><i>Sources</i>${srcLinks(h.src)}</p><p class="note">${esc(h.note)}</p>`,POP);
+ HSR._hub=hm;
+ trItems.push({key:'hsr',layer:hsrG,sw:swatch('ln',HC),html:'High-speed rail and its links: Brightline West, the ONT Connector, the Cucamonga to Pomona shuttle',n:''});}
 subGroup('trToggles','tAllTr',trItems,trG);
 
 /* ---------- Fairplex campus detail: outlines and labels that appear from zoom 15 ---------- */
@@ -577,7 +592,15 @@ function renderRoster(){const rows=rpRows;if(!rows)return;const w=x=>x.grt==null
 function showFeature(r){map.closePopup();map.setView([r.lat,r.lng],17,{animate:false});const m=r._m||findMarker(r);if(!m)return;setTimeout(()=>{if(m._icon){m.openPopup();return;}const parent=m.__parent;if(parent&&parent.zoomToShowLayer)parent.zoomToShowLayer(m,()=>m.openPopup());else m.openPopup();},150);}
 function findMarker(r){let found=null;map.eachLayer(l=>{if(l._rdata===r)found=l;});if(!found){[hotC,nhC,bizC].forEach(c=>c.eachLayer(l=>{if(l._rdata===r)found=l;}));}return found;}
 function fitRows(rows){const pts=rows.filter(r=>r.lat).map(r=>[r.lat,r.lng]);if(!pts.length)return;const p=phone();map.fitBounds(L.latLngBounds(pts),{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40],maxZoom:16});}
-function openRoster(title,rows,kind){rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);setLegend(false);fitRows(rows);}
+function openRailPanel(bounds){const cb=document.querySelector('#trToggles input[data-k="hsr"]');if(cb&&!cb.checked){cb.checked=true;cb.onchange();}
+ rpTitle='Las Vegas to Pomona by rail';rpRows=HSR.stops.filter(x=>x.lat);rpKind='rail';rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;
+ document.getElementById('rpTitle').textContent=rpTitle;document.getElementById('rpSub').textContent='Brightline West ends at Rancho Cucamonga, one Metrolink stop east of the corridor. From that hub the rail runs west through the corridor to Pomona North, and a proposed tunnel would run south to ONT. Tap a stop inside the corridor to go there.';
+ document.getElementById('rpRetry').style.display='none';document.querySelector('#rpanel .rsort').style.display='none';
+ document.getElementById('rpList').innerHTML=HSR.stops.map((x,i)=>`<a data-i="${i}"${x.lat?'':' class="far"'}><span class="nm">${i+1}. ${esc(x.n)}</span><span class="rt"><small>${esc(x.rt||'')}</small></span><span class="cu">${esc(x.cu||'')}</span></a>`).join('');
+ document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const x=HSR.stops[+a.dataset.i];if(!x||!x.lat)return;map.closePopup();if(x.key==='hub'){const hub=[x.lat,x.lng];map.setView(map.unproject(map.project(hub,15).add(L.point(phone()?0:185,40)),15),15,{animate:false});setTimeout(()=>HSR._hub.openPopup(),150);}else map.setView([x.lat,x.lng],x.key==='ontc'?15:16,{animate:false});if(phone())rp.classList.remove('open');});
+ setLegend(false);const p=phone();map.fitBounds(bounds,{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40]});
+ if(!p){const hub=[HSR.hub.lat,HSR.hub.lng];if(map.latLngToContainerPoint(hub).x>map.getSize().x-370){map.setView(map.unproject(map.project(hub,15).add(L.point(185,0)),15),15,{animate:false});}}}
+function openRoster(title,rows,kind){document.querySelector('#rpanel .rsort').style.display='';rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);setLegend(false);fitRows(rows);}
 document.getElementById('rpClose').onclick=()=>rp.classList.remove('open');
 document.getElementById('rpRetry').onclick=()=>liveList(rpTitle,rpRows,true);
 document.getElementById('rpZoom').onclick=()=>{rp.classList.remove('open');if(rpRows.length)map.fitBounds(L.latLngBounds(rpRows.filter(r=>r.lat).map(r=>[r.lat,r.lng])),{padding:[30,30],maxZoom:16});};
