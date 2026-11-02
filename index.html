@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holt Corridor Map: Ontario to Pomona</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
+<script>const GKEY="AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY&loading=async&callback=gmReady&v=weekly"></script>
+<script src="data/hotels.js?v=20261101"></script>
+<script src="data/businesses.js?v=20261101"></script>
+<script src="data/pomona.js?v=20261101"></script>
+<script src="data/ontario.js?v=20261101"></script>
+<script src="data/transit.js?v=20261101"></script>
+<script src="data/holt.js?v=20261101"></script>
+<script src="data/city_limits.js?v=20261101"></script>
+<style>
+  html,body{height:100%;margin:0;font-family:"Times New Roman",Times,serif;color:#1d1c19;background:#111}
+  #map{position:absolute;inset:0}
+  .panel{position:absolute;left:10px;bottom:28px;z-index:600;background:rgba(255,255,255,.94);border-radius:4px;padding:8px 12px;max-width:min(330px,calc(100vw - 20px));box-shadow:0 1px 6px rgba(0,0,0,.35)}
+  .panel h1{font-size:1.05rem;margin:0;line-height:1.2;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .panel h1 small{font-size:.8rem;color:#5f5b50;font-weight:400}
+  .panel .body{display:none;margin-top:6px;max-height:60vh;overflow:auto;overscroll-behavior:contain}
+  .panel.open .body{display:block}
+  .leaflet-popup-pane{z-index:1200}
+  .leaflet-popup{margin-bottom:28px}
+  .panel p{margin:0;font-size:.85rem;color:#5f5b50}
+  .panel .btns{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .panel button,.panel label{font:inherit;font-size:.85rem;border:1px solid #c9c3b2;background:#fff;border-radius:3px;padding:4px 8px;cursor:pointer}
+  .panel .grp label,.panel label.sechead{display:block;width:100%;border:none;padding:2px 0;background:none}
+  .panel .grp label.half{display:inline-block;width:calc(50% - 4px)}
+  .leaflet-popup-content{font-family:"Times New Roman",Times,serif;font-size:15px;line-height:1.4;margin:12px 14px}
+  .leaflet-popup-content h2{font-size:1.1rem;margin:0 0 2px}
+  .leaflet-popup-content h2 a{color:#1f4e79}
+  .hphoto{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;margin:0 0 8px;background:#efece2}
+  .leaflet-popup-content .addr{color:#5f5b50;font-size:.9rem;margin:0 0 8px}
+  .kv{display:flex;gap:8px;margin:0 0 8px}
+  .kv div{background:#efece2;border-radius:3px;padding:5px 8px;flex:1}
+  .kv b{display:block;font-size:1.3rem;line-height:1.1}
+  .kv span{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:#5f5b50}
+  .seas{border-top:1px solid #c9c3b2;padding-top:6px;margin:0;font-size:.9rem}
+  .seas i{display:block;margin-bottom:2px}
+  .note{font-size:.78rem;color:#5f5b50;margin:6px 0 0}
+  .rt{width:100%;border-collapse:collapse;font-size:.88rem;margin:2px 0 4px}
+  .rt td{padding:2px 0;border-bottom:1px solid #efece2}
+  .badge{display:inline-block;font-size:.75rem;background:#1f4e79;color:#fff;border-radius:3px;padding:2px 7px;margin:0 0 8px}
+  .badge.off{background:#efece2;color:#5f5b50;border:1px solid #c9c3b2}
+  .badge.pom{background:#2f7d4e}.badge.ont{background:#b3412f}.badge.tr{background:#6a3fb5}.badge.mc{background:#0e7c86}
+  .mk{background:#b3412f;color:#fff;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 11px "Times New Roman",Times,serif;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .mk.plan{background:#fff;color:#b3412f;border:1.5px dashed #b3412f}
+  .mk.oth{border:1.5px solid #fff;outline:1.5px dashed #1d1c19}
+  .am{width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #2f7d4e;box-shadow:0 1px 4px rgba(0,0,0,.5);position:relative}
+  .am::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#2f7d4e}
+  .am.ont{border-color:#b3412f}.am.ont::after{background:#b3412f}
+  .am.sq{border-radius:4px}.am.sq::after{border-radius:2px}
+  .am.pom{border-color:#2f7d4e}.am.pom::after{background:#2f7d4e}
+  .am.big{width:28px;height:28px}
+  .bz{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .bz.sq{border-radius:3px}
+  .wvm{width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid #6a3fb5;box-shadow:0 1px 4px rgba(0,0,0,.5);position:relative}
+  .wvm::after{content:'';position:absolute;inset:4px;border-radius:50%;background:#6a3fb5}
+  .stm{width:18px;height:18px;border-radius:3px;background:#fff;border:3px solid #444;box-shadow:0 1px 4px rgba(0,0,0,.5);position:relative}
+  .stm::after{content:'';position:absolute;inset:4px;background:#444}
+  .stm.al{border-color:#0072BC}.stm.al::after{background:#0072BC}
+  .lm{background:rgba(31,78,121,.9);color:#fff;border-radius:3px;padding:2px 6px;font:italic 11px "Times New Roman",Times,serif;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+  .lm.gap{background:rgba(251,192,45,.95);color:#1d1c19;font-style:normal;font-weight:700}
+  .lm.spine{background:rgba(179,65,47,.92);font-style:normal;font-weight:700;letter-spacing:.04em}
+  .cl{background:rgba(255,255,255,.95);color:#1f4e79;border:2px solid #1f4e79;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 12px "Times New Roman",Times,serif;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .cl.h{background:#b3412f;color:#fff;border-color:#fff}.cl.b{background:#0e7c86;color:#fff;border-color:#fff}
+  .secbtn{font:inherit;font-size:.9rem;border:none;background:none;padding:0 6px 0 0;cursor:pointer;color:#1f4e79;line-height:1}
+  .grp{display:none;width:100%}
+  .grp.open{display:flex;flex-wrap:wrap;gap:4px}
+  .btns>label.sechead{display:flex;align-items:center;width:100%;border:none;background:none;padding:2px 0}
+  .ghead{width:100%;margin:8px 0 0;padding:4px 0 2px;border-top:2px solid #1f4e79;font-size:.9rem;color:#1f4e79}
+  .ghead b{font-size:1rem}.ghead span{color:#5f5b50;font-size:.8rem;font-style:italic}
+  .bib{margin:4px 0 0;padding:0 0 0 1.6em;font-size:.74rem;color:#5f5b50;line-height:1.35}
+  .bib li{margin:0 0 4px}
+  .bib i{font-style:italic}
+  .bib a{color:#1f4e79;word-break:break-all}
+  .bib.dp{list-style:disc;padding-left:16px;margin:0 0 4px}.bib.dp li{margin:0 0 4px;font-size:.78rem;line-height:1.35}
+  .cite{color:#1f4e79;text-decoration:none;font-size:.9em}
+  details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;font-style:italic;color:#5f5b50;font-size:.85rem;padding:5px 0 3px;border-top:1px solid #d8d3c5}details.seas>summary::-webkit-details-marker{display:none}details.seas>summary::before{content:'\25B8';font-style:normal;font-size:.8rem;color:#1f4e79}details[open].seas>summary::before{content:'\25BE'}details.seas>summary>i{font-style:italic}details.seas>.sb{padding:0 0 4px}
+  .foldbar{display:flex;gap:6px;justify-content:flex-end;margin:4px 0 0}.foldbar button{font:inherit;font-size:.72rem;padding:1px 7px;border:1px solid #c9c3b3;background:#fff;border-radius:3px;cursor:pointer;color:#1f4e79}
+  .leaflet-popup-content{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  @media (max-width:700px){.leaflet-popup-content{max-height:55vh;max-width:min(300px,calc(100vw - 50px))!important}.hphoto{aspect-ratio:21/9}.leaflet-popup{margin-bottom:28px}}
+  .astamp{margin:8px 0 0;padding-top:6px;border-top:1px solid #d8d3c5;font-size:.72rem;color:#5f5b50}.astamp a{color:#1f4e79;cursor:pointer;text-decoration:underline}.astamp .ax{display:none;margin-top:4px;line-height:1.4}.astamp.open .ax{display:block}
+  .rpanel{position:absolute;top:10px;right:10px;bottom:10px;width:min(340px,calc(100% - 20px));background:rgba(250,248,242,.97);border:1px solid #c9c3b3;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.35);z-index:1200;display:none;flex-direction:column;font-family:"Times New Roman",Times,serif}
+  .rpanel.open{display:flex}.rpanel .rh{padding:8px 10px 6px;border-bottom:1px solid #d8d3c5}.rpanel .rh h2{margin:0 24px 2px 0;font-size:1rem;color:#1f2a3a}.rpanel .rh .sub{color:#5f5b50;font-size:.8rem}
+  .rpanel .rx{position:absolute;top:6px;right:8px;border:none;background:none;font-size:1.2rem;cursor:pointer;color:#5f5b50}
+  .rpanel .rsort{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid #d8d3c5;flex-wrap:wrap}.rpanel .rsort button{font:inherit;font-size:.78rem;padding:2px 8px;border:1px solid #c9c3b3;background:#fff;border-radius:3px;cursor:pointer}.rpanel .rsort button.on{background:#1f4e79;color:#fff;border-color:#1f4e79}
+  .rpanel .rl{overflow:auto;flex:1;padding:4px 0;overscroll-behavior:contain}.rpanel .rl a{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:5px 10px;text-decoration:none;color:#1f2a3a;border-bottom:1px solid #ebe7db;cursor:pointer}.rpanel .rl a:hover{background:#f1ede2}.rpanel .rl .nm{font-weight:700;color:#1f4e79}.rpanel .rl .cu{color:#5f5b50;font-size:.78rem;grid-column:1}.rpanel .rl .rt{text-align:right;font-size:.85rem;white-space:nowrap}.rpanel .rl .rt small{color:#5f5b50}
+  .rpanel .rh .btns{display:flex;gap:6px;flex-wrap:wrap}.rpanel .rh button{font:inherit;font-size:.85rem;border:1px solid #c9c3b2;background:#fff;border-radius:3px;padding:4px 8px;cursor:pointer}
+  @media (max-width:700px){.rpanel{top:auto;height:60%;left:10px;right:10px;width:auto}}
+  .kpanel{position:absolute;top:10px;right:10px;max-height:calc(100% - 20px);width:min(360px,calc(100% - 20px));background:rgba(250,248,242,.97);border:1px solid #c9c3b3;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.35);z-index:1200;display:none;flex-direction:column;font-family:"Times New Roman",Times,serif}
+  .kpanel.open{display:flex}.kpanel .kh{padding:8px 10px 6px;border-bottom:1px solid #d8d3c5}.kpanel .kh h2{margin:0 24px 2px 0;font-size:1rem;color:#1f2a3a}
+  .kpanel .kx{position:absolute;top:6px;right:8px;border:none;background:none;font-size:1.2rem;cursor:pointer;color:#5f5b50}
+  .kpanel .kb{overflow:auto;flex:1;padding:8px 12px;font-size:.82rem;line-height:1.5;color:#1f2a3a;overscroll-behavior:contain}
+  .kpanel .kh .btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.kpanel .kh button{font:inherit;font-size:.85rem;border:1px solid #c9c3b2;background:#fff;border-radius:3px;padding:4px 8px;cursor:pointer}
+  .kpanel .kz button{font:inherit;font-size:.85rem;width:30px;padding:2px 0;border:1px solid #c9c3b3;background:#fff;border-radius:3px;cursor:pointer}
+  @media (max-width:700px){.kpanel{top:auto;bottom:10px;max-height:70%;left:10px;right:10px;width:auto}}
+  .kpanel .khint{font-size:.9em;color:#5f5b50;font-style:italic;margin:2px 0 8px}
+  .kpanel .ks{border:1px solid #d8d3c5;border-radius:5px;background:#fff;padding:6px 10px 4px;margin-bottom:8px}
+  .kpanel .kst{font-weight:700;font-size:1.05em;color:#1f2a3a;margin-bottom:2px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px}.kpanel .kst::before{content:"\25BE";font-size:.8em;color:#5f5b50;width:10px}
+  .kpanel .ks.closed .kst::before{content:"\25B8"}.kpanel .ks.closed .kst{margin-bottom:0}.kpanel .ks.closed .ksn,.kpanel .ks.closed .kr{display:none}
+  .kpanel .ksn{font-size:.9em;color:#5f5b50;margin-bottom:4px}
+  .kpanel .kr{display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid #efece3}.kpanel .ksn+.kr,.kpanel .kst+.kr{border-top:none}
+  .kpanel .ksw{flex:0 0 34px;text-align:center;line-height:1}.kpanel .kl{flex:1}
+  .kpanel .kall{font-size:.85em;color:#1f4e79;text-decoration:underline;cursor:pointer;margin-left:8px}
+  .kpanel .kmin{right:30px;font-size:1.1rem}.kpanel.min .kb,.kpanel.min .kh .btns{display:none}.kpanel.min .kh{border-bottom:none;cursor:pointer}.kpanel.min .kmin{font-size:.9rem}
+  .ipanel{position:absolute;top:10px;right:10px;bottom:10px;width:min(360px,calc(100% - 20px));background:rgba(250,248,242,.98);border:1px solid #c9c3b3;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.35);z-index:1250;display:none;flex-direction:column;font-family:"Times New Roman",Times,serif;color:#1b1b1b}
+  .ipanel.open{display:flex}
+  .ipanel .ih{padding:8px 10px 6px;border-bottom:1px solid #d8d3c5;position:relative}
+  .ipanel .ih h2{margin:0 64px 2px 0;font-size:1.05rem;color:#1f2a3a}
+  .ipanel .ih .sub{color:#5f5b50;font-size:.8rem;font-style:italic;margin-right:64px}
+  .ipanel .ibtn{position:absolute;top:5px;border:none;background:none;cursor:pointer;color:#5f5b50;width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .ipanel .ibtn:hover{background:#ebe7db;color:#1f2a3a}
+  .ipanel .ifs{right:38px}.ipanel .ix{right:6px;font-size:1.3rem}
+  .ipanel .ib{overflow:auto;flex:1;padding:8px 12px 12px;overscroll-behavior:contain}
+  .ipanel .iin{max-width:760px;margin:0 auto}
+  .ipanel h3{font-size:.95rem;font-style:italic;margin:10px 0 4px}
+  .ipanel p{font-size:.86rem;line-height:1.4;margin:0 0 6px}
+  .ipanel .ist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:6px 0}
+  .ipanel .ist div{border:1px solid #c9c3b3;background:#fff;padding:5px 7px;font-size:.74rem;line-height:1.25}
+  .ipanel .ist b{display:block;font-size:1.15rem}
+  .ipanel .ikey{display:grid;grid-template-columns:34px 1fr;gap:6px 8px;align-items:center;font-size:.8rem;line-height:1.3;margin-top:8px}
+  .ipanel .isrc{background:#f2efe7;border:1px solid #c9c3b3;padding:8px 10px;margin-top:10px}
+  .ipanel .isrc p{font-size:.8rem;margin:0}
+  .ipanel .three{display:grid;grid-template-columns:1fr;gap:6px;margin:6px 0}
+  .ipanel .three div{border-left:4px solid #1f4e79;background:#fff;padding:5px 8px;font-size:.82rem;line-height:1.35}
+  .ipanel .three b{display:block;font-size:.92rem}
+  .ipanel .three .ont{border-color:#b3412f}.ipanel .three .pom{border-color:#2f7d4e}.ipanel .three .tr{border-color:#6a3fb5}
+  .ipanel.full{left:10px;right:10px;width:auto}
+  .ipanel.full .ist{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ipanel.full .three{grid-template-columns:repeat(3,1fr)}
+  .ipanel.full .ikey{grid-template-columns:34px 1fr 34px 1fr}
+  .ipanel.full p{font-size:.95rem}
+  @media (max-width:700px){.ipanel{top:auto;height:60%;left:10px;right:10px;width:auto}.ipanel.full{top:10px;height:auto}}
+  .gchk{width:100%;font-size:.78rem;margin-top:2px}.gchk a{color:#1f4e79}#gcheckOut{color:#5f5b50;white-space:pre-wrap}
+  @media (max-width:600px), (pointer:coarse) and (max-width:900px){
+    .panel{left:6px;right:6px;bottom:22px;max-width:none;padding:6px 10px}
+    .panel h1{font-size:.95rem}
+    .panel h1 small{font-size:.72rem}
+    .panel .body{max-height:42vh;margin-top:4px}
+    .panel p{font-size:.78rem}
+    .panel button,.panel label{font-size:.78rem;padding:3px 7px}
+    .panel .btns{gap:4px;margin-top:6px}
+    .leaflet-popup-content{font-size:13.5px;margin:10px 12px}
+    .leaflet-popup-content h2{font-size:1rem}
+    .kv b{font-size:1.1rem}
+    .seas,.rt{font-size:.82rem}
+    .note{font-size:.72rem}
+    .lm{font-size:10px;padding:1px 4px}
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="ipanel open" id="ipanel" role="dialog" aria-labelledby="ipTitle"><div class="ih"><h2 id="ipTitle">Holt Boulevard corridor: Ontario to Pomona</h2><div class="sub">Pomona draws, Ontario hosts, and one road ties them together</div><button type="button" class="ibtn ifs" id="ipFull" aria-label="Full screen" title="Full screen"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button><button type="button" class="ibtn ix" id="ipClose" aria-label="Close" title="Close">&times;</button></div><div class="ib"><div class="iin">
+<p>This map is locked to one corridor: Holt Boulevard, the historic east-west road that the West Valley Connector bus rapid transit line runs on, from Ontario International Airport and the Ontario Convention Center in the east, through downtown Ontario on Euclid Avenue and Montclair, to downtown Pomona, the Pomona Transit Center, the Pomona Arts Colony and Fairplex in the west. You can pan and zoom anywhere inside it; you cannot leave it. Use it to explore and define what a visitor partnership between the City of Ontario, the City of Pomona and Fairplex would actually contain.</p>
+<div class="three"><div class="pom"><b>Pomona draws</b>Fairplex, the Knight Riders Cricket Ground, the LA County Fair, the Millard Sheets Art Center, the Arts Colony galleries and downtown Pomona dining.</div><div class="ont"><b>Ontario hosts</b>The airport, the Convention Center and its expansion, the convention hotel, the hotel rooms along Holt, and the historic downtown on Euclid Avenue.</div><div class="tr"><b>Transit connects</b>The West Valley Connector on Holt, Metrolink and the Metro A Line at Pomona and Montclair, and the two-mile gap between the Pomona Transit Center and Fairplex.</div></div>
+<div class="ist" id="istats"></div>
+<h3>How to read it</h3>
+<div class="ikey">
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><circle cx="17" cy="11" r="10" fill="#b3412f" stroke="#fff" stroke-width="1.5"/><text x="17" y="14.5" text-anchor="middle" font-family="Times New Roman,serif" font-size="9" font-weight="700" fill="#fff">482</text></svg><span><b>Hotel:</b> color is the tier, the number is the room count, size grows with rooms. A dashed ring means a hotel outside Ontario.</span>
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><circle cx="17" cy="11" r="9" fill="#fff" stroke="#2f7d4e" stroke-width="3"/><circle cx="17" cy="11" r="4.5" fill="#2f7d4e"/></svg><span><b>Pomona asset</b> (green) and <b>Ontario asset</b> (red): venues, districts and civic anchors with a card each.</span>
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><circle cx="17" cy="11" r="6" fill="#0e7c86" stroke="#fff" stroke-width="2"/></svg><span><b>Business along Holt:</b> small dot colored by category; dots gather into numbered circles when zoomed out. Tap to spread.</span>
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><line x1="2" y1="11" x2="32" y2="11" stroke="#b3412f" stroke-width="5"/></svg><span><b>Holt spine:</b> the corridor's centerline, Fairplex side of Pomona to Vineyard Avenue.</span>
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><line x1="2" y1="11" x2="32" y2="11" stroke="#6a3fb5" stroke-width="4"/><circle cx="17" cy="11" r="5" fill="#fff" stroke="#6a3fb5" stroke-width="2.5"/></svg><span><b>West Valley Connector</b> route and stations; Metrolink and Metro A Line stations are squares.</span>
+<svg width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"><line x1="2" y1="11" x2="32" y2="11" stroke="#FBC02D" stroke-width="6"/></svg><span><b>The gap:</b> the two miles between the Pomona Transit Center and Fairplex that no frequent transit covers yet.</span>
+</div>
+<div class="isrc"><h3 style="margin-top:0">Where the data comes from</h3><p>Hotels carry over from the Ontario Hotel Map (GOCAL roster, official sites and meetings directories, October 2026). Corridor assets cite the City of Ontario, the City of Pomona, Fairplex, Major League Cricket, Metrolink, LA Metro, Omnitrans and SBCTA. Businesses along Holt come from OpenStreetMap and from official and press sources named on each card, placed by address. City limits are the Board of Equalization's official boundaries. Google ratings, review counts and photos load live when a card opens and are never stored. Every link was checked on November 1, 2026; the full list is under "About the data" in the Legend.</p></div>
+</div></div></div>
+
+<div class="rpanel" id="rpanel"><div class="rh"><h2 id="rpTitle"></h2><div class="sub" id="rpSub"></div><button class="rx" id="rpClose" aria-label="close">&times;</button><div class="btns" style="margin-top:6px"><button type="button" id="rpBack">&#8592; Back to legend</button><button type="button" id="rpZoom">Zoom to these</button><button type="button" id="rpRetry" style="display:none">Retry missing ratings</button></div></div><div class="rsort"><span style="font-size:.78rem;color:#5f5b50;align-self:center">Sort:</span><button data-rs="rt" class="on">Rating</button><button data-rs="we">West to east</button><button data-rs="cat">Category</button><button data-rs="az">A to Z</button></div><div class="rl" id="rpList"></div></div>
+
+<div class="kpanel" id="kpanel"><div class="kh"><h2>Map key</h2><button class="kx kmin" id="kpMin" aria-label="minimize" title="Shrink to title bar">&#8211;</button><button class="kx" id="kpClose" aria-label="close">&times;</button><div class="btns" style="margin-top:6px"><button type="button" id="kpBack">&#8592; Back to legend</button><span class="kz" style="margin-left:6px"><span style="font-size:.78rem;color:#5f5b50">Text size</span> <button type="button" id="kpMinus" aria-label="smaller">&minus;</button><button type="button" id="kpPlus" aria-label="larger">+</button></span></div></div><div class="kb" id="kpBody">
+<div class="khint">Tap a section title to open or close it.<span class="kall" id="kpAll">Collapse all</span></div>
+<div class="ks"><div class="kst">Hotels</div><div class="ksn">Marker color is the tier; the number in the circle is the room count; bigger marker, more rooms.</div><div class="kr"><span class="ksw"><span style="color:#b3412f;font-size:1.3em">&#9679;</span></span><div class="kl">Full service or convention hotel</div></div><div class="kr"><span class="ksw"><span style="color:#c98a1c;font-size:1.3em">&#9679;</span></span><div class="kl">Select service</div></div><div class="kr"><span class="ksw"><span style="color:#2f7d4e;font-size:1.3em">&#9679;</span></span><div class="kl">Extended stay</div></div><div class="kr"><span class="ksw"><span style="color:#6b5ea8;font-size:1.3em">&#9679;</span></span><div class="kl">Economy</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;border:1.5px dashed #b3412f"></span></span><div class="kl">Planned, not yet open</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c98a1c;outline:1.5px dashed #1d1c19"></span></span><div class="kl">Hotel in Pomona, Montclair or Claremont</div></div></div>
+<div class="ks"><div class="kst">Assets</div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #2f7d4e"></span></span><div class="kl">Pomona asset: Fairplex, cricket, arts, dining, transit hub</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #b3412f"></span></span><div class="kl">Ontario asset: airport, Convention Center, downtown, civic</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0e7c86;border:2px solid #fff;box-shadow:0 0 0 1px #0e7c86"></span></span><div class="kl">Business along Holt (color by category; see the Legend)</div></div></div>
+<div class="ks"><div class="kst">Transit</div><div class="kr"><span class="ksw"><span style="color:#6a3fb5;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">West Valley Connector BRT route on Holt</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #6a3fb5"></span></span><div class="kl">West Valley Connector station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #444"></span></span><div class="kl">Metrolink station</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:11px;height:11px;background:#fff;border:3px solid #0072BC"></span></span><div class="kl">Metro A Line station</div></div><div class="kr"><span class="ksw"><span style="color:#FBC02D;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">The gap: Pomona Transit Center to Fairplex, about two miles</div></div></div>
+<div class="ks"><div class="kst">Corridor and boundaries</div><div class="kr"><span class="ksw"><span style="color:#b3412f;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Holt spine (centerline)</div></div><div class="kr"><span class="ksw"><span style="color:#FFD600;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Ontario city limits</div></div><div class="kr"><span class="ksw"><span style="color:#00E5FF;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Montclair city limits</div></div><div class="kr"><span class="ksw"><span style="color:#00E676;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Pomona city limits</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:10px;background:rgba(0,0,0,.35);border:1px solid #888"></span></span><div class="kl">Shaded: outside the corridor box (the map will not pan there)</div></div></div>
+</div></div>
+
+<div class="panel" id="panel">
+  <h1 id="ptog">Legend <small id="pind">tap for legend &amp; controls</small></h1>
+  <div class="body">
+  <div class="btns" style="margin:0 0 6px"><button type="button" id="keyOpen">Open map key</button> <button type="button" id="introOpen">About this map</button></div>
+  <p>Tap any marker for its card. The view is locked to the corridor: pan and zoom inside it freely.</p>
+  <div class="btns" id="zoomRow"><b style="font-size:.85rem;width:100%">Zoom to</b></div>
+  <div class="btns">
+    <label><input type="checkbox" id="sat"> Satellite</label>
+    <label><input type="checkbox" id="tMask" checked> Shade outside corridor</label>
+    <label><input type="checkbox" id="tLabels" checked> Place labels</label>
+    <div class="gchk"><a href="#" id="gcheck">Check Google connection</a><div id="gcheckOut"></div></div>
+  </div>
+
+  <div class="ghead"><b>Ontario hosts</b> <span>rooms, the airport, the Convention Center, downtown</span></div>
+  <div class="btns" id="hotelToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllHotels" checked> <b style="font-size:.85rem">Ontario hotels</b> <span style="color:#5f5b50" id="hotCount"></span></label></div>
+  <div class="btns" id="ontToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllOnt" checked> <b style="font-size:.85rem">Ontario assets</b> <span style="color:#5f5b50" id="ontCount"></span></label></div>
+
+  <div class="ghead"><b>Pomona draws</b> <span>Fairplex, cricket, the arts, downtown dining</span></div>
+  <div class="btns" id="pomToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllPom" checked> <b style="font-size:.85rem">Pomona assets</b> <span style="color:#5f5b50" id="pomCount"></span></label></div>
+  <div class="btns" id="nhToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllNH" checked> <b style="font-size:.85rem">Pomona, Montclair and Claremont hotels</b> <span style="color:#5f5b50" id="nhCount"></span></label></div>
+
+  <div class="ghead"><b>Transit connects</b> <span>bus rapid transit, rail, and the gap</span></div>
+  <div class="btns" id="trToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllTr" checked> <b style="font-size:.85rem">Transit</b> <span style="color:#5f5b50" id="trCount"></span></label></div>
+
+  <div class="ghead"><b>Along Holt</b> <span>the road itself and what lines it</span></div>
+  <div class="btns" id="bizToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllBiz" checked> <b style="font-size:.85rem">Businesses along Holt</b> <span style="color:#5f5b50" id="bizCount"></span></label></div>
+  <div class="btns" id="spineToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tSpine" checked> <span style="color:#b3412f;font-weight:700">&#9644;</span> <b style="font-size:.85rem">Holt spine</b> <span style="color:#5f5b50">(centerline, Fairplex side of Pomona to Vineyard Ave)</span></label></div>
+  <div class="btns" id="cityToggles"><label style="width:100%;padding:2px 0"><input type="checkbox" id="tAllCity" checked> <b style="font-size:.85rem">City limits</b> <span style="color:#5f5b50">(official boundaries)</span></label></div>
+
+  <p class="note"><a href="#" id="aboutTog">About the data and sources</a></p>
+  <div id="about" style="display:none">
+    <p class="note" style="margin:6px 0 2px"><b>What is shown.</b></p>
+    <ul class="bib dp">
+      <li>The view is locked to a box from the west side of Fairplex to Ontario International Airport, and from the Pomona North and Montclair stations in the north to the East Ontario Metrolink station in the south, so the map can be used to define the corridor without drifting off it.</li>
+      <li>Hotels are the properties from the Ontario Hotel Map that fall inside the box: Ontario hotels from the GOCAL roster and the City's info sheets, and Pomona, Montclair and Claremont hotels from directory listings checked against official sites and meetings directories, with room counts and sources on each card <a href="#ref1" class="cite">[1]</a> <a href="#ref2" class="cite">[2]</a> <a href="#ref3" class="cite">[3]</a>.</li>
+      <li>Pomona and Ontario assets are the venues, districts, stations and civic anchors a partnership would be built around; each card names the official page it was read from.</li>
+      <li>Businesses along Holt are restaurants, shops and services on or within about a quarter mile of Holt between Euclid Avenue and the Pomona Transit Center: every named business tagged in OpenStreetMap in that band, plus businesses named by official and press sources, placed by address. Churches, schools and parks from OpenStreetMap are left out. The list is a sample of the corridor, not a census of it.</li>
+      <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
+      <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
+      <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
+    </ul>
+    <p class="note" style="margin-top:8px"><b>Sources</b></p>
+    <ol class="bib" id="srcList"></ol>
+  </div>
+  </div>
+</div>
+
+<script>
+/* ---------- constants and helpers ---------- */
+const BOUNDS=L.latLngBounds([[34.025,-117.80],[34.105,-117.565]]);
+const CAT={full:{c:'#b3412f',l:'Full service / convention'},select:{c:'#c98a1c',l:'Select service'},ext:{c:'#2f7d4e',l:'Extended stay'},econ:{c:'#6b5ea8',l:'Economy'},plan:{c:'#b3412f',l:'Planned'}};
+const BIZCAT={'Restaurant':'#b3412f','Cafe or bakery':'#c98a1c','Bar or brewery':'#6b3fb5','Market or grocery':'#2f7d4e','Retail':'#0e7c86','Auto':'#5d4037','Services':'#607d8b','Civic or cultural':'#1f4e79','Health':'#d81b60','Education':'#8d6e63','Lodging':'#9e9e9e'};
+const POMCAT={'Fairplex':'#2f7d4e','Arts Colony':'#6a3fb5','Downtown dining':'#c98a1c','Transit hub':'#444','Civic':'#1f4e79','Montclair':'#0e7c86'};
+const ONTCAT={'Airport':'#1f4e79','Convention Center':'#b3412f','Historic downtown':'#c98a1c','Arts District':'#6a3fb5','Civic':'#444','Corridor':'#0e7c86'};
+const SOURCES=[
+ ['ref1','City of Ontario (2024, May). <i>Hospitality and tourism info sheet</i>.','https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20HOSPITALITY%20%26%20TOURISM_0.pdf'],
+ ['ref2','Greater Ontario California (GOCAL) (2026). <i>Stay here: hotel listings</i>.','https://go-cal.org/stay-here/'],
+ ['ref3','TravisCS (2026, October). <i>Ontario Hotel Map</i>, hotel roster and neighbor-city hotels, with sources on each card.','https://traviscs.github.io/Ontario-Hotel-Map/'],
+ ['ref4','OpenStreetMap contributors (2026, November 1). <i>Holt Boulevard and Holt Avenue way geometry, railway geometry, and tagged businesses within 400 m of Holt</i>, via the Overpass API. ODbL.','https://www.openstreetmap.org/copyright'],
+ ['ref5','San Bernardino County Transportation Authority (2026). <i>West Valley Connector BRT project page</i>.','https://www.gosbcta.com/project/west-valley-connector-brt/'],
+ ['ref6','Omnitrans (2026). <i>West Valley Connector</i>.','https://omnitrans.org/west-valley-connector/'],
+ ['ref7','Metrolink (2026). <i>Stations and lines</i>.','https://metrolinktrains.com/'],
+ ['ref8','LA Metro (2026). <i>A Line</i>.','https://www.metro.net/riding/guide/a-line/'],
+ ['ref9','California Board of Equalization, via California Department of Conservation (2026). <i>City boundaries feature layer (Base_BOECities)</i>. ArcGIS REST service.','https://gis.conservation.ca.gov/server/rest/services/Base/Base_BOECities/FeatureServer/0'],
+ ['ref10','Google (2026). <i>Places API (New), Text Search and Place Photos; Maps JavaScript API</i>. Google Maps Platform.','https://developers.google.com/maps/documentation/places/web-service/text-search'],
+ ['ref11','City of Ontario (2024, May). <i>Holt Boulevard info sheet</i>.','https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20HOLT%20BLVD.pdf'],
+ ['ref12','City of Ontario, Ontario Thinks Business (2026). <i>Holt Corridor district information</i>.','https://ontariothinksbusiness.com/develop-ontario/district-information/holt-corridor'],
+ ['ref13','City of Ontario (2024, May). <i>Convention Center expansion info sheet</i>.','https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20CONVENTION%20CENTER%20EXPANSION_0.pdf']
+];
+const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gmaps=(n,a)=>`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n+', '+a)}" target="_blank" rel="noopener">Open in Google Maps</a>`;
+const srcLinks=s=>(s||[]).map(x=>`<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.l)}</a>`).join(' &middot; ');
+const nameHTML=x=>x.web?`<a href="${esc(x.web)}" target="_blank" rel="noopener">${esc(x.n)}</a>`:esc(x.n);
+const POP={maxWidth:300,autoPanPaddingTopLeft:[10,10],autoPanPaddingBottomRight:[10,60]};
+document.getElementById('srcList').innerHTML=SOURCES.map(s=>`<li id="${s[0]}">${s[1]} <a href="${s[2]}" target="_blank" rel="noopener">${s[2].replace(/^https?:\/\//,'')}</a></li>`).join('');
+
+/* ---------- map, locked to the corridor ---------- */
+const panel=document.getElementById('panel');
+document.getElementById('aboutTog').onclick=e=>{e.preventDefault();const a=document.getElementById('about');a.style.display=a.style.display==='none'?'block':'none';};
+document.getElementById('ptog').onclick=()=>{panel.classList.toggle('open');document.getElementById('pind').textContent=panel.classList.contains('open')?'tap to hide':'tap for legend & controls';};
+const map=L.map('map',{zoomControl:true,maxBounds:BOUNDS.pad(0.04),maxBoundsViscosity:1.0,minZoom:11,maxZoom:20,worldCopyJump:false});
+function lockZoom(){const z=Math.max(11,Math.floor(map.getBoundsZoom(BOUNDS,false)));map.setMinZoom(z);if(map.getZoom()<z)map.setZoom(z);}
+map.fitBounds(BOUNDS);lockZoom();map.on('resize',()=>setTimeout(lockZoom,50));map.whenReady(()=>{setTimeout(()=>{map.invalidateSize();lockZoom();map.fitBounds(BOUNDS);},400);});window.addEventListener('load',()=>setTimeout(lockZoom,600));
+map.on('popupopen',()=>{panel.classList.remove('open');document.getElementById('pind').textContent='tap for legend & controls';});
+/* basemap: Google via GoogleMutant, Esri or CARTO when Google cannot render */
+const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery &copy; Esri, Maxar, Earthstar Geographics'});
+const lab=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19});
+const streets=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors'});
+const satGroup=L.layerGroup([sat,lab]);streets.addTo(map);
+let gSat=null,gRoad=null,useGoogle=false;
+function currentBase(){return document.getElementById('sat').checked?(useGoogle?gSat:satGroup):(useGoogle?gRoad:streets);}
+function setBase(){[satGroup,streets,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});currentBase().addTo(map);}
+document.getElementById('sat').onchange=setBase;
+function revertBase(why){if(!useGoogle)return;useGoogle=false;console.warn('Google basemap unavailable ('+why+'); using Esri/CARTO instead');setBase();}
+window.gm_authFailure=function(){revertBase('auth');};
+window.onGoogleReady=function(){try{if(!L.gridLayer.googleMutant||!window.google||!google.maps)return;
+ gSat=L.gridLayer.googleMutant({type:'hybrid',maxZoom:20});gRoad=L.gridLayer.googleMutant({type:'roadmap',maxZoom:20});
+ let ok=false;const arm=l=>l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;});}catch(_){}});arm(gSat);arm(gRoad);
+ useGoogle=true;setBase();setTimeout(()=>{if(!ok)revertBase('no tiles after 8 s');},8000);
+}catch(e){console.warn('Google basemap unavailable',e);revertBase('error');}};
+if(window._gmLoaded)window.onGoogleReady();
+
+/* shade outside the corridor box */
+const maskG=L.layerGroup().addTo(map);
+L.polygon([[[-89,-179.9],[-89,179.9],[89,179.9],[89,-179.9]],[[BOUNDS.getSouth(),BOUNDS.getWest()],[BOUNDS.getSouth(),BOUNDS.getEast()],[BOUNDS.getNorth(),BOUNDS.getEast()],[BOUNDS.getNorth(),BOUNDS.getWest()]]],{color:'#1f4e79',weight:2,dashArray:'6 4',fill:true,fillColor:'#000',fillOpacity:.35,interactive:false}).addTo(maskG);
+document.getElementById('tMask').onchange=e=>e.target.checked?maskG.addTo(map):map.removeLayer(maskG);
+
+/* zoom buttons */
+const ZOOMS=[['Whole corridor',null],['Fairplex',[[34.078,-117.785],[34.098,-117.752]]],['Downtown Pomona',[[34.052,-117.758],[34.066,-117.742]]],['Montclair',[[34.057,-117.712],[34.070,-117.682]]],['Downtown Ontario',[[34.058,-117.658],[34.070,-117.642]]],['ONT and Convention Center',[[34.052,-117.612],[34.074,-117.580]]]];
+const zr=document.getElementById('zoomRow');ZOOMS.forEach(z=>{const b=document.createElement('button');b.type='button';b.textContent=z[0];b.onclick=()=>{z[1]?map.fitBounds(z[1],{padding:[10,10]}):map.fitBounds(BOUNDS);};zr.appendChild(b);});
+
+/* ---------- generic toggle sections ---------- */
+function makeSection(masterId){const m=document.getElementById(masterId);if(!m)return;const head=m.closest('label');const box=head.parentNode;head.classList.add('sechead');
+ const wrap=document.createElement('div');wrap.className='grp';let n=head.nextSibling;while(n){const nx=n.nextSibling;if(n.nodeType===1||(n.nodeType===3&&n.textContent.trim()))wrap.appendChild(n);n=nx;}box.appendChild(wrap);
+ const b=document.createElement('button');b.type='button';b.className='secbtn';b.setAttribute('aria-label','expand');b.textContent='▸';head.insertBefore(b,head.firstChild);
+ b.onclick=e=>{e.preventDefault();e.stopPropagation();const o=wrap.classList.toggle('open');b.textContent=o?'▾':'▸';b.setAttribute('aria-label',o?'collapse':'expand');};return wrap;}
+/* a group of sub-layers under one master checkbox */
+function subGroup(boxId,masterId,items,parentLayer){const box=document.getElementById(boxId);const cbs=[];const layers={};
+ items.forEach(it=>{const g=it.layer;layers[it.key]=g;if(it.on!==false)g.addTo(parentLayer);const lab=document.createElement('label');lab.className=it.half?'half':'';lab.innerHTML=`<input type="checkbox" data-k="${esc(it.key)}" ${it.on===false?'':'checked'}> ${it.html}`;box.appendChild(lab);const cb=lab.querySelector('input');cbs.push(cb);cb.onchange=()=>{cb.checked?g.addTo(parentLayer):parentLayer.removeLayer(g);sync();if(it.onchange)it.onchange(cb.checked);};});
+ const all=document.getElementById(masterId);function sync(){const n=cbs.filter(c=>c.checked).length;all.checked=n===cbs.length;all.indeterminate=n>0&&n<cbs.length;}
+ all.onchange=()=>{const on=all.checked;cbs.forEach(cb=>{if(cb.checked!==on){cb.checked=on;cb.onchange();}});sync();};
+ const wrap=makeSection(masterId);return {cbs,layers,sync,wrap,all};}
+function clusterGroup(cls,radius){return L.markerClusterGroup({maxClusterRadius:radius||40,disableClusteringAtZoom:16,spiderfyOnMaxZoom:true,showCoverageOnHover:false,iconCreateFunction:c=>{const n=c.getChildCount();const d=Math.min(44,22+Math.round(Math.sqrt(n)*4));return L.divIcon({className:'',html:`<div class="cl ${cls}" style="width:${d}px;height:${d}px">${n}</div>`,iconSize:[d,d],iconAnchor:[d/2,d/2]});}});}
+
+/* ---------- hotels ---------- */
+const ALLH=(typeof HOTELS!=='undefined'?HOTELS:[]);
+function hotelCard(h){const other=h.city!=='Ontario';const cityTxt=other?h.city:'Ontario';
+ const tier=CAT[h.t]?CAT[h.t].l.split(' / ')[0]:h.t;const meet=h.m==null?'n/a':(typeof h.m==='number'?h.m.toLocaleString():h.m);
+ const book=h.web?`<a href="${esc(h.web)}" target="_blank" rel="noopener">Check live rates</a>`:'';
+ let rates='';if(h.rates&&h.rates.length){rates=`<p class="seas"><i>Room rates (nightly, Oct 2026 snapshot)</i></p><table class="rt">${h.rates.map(r=>`<tr><td>${esc(r[0])}</td><td style="text-align:right;white-space:nowrap">${esc(r[1])}</td></tr>`).join('')}</table><p class="note">Typical nightly price with taxes and fees for 2 guests, from <a href="${esc(h.rurl)}" target="_blank" rel="noopener">${h.rurl&&h.rurl.includes('hotels.com')?'Hotels.com':'Kayak'}</a> searches in Oct 2026. Rates change daily and climb on event dates. ${book}</p>`;}
+ else if(!h.plan)rates=`<p class="seas"><i>Room rates</i>No rate snapshot for this property. ${book}${book?' &middot; ':''}<a href="https://www.google.com/travel/hotels?q=${encodeURIComponent(h.n+', '+cityTxt+', CA')}" target="_blank" rel="noopener">Compare rates on Google Hotels</a></p>`;
+ let src='';if(h.shuttle)src+=`<a href="https://www.flyontario.com/parking-transports/hotel-shuttles" target="_blank" rel="noopener">ONT hotel shuttle list</a>`;if(h.web)src+=(src?' &middot; ':'')+`<a href="${esc(h.web)}" target="_blank" rel="noopener">Official site</a>`;if(h.gocal)src+=(src?' &middot; ':'')+`<a href="${esc(h.gocal)}" target="_blank" rel="noopener">GOCAL listing</a>`;const s2=srcLinks(h.src);if(s2)src+=(src?' &middot; ':'')+s2;if(!src)src='No published room count found.';
+ const badge=h.city==='Ontario'?(h.shuttle?'<span class="badge">ONT courtesy shuttle</span>':(h.plan?'':'<span class="badge off">No airport shuttle listed</span>')):`<span class="badge mc">${esc(h.city)}</span>`;
+ return `<h2>${nameHTML(h)}</h2><p class="addr">${esc(h.a)}${h.a.includes(cityTxt)?'':', '+cityTxt}. ${esc(h.cls||tier)}.<br>${gmaps(h.n,h.a+(h.a.includes(cityTxt)?'':', '+cityTxt)+', CA')}</p>${badge}<div class="kv"><div><b>${h.r==null?'?':h.r}</b><span>Rooms</span></div><div><b>${meet}</b><span>Sq ft meeting</span></div><div><b style="font-size:1rem">${esc(tier)}</b><span>Tier</span></div></div>${rates}${h.s?`<p class="seas"><i>Seasonal availability</i>${esc(h.s)}</p>`:''}${h.note?`<p class="seas"><i>Notes</i>${esc(h.note)}</p>`:''}<p class="seas"><i>Sources</i>${src}</p><p class="note">${h.plan?'Announced count; not yet open.':'Published inventory as cited; placed by address, approximate.'}</p>`;}
+function hotelMarker(h){const d=Math.round(14+Math.sqrt(h.r||60)*0.9);const other=h.city!=='Ontario';
+ const icon=L.divIcon({className:'',html:`<div class="mk${h.plan?' plan':''}${other?' oth':''}" style="width:${d}px;height:${d}px;${h.plan?'':'background:'+CAT[h.t].c}">${h.r==null?'?':h.r}</div>`,iconSize:[d,d],iconAnchor:[d/2,d/2],popupAnchor:[0,-d/2]});
+ const m=L.marker([h.lat,h.lng],{icon});h._m=m;m._rdata=h;h.a2=h.a+(h.a.includes(h.city)?'':', '+h.city)+', CA';h.gq=h.n+', '+h.city+', CA';m.bindPopup(hotelCard(h),POP);return m;}
+const hotC=clusterGroup('h',34).addTo(map);const nhC=clusterGroup('h',34).addTo(map);
+const ONTH=ALLH.filter(h=>h.city==='Ontario'),NHH=ALLH.filter(h=>h.city!=='Ontario');
+const tierLayers={},nhLayers={};
+const hotSub=subGroup('hotelToggles','tAllHotels',Object.keys(CAT).map(k=>{const g=L.layerGroup();tierLayers[k]=g;ONTH.filter(h=>h.t===k).forEach(h=>g.addLayer(hotelMarker(h)));return {key:k,half:true,layer:g,html:`<span style="color:${CAT[k].c}">${k==='plan'?'&#9711;':'&#9679;'}</span> ${CAT[k].l.split(' / ')[0]} <span style="color:#5f5b50">(${ONTH.filter(h=>h.t===k).length})</span>`};}),hotC);
+const NHC=[...new Set(NHH.map(h=>h.city))];
+const nhSub=subGroup('nhToggles','tAllNH',NHC.map(c=>{const g=L.layerGroup();nhLayers[c]=g;NHH.filter(h=>h.city===c).forEach(h=>g.addLayer(hotelMarker(h)));return {key:c,half:true,layer:g,html:`${c} <span style="color:#5f5b50">(${NHH.filter(h=>h.city===c).length})</span>`};}),nhC);
+document.getElementById('hotCount').textContent=`(${ONTH.length} hotels, ${ONTH.reduce((a,h)=>a+(h.r||0),0).toLocaleString()} rooms)`;
+document.getElementById('nhCount').textContent=`(${NHH.length} hotels, ${NHH.reduce((a,h)=>a+(h.r||0),0).toLocaleString()} rooms)`;
+[['hotelToggles','Ontario hotels','ont'],['nhToggles','Pomona, Montclair and Claremont hotels','nh']].forEach(x=>{const b=document.createElement('button');b.type='button';b.textContent='List with live ratings';b.style.marginTop='4px';b.onclick=()=>openRoster(x[1],x[2]==='ont'?ONTH:NHH,'hotel');document.getElementById(x[0]).querySelector('.grp').appendChild(b);});
+
+/* ---------- assets (Pomona, Ontario) ---------- */
+function assetCard(x,side){const cat=x.cat||'';const cls=side==='pom'?'pom':'ont';
+ return `${x.img?`<img class="hphoto" src="${esc(x.img)}" alt="" loading="lazy" onerror="this.style.display='none'">`:''}<h2>${nameHTML(x)}</h2><p class="addr">${esc(x.a||'')}${x.a?'.':''} ${esc(cat)}.<br>${gmaps(x.n,x.a||(side==='pom'?'Pomona, CA':'Ontario, CA'))}</p><span class="badge ${cls}">${side==='pom'?'Pomona draws':'Ontario hosts'}</span>${x.kv?`<div class="kv">${x.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div>`:''}<p class="seas"><i>About</i>${x.d||''}</p>${x.more?`<p class="seas"><i>Details</i>${x.more}</p>`:''}<p class="seas"><i>Sources</i>${srcLinks(x.src)}${x.web?(x.src&&x.src.length?' &middot; ':'')+`<a href="${esc(x.web)}" target="_blank" rel="noopener">Official site</a>`:''}</p><p class="note">${esc(x.note||'Marker placed at the address or site, approximate.')}</p>`;}
+function assetMarker(x,side,color){const big=x.big?' big':'';const sq=x.sq?' sq':'';const sz=x.big?28:22;
+ const icon=L.divIcon({className:'',html:`<div class="am ${side}${big}${sq}" style="border-color:${color}"><style></style></div>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2],popupAnchor:[0,-sz/2]});
+ const m=L.marker([x.lat,x.lng],{icon,zIndexOffset:600});if(x.g){m._rdata=x;x.a2=x.a;x.gq=x.n+', '+(x.a||'');}m.bindPopup(assetCard(x,side),POP);m.bindTooltip(x.n,{direction:'top',offset:[0,-10]});return m;}
+const POM=(typeof POMONA!=='undefined'?POMONA:[]),ONTA=(typeof ONTARIO!=='undefined'?ONTARIO:[]);
+const pomG=L.layerGroup().addTo(map),ontG=L.layerGroup().addTo(map);
+const pomLayers={},ontLayers={};
+subGroup('pomToggles','tAllPom',Object.keys(POMCAT).filter(k=>POM.some(x=>x.cat===k)).map(k=>{const g=L.layerGroup();pomLayers[k]=g;POM.filter(x=>x.cat===k).forEach(x=>g.addLayer(assetMarker(x,'pom',POMCAT[k])));return {key:k,half:true,layer:g,html:`<span style="color:${POMCAT[k]}">&#9673;</span> ${k} <span style="color:#5f5b50">(${POM.filter(x=>x.cat===k).length})</span>`};}),pomG);
+subGroup('ontToggles','tAllOnt',Object.keys(ONTCAT).filter(k=>ONTA.some(x=>x.cat===k)).map(k=>{const g=L.layerGroup();ontLayers[k]=g;ONTA.filter(x=>x.cat===k).forEach(x=>g.addLayer(assetMarker(x,'ont',ONTCAT[k])));return {key:k,half:true,layer:g,html:`<span style="color:${ONTCAT[k]}">&#9673;</span> ${k} <span style="color:#5f5b50">(${ONTA.filter(x=>x.cat===k).length})</span>`};}),ontG);
+document.getElementById('pomCount').textContent=`(${POM.length})`;document.getElementById('ontCount').textContent=`(${ONTA.length})`;
+const pb=document.createElement('button');pb.type='button';pb.textContent='List Pomona assets';pb.style.marginTop='4px';pb.onclick=()=>openRoster('Pomona assets',POM,'asset');document.getElementById('pomToggles').querySelector('.grp').appendChild(pb);
+const ob2=document.createElement('button');ob2.type='button';ob2.textContent='List Ontario assets';ob2.style.marginTop='4px';ob2.onclick=()=>openRoster('Ontario assets',ONTA,'asset');document.getElementById('ontToggles').querySelector('.grp').appendChild(ob2);
+
+/* ---------- businesses along Holt ---------- */
+const BZ=(typeof BIZ!=='undefined'?BIZ:[]);
+function bizCard(b){return `<h2>${nameHTML(b)}</h2><p class="addr">${esc(b.a)}. ${esc(b.cat)}${b.city?', '+esc(b.city):''}.<br>${gmaps(b.n,b.a)}</p><span class="badge" style="background:${BIZCAT[b.cat]||'#0e7c86'}">${esc(b.cat)}</span><div class="kv"><div><b style="font-size:1rem">${esc(b.city||'')}</b><span>City</span></div><div><b style="font-size:1rem">${b.cuisine?esc(b.cuisine):'&nbsp;'}</b><span>${b.cuisine?'Cuisine':'Along Holt'}</span></div></div>${b.d?`<p class="seas"><i>About</i>${b.d}</p>`:''}<p class="seas"><i>Sources</i>${srcLinks(b.src)}${b.web?(b.src&&b.src.length?' &middot; ':'')+`<a href="${esc(b.web)}" target="_blank" rel="noopener">Business site</a>`:''}${b.osm?` &middot; <a href="https://www.openstreetmap.org/${esc(b.osm)}" target="_blank" rel="noopener">OpenStreetMap</a>`:''}</p><p class="note">${esc(b.note||'Placed by address or OpenStreetMap position, approximate. Hours and status change; check the Google listing before relying on it.')}</p>`;}
+function bizMarker(b){const c=BIZCAT[b.cat]||'#0e7c86';const icon=L.divIcon({className:'',html:`<div class="bz" style="background:${c}"></div>`,iconSize:[14,14],iconAnchor:[7,7],popupAnchor:[0,-7]});const m=L.marker([b.lat,b.lng],{icon});m._rdata=b;b.a2=b.a;b.gq=b.n+', '+b.a;m.bindPopup(bizCard(b),POP);m.bindTooltip(b.n,{direction:'top',offset:[0,-6]});return m;}
+const bizC=clusterGroup('b',36).addTo(map);const bizLayers={};
+subGroup('bizToggles','tAllBiz',Object.keys(BIZCAT).filter(k=>BZ.some(b=>b.cat===k)).map(k=>{const g=L.layerGroup();bizLayers[k]=g;BZ.filter(b=>b.cat===k).forEach(b=>g.addLayer(bizMarker(b)));return {key:k,half:true,layer:g,html:`<span style="color:${BIZCAT[k]}">&#9679;</span> ${k} <span style="color:#5f5b50">(${BZ.filter(b=>b.cat===k).length})</span>`};}),bizC);
+document.getElementById('bizCount').textContent=`(${BZ.length})`;
+const bb=document.createElement('button');bb.type='button';bb.textContent='List with live ratings';bb.style.marginTop='4px';bb.onclick=()=>openRoster('Businesses along Holt',BZ,'biz');document.getElementById('bizToggles').querySelector('.grp').appendChild(bb);
+
+/* ---------- transit ---------- */
+const TR=(typeof TRANSIT!=='undefined'?TRANSIT:{});
+const trG=L.layerGroup().addTo(map);const trItems=[];
+function linePop(c){return `<h2>${esc(c.name)}</h2>${c.a?`<p class="addr">${esc(c.a)}</p>`:''}<span class="badge tr">Transit connects</span>${c.kv?`<div class="kv">${c.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div>`:''}<p class="seas"><i>About</i>${c.desc||''}</p>${c.more?`<p class="seas"><i>Details</i>${c.more}</p>`:''}<p class="seas"><i>Sources</i>${srcLinks(c.src)}</p><p class="note">${esc(c.note||'Alignment drawn from station locations and OpenStreetMap geometry; approximate.')}</p>`;}
+if(TR.wvc){const c=TR.wvc;const g=L.layerGroup();L.polyline(c.pts,{color:'#fff',weight:9,opacity:.6}).addTo(g);L.polyline(c.pts,{color:'#6a3fb5',weight:5,lineCap:'round'}).addTo(g).bindPopup(linePop(c),{maxWidth:320}).bindTooltip(c.name,{sticky:true});trItems.push({key:'wvc',layer:g,html:`<span style="color:#6a3fb5;font-weight:700">&#9644;</span> West Valley Connector route`});
+ const sg=L.layerGroup();c.stations.forEach(s=>{const m=L.marker([s.lat,s.lng],{icon:L.divIcon({className:'',html:'<div class="wvm"></div>',iconSize:[20,20],iconAnchor:[10,10],popupAnchor:[0,-10]}),zIndexOffset:700}).addTo(sg);m.bindTooltip(s.n);m.bindPopup(`<h2>${esc(s.n)}</h2><p class="addr">West Valley Connector station${s.a?', '+esc(s.a):''}.<br>${gmaps(s.n+' West Valley Connector station',s.a||'Holt Blvd')}</p><span class="badge tr">Transit connects</span>${s.d?`<p class="seas"><i>About</i>${s.d}</p>`:''}<p class="seas"><i>The line</i>${c.desc}</p><p class="seas"><i>Sources</i>${srcLinks(s.src||c.src)}</p><p class="note">${esc(s.note||'Station placed at the intersection it is named for; final platform positions are SBCTA\'s.')}</p>`,POP);});trItems.push({key:'wvcs',layer:sg,html:`<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #6a3fb5;vertical-align:middle"></span> West Valley Connector stations <span style="color:#5f5b50">(${c.stations.length})</span>`});}
+(TR.rail||[]).forEach(r=>{const g=L.layerGroup();r.pts.forEach(seg=>{L.polyline(seg,{color:'#fff',weight:r.weight+3,opacity:.6}).addTo(g);L.polyline(seg,{color:r.color,weight:r.weight,dashArray:r.dash||null}).addTo(g).bindPopup(linePop(r),{maxWidth:320}).bindTooltip(r.name,{sticky:true});});trItems.push({key:r.id,layer:g,html:`<span style="color:${r.color};font-weight:700">&#9644;</span> ${esc(r.name.split(' (')[0])}`});});
+if(TR.stations){const g=L.layerGroup();TR.stations.forEach(s=>{const al=s.sys==='Metro A Line';const m=L.marker([s.lat,s.lng],{icon:L.divIcon({className:'',html:`<div class="stm${al?' al':''}"></div>`,iconSize:[18,18],iconAnchor:[9,9],popupAnchor:[0,-9]}),zIndexOffset:700}).addTo(g);m.bindTooltip(s.n);m.bindPopup(`<h2>${nameHTML(s)}</h2><p class="addr">${esc(s.a||'')}${s.a?'. ':''}${esc(s.sys)}${s.lines?': '+esc(s.lines):''}.<br>${gmaps(s.n+' station',s.a||'')}</p><span class="badge tr">Transit connects</span>${s.kv?`<div class="kv">${s.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div>`:''}<p class="seas"><i>About</i>${s.d||''}</p><p class="seas"><i>Sources</i>${srcLinks(s.src)}</p><p class="note">${esc(s.note||'Station placed from OpenStreetMap and the operator\'s address.')}</p>`,POP);});trItems.push({key:'rs',layer:g,html:`<span style="display:inline-block;width:9px;height:9px;background:#fff;border:2px solid #444;vertical-align:middle"></span> Metrolink and Metro A Line stations <span style="color:#5f5b50">(${TR.stations.length})</span>`});}
+(TR.gaps||[]).forEach(gp=>{const g=L.layerGroup();L.polyline(gp.pts,{color:'#fff',weight:11,opacity:.7}).addTo(g);const ln=L.polyline(gp.pts,{color:gp.color||'#FBC02D',weight:7,lineCap:'round'}).addTo(g).bindPopup(linePop(gp),{maxWidth:320}).bindTooltip(gp.name,{sticky:true});const mid=ln.getBounds().getCenter();L.marker(gp.label||mid,{icon:L.divIcon({className:'',html:`<div class="lm gap">${esc(gp.short||gp.name)}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(g);trItems.push({key:gp.id,layer:g,html:`<span style="color:${gp.color||'#FBC02D'};font-weight:700">&#9644;</span> ${esc(gp.name.split(':')[0])}`});});
+subGroup('trToggles','tAllTr',trItems,trG);
+document.getElementById('trCount').textContent=`(${trItems.length} layers)`;
+
+/* ---------- Holt spine and labels ---------- */
+const spineG=L.layerGroup().addTo(map);
+if(typeof HOLT!=='undefined'){L.polyline(HOLT,{color:'#fff',weight:10,opacity:.55,interactive:false}).addTo(spineG);L.polyline(HOLT,{color:'#b3412f',weight:5,opacity:.9,lineCap:'round'}).addTo(spineG).bindTooltip('Holt Boulevard / Holt Avenue: the corridor spine',{sticky:true}).bindPopup(`<h2>Holt Boulevard</h2><p class="addr">Holt Boulevard in Ontario and Montclair, Holt Avenue in Pomona. Drawn from Vineyard Avenue at the Convention Center district west to the Fairplex side of Pomona.</p><span class="badge" style="background:#b3412f">Corridor spine</span><p class="seas"><i>About</i>The historic east-west road that the West Valley Connector bus rapid transit line runs on. The City of Ontario's Holt Corridor program counts about $280 million of area investment, with the Convention Center expansion and convention hotel at the east end and downtown Ontario on Euclid Avenue in the middle. West of Benson Avenue the road is Montclair's main commercial street, and in Pomona it reaches downtown and the Pomona Transit Center.</p><p class="seas"><i>Sources</i><a href="https://ontariothinksbusiness.com/develop-ontario/district-information/holt-corridor" target="_blank" rel="noopener">City of Ontario, Holt Corridor</a> &middot; <a href="https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20HOLT%20BLVD.pdf" target="_blank" rel="noopener">Holt Boulevard info sheet (May 2024)</a> &middot; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap (centerline geometry)</a></p><p class="note">Centerline merged from OpenStreetMap way geometry on November 1, 2026; where Holt is divided, the line runs between the carriageways.</p>`,{maxWidth:320});
+ const e=HOLT[HOLT.length-1],w=HOLT[0];L.marker([34.0665,-117.6525],{icon:L.divIcon({className:'',html:'<div class="lm spine">HOLT BOULEVARD</div>',iconAnchor:[60,0]}),interactive:false}).addTo(spineG);}
+document.getElementById('tSpine').onchange=e=>e.target.checked?spineG.addTo(map):map.removeLayer(spineG);
+const LM=[["Ontario International Airport",34.0545,-117.6000],["Ontario Convention Center",34.0672,-117.6062],["Downtown Ontario, Euclid Ave",34.0600,-117.6515],["Montclair",34.0700,-117.6950],["Downtown Pomona",34.0525,-117.7520],["Pomona Transit Center",34.0605,-117.7550],["Fairplex",34.0905,-117.7700],["Arts Colony",34.0575,-117.7480]];
+const lmG=L.layerGroup().addTo(map);LM.forEach(l=>L.marker([l[1],l[2]],{icon:L.divIcon({className:'',html:`<div class="lm">${l[0]}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(lmG));
+document.getElementById('tLabels').onchange=e=>e.target.checked?lmG.addTo(map):map.removeLayer(lmG);
+
+/* ---------- city limits: live service first, saved copy as fallback ---------- */
+const CITY_STYLE={'Ontario':{color:'#FFD600',weight:5},'Montclair':{color:'#00E5FF',weight:3,dashArray:'6 4'},'Pomona':{color:'#00E676',weight:3,dashArray:'6 4'}};
+const cityG=L.layerGroup().addTo(map);const cityLayers={};
+const citySub=subGroup('cityToggles','tAllCity',Object.keys(CITY_STYLE).map(n=>{const g=L.layerGroup();cityLayers[n]=g;return {key:n,half:true,layer:g,html:`<span style="color:${CITY_STYLE[n].color};font-weight:700;text-shadow:0 0 2px #555">${CITY_STYLE[n].dashArray?'&#9476;':'&#9644;'}</span> ${n}`};}),cityG);
+function drawCities(gj,from){L.geoJSON(gj,{style:f=>Object.assign({fill:true,fillColor:CITY_STYLE[f.properties.CITY].color,fillOpacity:.08,opacity:.95},CITY_STYLE[f.properties.CITY]),onEachFeature:(f,l)=>l.bindTooltip(f.properties.CITY+' city limits ('+from+')',{sticky:true})}).eachLayer(l=>{(cityLayers[l.feature.properties.CITY]||cityG).addLayer(l);l.bringToBack();});}
+fetch("https://gis.conservation.ca.gov/server/rest/services/Base/Base_BOECities/FeatureServer/0/query?where=CITY%20IN%20('Ontario','Montclair','Pomona')&outFields=CITY&outSR=4326&geometryPrecision=5&f=geojson").then(r=>r.json()).then(gj=>{if(!gj.features||!gj.features.length)throw new Error('empty');drawCities(gj,'live, Board of Equalization');}).catch(()=>{if(typeof CITY_LIMITS!=='undefined')drawCities(CITY_LIMITS,'saved copy of the Board of Equalization layer');});
+
+/* ---------- intro stats ---------- */
+document.getElementById('istats').innerHTML=`<div><b>${ONTH.length}</b>Ontario hotels in the corridor, ${ONTH.reduce((a,h)=>a+(h.r||0),0).toLocaleString()} rooms</div><div><b>${NHH.length}</b>hotels in Pomona, Montclair and Claremont, ${NHH.reduce((a,h)=>a+(h.r||0),0).toLocaleString()} rooms</div><div><b>${POM.length+ONTA.length}</b>Pomona and Ontario assets with cards</div><div><b>${BZ.length}</b>businesses along Holt, ${(TR.wvc?TR.wvc.stations.length:0)} BRT stations</div>`;
+
+/* ---------- collapsible card sections ---------- */
+function foldSections(el){if(!el||el.dataset.folded)return;el.dataset.folded='1';const small=window.innerWidth<=700;const ps=[...el.querySelectorAll('p.seas')].filter(p=>p.firstElementChild&&p.firstElementChild.tagName==='I');
+ if(ps.length<2)return;
+ ps.forEach(p=>{const lab=p.firstElementChild;const d=document.createElement('details');d.className='seas';if(!small)d.open=true;const sm=document.createElement('summary');sm.appendChild(lab);d.appendChild(sm);const body=document.createElement('div');body.className='sb';while(p.firstChild)body.appendChild(p.firstChild);d.appendChild(body);
+  let nx=p.nextElementSibling;while(nx&&(nx.tagName==='TABLE'||(nx.tagName==='P'&&nx.className==='note'&&nx.nextElementSibling&&nx.nextElementSibling.className==='seas'))){const t=nx;nx=nx.nextElementSibling;body.appendChild(t);}
+  p.replaceWith(d);});
+ const bar=document.createElement('div');bar.className='foldbar';bar.innerHTML='<button type="button" data-f="1">Expand all</button><button type="button" data-f="0">Collapse all</button>';
+ bar.querySelectorAll('button').forEach(b=>b.onclick=()=>{el.querySelectorAll('details.seas').forEach(d=>d.open=b.dataset.f==='1');});
+ const h=el.querySelector('h2');(h&&h.parentNode===el)?h.after(bar):el.prepend(bar);}
+map.on('popupopen',e=>{const el=e.popup.getElement()&&e.popup.getElement().querySelector('.leaflet-popup-content');foldSections(el);});
+
+/* ---------- live Google data on cards (Places API, New): never stored ---------- */
+const PLACE_CACHE={};const PRICE={PRICE_LEVEL_FREE:'Free',PRICE_LEVEL_INEXPENSIVE:'$',PRICE_LEVEL_MODERATE:'$$',PRICE_LEVEL_EXPENSIVE:'$$$',PRICE_LEVEL_VERY_EXPENSIVE:'$$$$'};
+async function livePlace(name,addr,lat,lng,radius,attempt){const k=name+'|'+addr+'|'+(radius||'');if(PLACE_CACHE[k]!==undefined)return PLACE_CACHE[k];
+ const res=await fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':'places.id,places.displayName,places.formattedAddress,places.rating,places.userRatingCount,places.priceLevel,places.googleMapsUri,places.businessStatus,places.photos'},body:JSON.stringify({textQuery:name+', '+addr,maxResultCount:1,locationBias:{circle:{center:{latitude:lat,longitude:lng},radius:radius||1500}}})});
+ if(!res.ok){let msg='places '+res.status;try{const ej=await res.json();if(ej.error&&ej.error.status)msg+=' '+ej.error.status;if(ej.error&&ej.error.message){msg+=': '+ej.error.message;console.warn('Google Places error',ej.error.message);}}catch(_){}
+  if((res.status===429||res.status===503)&&(attempt||0)<3){await new Promise(r=>setTimeout(r,1500*((attempt||0)+1)));return livePlace(name,addr,lat,lng,radius,(attempt||0)+1);}throw new Error(msg);}
+ const j=await res.json();const pl=(j.places||[])[0]||null;PLACE_CACHE[k]=pl;return pl;}
+function livePhotoInto(el,pl){const ph=(pl.photos||[])[0];if(!ph||!ph.name)return;const url=`https://places.googleapis.com/v1/${ph.name}/media?maxWidthPx=640&key=${GKEY}`;
+ let img=el.querySelector('img.hphoto');if(!img){img=document.createElement('img');img.className='hphoto';img.alt='';img.loading='lazy';el.insertBefore(img,el.firstChild);}
+ const prev=img.src;img.onerror=function(){if(prev&&prev!==url){img.onerror=function(){img.style.display='none';};img.src=prev;}else img.style.display='none';};img.onload=function(){img.style.display='';};img.src=url;
+ const au=(ph.authorAttributions||[])[0];const cap=document.createElement('div');cap.className='note';cap.style.cssText='margin:-4px 0 6px;font-size:.72rem';cap.innerHTML='Photo: Google Maps'+(au?', <a href="'+esc(au.uri)+'" target="_blank" rel="noopener">'+esc(au.displayName)+'</a>':'')+', loaded live';img.after(cap);}
+function liveRatingInto(el,x){if(!el||el.dataset.live)return;el.dataset.live='1';const kv=el.querySelector('.kv');if(!kv)return;
+ const note=document.createElement('div');note.className='note';note.style.margin='2px 0 0';note.innerHTML='<span style="color:#5f5b50">Checking Google for the live rating&hellip;</span>';kv.after(note);
+ livePlace(x.n,x.a2||x.a,x.lat,x.lng).then(pl=>{if(!pl){note.innerHTML='<span style="color:#5f5b50">No Google listing found for this name and address; figures above are from the sources cited.</span>';return;}
+  livePhotoInto(el,pl);
+  const closed=pl.businessStatus&&pl.businessStatus!=='OPERATIONAL';const gl=`<a href="${esc(pl.googleMapsUri)}" target="_blank" rel="noopener">View on Google Maps</a>`;
+  if(pl.rating==null){note.innerHTML='Google lists this place but shows no rating yet. '+gl;return;}
+  x.grt=pl.rating;x.grc=pl.userRatingCount||0;x.gp=PRICE[pl.priceLevel]||null;x._live=true;x._miss=false;
+  const row=document.createElement('div');row.className='kv';row.innerHTML=`<div><b>${pl.rating.toFixed(1)}</b><span>Rating (Google, live)</span></div><div><b>${(pl.userRatingCount||0).toLocaleString()}</b><span>Reviews (Google)</span></div><div>${PRICE[pl.priceLevel]?`<b style="font-size:1rem">${PRICE[pl.priceLevel]}</b><span>Price (Google)</span>`:`<b style="font-size:.95rem">${pl.businessStatus==='OPERATIONAL'?'Open':'?'}</b><span>Status (Google)</span>`}</div>`;kv.after(row);
+  note.innerHTML=`Rating, reviews and photo fetched live from Google Places just now; the figures above remain from the sources cited. ${gl}${closed?' <b style="color:#b3412f">Google lists this business as '+esc(pl.businessStatus.toLowerCase().replace(/_/g,' '))+'.</b>':''}`;row.after(note);
+ }).catch(e=>{note.innerHTML='<span style="color:#5f5b50">Live Google rating unavailable right now; figures above are from the sources cited.</span>';console.warn(e);});}
+map.on('popupopen',e=>{const p=e.popup;const el=p.getElement()&&p.getElement().querySelector('.leaflet-popup-content');if(!el)return;const src=p._source;const x=src&&src._rdata;if(!x)return;liveRatingInto(el,x);});
+
+/* ---------- roster panel: any list, with live Google ratings ---------- */
+const rp=document.getElementById('rpanel');let rpRows=[],rpTitle='',rpKind='',rpSort='rt';const LIVE_DONE={};let LIVE_PROG={};
+function liveList(key,rows,force){if((LIVE_DONE[key]&&!force))return;LIVE_DONE[key]=true;const todo=rows.filter(r=>r.lat&&(!r._live||r._miss));let i=0,done=0;LIVE_PROG[key]={done:0,total:todo.length};
+ todo.forEach(r=>{if(r._miss){Object.keys(PLACE_CACHE).forEach(k=>{if(k.startsWith(r.n+'|'))delete PLACE_CACHE[k];});}});
+ let t=null;const bump=()=>{done++;LIVE_PROG[key].done=done;clearTimeout(t);t=setTimeout(()=>{if(rpTitle===key)renderRoster();},done>=todo.length?0:400);};
+ const worker=async()=>{while(i<todo.length){const r=todo[i++];try{let pl=await livePlace(r.n,r.a2||r.a,r.lat,r.lng);
+   if(!pl||pl.rating==null){const alt=await livePlace(r.n.replace(/\s*\(.*?\)\s*/g,' ').trim(),r.gq||(r.city||'')+', CA',r.lat,r.lng,6000);if(alt&&alt.rating!=null)pl=alt;}
+   if(pl&&pl.rating!=null){r.grt=pl.rating;r.grc=pl.userRatingCount||0;r.gp=PRICE[pl.priceLevel]||null;r._miss=false;}else{r._miss=pl?'norating':'nomatch';}r._live=true;}catch(e){r._miss='error';r._err=String(e.message||e);}bump();}};
+ for(let k=0;k<3;k++)worker();if(rpTitle===key)renderRoster();}
+function renderRoster(){const rows=rpRows;if(!rows)return;const w=x=>x.grt==null?-1:(x.grc||0)<20?x.grt-10:x.grt;
+ const rs=rows.slice().sort((x,y)=>rpSort==='rt'?((w(y)-w(x))||(y.grc||0)-(x.grc||0)||x.n.localeCompare(y.n)):rpSort==='we'?(x.lng-y.lng):rpSort==='cat'?(((x.cat||x.t||'')+'').localeCompare((y.cat||y.t||'')+'')||x.n.localeCompare(y.n)):x.n.localeCompare(y.n));
+ const pg=LIVE_PROG[rpTitle];const rated=rows.filter(r=>r.grt!=null).length;const miss=rows.filter(r=>r._miss).length;
+ document.getElementById('rpTitle').textContent=rpTitle;
+ let sub=`${rows.length} entries. `+(pg&&pg.done<pg.total?`Loading live Google ratings (${pg.done} of ${pg.total})`:rows.some(r=>r._live)?`${rated} rated live from Google`+(miss?` (${miss} not matched)`:''):'')+'. Tap an entry to open its card.';
+ const em=rows.find(r=>r._err&&r._err.includes(':'));if(em&&!(pg&&pg.done<pg.total))sub+=' Google says: '+em._err.split(':').slice(1).join(':').trim();
+ document.getElementById('rpSub').textContent=sub;
+ document.getElementById('rpRetry').style.display=(miss&&!(pg&&pg.done<pg.total))?'':'none';
+ document.getElementById('rpList').innerHTML=rs.map((r,i)=>`<a data-i="${rows.indexOf(r)}"><span class="nm">${esc(r.n)}</span><span class="rt">${r.grt!=null?((r.grc||0)<20?'<span style="color:#9e9e9e">'+r.grt+'</span>':r.grt)+' <small>('+(r.grc||0).toLocaleString()+')</small>':(r._miss==='nomatch'?'<small>no Google match</small>':r._miss==='error'?'<small>lookup failed</small>':r._live?'<small>no rating</small>':'<small>&hellip;</small>')}${r.gp?' <small>'+r.gp+'</small>':''}</span><span class="cu">${esc(r.cat||(CAT[r.t]?CAT[r.t].l.split(' / ')[0]:''))}${r.r!=null?', '+r.r+' rooms':''}${r.city?', '+esc(r.city):''}</span></a>`).join('');
+ document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.classList.toggle('on',b.dataset.rs===rpSort));
+ document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const r=rows[+a.dataset.i];if(!r)return;showFeature(r);if(window.innerWidth<=700)rp.classList.remove('open');});}
+function showFeature(r){map.setView([r.lat,r.lng],17);const m=r._m||findMarker(r);if(m)setTimeout(()=>{const parent=m.__parent;if(parent&&parent.zoomToShowLayer)parent.zoomToShowLayer(m,()=>m.openPopup());else m.openPopup();},200);}
+function findMarker(r){let found=null;map.eachLayer(l=>{if(l._rdata===r)found=l;});if(!found){[hotC,nhC,bizC].forEach(c=>c.eachLayer(l=>{if(l._rdata===r)found=l;}));}return found;}
+function openRoster(title,rows,kind){rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');document.getElementById('ipanel').classList.remove('open');renderRoster();if(kind!=='asset')liveList(title,rows);if(window.innerWidth<=700)panel.classList.remove('open');}
+document.getElementById('rpBack').onclick=()=>{rp.classList.remove('open');panel.classList.add('open');document.getElementById('pind').textContent='tap to hide';};
+document.getElementById('rpClose').onclick=()=>rp.classList.remove('open');
+document.getElementById('rpRetry').onclick=()=>liveList(rpTitle,rpRows,true);
+document.getElementById('rpZoom').onclick=()=>{if(rpRows.length)map.fitBounds(L.latLngBounds(rpRows.filter(r=>r.lat).map(r=>[r.lat,r.lng])),{padding:[30,30],maxZoom:16});rp.classList.remove('open');};
+document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.onclick=()=>{rpSort=b.dataset.rs;renderRoster();});
+
+/* ---------- Google self-test ---------- */
+document.getElementById('gcheck').onclick=async e=>{e.preventDefault();const out=document.getElementById('gcheckOut');out.textContent='Testing...';const lines=[];
+ lines.push('Page: '+location.host+location.pathname);
+ lines.push('Maps JavaScript API: '+(window.google&&google.maps?'loaded':'not loaded')+(useGoogle?', Google basemap on':', using Esri/CARTO fallback'));
+ try{const res=await fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':'places.displayName,places.rating,places.userRatingCount'},body:JSON.stringify({textQuery:'Fairplex, Pomona, CA',maxResultCount:1})});
+  const txt=await res.text();let j={};try{j=JSON.parse(txt);}catch(_){}
+  if(res.ok){const pl=(j.places||[])[0];lines.push('Places API (New): OK, HTTP '+res.status+(pl?', found '+(pl.displayName&&pl.displayName.text)+' rated '+pl.rating+' ('+pl.userRatingCount+' reviews)':', no result'));}
+  else lines.push('Places API (New): HTTP '+res.status+' '+((j.error&&(j.error.status+': '+j.error.message))||txt.slice(0,300)));
+ }catch(err){lines.push('Places API (New): request failed before Google answered ('+err.message+')');}
+ if(!/github\.io$/.test(location.host))lines.push('Note: the key is referrer-locked to the GitHub Pages site, so Google data is expected to fail on a local or other host.');
+ out.textContent=lines.join('\n');};
+
+/* ---------- map key panel ---------- */
+(()=>{const kp=document.getElementById('kpanel'),kb=document.getElementById('kpBody');let kz=0.82;const apply=()=>{kb.style.fontSize=kz+'rem';};
+ document.getElementById('keyOpen').onclick=()=>{kp.classList.add('open');map.closePopup();rp.classList.remove('open');document.getElementById('ipanel').classList.remove('open');if(window.innerWidth<=700)panel.classList.remove('open');};
+ document.getElementById('kpClose').onclick=()=>kp.classList.remove('open');
+ document.getElementById('kpBack').onclick=()=>{kp.classList.remove('open');panel.classList.add('open');document.getElementById('pind').textContent='tap to hide';};
+ document.getElementById('kpPlus').onclick=()=>{kz=Math.min(1.6,kz+0.1);apply();};document.getElementById('kpMinus').onclick=()=>{kz=Math.max(0.6,kz-0.1);apply();};apply();
+ const kmin=document.getElementById('kpMin');kmin.onclick=e=>{e.stopPropagation();kp.classList.toggle('min');kmin.textContent=kp.classList.contains('min')?'▾':'–';};kp.querySelector('.kh').addEventListener('click',e=>{if(kp.classList.contains('min')&&!e.target.closest('.kx')){kp.classList.remove('min');kmin.textContent='–';}});
+ kb.addEventListener('click',e=>{const t=e.target.closest('.kst');if(!t)return;t.parentElement.classList.toggle('closed');});const kall=document.getElementById('kpAll');kall.onclick=()=>{const secs=[...kb.querySelectorAll('.ks')];const open=secs.some(x=>!x.classList.contains('closed'));secs.forEach(x=>x.classList.toggle('closed',open));kall.textContent=open?'Expand all':'Collapse all';};
+ [kp,rp,panel].forEach(el=>{L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el);});})();
+
+/* ---------- link-check stamp on every card ---------- */
+const CHECK_DATE='November 1, 2026';
+function auditStamp(el){if(!el||el.querySelector('.astamp'))return;const d=document.createElement('div');d.className='astamp';
+ d.innerHTML=`Links checked: ${CHECK_DATE}. <a>What is this?</a><div class="ax">On the date shown, every link on this card was requested by a script and by AI research agents (Claude, run by Anthropic's Claude Code) to confirm it answers and points at the place or source named. Sites that block automated requests were checked for correct form only. This is a check on links, not an endorsement of any business; the Google rating, review count and photo load live when the card opens and are not part of it.</div>`;
+ d.querySelector('a').onclick=e=>{e.preventDefault();d.classList.toggle('open');};el.appendChild(d);}
+map.on('popupopen',e=>{const el=e.popup.getElement()&&e.popup.getElement().querySelector('.leaflet-popup-content');auditStamp(el);});
+
+/* keep cards on screen: re-run the popup's layout and auto-pan when the card's content or size really changes (live data, photos, opened sections, viewport). The observer is paused while Leaflet re-measures, so its own style writes cannot re-trigger it, and scroll positions in the card are put back after the measure. A page button outside the map that zooms to an area away from the open card closes the card, so the button goes where it says instead of being pulled back to the card. */
+map.on('popupopen',e=>{const pp=e.popup,c=pp._contentNode;if(!c)return;let t,off=0,u=0,mv=0;const ap=pp.options.autoPan;const O={childList:true,subtree:true,attributes:true,characterData:true};const run=()=>{if(off)return;if(map._animatingZoom)return fix();ob.disconnect();const sv=[c,...c.querySelectorAll('*')].filter(n=>n.scrollTop).map(n=>[n,n.scrollTop]);try{pp._updateLayout();sv.forEach(([n,s])=>{if(n.scrollTop!==s)n.scrollTop=s;});pp._updatePosition();pp._adjustPan();}catch(_){}if(!off)ob.observe(c,O);};const fix=()=>{clearTimeout(t);t=setTimeout(run,80);};const C=map.getContainer(),Z=()=>{u=0},EV=['pointerdown','touchstart','wheel','keydown'];const U=ev=>{if(!C.contains(ev.target)){u=Date.now();requestAnimationFrame(()=>requestAnimationFrame(Z));}};document.addEventListener('click',U,true);EV.forEach(n=>C.addEventListener(n,Z,true));const M={movestart:()=>{if(u){mv=1;pp.options.autoPan=false;}},zoomend:()=>{if(!mv)fix();},moveend:()=>{if(!mv)return;mv=0;pp.options.autoPan=ap;const ll=pp.getLatLng();if(ll&&!map.getBounds().contains(ll))map.closePopup(pp);else fix();},resize:fix};const imgs=()=>c.querySelectorAll('img').forEach(i=>{if(i._kv!==fix){i._kv=fix;i.addEventListener('load',fix);}});const ob=new MutationObserver(()=>{fix();imgs();});ob.observe(c,O);const ro=window.ResizeObserver?new ResizeObserver(fix):null;if(ro)ro.observe(c);map.on(M);imgs();fix();pp.once('remove',()=>{off=1;pp.options.autoPan=ap;ob.disconnect();if(ro)ro.disconnect();clearTimeout(t);map.off(M);document.removeEventListener('click',U,true);EV.forEach(n=>C.removeEventListener(n,Z,true));});});
+
+/* ---------- About panel ---------- */
+(function(){const ip=document.getElementById('ipanel');if(!ip)return;
+const fsIn='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg>';
+const fsOut='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/></svg>';
+const fb=document.getElementById('ipFull');
+const setFull=on=>{ip.classList.toggle('full',on);fb.innerHTML=on?fsOut:fsIn;fb.setAttribute('aria-label',on?'Exit full screen':'Full screen');fb.title=fb.getAttribute('aria-label');};
+fb.addEventListener('click',()=>setFull(!ip.classList.contains('full')));
+document.getElementById('ipClose').addEventListener('click',()=>{ip.classList.remove('open');setFull(false);});
+document.getElementById('introOpen').addEventListener('click',e=>{e.stopPropagation();ip.classList.add('open');rp.classList.remove('open');document.getElementById('kpanel').classList.remove('open');});
+L.DomEvent.disableClickPropagation(ip);L.DomEvent.disableScrollPropagation(ip);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ip.classList.contains('open')){ip.classList.remove('open');setFull(false);}});
+})();
+</script>
+</body>
+</html>
