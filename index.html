@@ -242,7 +242,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       </details>
     </div>
     <div class="lpanel" data-lp="lists" hidden>
-      <p class="note" style="margin-top:2px">Each list opens in a side panel, sortable, with live Google ratings where Google lists the place.</p>
+      <p class="note" style="margin-top:2px">Each list opens in a side panel and zooms the map to show all of its places. Lists are sortable, with live Google ratings where Google lists the place.</p>
       <div class="btnrow" id="listBtns"></div>
     </div>
     <div class="lpanel" data-lp="more" hidden>
@@ -553,10 +553,11 @@ function renderRoster(){const rows=rpRows;if(!rows)return;const w=x=>x.grt==null
  document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const r=rows[+a.dataset.i];if(!r)return;showFeature(r);if(phone())rp.classList.remove('open');});}
 function showFeature(r){map.closePopup();map.setView([r.lat,r.lng],17,{animate:false});const m=r._m||findMarker(r);if(!m)return;setTimeout(()=>{if(m._icon){m.openPopup();return;}const parent=m.__parent;if(parent&&parent.zoomToShowLayer)parent.zoomToShowLayer(m,()=>m.openPopup());else m.openPopup();},150);}
 function findMarker(r){let found=null;map.eachLayer(l=>{if(l._rdata===r)found=l;});if(!found){[hotC,nhC,bizC].forEach(c=>c.eachLayer(l=>{if(l._rdata===r)found=l;}));}return found;}
-function openRoster(title,rows,kind){rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);if(phone())setLegend(false);}
+function fitRows(rows){const pts=rows.filter(r=>r.lat).map(r=>[r.lat,r.lng]);if(!pts.length)return;const p=phone();map.fitBounds(L.latLngBounds(pts),{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40],maxZoom:16});}
+function openRoster(title,rows,kind){rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);setLegend(false);fitRows(rows);}
 document.getElementById('rpClose').onclick=()=>rp.classList.remove('open');
 document.getElementById('rpRetry').onclick=()=>liveList(rpTitle,rpRows,true);
-document.getElementById('rpZoom').onclick=()=>{if(rpRows.length)map.fitBounds(L.latLngBounds(rpRows.filter(r=>r.lat).map(r=>[r.lat,r.lng])),{padding:[30,30],maxZoom:16});rp.classList.remove('open');};
+document.getElementById('rpZoom').onclick=()=>{rp.classList.remove('open');if(rpRows.length)map.fitBounds(L.latLngBounds(rpRows.filter(r=>r.lat).map(r=>[r.lat,r.lng])),{padding:[30,30],maxZoom:16});};
 document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.onclick=()=>{rpSort=b.dataset.rs;renderRoster();});
 
 /* ---------- Google self-test ---------- */
