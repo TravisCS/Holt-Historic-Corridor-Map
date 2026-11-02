@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Holt Historic Corridor Map</title>
-<meta name="description" content="The Holt Boulevard corridor from Ontario International Airport to downtown Pomona as a set of tabbed maps: the whole corridor, Fairplex, downtown Pomona, Montclair, downtown Ontario, ONT and the Convention Center, and the rail link to Las Vegas. Each tab keeps its view while you switch.">
+<meta name="description" content="The Holt Boulevard corridor as a set of tabbed maps: the whole corridor, the hotel district at ONT and the Convention Center, downtown Ontario, downtown Pomona, Fairplex, and the rail link to Las Vegas. Each tab keeps its view while you switch.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%23e8862a'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23fff'/%3E%3C/svg%3E">
 <style>
 /* Tab bar for the corridor sections, in the same shape as West Coast Broadband Maps. Each section is the same map page started on that section; frames that are not in front stay loaded (hidden, not removed), so each tab keeps its own view, layers and open cards. */
@@ -27,14 +27,13 @@ nav .by{margin-left:auto;align-self:center;color:var(--muted);font-size:13px;pad
 <script>
 "use strict";
 // To add a section: add a row here and a matching entry in ZOOMS and SEC in map.html. Order is tab order.
-var V="20261102c";
+var V="20261102d";
 var TABS=[
   {id:"all",label:"Everything (whole corridor)",short:"All"},
-  {id:"fairplex",label:"Fairplex",short:"Fairplex"},
-  {id:"pomona",label:"Downtown Pomona",short:"Pomona"},
-  {id:"montclair",label:"Montclair",short:"Montclair"},
+  {id:"hotels",label:"Hotel district (ONT and Convention Center)",short:"Hotel district"},
   {id:"ontario",label:"Downtown Ontario",short:"Ontario"},
-  {id:"ont",label:"ONT and Convention Center",short:"ONT"},
+  {id:"pomona",label:"Downtown Pomona",short:"Pomona"},
+  {id:"fairplex",label:"Fairplex",short:"Fairplex"},
   {id:"rail",label:"Rail: Las Vegas to Pomona",short:"Rail"}
 ];
 var KEY="holt-tabs-active",nav=document.getElementById("tabs"),box=document.getElementById("frames"),frames={},btns={};
