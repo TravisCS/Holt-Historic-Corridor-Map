@@ -12,14 +12,14 @@
 <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
 <script>const GKEY="AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY&loading=async&callback=gmReady&v=weekly"></script>
-<script src="data/hotels.js?v=20261102b"></script>
-<script src="data/businesses.js?v=20261102b"></script>
-<script src="data/pomona.js?v=20261102b"></script>
-<script src="data/ontario.js?v=20261102b"></script>
-<script src="data/transit.js?v=20261102b"></script>
-<script src="data/holt.js?v=20261102b"></script>
-<script src="data/city_limits.js?v=20261102b"></script>
-<script src="data/fairplex.js?v=20261102b"></script>
+<script src="data/hotels.js?v=20261102e"></script>
+<script src="data/businesses.js?v=20261102e"></script>
+<script src="data/pomona.js?v=20261102e"></script>
+<script src="data/ontario.js?v=20261102e"></script>
+<script src="data/transit.js?v=20261102e"></script>
+<script src="data/holt.js?v=20261102e"></script>
+<script src="data/city_limits.js?v=20261102e"></script>
+<script src="data/fairplex.js?v=20261102e"></script>
 <style>
 :root{
   /* dark palette shared with the California BEAD map: dark panels, light ink, a cool blue accent */
@@ -303,7 +303,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
       <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
-      <li>Every link was checked by script and by AI research agents on November 1, 2026; sites that block scripted requests were read in a browser. Items that could not be verified say so on their cards: the cricket ground's capacity and exact position, Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
+      <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's capacity and exact position, Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
     </ul>
     <h3>Sources</h3>
     <ol class="bib" id="srcList"></ol>
@@ -325,7 +325,7 @@ const SOURCES=[
  ['ref5','San Bernardino County Transportation Authority (2026, October). <i>West Valley Connector BRT project page and fact sheet</i>.','https://www.gosbcta.com/project/west-valley-connector-brt/'],
  ['ref6','Omnitrans (2026). <i>sbX Purple Line, West Valley Connector</i>.','https://omnitrans.org/50-2/'],
  ['ref7','Metrolink (2026). <i>Stations and lines</i>.','https://metrolinktrains.com/'],
- ['ref8','LA Metro (2026). <i>A Line</i>.','https://www.metro.net/riding/guide/a-line/'],
+ ['ref8','LA Metro (2026). <i>Line schedules and maps: A Line</i>.','https://www.metro.net/riding/schedules/'],
  ['ref9','California Board of Equalization, via California Department of Conservation (2026). <i>City boundaries feature layer (Base_BOECities)</i>. ArcGIS REST service.','https://gis.conservation.ca.gov/server/rest/services/Base/Base_BOECities/FeatureServer/0'],
  ['ref10','Google (2026). <i>Places API (New), Text Search and Place Photos; Maps JavaScript API</i>. Google Maps Platform.','https://developers.google.com/maps/documentation/places/web-service/text-search'],
  ['ref11','City of Ontario (2024, May). <i>Holt Boulevard info sheet</i>.','https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20HOLT%20BLVD.pdf'],
@@ -418,7 +418,7 @@ function hotelCard(h){const other=h.city!=='Ontario';const cityTxt=other?h.city:
  const book=h.web?`<a href="${esc(h.web)}" target="_blank" rel="noopener">Check live rates</a>`:'';
  let rates='';if(h.rates&&h.rates.length){rates=`<p class="seas"><i>Room rates (nightly, Oct 2026 snapshot)</i></p><table class="rt">${h.rates.map(r=>`<tr><td>${esc(r[0])}</td><td style="text-align:right;white-space:nowrap">${esc(r[1])}</td></tr>`).join('')}</table><p class="note">Typical nightly price with taxes and fees for 2 guests, from <a href="${esc(h.rurl)}" target="_blank" rel="noopener">${h.rurl&&h.rurl.includes('hotels.com')?'Hotels.com':'Kayak'}</a> searches in Oct 2026. Rates change daily and climb on event dates. ${book}</p>`;}
  else if(!h.plan)rates=`<p class="seas"><i>Room rates</i>No rate snapshot for this property. ${book}${book?' &middot; ':''}<a href="https://www.google.com/travel/hotels?q=${encodeURIComponent(h.n+', '+cityTxt+', CA')}" target="_blank" rel="noopener">Compare rates on Google Hotels</a></p>`;
- let src='';if(h.shuttle)src+=`<a href="https://www.flyontario.com/parking-transports/hotel-shuttles" target="_blank" rel="noopener">ONT hotel shuttle list</a>`;if(h.web)src+=(src?' &middot; ':'')+`<a href="${esc(h.web)}" target="_blank" rel="noopener">Official site</a>`;if(h.gocal)src+=(src?' &middot; ':'')+`<a href="${esc(h.gocal)}" target="_blank" rel="noopener">GOCAL listing</a>`;const s2=srcLinks(h.src);if(s2)src+=(src?' &middot; ':'')+s2;if(!src)src='No published room count found.';
+ let src='';if(h.shuttle)src+=`<a href="https://www.flyontario.com/to-from-airport/parking-transport/shuttles" target="_blank" rel="noopener">ONT hotel shuttle list</a>`;if(h.web)src+=(src?' &middot; ':'')+`<a href="${esc(h.web)}" target="_blank" rel="noopener">Official site</a>`;if(h.gocal)src+=(src?' &middot; ':'')+`<a href="${esc(h.gocal)}" target="_blank" rel="noopener">GOCAL listing</a>`;const s2=srcLinks(h.src);if(s2)src+=(src?' &middot; ':'')+s2;if(!src)src='No published room count found.';
  const badge=h.city==='Ontario'?(h.shuttle?'<span class="badge">ONT courtesy shuttle</span>':(h.plan?'':'<span class="badge off">No airport shuttle listed</span>')):`<span class="badge mc">${esc(h.city)}</span>`;
  return `<h2>${nameHTML(h)}</h2><p class="addr">${esc(h.a)}${h.a.includes(cityTxt)?'':', '+cityTxt}. ${esc(h.cls||tier)}.<br>${gmaps(h.n,h.a+(h.a.includes(cityTxt)?'':', '+cityTxt)+', CA')}</p>${badge}<div class="kv"><div><b>${h.r==null?'?':h.r}</b><span>Rooms</span></div><div><b>${meet}</b><span>Sq ft meeting</span></div><div><b style="font-size:1rem">${esc(tier)}</b><span>Tier</span></div></div>${rates}${h.s?`<p class="seas"><i>Seasonal availability</i>${esc(h.s)}</p>`:''}${h.note?`<p class="seas"><i>Notes</i>${esc(h.note)}</p>`:''}<p class="seas"><i>Sources</i>${src}</p><p class="note">${h.plan?'Announced count; not yet open.':'Published inventory as cited; placed by address, approximate.'}</p>`;}
 function hotelMarker(h){const d=Math.round(10+Math.sqrt(h.r||60)*0.5);const other=h.city!=='Ontario';
@@ -617,7 +617,7 @@ document.getElementById('gcheck').onclick=async e=>{e.preventDefault();const out
  out.textContent=lines.join('\n');};
 
 /* ---------- link-check stamp on every card ---------- */
-const CHECK_DATE='November 1, 2026';
+const CHECK_DATE='November 2, 2026';
 function auditStamp(el){if(!el||el.querySelector('.astamp'))return;const d=document.createElement('div');d.className='astamp';
  d.innerHTML=`Links checked: ${CHECK_DATE}. <a>What is this?</a><div class="ax">On the date shown, every link on this card was requested by a script and by AI research agents (Claude, run by Anthropic's Claude Code) to confirm it answers and points at the place or source named. Sites that block automated requests were checked for correct form only. This is a check on links, not an endorsement of any business; the Google rating, review count and photo load live when the card opens and are not part of it.</div>`;
  d.querySelector('a').onclick=e=>{e.preventDefault();d.classList.toggle('open');};el.appendChild(d);}
