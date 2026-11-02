@@ -1,4 +1,4 @@
-# Holt Corridor Map: Ontario to Pomona
+# Holt Historic Corridor Map: Ontario to Pomona
 
 A single-page Leaflet map of the Holt Boulevard corridor in California, from Ontario International Airport and downtown Ontario on Euclid Avenue west through Montclair to downtown Pomona, the Pomona Transit Center, the Pomona Arts Colony and Fairplex. The view is locked to that corridor so the map can be used to explore and define it for a City of Ontario proposal built on one idea: Pomona draws, Ontario hosts, and transit connects them.
 
