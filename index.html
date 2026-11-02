@@ -124,6 +124,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .lm.gap{background:rgba(31,37,34,.85);color:var(--gap);font-style:normal;font-weight:700}
 .lm.spine{background:rgba(31,37,34,.85);color:var(--spine);font-style:normal;font-weight:700;letter-spacing:.05em}
 .leaflet-tooltip{background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:4px;padding:4px 8px;font-family:var(--serif);font-size:13px;box-shadow:var(--shadow)}
+.leaflet-tooltip.cltip{width:max-content;max-width:250px;white-space:normal;line-height:1.3;padding:6px 9px}.cltip .dim{color:var(--muted)}.cltip i{color:var(--muted);font-size:12px}
 .leaflet-tooltip-top:before{border-top-color:var(--rule)}.leaflet-tooltip-bottom:before{border-bottom-color:var(--rule)}.leaflet-tooltip-left:before{border-left-color:var(--rule)}.leaflet-tooltip-right:before{border-right-color:var(--rule)}
 /* popup cards stay light, as on the BEAD map */
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#fbf9f3;color:#1d1c19;box-shadow:0 3px 14px rgba(0,0,0,.55)}
@@ -390,7 +391,19 @@ function subGroup(boxId,masterId,items,parentLayer){const box=document.getElemen
  all.onchange=()=>{const on=all.checked;reg.cbs.forEach(cb=>{if(cb.checked!==on){cb.checked=on;cb.onchange();}});reg.syncs.forEach(s=>s());};
  return {cbs,layers,sync,all};}
 const MASTERS={};
-function clusterGroup(cls,radius){return L.markerClusterGroup({maxClusterRadius:radius||30,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,showCoverageOnHover:false,iconCreateFunction:c=>{const n=c.getChildCount();const d=Math.min(32,16+Math.round(Math.sqrt(n)*3));return L.divIcon({className:'',html:`<div class="cl ${cls}" style="width:${d}px;height:${d}px"><span>${n}</span></div>`,iconSize:[d,d],iconAnchor:[d/2,d/2]});}});}
+/* Hover a numbered circle to see what it groups; click still zooms in. */
+function plural(n,s,p){return n+' '+(n===1?s:(p||s+'s'));}
+function countBy(ms,f){const o={};ms.forEach(m=>{const v=f(m._rdata||{});if(v)o[v]=(o[v]||0)+1;});return Object.entries(o).sort((a,b)=>b[1]-a[1]);}
+function someNames(ms,k){const names=ms.map(m=>m._rdata&&m._rdata.n).filter(Boolean);let s=names.slice(0,k).map(esc).join(', ');if(names.length>k)s+=', and '+(names.length-k)+' more';return s;}
+function clusterSummary(cls,ms){const n=ms.length;let head='',sub='';
+ if(cls==='h'){const rooms=ms.reduce((a,m)=>a+((m._rdata&&m._rdata.r)||0),0);head=plural(n,'hotel')+(rooms?', '+rooms.toLocaleString()+' rooms':'');const cities=countBy(ms,r=>r.city);sub=cities.length>1?cities.map(([c,k])=>k+' in '+c).join(', '):countBy(ms,r=>CAT[r.t]?CAT[r.t].l.split(' / ')[0].toLowerCase():'').map(([t,k])=>k+' '+t).join(', ');}
+ else if(cls==='b'){head=plural(n,'business','businesses')+' along Holt';sub=countBy(ms,r=>r.cat).slice(0,4).map(([c,k])=>k+' '+c.toLowerCase()).join(', ');}
+ else{head=plural(n,(cls==='p'?'Pomona':'Ontario')+' place')+(cls==='p'?' (Pomona draws)':' (Ontario hosts)');sub=countBy(ms,r=>r.cat).slice(0,4).map(([c,k])=>k+' '+c).join(', ');}
+ return `<b>${esc(head)}</b>${sub?'<br>'+esc(sub):''}<br><span class="dim">${someNames(ms,3)}</span><br><i>Click to zoom in</i>`;}
+function clusterGroup(cls,radius){const g=L.markerClusterGroup({maxClusterRadius:radius||30,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,showCoverageOnHover:false,iconCreateFunction:c=>{const n=c.getChildCount();const d=Math.min(32,16+Math.round(Math.sqrt(n)*3));return L.divIcon({className:'',html:`<div class="cl ${cls}" style="width:${d}px;height:${d}px"><span>${n}</span></div>`,iconSize:[d,d],iconAnchor:[d/2,d/2]});}});
+ g.on('clustermouseover',e=>{const c=e.layer;const n=c.getChildCount();const d=Math.min(32,16+Math.round(Math.sqrt(n)*3));c.bindTooltip(clusterSummary(cls,c.getAllChildMarkers()),{direction:'top',offset:[0,-d/2],className:'cltip',opacity:1}).openTooltip();});
+ g.on('clustermouseout',e=>{e.layer.unbindTooltip();});
+ return g;}
 
 /* ---------- hotels ---------- */
 const ALLH=(typeof HOTELS!=='undefined'?HOTELS:[]);
