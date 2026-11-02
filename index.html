@@ -34,6 +34,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);fon
 #map{position:fixed;inset:0;background:#0f1a22;font-family:var(--serif);font-size:15px}
 #map.img .leaflet-tile-pane{filter:brightness(.82) saturate(.72)}
 #map.zlow .lm.gap{display:none}
+#map.z15 .fpl.hall,#map.z15 .fpl.lot{display:none}
 .fpl{background:rgba(31,37,34,.82);color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:0 5px;font:10.5px var(--serif);white-space:nowrap;box-shadow:none;pointer-events:none}
 .fpl.hall{font-weight:700}.fpl.lot{color:#cfd8dc;font-style:italic}.fpl b{color:var(--accent)}
 .leaflet-tooltip.fpl::before{display:none}
@@ -467,7 +468,7 @@ document.getElementById('tSpine').onchange=e=>e.target.checked?spineG.addTo(map)
 const LM=[["Ontario International Airport",34.0545,-117.5980],["Convention Center",34.0675,-117.6062],["Downtown Ontario",34.0600,-117.6515],["Montclair",34.0700,-117.6950],["Downtown Pomona",34.0525,-117.7500],["Fairplex",34.0905,-117.7700]];
 const lmG=L.layerGroup().addTo(map);LM.forEach(l=>L.marker([l[1],l[2]],{icon:L.divIcon({className:'',html:`<div class="lm">${l[0]}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(lmG));
 document.getElementById('tLabels').onchange=e=>e.target.checked?lmG.addTo(map):map.removeLayer(lmG);
-const zlow=()=>document.getElementById('map').classList.toggle('zlow',map.getZoom()<13);map.on('zoomend',zlow);zlow();
+const zlow=()=>{const el=document.getElementById('map');el.classList.toggle('zlow',map.getZoom()<13);el.classList.toggle('z15',map.getZoom()<16);};map.on('zoomend',zlow);zlow();
 const CITY_STYLE={'Ontario':{color:'#e6c84a',weight:2},'Montclair':{color:'#6ccfdc',weight:1.5,dashArray:'5 4'},'Pomona':{color:'#7fd39b',weight:1.5,dashArray:'5 4'}};
 const cityG=L.layerGroup().addTo(map);const cityLayers={};
 subGroup('cityToggles','tAllCity',Object.keys(CITY_STYLE).map(n=>{const g=L.layerGroup();cityLayers[n]=g;return {key:n,layer:g,sw:swatch(CITY_STYLE[n].dashArray?'dash':'ln',CITY_STYLE[n].color),html:n+' city limits',n:''};}),cityG);
