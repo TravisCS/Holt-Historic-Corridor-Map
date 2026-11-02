@@ -2,7 +2,7 @@
 
 A single-page Leaflet map of the Holt Boulevard corridor in California, from Ontario International Airport and downtown Ontario on Euclid Avenue west through Montclair to downtown Pomona, the Pomona Transit Center, the Pomona Arts Colony and Fairplex. The view is locked to that corridor so the map can be used to explore and define it for a City of Ontario proposal built on one idea: Pomona draws, Ontario hosts, and transit connects them.
 
-Built in the style of the [Ontario Hotel Map](https://traviscs.github.io/Ontario-Hotel-Map/).
+Data and cards carry over from the [Ontario Hotel Map](https://traviscs.github.io/Ontario-Hotel-Map/); the page is styled like the [California BEAD map](https://traviscs.github.io/California-GigaBit-Schools-Draft/): dark panels, a title card beside the zoom buttons, a Legend card with Layers, Lists and More tabs, a night-styled Google basemap with an Esri dark fallback, and light popup cards.
 
 ## Files
 
