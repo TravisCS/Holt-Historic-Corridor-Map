@@ -6,7 +6,8 @@ Data and cards carry over from the [Ontario Hotel Map](https://traviscs.github.i
 
 ## Files
 
-- `index.html`: the whole page (markup, styles, scripts). Loads Leaflet 1.9.4, Leaflet.markercluster 1.5.3 and Leaflet.GoogleMutant from unpkg, and the Google Maps JavaScript API with a key that is referrer-locked to the GitHub Pages site.
+- `index.html`: the tab bar, in the same shape as West Coast Broadband Maps. One tab per corridor section (whole corridor, Fairplex, downtown Pomona, Montclair, downtown Ontario, ONT and the Convention Center, Rail). Each tab loads `map.html` in its own frame, started on that section, and frames stay loaded while you switch, so every tab keeps its own view, layers and open cards. The last tab is remembered.
+- `map.html`: the map itself (markup, styles, scripts). Loads Leaflet 1.9.4, Leaflet.markercluster 1.5.3 and Leaflet.GoogleMutant from unpkg, and the Google Maps JavaScript API with a key that is referrer-locked to the GitHub Pages site.
 - `data/`: one JavaScript list per layer, so a GeoJSON export is a simple transform.
   - `hotels.js`: `HOTELS`, hotels inside the corridor box carried over from the Ontario Hotel Map (Ontario, Pomona, Montclair, Claremont).
   - `businesses.js`: `BIZ`, businesses along Holt within about a quarter mile of the road between Euclid Avenue and the Pomona Transit Center, merged from OpenStreetMap and from official, press and directory sources.
