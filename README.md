@@ -15,13 +15,14 @@ Data and cards carry over from the [Ontario Hotel Map](https://traviscs.github.i
   - `transit.js`: `TRANSIT`, the West Valley Connector route and stations, Metrolink and Metro A Line track geometry and stations, and the two Pomona-side gaps.
   - `holt.js`: `HOLT`, the Holt Boulevard / Holt Avenue centerline.
   - `city_limits.js`: `CITY_LIMITS`, a saved copy of the Board of Equalization city limits for Ontario, Montclair and Pomona; the page loads the live service first and falls back to this copy.
+  - `fairplex.js`: `FAIRPLEX`, the Fairplex campus detail (Expo Halls, grandstand, infield and cricket ground, dragstrip, RV park, museums, lots, gates) drawn only from zoom 15; footprints from OpenStreetMap, facts from Fairplex's pages and its 2017 campus map, hall numbers and gate positions marked approximate.
 - `.github/workflows/pages.yml`: publishes the site files to GitHub Pages on each push to `main` (copied from the hotel map).
 
 ## Sources and data notes
 
 Every card cites the page it was read from, and the Legend's "About the data and sources" section lists the sources. Google ratings, review counts and photos are fetched live from Google Places when a card opens and are never stored here. Links were checked by script and by AI research agents on November 1, 2026; sites that block scripted requests (flyontario.com, pomonaca.gov, staterbros.com and a few chain store pages) were read in a browser instead.
 
-Things that could not be verified and are labeled as such on the cards: the Knight Riders Cricket Ground's capacity and exact position on the Fairplex grounds, whether Craft Collective still operates at 137 N Euclid, the convention hotel's room count (650 in the Holt sources, 600-plus in the Convention Center sheet) and any 2026 update on its timing, the boundaries of the Arts District North zoning area, and whether a weekly farmers market still runs at Ontario Town Square.
+Things that could not be verified and are labeled as such on the cards: the Knight Riders Cricket Ground's capacity and exact position on the Fairplex grounds, whether Craft Collective still operates at 137 N Euclid, the convention hotel's room count (650 in the Holt sources, 600-plus in the Convention Center sheet) and any 2026 update on its timing, the boundaries of the Arts District North zoning area, whether a weekly farmers market still runs at Ontario Town Square, the exact numbering of the Expo Halls and the positions of the Fairplex gates (placed from the 2017 campus map), and every Fairplex parking lot capacity (none is published).
 
 ## Local testing
 
