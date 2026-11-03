@@ -35,4 +35,4 @@ python3 -m http.server 8765
 
 The Google basemap and Places lookups fail on localhost because the key is referrer-locked; the page falls back to Esri tiles and says so under "Check Google connection" in the Legend.
 
-Map data: OpenStreetMap contributors (ODbL) for the Holt centerline, rail geometry and tagged businesses; California Board of Equalization for city limits; US Census Bureau geocoder for addresses placed by address.
+Map data: OpenStreetMap contributors (ODbL) for the Holt centerline, rail geometry, tagged businesses, and the streets the two Pomona-side gaps follow (with the card distances measured on those lines); California Board of Equalization for city limits; US Census Bureau geocoder for addresses placed by address.
