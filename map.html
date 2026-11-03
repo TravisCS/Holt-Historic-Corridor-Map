@@ -10,6 +10,8 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
+<script src="share.js?v=be8bf1ea"></script>
+<script src="snapshot.js?v=f273bb31"></script>
 <script>const GKEY="AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv-3fjCEu5UzXlyiA2OGjzyUl3tprLpxY&loading=async&callback=gmReady&v=weekly"></script>
 <script src="data/hotels.js?v=20261102e"></script>
@@ -216,7 +218,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 <div id="titlecard" class="card">
   <div class="head"><div><h1>Holt Historic Corridor Map: Ontario to Pomona</h1><span class="tagmin">Independent map for a City of Ontario proposal, not a City or Fairplex product</span></div><button class="btn" id="tcMin" aria-expanded="true" title="Hide the controls" aria-label="Hide the controls">&minus;</button></div>
   <p class="kpis" id="kpis"></p>
-  <p class="upd">Last updated <time datetime="2026-11-01T22:00-07:00">November 1, 2026</time> &middot; <button type="button" class="linkbtn" id="openAbout">About the data</button> &middot; <button type="button" class="linkbtn" id="keyOpen">Map key</button></p>
+  <p class="upd">Last updated <time datetime="2026-11-01T22:00-07:00">November 1, 2026</time> &middot; <button type="button" class="linkbtn" id="openAbout">About the data</button> &middot; <button type="button" class="linkbtn" id="keyOpen">Map key</button> &middot; <button type="button" class="linkbtn" id="shotBtn" title="Save a picture of the map as it looks now, with its info, in a new tab">Screenshot</button></p>
   <div class="rows">
     <p class="note notice"><b>Independent map.</b> Made for a proposal to the City of Ontario and not affiliated with or endorsed by the City of Ontario, the City of Pomona, Fairplex, SBCTA, Omnitrans or any business shown. The view is locked to the corridor: pan and zoom inside it freely.</p>
   </div>
@@ -304,6 +306,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
       <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
       <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's capacity and exact position, Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
+      <li><b>Screenshot and right-click menu.</b> The Screenshot link under the title takes a picture of the map exactly as it looks, with any open card and panel, and opens it in a new tab with a download button, the time, a link back to the same view, the layers shown, the card's text and the credits (html2canvas <a href="#ref17" class="cite">[17]</a> through snapshot.js). Right-click the map (press and hold on a phone) to share the spot, copy a link that reopens the map there with a pin, copy its coordinates, open it in Google Maps, see what is there, or take a screenshot; it is the same menu as on the other maps by T. C. Smith.</li>
     </ul>
     <h3>Sources</h3>
     <ol class="bib" id="srcList"></ol>
@@ -333,7 +336,8 @@ const SOURCES=[
  ['ref13','City of Ontario (2024, May). <i>Convention Center expansion info sheet</i>.','https://content.ontarioca.gov/sites/default/files/2024-05/ONE-PAGER%20CONVENTION%20CENTER%20EXPANSION_0.pdf'],
  ['ref14','Fairplex (2026). <i>Who we are; Knight Riders Cricket Ground press release (July 1, 2026); Millard Sheets Art Center</i>.','https://fairplex.com/'],
  ['ref15','Downtown Pomona District (2026). <i>ArtWalk, galleries and museums, eat and drink, entertainment directories</i>.','https://www.downtownpomona.org/'],
- ['ref16','US Census Bureau (2026). <i>Geocoder, Public_AR_Current benchmark</i>, used to place businesses by street address.','https://geocoding.geo.census.gov/geocoder/']
+ ['ref16','US Census Bureau (2026). <i>Geocoder, Public_AR_Current benchmark</i>, used to place businesses by street address.','https://geocoding.geo.census.gov/geocoder/'],
+ ['ref17','von Hertzen, N. (2022). <i>html2canvas</i> (Version 1.4.1) [JavaScript library, MIT License], used by the Screenshot button.','https://html2canvas.hertzen.com/']
 ];
 const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const gmaps=(n,a)=>`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n+', '+a)}" target="_blank" rel="noopener">Open in Google Maps</a>`;
@@ -351,10 +355,10 @@ function lockZoom(){const z=Math.max(11,Math.floor(map.getBoundsZoom(BOUNDS,fals
 map.fitBounds(BOUNDS);lockZoom();map.on('resize',()=>setTimeout(lockZoom,50));map.whenReady(()=>{setTimeout(()=>{map.invalidateSize();lockZoom();startView();},400);});window.addEventListener('load',()=>setTimeout(lockZoom,600));
 /* basemaps: Google (night-styled roadmap, or hybrid imagery) via GoogleMutant; Esri when Google cannot render */
 const NIGHT=[{elementType:'geometry',stylers:[{color:'#1f2a33'}]},{elementType:'labels.text.fill',stylers:[{color:'#aab6bf'}]},{elementType:'labels.text.stroke',stylers:[{color:'#1f2a33'}]},{featureType:'administrative',elementType:'geometry.stroke',stylers:[{color:'#4b5a66'}]},{featureType:'administrative.locality',elementType:'labels.text.fill',stylers:[{color:'#d8dee3'}]},{featureType:'poi',elementType:'labels.text.fill',stylers:[{color:'#8fa0ab'}]},{featureType:'poi.park',elementType:'geometry',stylers:[{color:'#243a34'}]},{featureType:'poi.park',elementType:'labels.text.fill',stylers:[{color:'#6f9a85'}]},{featureType:'road',elementType:'geometry',stylers:[{color:'#36434d'}]},{featureType:'road',elementType:'geometry.stroke',stylers:[{color:'#1f2a33'}]},{featureType:'road',elementType:'labels.text.fill',stylers:[{color:'#b9c4cc'}]},{featureType:'road.highway',elementType:'geometry',stylers:[{color:'#5c6b76'}]},{featureType:'road.highway',elementType:'geometry.stroke',stylers:[{color:'#2b3740'}]},{featureType:'road.highway',elementType:'labels.text.fill',stylers:[{color:'#e4ebf0'}]},{featureType:'transit',elementType:'geometry',stylers:[{color:'#3a4752'}]},{featureType:'transit.station',elementType:'labels.text.fill',stylers:[{color:'#c3cdd4'}]},{featureType:'water',elementType:'geometry',stylers:[{color:'#0f1a22'}]},{featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#4e6372'}]}];
-const esriImg=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Imagery &copy; Esri, Maxar, Earthstar Geographics'});
-const esriLab=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:19});
-const esriDark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,maxNativeZoom:16,attribution:'Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors'});
-const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,maxNativeZoom:16});
+const esriImg=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19,attribution:'Imagery &copy; Esri, Maxar, Earthstar Geographics'});
+const esriLab=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19});
+const esriDark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19,maxNativeZoom:16,attribution:'Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors'});
+const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19,maxNativeZoom:16});
 const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);satGroup.addTo(map);document.getElementById('map').classList.add('img');
 let gSat=null,gRoad=null,useGoogle=false,satOn=true;
 function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
@@ -615,6 +619,60 @@ document.getElementById('gcheck').onclick=async e=>{e.preventDefault();const out
  }catch(err){lines.push('Places API (New): request failed before Google answered ('+err.message+')');}
  if(!/github\.io$/.test(location.host))lines.push('Note: the key is referrer-locked to the GitHub Pages site, so Google data is expected to fail on a local or other host.');
  out.textContent=lines.join('\n');};
+
+/* ---------- Screenshot (snapshot.js) and right-click extras (share.js); the same block on every map by T. C. Smith ---------- */
+// A short note over the map, in the share menu's style
+function mapNote(map,msg,ms){var c=map.getContainer(),t=c.querySelector(".shot-note");if(!t){t=document.createElement("div");t.className="msh-toast shot-note";t.setAttribute("role","status")}t.textContent=msg;c.appendChild(t);clearTimeout(mapNote.t);mapNote.t=setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},ms||3000)}
+// "What's here?": do what a click does on the nearest marker or dot (within 24 px), line (10 px) or the smallest area under the spot
+function clickNearest(map,ll){
+  var cp=map.latLngToContainerPoint(ll),lp=map.latLngToLayerPoint(ll),best=null,bd=1e15,rank=3;
+  map.eachLayer(function(l){
+    if(l.options&&l.options.interactive===false)return;
+    if(!(l.getPopup&&l.getPopup())&&!(l.listens&&l.listens("click",true)))return;
+    var r=3,d=1e15;
+    if(l.getLatLng&&!l.getLatLngs){
+      var ic=l.options&&l.options.icon&&l.options.icon.options.iconSize,rad=l._radius||(ic?Math.max(ic[0]||ic.x||0,ic[1]||ic.y||0)/2:0);
+      d=Math.max(0,map.latLngToContainerPoint(l.getLatLng()).distanceTo(cp)-rad);if(d<=24)r=0;
+    }else if(l._parts&&l._parts.length&&l._containsPoint){
+      if(l instanceof L.Polygon){if(l._containsPoint(lp)){var b=l._pxBounds;r=2;d=b?(b.max.x-b.min.x)*(b.max.y-b.min.y):0}}
+      else{l._parts.forEach(function(p){for(var i=1;i<p.length;i++)d=Math.min(d,L.LineUtil.pointToSegmentDistance(lp,p[i-1],p[i]))});if(d<=10)r=1}
+    }
+    if(r<3&&(r<rank||(r===rank&&d<bd))){rank=r;bd=d;best=l}
+  });
+  if(!best)return false;
+  var at=best.getLatLng&&!best.getLatLngs?best.getLatLng():ll;
+  best.fire("click",{latlng:at,layerPoint:map.latLngToLayerPoint(at),containerPoint:map.latLngToContainerPoint(at),originalEvent:{type:"click",clientX:cp.x,clientY:cp.y,target:map.getContainer()}},true);
+  return true;
+}
+// A link that reopens this map (inside its tab bar, when it sits in one) on this view, with a pin at its center
+function pinLink(map,tab){var c=map.getCenter(),pin="pin="+c.lat.toFixed(5)+","+c.lng.toFixed(5)+","+Math.round(map.getZoom());
+  try{if(tab&&window.top!==window&&window.top.location.origin===location.origin&&window.top.document.getElementById("frames")){var t=window.top.location;return t.origin+t.pathname+"#"+tab+"&"+pin}}catch(e){}
+  return location.origin+location.pathname+"?"+pin}
+// A legend row's words with spaces between its parts ("Full service 8", not "Full service8")
+function labelText(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),a=[],n;while((n=w.nextNode()))a.push(n.nodeValue);return a.join(" ").replace(/\s+/g," ").trim()}
+// The open card's text, for the screenshot's info
+function cardText(sel){var el=document.querySelector(sel||".leaflet-popup-content");if(!el||!el.offsetParent)return "";return el.innerText.replace(/\n{3,}/g,"\n\n").trim()}
+// Take the screenshot with notes over the map; opt is MapSnapshot.take's options
+// (html2canvas waits for every image in its copy of the page, and Safari never loads a lazy one there, so lazy images go eager first)
+function shoot(map,opt){if(shoot.on)return;if(!window.MapSnapshot){mapNote(map,"The screenshot tool did not load (snapshot.js).");return}shoot.on=true;
+  [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),function(i){i.loading="eager"});
+  opt.hide=(opt.hide||[]).concat([".msh-menu",".msh-toast"]);
+  opt.busy=function(b){if(b)mapNote(map,"Making the screenshot...",20000)};
+  opt.done=function(how,err){shoot.on=false;mapNote(map,how==="tab"?"The screenshot opened in a new tab.":how==="download"?"Screenshot saved to your downloads.":(err&&err.message)||"The screenshot did not work here.",how==="error"?6000:3000)};
+  MapSnapshot.take(map,opt).catch(function(){})}
+function baseName(){return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
+function shotInfo(){var out=[],on=[];
+ [].forEach.call(document.querySelectorAll('#legend input[type=checkbox]'),function(i){if(!i.checked)return;var lb=i.closest('label')||i.closest('summary'),t=lb?labelText(lb):'';if(t&&on.indexOf(t)<0)on.push(t)});
+ out.push({h:'Layers shown',items:on.length?on:['None']});
+ var tx=cardText();if(tx)out.push({h:'Card shown',text:tx});
+ var c=map.getCenter();out.push({h:'View',items:['Center '+c.lat.toFixed(5)+', '+c.lng.toFixed(5),'Zoom '+map.getZoom(),'Basemap: '+baseName()]});
+ out.push({h:'Credits',text:shotCredit()+' Full sources are in the map\'s About sheet.'});
+ return out}
+function shotCredit(){return 'Map by T. C. Smith. Basemap: '+baseName()+'. Hotels, assets and businesses from official sites, OpenStreetMap and the Census geocoder; transit from SBCTA, Omnitrans, Metrolink and LA Metro; city limits from the Board of Equalization. WGS 84 / Web Mercator. Independent map for a City of Ontario proposal, not a City or Fairplex product.'}
+function takeShot(){shoot(map,{title:'Holt Historic Corridor Map: Ontario to Pomona',file:'Holt-Corridor-Map',link:function(){return pinLink(map)},info:shotInfo,credit:shotCredit(),hide:['#about']})}
+document.getElementById('shotBtn').addEventListener('click',takeShot);
+// right-click (or press and hold on a phone): the same menu as the other maps; "What's here?" does what a click does on the nearest marker, line or area
+if(window.MapShare)MapShare.attach(map,{title:'Holt Historic Corridor Map',extra:function(ll){return [['What\'s here?',function(){if(!clickNearest(map,ll))mapNote(map,'Nothing with a card at this spot. Click a marker, line or area for its card.')}],['Screenshot this view',takeShot]]}});
 
 /* ---------- link-check stamp on every card ---------- */
 const CHECK_DATE='November 2, 2026';
