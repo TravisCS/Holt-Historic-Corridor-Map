@@ -41,6 +41,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);fon
 .fpl{background:rgba(31,37,34,.82);color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:0 5px;font:10.5px var(--serif);white-space:nowrap;box-shadow:none;pointer-events:none}
 .fpl.hall{font-weight:700}.fpl.lot{color:#cfd8dc;font-style:italic}.fpl b{color:var(--accent)}
 .leaflet-tooltip.fpl::before{display:none}
+.leaflet-tooltip.fpl{pointer-events:auto;cursor:pointer}
 .leaflet-container{font-family:var(--serif);font-size:14px;background:#0f1a22}
 a{color:var(--link)}
 button,input,select{font-family:var(--serif);font-size:14px;color:var(--ink)}
@@ -620,10 +621,14 @@ const FP=(typeof FAIRPLEX!=='undefined'?FAIRPLEX:{areas:[],points:[]});
 const FPCAT={hall:{c:'#8cc3dc',w:1.5,f:.18},venue:{c:'#e3a93a',w:1.5,f:.18},stadium:{c:'#3fae7a',w:2,f:.14},museum:{c:'#b48cf5',w:1.5,f:.18},hotel:{c:'#e05a3a',w:1.5,f:.16},lot:{c:'#cfd8dc',w:1,f:.08,dash:'3 3'},rv:{c:'#cfd8dc',w:1,f:.08,dash:'3 3'},grounds:{c:'#8cc3dc',w:1.5,f:0,dash:'6 4'},gate:{c:'#f2c744'},other:{c:'#a8b0ab',w:1,f:.1}};
 const fpG=L.layerGroup();const FPZ=15;let fpWant=true;
 function fpCard(x){return `<h2>${nameHTML(x)}</h2><p class="addr">${esc(x.a||'Fairplex, 1101 W McKinley Ave, Pomona')}. ${esc(x.catl||x.cat)}.<br>${gmaps(x.n+' Fairplex','1101 W McKinley Ave, Pomona, CA 91768')}</p><span class="badge pom">Pomona draws</span>${x.kv?`<div class="kv">${x.kv.map(k=>`<div><b${String(k[0]).length>6?' style="font-size:1rem"':''}>${esc(k[0])}</b><span>${esc(k[1])}</span></div>`).join('')}</div>`:''}<p class="seas"><i>About</i>${x.d||''}</p><p class="note">${esc(x.note||'Footprint from OpenStreetMap; figures from the Fairplex pages cited.')}</p>${fpSrc(x)}`;}
-FP.areas.forEach(x=>{const st=FPCAT[x.cat]||FPCAT.other;const poly=L.polygon(x.geom,{color:st.c,weight:st.w,opacity:.95,dashArray:st.dash||null,fill:st.f>0,fillColor:st.c,fillOpacity:st.f});poly.bindPopup(fpCard(x),POP);
+/* bigger outlines first, so a smaller hall or venue inside one stays on top and takes its own click */
+const fpArea=g=>{let s=0;for(let i=0,j=g.length-1;i<g.length;j=i++)s+=(g[j][1]+g[i][1])*(g[j][0]-g[i][0]);return Math.abs(s);};
+FP.areas.slice().sort((a,b)=>fpArea(b.geom)-fpArea(a.geom)).forEach(x=>{const st=FPCAT[x.cat]||FPCAT.other;const poly=L.polygon(x.geom,{color:st.c,weight:st.w,opacity:.95,dashArray:st.dash||null,fill:st.f>0,fillColor:st.c,fillOpacity:st.f});poly.bindPopup(fpCard(x),POP);
  if(x.cat!=='grounds'){const lab=`<span>${esc(x.short||x.n)}${x.tag?' <b>'+esc(x.tag)+'</b>':''}</span>`;poly.bindTooltip(lab,{permanent:true,direction:'center',className:'fpl '+(x.cat==='hall'?'hall':x.cat==='lot'||x.cat==='rv'?'lot':''),opacity:1});}
- fpG.addLayer(poly);});
-FP.points.forEach(x=>{const st=FPCAT[x.cat]||FPCAT.other;const m=L.circleMarker([x.lat,x.lng],{radius:x.cat==='gate'?5:4,color:'#fff',weight:1.5,fillColor:st.c,fillOpacity:1});m.bindPopup(fpCard(x),POP);m.bindTooltip(`<span>${esc(x.short||x.n)}${x.tag?' <b>'+esc(x.tag)+'</b>':''}</span>`,{permanent:true,direction:x.dir||'right',offset:[6,0],className:'fpl'+(x.cat==='gate'?' lot':''),opacity:1});fpG.addLayer(m);});
+ fpLabelClick(poly);fpG.addLayer(poly);});
+FP.points.forEach(x=>{const st=FPCAT[x.cat]||FPCAT.other;const m=L.circleMarker([x.lat,x.lng],{radius:x.cat==='gate'?5:4,color:'#fff',weight:1.5,fillColor:st.c,fillOpacity:1});m.bindPopup(fpCard(x),POP);m.bindTooltip(`<span>${esc(x.short||x.n)}${x.tag?' <b>'+esc(x.tag)+'</b>':''}</span>`,{permanent:true,direction:x.dir||'right',offset:[6,0],className:'fpl'+(x.cat==='gate'?' lot':''),opacity:1});fpLabelClick(m);fpG.addLayer(m);});
+/* a click on a campus label opens that label's own card, never the outline under it */
+function fpLabelClick(l){l.on('tooltipopen',e=>{const el=e.tooltip.getElement();if(!el||el._fpc)return;el._fpc=1;L.DomEvent.disableClickPropagation(el);L.DomEvent.on(el,'click',ev=>{L.DomEvent.stop(ev);l.openPopup(l.getLatLng?l.getLatLng():l.getCenter());});});}
 function fpSync(){const on=fpWant&&map.getZoom()>=FPZ&&(FP.areas.length+FP.points.length)>0;if(on&&!map.hasLayer(fpG))fpG.addTo(map);if(!on&&map.hasLayer(fpG))map.removeLayer(fpG);}
 map.on('zoomend',fpSync);fpSync();
 document.getElementById('tFp').onchange=e=>{fpWant=e.target.checked;fpSync();};
