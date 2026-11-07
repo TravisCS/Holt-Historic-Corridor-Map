@@ -18,7 +18,7 @@
 <script src="data/hotels.js?v=20261102e"></script>
 <script src="data/businesses.js?v=20261102e"></script>
 <script src="data/pomona.js?v=20261102e"></script>
-<script src="data/ontario.js?v=20261102e"></script>
+<script src="data/ontario.js?v=20261106e"></script>
 <script src="data/transit.js?v=20261103d"></script>
 <script src="data/holt.js?v=20261102e"></script>
 <script src="data/city_limits.js?v=20261102e"></script>
@@ -341,12 +341,12 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 
 <script>
 /* ---------- constants and helpers ---------- */
-const BOUNDS=L.latLngBounds([[34.025,-117.80],[34.112,-117.548]]);
+const BOUNDS=L.latLngBounds([[34.025,-117.80],[34.118,-117.522]]);
 const CAT={full:{c:'#c8402f',l:'Full service / convention'},select:{c:'#e3a93a',l:'Select service'},ext:{c:'#3fae7a',l:'Extended stay'},econ:{c:'#9a8be0',l:'Economy'},plan:{c:'#c8402f',l:'Planned'}};
 const BIZCAT={'Restaurant':'#e05a3a','Cafe or bakery':'#e3a93a','Bar or brewery':'#b48cf5','Market or grocery':'#3fae7a','Retail':'#2bb0c4','Auto':'#b08968','Services':'#8fa3b0','Civic or cultural':'#5a9bf0','Health':'#f06292','Education':'#c9a26b','Lodging':'#9e9e9e'};
 /* asset colors avoid the hotel tier colors (red, amber, green, purple), and assets draw as diamonds, so an asset never reads as a hotel */
 const POMCAT={'Fairplex':'#b5d43b','Arts Colony':'#f06292','Downtown dining':'#26c6da','Transit hub':'#bdbdbd','Civic':'#5a9bf0','Montclair':'#a1887f'};
-const ONTCAT={'Airport':'#5a9bf0','Convention Center':'#f06292','Historic downtown':'#26c6da','Arts District':'#b5d43b','Civic':'#bdbdbd','Corridor':'#e8862a'};
+const ONTCAT={'Airport':'#5a9bf0','Convention Center':'#f06292','Historic downtown':'#26c6da','Arts District':'#b5d43b','Civic':'#bdbdbd','Corridor':'#e8862a','Regional shopping':'#ce93d8'};
 /* The one source list. It feeds the About sheet's Sources (id is its #ref anchor), the legend's "+" panels and every card's
    Sources block (layerinfo.js; name is the key they use, short the name in a card's one-line summary, use what the panels say
    it gave). About shows each as: owner (year). <i>title</i>after. url */
@@ -809,6 +809,7 @@ const INFO={};
   'Historic downtown':['Euclid Avenue\'s historic downtown, Ontario Town Square and the two museums.','The walkable downtown, on the West Valley Connector at Holt and Euclid.','Whether a weekly farmers market still runs at Town Square could not be verified.'],
   'Arts District':['The arts blocks on Emporia Street north of downtown, the Emporia lofts and the City\'s Craft Collective pop-up.','Places a visitor can walk to from Euclid Avenue.','The Arts District North zoning boundary is not published, and whether Craft Collective still operates at 137 N Euclid could not be verified.'],
   'Civic':['City Hall, the Ovitt Family Community Library and the Downtown Ontario Improvement Association.','The public partners a visitor program would work with.','Hours and programs change.'],
+  'Regional shopping':['Ontario Mills, the outlet mall next to the airport, and Victoria Gardens, the outdoor town center in Rancho Cucamonga.','The two biggest shopping draws at the east end, both stops on the West Valley Connector.','Store counts are the centers\' own claims, and no current visitor count was found for either.'],
   'Corridor':['One marker for the City of Ontario\'s Holt Corridor program. The orange spine is the road itself.','The City\'s own program for the road this map is built around.','The marker sits at Grove Avenue, mid-corridor; the card describes the whole Ontario stretch.']};
  const POM_TXT={'Fairplex':['Fairplex itself, the Knight Riders Cricket Ground and the Millard Sheets Art Center.','Fairplex is the corridor\'s biggest draw: the LA County Fair and more than 500 events a year.','The cricket ground\'s capacity and exact position are unverified, so its marker is approximate.'],
   'Arts Colony':['The Pomona Arts Colony district and its galleries, museums, theaters and art schools.','The galleries and venues are a reason to visit Pomona beyond Fairplex.','Gallery hours and shows change; check each venue before a visit.'],
@@ -921,7 +922,7 @@ const INFO={};
   care:'For reference, not a legal survey. Neighbor cities (Upland, Claremont, Chino) and unincorporated pockets are not drawn.'};
   INFO['city:'+c]=function(){return Object.assign({},base,{mix:`The official boundary from the California Board of Equalization city layer, served by the California Department of Conservation. ${cityFrom==='live'?'Right now it is loaded live from that service.':cityFrom==='copy'?'The service did not answer, so this is the saved copy from November 1, 2026, at 5-decimal precision.':'The map loads it live when the page opens and falls back to a saved copy from November 1, 2026.'} The saved copy has ${nf(verts(c))} points for ${c}.`});};});
  T('mask',{label:'Shade outside the corridor',kind:'computed',src:['metrolink','ont_airport','fairplex'],
-  mix:`Drawn by this map. The corridor box runs from the west side of Fairplex to Ontario International Airport, and from the Pomona North and Montclair stations in the north to the Ontario East Metrolink station in the south, about ${(BOUNDS.getSouthWest().distanceTo([BOUNDS.getSouth(),BOUNDS.getEast()])/1000).toFixed(0)} by ${(BOUNDS.getSouthWest().distanceTo([BOUNDS.getNorth(),BOUNDS.getWest()])/1000).toFixed(0)} km. The sources listed are the places that set its edges.`,
+  mix:`Drawn by this map. The corridor box runs from the west side of Fairplex to Ontario International Airport, Ontario Mills and Victoria Gardens in Rancho Cucamonga, and from the Pomona North and Montclair stations in the north to the Ontario East Metrolink station in the south, about ${(BOUNDS.getSouthWest().distanceTo([BOUNDS.getSouth(),BOUNDS.getEast()])/1000).toFixed(0)} by ${(BOUNDS.getSouthWest().distanceTo([BOUNDS.getNorth(),BOUNDS.getWest()])/1000).toFixed(0)} km. The sources listed are the places that set its edges.`,
   what:'A dark shade over everything outside the corridor box. The map will not pan far past it.',
   why:'It keeps the map on the corridor, so it can be used to define it.',
   care:'The box is this map\'s choice, not an official district or plan area.'});
