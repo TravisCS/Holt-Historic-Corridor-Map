@@ -53,8 +53,8 @@ function show(id){
   try{localStorage.setItem(KEY,t.id)}catch(e){}
   if(location.hash!=="#"+t.id)history.replaceState(null,"","#"+t.id);
 }
+// The plain link always opens on the whole corridor; a link with a tab name (#fairplex) opens that tab
 var start=location.hash.slice(1);
-if(!start){try{start=localStorage.getItem(KEY)}catch(e){}}
 show(start||"all");
 window.addEventListener("hashchange",function(){show(location.hash.slice(1))});
 </script>
