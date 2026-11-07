@@ -111,6 +111,9 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .tier input{margin:0}
 .lsub{font-size:13px;margin:6px 0 1px;border-top:1px solid var(--rule);padding-top:4px;font-weight:700;color:var(--muted)}
 .btnrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+#basemap{position:absolute;z-index:800;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));padding:0;box-shadow:var(--shadow)}#basemap button{padding:5px 11px;font-size:13.5px}
+.card-open #basemap{visibility:hidden}
+#titlecard .lists{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:6px}#titlecard .lists .btn{font-size:13px;padding:2px 8px}#titlecard.min .lists{display:none}
 #gcheckOut{color:var(--muted);white-space:pre-wrap;font-size:12px;margin-top:4px}
 /* credit, north, scale, attribution */
 #credit{position:absolute;z-index:600;left:calc(8px + env(safe-area-inset-left,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));text-align:left;font-size:11.5px;padding:3px 7px;max-width:min(46vw,calc(100% - 360px));pointer-events:none}#credit a{pointer-events:auto}
@@ -231,6 +234,8 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   .leaflet-top.leaflet-left{top:calc(104px + env(safe-area-inset-top,0px))}
   body.tcmin .leaflet-top.leaflet-left{top:calc(36px + env(safe-area-inset-top,0px))}
   #credit{display:none}
+  /* phones: the basemap switch sits under the title row, and the open title box covers it */
+  #basemap{z-index:790;top:calc(46px + env(safe-area-inset-top,0px))}#basemap button{padding:4px 9px;font-size:12.5px}
   #north{bottom:auto;right:auto;left:calc(12px + env(safe-area-inset-left,0px));top:calc(180px + env(safe-area-inset-top,0px))}
   .card-open .leaflet-control-zoom,.card-open #north,.card-open #titlecard{visibility:hidden}
   .lm{font-size:10.5px;padding:1px 6px}
@@ -245,6 +250,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   <div class="head"><div><h1>Holt Historic Corridor Map<span class="tfull">: Ontario to Pomona</span></h1><span class="tagmin">Independent map for a City of Ontario proposal, not a City or Fairplex product</span></div><button class="btn" id="tcMin" aria-expanded="true" title="Hide the controls" aria-label="Hide the controls">&minus;</button></div>
   <p class="kpis" id="kpis"></p>
   <p class="upd">Last updated <time datetime="2026-11-03">November 3, 2026</time> &middot; <button type="button" class="linkbtn" id="openAbout">About the data</button> &middot; <button type="button" class="linkbtn" id="keyOpen">Map key</button> &middot; <button type="button" class="linkbtn" id="shotBtn" title="Save a picture of the map as it looks now, with its info, in a new tab">Screenshot</button></p>
+  <div class="lists" id="listBtns"><span class="lbl">Lists:</span></div>
   <div class="rows">
     <p class="note notice"><b>Independent map.</b> Made for a proposal to the City of Ontario and not affiliated with or endorsed by the City of Ontario, the City of Pomona, Fairplex, SBCTA, Omnitrans or any business shown. The view is locked to the corridor: pan and zoom inside it freely.</p>
   </div>
@@ -253,7 +259,6 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 <div id="legend" class="card">
   <div class="head"><h2>Legend</h2><div class="lhb"><button type="button" class="btn sz" data-fs="-1" aria-label="Smaller legend text" title="Smaller text">A&minus;</button><button type="button" class="btn sz" data-fs="1" aria-label="Larger legend text" title="Larger text">A+</button><button type="button" class="btn" id="legToggle" aria-expanded="true" aria-label="Minimize legend" title="Minimize">&minus;</button></div></div>
   <div class="body">
-    <div class="ltabs" role="tablist" aria-label="Legend sections"><button type="button" role="tab" data-lt="layers" aria-selected="true">Layers</button><button type="button" role="tab" data-lt="lists" aria-selected="false">Lists</button><button type="button" role="tab" data-lt="more" aria-selected="false">More</button></div>
     <div class="lpanel" data-lp="layers">
       <p class="tip">Tap a layer to turn it on or off. The + beside it says where it comes from.</p>
       <p class="note" style="margin-top:2px"><b style="color:var(--ink)">Dots are single places; a ring with a number is that many places grouped at this zoom</b> (red ring: hotels, green: Pomona assets, teal: businesses). Zoom in or tap a ring to split it. Hotel dots grow with the room count; the number is on the card. Tap any dot for its card.</p>
@@ -264,7 +269,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <details open id="secPom"><summary data-info="g:pom"><input type="checkbox" id="tAllPom" checked aria-label="Pomona assets on or off"><span class="gh">Pomona draws</span><span class="gs">Fairplex, the arts, dining</span></summary>
         <div class="lsub" style="border:0;margin-top:4px;padding-top:0">Pomona assets <span class="n lbl" id="pomCount"></span></div><div id="pomToggles"></div>
         <div class="lsub">Pomona, Montclair and Claremont hotels <span class="n lbl" id="nhCount"></span></div><div id="nhToggles"></div>
-        <div class="lsub">Fairplex campus detail <span class="n lbl" id="fpCount"></span></div><label class="tier" data-info="fp"><input type="checkbox" id="tFp" checked><span class="sw sq" style="background:transparent;border-color:#8cc3dc"></span><span>Halls, grandstand, lots and gates, shown from zoom 15</span><span class="n"></span></label><p class="note" style="margin:0 0 2px">Zoom to Fairplex (under More) to see it; it hides again when you zoom out.</p>
+        <div class="lsub">Fairplex campus detail <span class="n lbl" id="fpCount"></span></div><label class="tier" data-info="fp"><input type="checkbox" id="tFp" checked><span class="sw sq" style="background:transparent;border-color:#8cc3dc"></span><span>Halls, grandstand, lots and gates, shown from zoom 15</span><span class="n"></span></label><p class="note" style="margin:0 0 2px">Open the Fairplex tab or zoom in on Fairplex to see it; it hides again when you zoom out.</p>
       </details>
       <details open id="secTr"><summary data-info="g:tr"><input type="checkbox" id="tAllTr" checked aria-label="Transit on or off"><span class="gh">Transit connects</span><span class="gs">BRT, rail, the gap</span></summary><div id="trToggles"></div></details>
       <details id="secBiz"><summary data-info="g:biz"><input type="checkbox" id="tAllBiz" checked aria-label="Businesses on or off"><span class="gh">Downtown Ontario places</span><span class="gs" id="bizCount"></span></summary><div id="bizToggles"></div></details>
@@ -275,20 +280,10 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
         <label class="tier" data-info="labels"><input type="checkbox" id="tLabels" checked><span class="sw" style="background:var(--panel);border-color:var(--muted)"></span><span>Place labels</span><span class="n"></span></label>
       </details>
     </div>
-    <div class="lpanel" data-lp="lists" hidden>
-      <p class="note" style="margin-top:2px">Each list opens in a side panel and zooms the map to show all of its places. Lists are sortable, with live Google ratings where Google lists the place.</p>
-      <div class="btnrow" id="listBtns"></div>
-    </div>
-    <div class="lpanel" data-lp="more" hidden>
-      <div class="row" style="margin-top:2px" data-info="basemap" id="bmRow"><span class="lbl">Basemap:</span><span class="seg" role="group" aria-label="Basemap"><button type="button" id="bmSat" aria-pressed="true">Imagery</button><button type="button" id="bmDark" aria-pressed="false">Dark streets</button></span></div>
-      <div class="lsub">Google connection</div>
-      <p class="note" style="margin-top:2px">The basemap and the live ratings come from Google under a key locked to this site. <button type="button" class="linkbtn" id="gcheck">Check Google connection</button></p><div id="gcheckOut"></div>
-      <div class="lsub">About</div>
-      <p class="note" style="margin-top:2px"><button type="button" class="linkbtn" id="openAbout2">About the data and sources</button> &middot; <button type="button" class="linkbtn" id="keyOpen2">Map key</button></p>
-    </div>
   </div>
 </div>
 
+<div id="basemap" class="card seg" role="group" aria-label="Basemap" title="Basemap: Google, or Esri when Google cannot load. Sources are in About the data."><button type="button" id="bmDark" aria-pressed="true">Dark streets</button><button type="button" id="bmSat" aria-pressed="false">Imagery</button></div>
 <div id="north" class="card" aria-hidden="true">&#9650;<br>N</div>
 <div id="credit" class="card">Data: City of Ontario, City of Pomona, Fairplex, SBCTA, Omnitrans, Metrolink, LA Metro, GOCAL, OpenStreetMap, Board of Equalization. Basemap: Google Maps (Esri when Google is unavailable).</div>
 
@@ -334,8 +329,10 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
       <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's capacity and exact position, Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
       <li><b>Screenshot and right-click menu.</b> The Screenshot link under the title takes a picture of the map exactly as it looks, with any open card and panel, and opens it in a new tab with a download button, the time, a link back to the same view, the layers shown, the card's text and the credits (html2canvas <a href="#ref17" class="cite">[17]</a> through snapshot.js). Right-click the map (press and hold on a phone) to share the spot, copy a link that reopens the map there with a pin, copy its coordinates, open it in Google Maps, see what is there, or take a screenshot; it is the same menu as on the other maps by T. C. Smith.</li>
-      <li><b>Where each layer comes from.</b> Every row in the Legend, and the basemap switch under More, has a small + button. It opens a note on that layer: how far each source backs it, counted from the data, then each source with its date and link, what the layer is, why it matters and what to watch before relying on it. It never turns the layer on or off. Every card ends with a Sources list that names what each source gave to that card, links the pages read for it, and says what this map worked out itself. Both draw on the source list below.</li>
+      <li><b>Where each layer comes from.</b> Every row in the Legend has a small + button. It opens a note on that layer: how far each source backs it, counted from the data, then each source with its date and link, what the layer is, why it matters and what to watch before relying on it. It never turns the layer on or off. Every card ends with a Sources list that names what each source gave to that card, links the pages read for it, and says what this map worked out itself. Both draw on the source list below.</li>
     </ul>
+    <h3>Google connection</h3>
+    <p class="note" style="margin-top:2px">The basemap and the live ratings come from Google under a key locked to this site. <button type="button" class="linkbtn" id="gcheck">Check Google connection</button></p><div id="gcheckOut"></div>
     <h3>Sources</h3>
     <ol class="bib" id="srcList"></ol>
   </div>
@@ -481,8 +478,8 @@ const esriImg=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/
 const esriLab=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19});
 const esriDark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19,maxNativeZoom:16,attribution:'Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors'});
 const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:19,maxNativeZoom:16});
-const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);satGroup.addTo(map);document.getElementById('map').classList.add('img');
-let gSat=null,gRoad=null,useGoogle=false,satOn=true;
+const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);darkGroup.addTo(map); /* the map opens on dark streets; Imagery is one click away, top right */
+let gSat=null,gRoad=null,useGoogle=false,satOn=false;
 function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
 function setBase(){[satGroup,darkGroup,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});currentBase().addTo(map);document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
 document.getElementById('bmDark').onclick=()=>{satOn=false;setBase();};document.getElementById('bmSat').onclick=()=>{satOn=true;setBase();};
@@ -515,7 +512,6 @@ function setLegend(open){legend.classList.toggle('min',!open);const b=document.g
 let legFs=1;try{legFs=+localStorage.getItem('holt-legend-fs')||1;}catch(e){}legend.style.setProperty('--lg-fs',legFs);
 legend.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{legFs=Math.min(1.5,Math.max(0.8,Math.round((legFs+0.1*+b.dataset.fs)*10)/10));legend.style.setProperty('--lg-fs',legFs);try{localStorage.setItem('holt-legend-fs',legFs);}catch(e){}if(LI)LI.place();});
 document.getElementById('legToggle').onclick=()=>setLegend(legend.classList.contains('min'));
-document.querySelectorAll('.ltabs [data-lt]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.ltabs [data-lt]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));document.querySelectorAll('.lpanel').forEach(p=>p.hidden=p.dataset.lp!==b.dataset.lt);});
 /* a master checkbox inside a <summary> must not open or close the section */
 document.querySelectorAll('#legend summary input').forEach(i=>i.addEventListener('click',e=>e.stopPropagation()));
 /* section headers: a turning arrow, and "n of m on" in place of the master checkbox (click it to turn the whole section on or off) */
@@ -656,10 +652,10 @@ document.getElementById('aboutTable').innerHTML=[['Ontario hotels',ONTH.length,'
 const tc=document.getElementById('titlecard');function setTitle(open){tc.classList.toggle('min',!open);document.body.classList.toggle('tcmin',!open);const b=document.getElementById('tcMin');b.textContent=open?'\u2212':'+';b.setAttribute('aria-expanded',String(open));b.title=open?'Hide the controls':'Show the controls';b.setAttribute('aria-label',b.title);}
 document.getElementById('tcMin').onclick=()=>setTitle(tc.classList.contains('min'));
 const about=document.getElementById('about');function openAbout(){about.hidden=false;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}
-document.getElementById('openAbout').onclick=openAbout;document.getElementById('openAbout2').onclick=openAbout;document.getElementById('closeAbout').onclick=()=>about.hidden=true;about.addEventListener('click',e=>{if(e.target===about)about.hidden=true;});
+document.getElementById('openAbout').onclick=openAbout;document.getElementById('closeAbout').onclick=()=>about.hidden=true;about.addEventListener('click',e=>{if(e.target===about)about.hidden=true;});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){about.hidden=true;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}});
 (()=>{const kp=document.getElementById('kpanel'),kb=document.getElementById('kpBody');const open=()=>{kp.classList.add('open');map.closePopup();rp.classList.remove('open');about.hidden=true;if(phone())setLegend(false);};
- document.getElementById('keyOpen').onclick=open;document.getElementById('keyOpen2').onclick=open;document.getElementById('kpClose').onclick=()=>kp.classList.remove('open');
+ document.getElementById('keyOpen').onclick=open;document.getElementById('kpClose').onclick=()=>kp.classList.remove('open');
  kb.addEventListener('click',e=>{const t=e.target.closest('.kst');if(!t)return;t.parentElement.classList.toggle('closed');});const kall=document.getElementById('kpAll');kall.onclick=()=>{const secs=[...kb.querySelectorAll('.ks')];const o=secs.some(x=>!x.classList.contains('closed'));secs.forEach(x=>x.classList.toggle('closed',o));kall.textContent=o?'Expand all':'Collapse all';};})();
 [tc,legend,document.getElementById('kpanel'),document.getElementById('rpanel'),about,document.getElementById('credit'),document.getElementById('north')].forEach(el=>{L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el);});
 let touched=false;document.getElementById('tcMin').addEventListener('click',()=>touched=true);document.getElementById('legToggle').addEventListener('click',()=>touched=true);
@@ -933,9 +929,9 @@ const INFO={};
   care:'Positions are approximate and chosen to read well, not to mark exact sites.'});
  INFO.basemap=function(){return {label:'Basemap',kind:'basemap',src:['google','esri'],
   mix:`Imagery: Google's hybrid imagery when Google loads, otherwise Esri World Imagery with Esri place labels. Dark streets: Google's roadmap in a night style set by this map, otherwise Esri's Dark Gray Canvas. Right now the map shows ${useGoogle?'Google':'Esri'} ${satOn?'imagery':'dark streets'}.`,
-  what:'The background under every layer. Pick it with the Imagery and Dark streets buttons.',
+  what:'The background under every layer. Pick it with the Dark streets and Imagery buttons at the top right.',
   why:'Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
-  care:'Google tiles load only on the published site, because the key is locked to it; anywhere else the map falls back to Esri. Imagery dates vary by tile and are not shown. "Check Google connection" under More tests it.'};};
+  care:'Google tiles load only on the published site, because the key is locked to it; anywhere else the map falls back to Esri. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
 })();
 if(window.MapLayerInfo){
  MapLayerInfo.KINDS.basemap=['Commercial basemap','Map tiles from Google, or from Esri when Google cannot load, shown as they come.',''];
@@ -943,7 +939,7 @@ if(window.MapLayerInfo){
  const rowBox=id=>legend.querySelector('[data-info="'+String(id).replace(/["\\]/g,'\\$&')+'"]');
  const boxOf=id=>{const r=rowBox(id);return r&&r.querySelector('input[type=checkbox]');};
  /* rows that are not label.tier get their + written in: the section headers (inside <summary>) and the basemap switch */
- legend.querySelectorAll('summary[data-info], #bmRow').forEach(r=>{const x=infoOf(r.dataset.info);if(x&&!r.querySelector('[data-mli]'))r.insertAdjacentHTML('beforeend',MapLayerInfo.buttonHTML(r.dataset.info,x.label));});
+ legend.querySelectorAll('summary[data-info]').forEach(r=>{const x=infoOf(r.dataset.info);if(x&&!r.querySelector('[data-mli]'))r.insertAdjacentHTML('beforeend',MapLayerInfo.buttonHTML(r.dataset.info,x.label));});
  LI=MapLayerInfo.attach({legend:legend,rows:'label.tier[data-info]',idOf:r=>r.dataset.info,
   labelOf:r=>{const s=r.querySelector(':scope > span:not(.sw):not(.n)');return (s?s.textContent:r.textContent).replace(/\s+/g,' ').trim();},
   labelFor:id=>{const x=infoOf(id);return x&&x.label?x.label:id;},
@@ -954,7 +950,6 @@ if(window.MapLayerInfo){
   onOpen:id=>{if(!boxOf(id))queueMicrotask(()=>{const p=LI&&LI.panel(),t=p&&p.querySelector('[data-mli-t]');if(t)t.remove();});},
   blockEscape:()=>!about.hidden});
  legend.addEventListener('change',()=>LI.refreshToggle());
- document.querySelectorAll('.ltabs [data-lt]').forEach(b=>b.addEventListener('click',()=>LI.close()));
  map.on('popupopen',()=>{if(phone())LI.close();});
 }
 /* "About the data" links in card Sources blocks; capture phase, since popups stop clicks from bubbling */
