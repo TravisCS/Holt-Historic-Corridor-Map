@@ -117,8 +117,11 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 #titlecard .lists{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:6px}#titlecard .lists .btn{font-size:13px;padding:2px 8px}#titlecard.min .lists{display:none}
 #gcheckOut{color:var(--muted);white-space:pre-wrap;font-size:12px;margin-top:4px}
 /* credit, north, scale, attribution */
-#credit{position:absolute;z-index:600;left:calc(8px + env(safe-area-inset-left,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));text-align:left;font-size:11.5px;padding:3px 7px;max-width:min(46vw,calc(100% - 360px));pointer-events:none}#credit a{pointer-events:auto}
-@media (max-height:650px){#credit{font-size:10px;max-width:46vw}}@media (max-height:520px){#credit{display:none}}
+#credit{position:absolute;z-index:600;left:calc(8px + env(safe-area-inset-left,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));text-align:left;font-size:11.5px;padding:0;max-width:min(46vw,calc(100% - 360px));border-radius:14px;overflow:hidden}
+#credBtn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:3px 10px;font-weight:700;font-size:12px;color:var(--ink)}#credBtn::after{content:'+';font-weight:400;color:var(--muted)}#credBtn[aria-expanded=true]::after{content:'\2212'}
+#credBtn:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:14px}@media (hover:hover){#credBtn:hover{background:var(--chip)}}
+#credTxt{display:block;padding:0 10px 6px;line-height:1.35}#credTxt[hidden]{display:none}#credit.open{border-radius:10px}
+@media (max-height:650px){#credit{font-size:10.5px;max-width:46vw}}
 #north{position:absolute;z-index:700;left:calc(12px + env(safe-area-inset-left,0px));bottom:calc(100px + env(safe-area-inset-bottom,0px));width:28px;text-align:center;font-size:12px;font-weight:700;padding:3px 0}
 .leaflet-control-scale{margin-bottom:calc(6px + env(safe-area-inset-bottom,0px))!important}
 .leaflet-control-scale-line{font-family:var(--serif);background:rgba(255,255,255,.85);color:#1d2320}
@@ -234,7 +237,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   #titlecard.min{right:auto}
   .leaflet-top.leaflet-left{top:calc(104px + env(safe-area-inset-top,0px))}
   body.tcmin .leaflet-top.leaflet-left{top:calc(36px + env(safe-area-inset-top,0px))}
-  #credit{display:none}
+  #credit{max-width:calc(100vw - 90px)}
   /* phones: the basemap switch sits under the title row, and the open title box covers it */
   #basemap{z-index:790;top:calc(46px + env(safe-area-inset-top,0px))}#basemap button{padding:4px 9px;font-size:12.5px}
   #north{bottom:auto;right:auto;left:calc(12px + env(safe-area-inset-left,0px));top:calc(180px + env(safe-area-inset-top,0px))}
@@ -286,7 +289,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 
 <div id="basemap" class="card seg" role="group" aria-label="Basemap" title="Basemap: Google, or Esri when Google cannot load. Sources are in About the data."><button type="button" id="bmDark" aria-pressed="true">Dark streets</button><button type="button" id="bmSat" aria-pressed="false">Imagery</button></div>
 <div id="north" class="card" aria-hidden="true">&#9650;<br>N</div>
-<div id="credit" class="card">Data: City of Ontario, City of Pomona, Fairplex, SBCTA, Omnitrans, Metrolink, LA Metro, GOCAL, OpenStreetMap, Board of Equalization. Basemap: Google Maps (Esri when Google is unavailable).</div>
+<div id="credit" class="card"><button id="credBtn" type="button" aria-expanded="false" aria-controls="credTxt" title="Show where the data comes from">Data</button><span id="credTxt" hidden>City of Ontario, City of Pomona, Fairplex, SBCTA, Omnitrans, Metrolink, LA Metro, GOCAL, OpenStreetMap, Board of Equalization. Basemap: Google Maps (Esri when Google is unavailable). The + beside each legend row gives the full sources.</span></div>
 
 <div class="rpanel card" id="rpanel"><div class="rh"><h2 id="rpTitle"></h2><div class="sub" id="rpSub"></div><button class="rx" id="rpClose" aria-label="close">&times;</button><div class="btnrow"><button type="button" class="btn" id="rpZoom">Zoom to these</button><button type="button" class="btn" id="rpRetry" style="display:none">Retry missing ratings</button></div></div><div class="rsort"><span class="lbl">Sort:</span><button type="button" class="btn" data-rs="rt" aria-pressed="true">Rating</button><button type="button" class="btn" data-rs="we" aria-pressed="false">West to east</button><button type="button" class="btn" data-rs="cat" aria-pressed="false">Category</button><button type="button" class="btn" data-rs="az" aria-pressed="false">A to Z</button></div><div class="rl" id="rpList"></div></div>
 
@@ -659,6 +662,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){about.hidden=true;d
 (()=>{const kp=document.getElementById('kpanel'),kb=document.getElementById('kpBody');const open=()=>{kp.classList.add('open');map.closePopup();rp.classList.remove('open');about.hidden=true;if(phone())setLegend(false);};
  document.getElementById('keyOpen').onclick=open;document.getElementById('kpClose').onclick=()=>kp.classList.remove('open');
  kb.addEventListener('click',e=>{const t=e.target.closest('.kst');if(!t)return;t.parentElement.classList.toggle('closed');});const kall=document.getElementById('kpAll');kall.onclick=()=>{const secs=[...kb.querySelectorAll('.ks')];const o=secs.some(x=>!x.classList.contains('closed'));secs.forEach(x=>x.classList.toggle('closed',o));kall.textContent=o?'Expand all':'Collapse all';};})();
+{const cb=document.getElementById('credBtn'),ct=document.getElementById('credTxt'),cr=document.getElementById('credit');cb.onclick=()=>{const o=ct.hidden;ct.hidden=!o;cr.classList.toggle('open',o);cb.setAttribute('aria-expanded',String(o));cb.title=o?'Hide the data credits':'Show where the data comes from';};}
 [tc,legend,document.getElementById('kpanel'),document.getElementById('rpanel'),about,document.getElementById('credit'),document.getElementById('north')].forEach(el=>{L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el);});
 let touched=false;document.getElementById('tcMin').addEventListener('click',()=>touched=true);document.getElementById('legToggle').addEventListener('click',()=>touched=true);
 /* every tab opens with the title box and the legend folded, so neither has to be closed tab by tab; + opens them */
