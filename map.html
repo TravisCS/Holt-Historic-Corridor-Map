@@ -63,8 +63,13 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 #titlecard h1{font-size:19px;margin:0;font-weight:700;text-wrap:balance;line-height:1.2}
 #tcMin{padding:0 9px;font-size:18px;line-height:24px;min-width:30px}
 #titlecard.min .rows,#titlecard.min .kpis,#titlecard.min .upd{display:none}
-#titlecard.min h1{font-size:16px}
-.tagmin{display:none;font-size:11.5px;font-weight:700;color:var(--accent);line-height:1.2;margin-top:2px}#titlecard.min .tagmin{display:block}
+/* folded: one short line, "Holt Historic Corridor Map" and a +, so it stays clear of the tab bar and the map */
+#titlecard.min{padding:3px 4px 3px 10px;border-radius:16px}
+#titlecard.min .head{align-items:center;gap:6px}
+#titlecard.min h1{font-size:14px;white-space:nowrap;line-height:1.2}
+#titlecard.min .tfull,#titlecard.min .tagmin{display:none!important}
+#titlecard.min #tcMin{min-width:24px;padding:0 6px;font-size:15px;line-height:20px;border-radius:12px}
+.tagmin{display:none;font-size:11.5px;font-weight:700;color:var(--accent);line-height:1.2;margin-top:2px}
 #titlecard .kpis{margin:3px 0 0;font-size:14px;font-weight:700;line-height:1.3;font-variant-numeric:tabular-nums}
 #titlecard .upd{margin:2px 0 0;color:var(--muted);font-size:12.5px;line-height:1.3}
 #titlecard .sub{margin:0;color:var(--muted);font-size:13.5px;line-height:1.35}
@@ -74,32 +79,43 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .three b{display:block;font-size:13.5px}
 .three .ont{border-color:var(--ont)}.three .pom{border-color:var(--pom)}.three .tr{border-color:var(--tr)}
 /* legend card */
-#legend{position:absolute;z-index:800;bottom:calc(30px + env(safe-area-inset-bottom,0px));left:calc(10px + env(safe-area-inset-left,0px));width:310px;max-height:min(66vh,calc(100% - 80px));overflow:auto;overscroll-behavior:contain;padding:10px 12px;scrollbar-width:thin}
+#legend{position:absolute;z-index:800;bottom:calc(30px + env(safe-area-inset-bottom,0px));right:calc(10px + env(safe-area-inset-right,0px));width:320px;max-height:min(66vh,calc(100% - 80px));display:flex;flex-direction:column;box-sizing:border-box;border:1px solid var(--rule);border-radius:12px;padding:0}
 #legend h2{font-size:17px;margin:0;font-weight:700}
-#legend .head{display:flex;justify-content:space-between;align-items:center;gap:8px}
-#legend.min .body{display:none}
-.ltabs{display:flex;gap:4px;margin:8px 0 6px}.ltabs button{flex:1;background:var(--chip);border:1px solid var(--rule);border-radius:6px;padding:4px 6px;cursor:pointer;color:var(--ink)}.ltabs button[aria-selected="true"]{background:var(--accent);color:#141816;font-weight:700}
+#legend .head{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 10px;border-bottom:1px solid var(--rule)}
+#legend .lhb{display:flex;gap:4px}#legend .lhb button{font-size:13px;padding:2px 8px;line-height:1.3;border-radius:8px}
+#legend .body{overflow:auto;overscroll-behavior:contain;padding:4px 10px 8px;scrollbar-width:thin;min-height:0;zoom:var(--lg-fs,1)}
+#legend.min{width:auto}#legend.min .body,#legend.min .sz{display:none}#legend.min .head{border-bottom:0}
+#legend .tip{margin:4px 0 2px;padding:3px 7px;border-radius:6px;background:var(--chip);font-size:12.5px;line-height:1.3}
+.ltabs{display:flex;gap:4px;margin:6px 0 4px}.ltabs button{flex:1;background:var(--chip);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;font-size:13px;cursor:pointer;color:var(--ink)}.ltabs button[aria-selected="true"]{background:var(--accent);color:#141816;font-weight:700}
 .lpanel[hidden]{display:none}
-#legend details{border-top:1px solid var(--rule);margin-top:8px;padding-top:6px}
-#legend summary{cursor:pointer;font-weight:700;font-size:14.5px;list-style-position:inside;display:flex;align-items:center;gap:6px}
+#legend details{border-top:1px solid var(--rule);margin-top:4px;padding-top:2px}
+#legend summary{cursor:pointer;font-weight:700;font-size:14px;list-style:none;display:flex;align-items:center;gap:6px;padding:4px 2px}
+#legend summary::-webkit-details-marker{display:none}
+#legend summary .tw{display:inline-block;width:9px;color:var(--muted);transition:transform .15s}#legend details[open]>summary .tw{transform:rotate(90deg)}
 #legend summary .gh{flex:1}
-#legend summary .gs{color:var(--muted);font-weight:400;font-size:12.5px;font-style:italic}
-#legend summary input{margin:0 2px 0 0}
-.tier{display:grid;grid-template-columns:18px 18px 1fr auto;gap:6px;align-items:center;padding:3px 0;font-size:14px}
+#legend summary .gs{display:none}
+#legend summary .gc{all:unset;cursor:pointer;font-weight:400;color:var(--muted);font-size:12.5px;white-space:nowrap;padding:1px 4px;border-radius:5px}@media (hover:hover){#legend summary .gc:hover{background:var(--chip);color:var(--ink)}}#legend summary .gc:focus-visible{outline:2px solid var(--accent)}
+/* no checkboxes: the row is the switch, and rows that are off are dimmed (the boxes stay, hidden, so the layers, screenshot and + panels work as before) */
+#legend input[type=checkbox]{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.tier{position:relative;flex:1;min-width:0;display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:center;margin:1px 0;padding:3px 3px;border-radius:5px;font-size:14px;line-height:1.2;cursor:pointer}
+.tier>.sw{justify-self:center}.tier>input+span:not(.sw){grid-column:2}
+@media (hover:hover){.tier:hover{background:var(--chip)}}
+.tier:has(input:focus-visible){background:var(--chip);outline:2px solid var(--accent);outline-offset:-1px}
+.tier:has(input:not(:checked)){opacity:.42}
 .tier .sw{width:16px;height:12px;border-radius:2px;border:1px solid rgba(255,255,255,.25);display:inline-block}
 .tier .sw.rd{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-sizing:border-box}
 .tier .sw.sq{width:13px;height:13px;border:2px solid #fff;box-sizing:border-box;border-radius:2px}
 .tier .sw.ln{height:4px;border:0;border-radius:2px}
 .tier .sw.ln.dash{background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 8px)}
-.tier .n{color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px;text-align:right}
+.tier .n{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px;text-align:right;white-space:nowrap}
 .tier input{margin:0}
-.lsub{font-size:14.5px;margin:10px 0 2px;border-top:1px solid var(--rule);padding-top:6px;font-weight:700}
+.lsub{font-size:13px;margin:6px 0 1px;border-top:1px solid var(--rule);padding-top:4px;font-weight:700;color:var(--muted)}
 .btnrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 #gcheckOut{color:var(--muted);white-space:pre-wrap;font-size:12px;margin-top:4px}
 /* credit, north, scale, attribution */
-#credit{position:absolute;z-index:600;right:calc(8px + env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));text-align:right;font-size:11.5px;padding:3px 7px;max-width:min(46vw,calc(100% - 360px));pointer-events:none}#credit a{pointer-events:auto}
+#credit{position:absolute;z-index:600;left:calc(8px + env(safe-area-inset-left,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px));text-align:left;font-size:11.5px;padding:3px 7px;max-width:min(46vw,calc(100% - 360px));pointer-events:none}#credit a{pointer-events:auto}
 @media (max-height:650px){#credit{font-size:10px;max-width:46vw}}@media (max-height:520px){#credit{display:none}}
-#north{position:absolute;z-index:700;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(100px + env(safe-area-inset-bottom,0px));width:28px;text-align:center;font-size:12px;font-weight:700;padding:3px 0}
+#north{position:absolute;z-index:700;left:calc(12px + env(safe-area-inset-left,0px));bottom:calc(100px + env(safe-area-inset-bottom,0px));width:28px;text-align:center;font-size:12px;font-weight:700;padding:3px 0}
 .leaflet-control-scale{margin-bottom:calc(6px + env(safe-area-inset-bottom,0px))!important}
 .leaflet-control-scale-line{font-family:var(--serif);background:rgba(255,255,255,.85);color:#1d2320}
 .leaflet-control-attribution{font-family:var(--serif);font-size:11px;background:rgba(255,255,255,.85)!important;color:#1d2320}
@@ -209,9 +225,11 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   #titlecard h1{font-size:16.5px}
   #titlecard .notice{display:none}#titlecard .tagmin{display:block}
   #titlecard .kpis{font-size:13px}
-  #legend{top:auto;bottom:calc(8px + env(safe-area-inset-bottom,0px));right:max(10px,env(safe-area-inset-right,0px));left:max(10px,env(safe-area-inset-left,0px));width:auto;max-height:46vh}
+  #legend{top:auto;bottom:calc(30px + env(safe-area-inset-bottom,0px));right:max(10px,env(safe-area-inset-right,0px));left:max(10px,env(safe-area-inset-left,0px));width:auto;max-height:52vh}
+  #legend.min{left:auto}
+  #titlecard.min{right:auto}
   .leaflet-top.leaflet-left{top:calc(104px + env(safe-area-inset-top,0px))}
-  #titlecard.min ~ .leaflet-container .leaflet-top.leaflet-left{top:calc(60px + env(safe-area-inset-top,0px))}
+  body.tcmin .leaflet-top.leaflet-left{top:calc(36px + env(safe-area-inset-top,0px))}
   #credit{display:none}
   #north{bottom:auto;right:auto;left:calc(12px + env(safe-area-inset-left,0px));top:calc(180px + env(safe-area-inset-top,0px))}
   .card-open .leaflet-control-zoom,.card-open #north,.card-open #titlecard{visibility:hidden}
@@ -224,7 +242,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 <div id="map"></div>
 
 <div id="titlecard" class="card">
-  <div class="head"><div><h1>Holt Historic Corridor Map: Ontario to Pomona</h1><span class="tagmin">Independent map for a City of Ontario proposal, not a City or Fairplex product</span></div><button class="btn" id="tcMin" aria-expanded="true" title="Hide the controls" aria-label="Hide the controls">&minus;</button></div>
+  <div class="head"><div><h1>Holt Historic Corridor Map<span class="tfull">: Ontario to Pomona</span></h1><span class="tagmin">Independent map for a City of Ontario proposal, not a City or Fairplex product</span></div><button class="btn" id="tcMin" aria-expanded="true" title="Hide the controls" aria-label="Hide the controls">&minus;</button></div>
   <p class="kpis" id="kpis"></p>
   <p class="upd">Last updated <time datetime="2026-11-03">November 3, 2026</time> &middot; <button type="button" class="linkbtn" id="openAbout">About the data</button> &middot; <button type="button" class="linkbtn" id="keyOpen">Map key</button> &middot; <button type="button" class="linkbtn" id="shotBtn" title="Save a picture of the map as it looks now, with its info, in a new tab">Screenshot</button></p>
   <div class="rows">
@@ -233,10 +251,11 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 </div>
 
 <div id="legend" class="card">
-  <div class="head"><h2>Legend</h2><button class="btn" id="legToggle" aria-expanded="true">Hide</button></div>
+  <div class="head"><h2>Legend</h2><div class="lhb"><button type="button" class="btn sz" data-fs="-1" aria-label="Smaller legend text" title="Smaller text">A&minus;</button><button type="button" class="btn sz" data-fs="1" aria-label="Larger legend text" title="Larger text">A+</button><button type="button" class="btn" id="legToggle" aria-expanded="true" aria-label="Minimize legend" title="Minimize">&minus;</button></div></div>
   <div class="body">
     <div class="ltabs" role="tablist" aria-label="Legend sections"><button type="button" role="tab" data-lt="layers" aria-selected="true">Layers</button><button type="button" role="tab" data-lt="lists" aria-selected="false">Lists</button><button type="button" role="tab" data-lt="more" aria-selected="false">More</button></div>
     <div class="lpanel" data-lp="layers">
+      <p class="tip">Tap a layer to turn it on or off. The + beside it says where it comes from.</p>
       <p class="note" style="margin-top:2px"><b style="color:var(--ink)">Dots are single places; a ring with a number is that many places grouped at this zoom</b> (red ring: hotels, green: Pomona assets, teal: businesses). Zoom in or tap a ring to split it. Hotel dots grow with the room count; the number is on the card. Tap any dot for its card.</p>
       <details open id="secOnt"><summary data-info="g:ont"><input type="checkbox" id="tAllHotels" checked aria-label="Ontario hotels on or off"><span class="gh">Ontario hosts</span><span class="gs">hotel district, airport, downtown</span></summary>
         <div class="lsub" style="border:0;margin-top:4px;padding-top:0">Hotel district: Ontario hotels <span class="n lbl" id="hotCount"></span></div><div id="hotelToggles"></div>
@@ -453,7 +472,7 @@ function spineSrc(){return cardSources({lead:[['ont_holt_otb','the Holt Corridor
 /* ---------- map, locked to the corridor ---------- */
 const map=L.map('map',{zoomControl:true,maxBounds:BOUNDS.pad(0.04),maxBoundsViscosity:1.0,minZoom:11,maxZoom:20,worldCopyJump:false,attributionControl:true});
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
-L.control.scale({position:'bottomright',imperial:true,metric:true}).addTo(map);
+L.control.scale({position:'bottomleft',imperial:true,metric:true}).addTo(map);
 function lockZoom(){const z=Math.max(11,Math.floor(map.getBoundsZoom(BOUNDS,false)));map.setMinZoom(z);if(map.getZoom()<z)map.setZoom(z);}
 map.fitBounds(BOUNDS);lockZoom();map.on('resize',()=>setTimeout(lockZoom,50));map.whenReady(()=>{setTimeout(()=>{map.invalidateSize();lockZoom();startView();},400);});window.addEventListener('load',()=>setTimeout(lockZoom,600));
 /* basemaps: Google (night-styled roadmap, or hybrid imagery) via GoogleMutant; Esri when Google cannot render */
@@ -491,11 +510,18 @@ window.addEventListener('hashchange',()=>{const h=(location.hash||'').slice(1).t
 /* ---------- legend plumbing ---------- */
 const legend=document.getElementById('legend');
 let LI=null; /* the legend's "+" panels (layerinfo.js), attached once every row is built */
-function setLegend(open){legend.classList.toggle('min',!open);const b=document.getElementById('legToggle');b.textContent=open?'Hide':'Show';b.setAttribute('aria-expanded',String(open));if(LI)LI.place();}
+function setLegend(open){legend.classList.toggle('min',!open);const b=document.getElementById('legToggle');b.textContent=open?'\u2212':'+';b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Minimize legend':'Show legend');b.title=open?'Minimize':'Show legend';if(open&&legend.querySelector('.gc'))legCounts();if(LI)LI.place();}
+/* A- and A+ change the legend's text size, remembered for every tab */
+let legFs=1;try{legFs=+localStorage.getItem('holt-legend-fs')||1;}catch(e){}legend.style.setProperty('--lg-fs',legFs);
+legend.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>{legFs=Math.min(1.5,Math.max(0.8,Math.round((legFs+0.1*+b.dataset.fs)*10)/10));legend.style.setProperty('--lg-fs',legFs);try{localStorage.setItem('holt-legend-fs',legFs);}catch(e){}if(LI)LI.place();});
 document.getElementById('legToggle').onclick=()=>setLegend(legend.classList.contains('min'));
 document.querySelectorAll('.ltabs [data-lt]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.ltabs [data-lt]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));document.querySelectorAll('.lpanel').forEach(p=>p.hidden=p.dataset.lp!==b.dataset.lt);});
 /* a master checkbox inside a <summary> must not open or close the section */
 document.querySelectorAll('#legend summary input').forEach(i=>i.addEventListener('click',e=>e.stopPropagation()));
+/* section headers: a turning arrow, and "n of m on" in place of the master checkbox (click it to turn the whole section on or off) */
+document.querySelectorAll('#legend summary').forEach(sm=>{sm.insertAdjacentHTML('afterbegin','<span class="tw" aria-hidden="true">&#9656;</span>');const gs=sm.querySelector('.gs');if(gs&&gs.textContent)sm.title=gs.textContent;const m=sm.querySelector('input[type=checkbox]');if(m){const c=document.createElement('button');c.type='button';c.className='gc';c.title='Turn the whole section on or off';c.onclick=e=>{e.preventDefault();e.stopPropagation();m.click();legCounts();};(gs||sm.querySelector('.gh')).after(c);}});
+function legCounts(){document.querySelectorAll('#legend summary').forEach(sm=>{const m=sm.querySelector('input[type=checkbox]'),c=sm.querySelector('.gc'),r=m&&MASTERS[m.id];if(!c||!r)return;const n=r.cbs.filter(x=>x.checked).length;c.textContent=n+' of '+r.cbs.length+' on';c.setAttribute('aria-label',sm.querySelector('.gh').textContent+': '+n+' of '+r.cbs.length+' layers on. Turn all '+(n===r.cbs.length?'off':'on'));});}
+legend.addEventListener('change',()=>setTimeout(legCounts,0));
 function swatch(kind,color){return kind==='rd'?`<span class="sw rd" style="background:${color}"></span>`:kind==='sq'?`<span class="sw sq" style="background:${color}"></span>`:kind==='ln'?`<span class="sw ln" style="background:${color}"></span>`:kind==='dash'?`<span class="sw ln dash" style="color:${color}"></span>`:`<span class="sw" style="background:${color}"></span>`;}
 /* a group of sub-layers under one master checkbox; rows are .tier grid rows */
 function subGroup(boxId,masterId,items,parentLayer){const box=document.getElementById(boxId);const cbs=[];const layers={};
@@ -627,7 +653,8 @@ const lb=document.getElementById('listBtns');LISTS.forEach(l=>{const b=document.
 document.getElementById('aboutTable').innerHTML=[['Ontario hotels',ONTH.length,'Ontario Hotel Map: GOCAL roster, official sites, meetings directories'],['Pomona, Montclair and Claremont hotels',NHH.length,'Ontario Hotel Map neighbor list'],['Pomona assets',POM.length,'Fairplex, Downtown Pomona District, Metrolink, LA Metro, venue sites'],['Ontario assets',ONTA.length,'City of Ontario, Ontario Thinks Business, GOCAL, ONT'],['Downtown Ontario places',BZ.length,'OpenStreetMap plus Omnitrans, DOIA, city, press and directory pages'],['West Valley Connector stations in the box',nWvc,'SBCTA fact sheet, October 2026'],['Rail stations',(TR.stations||[]).length,'Metrolink and LA Metro'],['City limits',3,'Board of Equalization']].map(r=>`<tr><td>${r[0]}</td><td class="n">${r[1]}</td><td>${r[2]}</td></tr>`).join('');
 
 /* ---------- title card, about sheet, map key ---------- */
-const tc=document.getElementById('titlecard');document.getElementById('tcMin').onclick=()=>{const min=tc.classList.toggle('min');const b=document.getElementById('tcMin');b.textContent=min?'+':'\u2212';b.setAttribute('aria-expanded',String(!min));b.title=min?'Show the controls':'Hide the controls';};
+const tc=document.getElementById('titlecard');function setTitle(open){tc.classList.toggle('min',!open);document.body.classList.toggle('tcmin',!open);const b=document.getElementById('tcMin');b.textContent=open?'\u2212':'+';b.setAttribute('aria-expanded',String(open));b.title=open?'Hide the controls':'Show the controls';b.setAttribute('aria-label',b.title);}
+document.getElementById('tcMin').onclick=()=>setTitle(tc.classList.contains('min'));
 const about=document.getElementById('about');function openAbout(){about.hidden=false;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}
 document.getElementById('openAbout').onclick=openAbout;document.getElementById('openAbout2').onclick=openAbout;document.getElementById('closeAbout').onclick=()=>about.hidden=true;about.addEventListener('click',e=>{if(e.target===about)about.hidden=true;});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){about.hidden=true;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}});
@@ -636,8 +663,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){about.hidden=true;d
  kb.addEventListener('click',e=>{const t=e.target.closest('.kst');if(!t)return;t.parentElement.classList.toggle('closed');});const kall=document.getElementById('kpAll');kall.onclick=()=>{const secs=[...kb.querySelectorAll('.ks')];const o=secs.some(x=>!x.classList.contains('closed'));secs.forEach(x=>x.classList.toggle('closed',o));kall.textContent=o?'Expand all':'Collapse all';};})();
 [tc,legend,document.getElementById('kpanel'),document.getElementById('rpanel'),about,document.getElementById('credit'),document.getElementById('north')].forEach(el=>{L.DomEvent.disableClickPropagation(el);L.DomEvent.disableScrollPropagation(el);});
 let touched=false;document.getElementById('tcMin').addEventListener('click',()=>touched=true);document.getElementById('legToggle').addEventListener('click',()=>touched=true);
-function fitPanels(){if(touched)return;const p=phone();tc.classList.toggle('min',p);const b=document.getElementById('tcMin');b.textContent=p?'+':'\u2212';b.setAttribute('aria-expanded',String(!p));setLegend(!p);}
-fitPanels();let wasPhone=phone();window.addEventListener('resize',()=>{const p=phone();if(p!==wasPhone){wasPhone=p;fitPanels();}});
+/* every tab opens with the title box and the legend folded, so neither has to be closed tab by tab; + opens them */
+setTitle(false);setLegend(false);
+{let t=0;const q=()=>{clearTimeout(t);t=setTimeout(legCounts,60);};map.on('layeradd layerremove',q);legCounts();}
 /* while a card is open the lock loosens so a card at the box edge can pan into view; it snaps back inside when the card closes */
 const LOCK=BOUNDS.pad(0.04),LOOSE=BOUNDS.pad(3);
 map.on('popupopen',()=>{document.body.classList.add('card-open');map.setMaxBounds(LOOSE);if(phone())setLegend(false);});
