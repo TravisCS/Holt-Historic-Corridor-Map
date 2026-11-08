@@ -12,6 +12,7 @@
        sources: [ {name, owner, title, year, url, retrieved, use} ],   // array or {name: {...}}
        isOn: function(id){...}, toggle: function(id){...},   // optional: adds "Turn this layer on/off"
        about: function(){...},            // optional: adds "All sources" (open the map's About sheet)
+       pdf: 'Map_Sources.pdf',            // optional: adds a "Source list (PDF)" download (or {href, label})
        anchor: '#legend',                 // optional: the panel opens beside this box (default: legend)
        map: leafletMap                    // optional: on phones a map tap closes the panel
      });
@@ -42,7 +43,7 @@ var CSS='.mli-w{display:flex;align-items:center;gap:3px}.mli-w>:first-child{flex
  '#mli-panel .mli-k.ok{background:rgba(46,125,50,.17)}#mli-panel .mli-k.warn{background:rgba(214,150,0,.24)}'+
  '#mli-panel .mli-srcl{margin:6px 0 2px;padding-left:20px}#mli-panel .mli-srcl li{margin:0 0 7px;font-size:13.5px;line-height:1.4;overflow-wrap:anywhere}'+
  '#mli-panel .mli-g,#mli-panel .mli-m{color:var(--muted,#6b6659)}#mli-panel .mli-m{font-size:12.5px}#mli-panel a{color:var(--link,#1f4e79)}'+
- '#mli-panel .mli-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}#mli-panel .mli-btns button{font:inherit;font-size:13.5px;padding:4px 10px;border-radius:6px;border:1px solid var(--rule,#d9d4c4);background:var(--chip,rgba(127,127,127,.15));color:inherit;cursor:pointer}'+
+ '#mli-panel .mli-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}#mli-panel .mli-btns button,#mli-panel .mli-btns a{font:inherit;font-size:13.5px;line-height:1.3;padding:4px 10px;border-radius:6px;border:1px solid var(--rule,#d9d4c4);background:var(--chip,rgba(127,127,127,.15));color:inherit;cursor:pointer;text-decoration:none}'+
  '.mli-srcs>summary{font-weight:700;cursor:pointer}.mli-srcl{margin:4px 0 2px;padding-left:18px;font-size:.82em;line-height:1.38}.mli-srcl li{margin:0 0 5px;overflow-wrap:anywhere}.mli-srcl .mli-g,.mli-srcs .mli-m{opacity:.78}';
 var cssDone=false;function css(){if(cssDone)return;cssDone=true;var s=document.createElement('style');s.id='mli-css';s.textContent=CSS;document.head.appendChild(s)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -92,7 +93,7 @@ function attach(o){css();addSources(o.sources);var lg=typeof o.legend==='string'
   var rd=x.retrieved||o.retrieved;if(rd)h+='<p class="mli-m">Downloaded '+esc(dateLong(rd))+'.</p>';
   var what=x.what||(o.defs&&o.defs(id));if(what)h+='<h4>What it is</h4><p>'+esc(what)+'</p>';
   if(x.why)h+='<h4>Why it matters</h4><p>'+esc(x.why)+'</p>';if(x.care)h+='<h4>Before you rely on it</h4><p>'+esc(x.care)+'</p>';
-  var bt='';if(o.isOn&&o.toggle)bt+='<button type="button" data-mli-t>'+(o.isOn(id)?'Turn this layer off':'Turn this layer on')+'</button>';if(o.about)bt+='<button type="button" data-mli-a>All sources</button>';
+  var bt='';if(o.isOn&&o.toggle)bt+='<button type="button" data-mli-t>'+(o.isOn(id)?'Turn this layer off':'Turn this layer on')+'</button>';if(o.about)bt+='<button type="button" data-mli-a>All sources</button>';if(o.pdf)bt+='<a href="'+esc(o.pdf.href||o.pdf)+'" download target="_blank" rel="noopener">'+esc(o.pdf.label||'Source list (PDF)')+'</a>';
   if(bt)h+='<div class="mli-btns">'+bt+'</div>';return h}
  function place(){if(!panel||panel.hidden)return;var a=anchor(),k=a.getBoundingClientRect();if(!k.width||(o.minClass!==false&&a.classList.contains(o.minClass||'min'))){close();return}
   var W=innerWidth,H=innerHeight,w=Math.min(o.width||400,W-20),bottom=Math.max(10,H-k.bottom),left;panel.style.width=w+'px';

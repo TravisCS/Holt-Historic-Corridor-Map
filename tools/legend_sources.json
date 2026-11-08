@@ -1,0 +1,580 @@
+{
+ "cards": {
+  "brightline": {
+   "high-speed rail cards": 3
+  },
+  "ceqanet": {
+   "high-speed rail cards": 1
+  },
+  "doia": {
+   "downtown Ontario place cards": 15,
+   "Ontario asset cards": 4
+  },
+  "dtpomona": {
+   "Pomona asset cards": 30
+  },
+  "fairplex": {
+   "Fairplex campus cards": 14,
+   "Pomona asset cards": 3,
+   "transit cards": 1
+  },
+  "foothill": {
+   "Pomona asset cards": 1,
+   "transit cards": 2
+  },
+  "fp_map2017": {
+   "Fairplex campus cards": 33,
+   "transit cards": 1
+  },
+  "fp_venues": {
+   "Fairplex campus cards": 31
+  },
+  "hotelscom": {
+   "Ontario hotel cards": 4
+  },
+  "kayak": {
+   "neighbor-city hotel cards": 1
+  },
+  "metro": {
+   "transit cards": 4
+  },
+  "metrolink": {
+   "Fairplex campus cards": 1,
+   "high-speed rail cards": 1,
+   "Pomona asset cards": 1,
+   "transit cards": 10
+  },
+  "omnitrans": {
+   "transit cards": 2
+  },
+  "ont_airport": {
+   "Ontario asset cards": 6
+  },
+  "ont_cc_sheet": {
+   "Ontario asset cards": 1,
+   "Ontario hotel cards": 1
+  },
+  "ont_city": {
+   "downtown Ontario place cards": 1,
+   "Ontario asset cards": 16
+  },
+  "ont_holt_otb": {
+   "Ontario asset cards": 1,
+   "transit cards": 1
+  },
+  "ont_holt_sheet": {
+   "Ontario asset cards": 2
+  },
+  "ont_hosp": {
+   "Ontario hotel cards": 1
+  },
+  "osm": {
+   "downtown Ontario place cards": 13,
+   "Fairplex campus cards": 31,
+   "Ontario asset cards": 6,
+   "transit cards": 1
+  },
+  "pomona_city": {
+   "Pomona asset cards": 3
+  },
+  "railwayage": {
+   "high-speed rail cards": 1
+  },
+  "sbcta_rcpn": {
+   "high-speed rail cards": 1
+  },
+  "sbcta_wvc": {
+   "Ontario asset cards": 2,
+   "Pomona asset cards": 1,
+   "transit cards": 3
+  },
+  "shoponholt": {
+   "downtown Ontario place cards": 4
+  }
+ },
+ "n": 48,
+ "rows": [
+  {
+   "id": "g:ont",
+   "label": "Ontario hosts",
+   "src": [
+    "hotelmap",
+    "gocal",
+    "ont_hosp",
+    "ont_cc_sheet",
+    "ont_airport",
+    "ont_city",
+    "osm",
+    "doia",
+    "ont_holt_sheet",
+    "sbcta_wvc",
+    "ont_holt_otb",
+    "kayak",
+    "google"
+   ]
+  },
+  {
+   "id": "hotel:full",
+   "label": "Ontario hotels: Full service / convention",
+   "src": [
+    "hotelmap",
+    "gocal",
+    "hotelscom",
+    "ont_airport",
+    "kayak",
+    "google"
+   ]
+  },
+  {
+   "id": "hotel:select",
+   "label": "Ontario hotels: Select service",
+   "src": [
+    "hotelmap",
+    "gocal",
+    "ont_airport",
+    "kayak",
+    "hotelscom",
+    "google"
+   ]
+  },
+  {
+   "id": "hotel:ext",
+   "label": "Ontario hotels: Extended stay",
+   "src": [
+    "hotelmap",
+    "gocal",
+    "ont_airport",
+    "kayak",
+    "hotelscom",
+    "google"
+   ]
+  },
+  {
+   "id": "hotel:econ",
+   "label": "Ontario hotels: Economy",
+   "src": [
+    "hotelmap",
+    "gocal",
+    "hotelscom",
+    "ont_airport",
+    "kayak",
+    "google"
+   ]
+  },
+  {
+   "id": "hotel:plan",
+   "label": "Ontario hotels: Planned",
+   "src": [
+    "hotelmap",
+    "ont_cc_sheet",
+    "ont_hosp",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Airport",
+   "label": "Ontario assets: Airport",
+   "src": [
+    "ont_airport",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Convention Center",
+   "label": "Ontario assets: Convention Center",
+   "src": [
+    "ont_cc_sheet",
+    "ont_holt_sheet",
+    "ont_city",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Historic downtown",
+   "label": "Ontario assets: Historic downtown",
+   "src": [
+    "ont_city",
+    "doia",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Arts District",
+   "label": "Ontario assets: Arts District",
+   "src": [
+    "ont_city",
+    "doia",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Civic",
+   "label": "Ontario assets: Civic",
+   "src": [
+    "ont_city",
+    "osm",
+    "doia"
+   ]
+  },
+  {
+   "id": "ont:Corridor",
+   "label": "Ontario assets: Corridor",
+   "src": [
+    "ont_holt_otb",
+    "ont_holt_sheet"
+   ]
+  },
+  {
+   "id": "ont:Regional shopping",
+   "label": "Ontario assets: Regional shopping",
+   "src": [
+    "sbcta_wvc",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "ont:Arena",
+   "label": "Ontario assets: Arena",
+   "src": [
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "g:pom",
+   "label": "Pomona draws",
+   "src": [
+    "dtpomona",
+    "fairplex",
+    "pomona_city",
+    "foothill",
+    "metrolink",
+    "sbcta_wvc",
+    "hotelmap",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "pom:Fairplex",
+   "label": "Pomona assets: Fairplex",
+   "src": [
+    "fairplex",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "pom:Arts Colony",
+   "label": "Pomona assets: Arts Colony",
+   "src": [
+    "dtpomona",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "pom:Downtown dining",
+   "label": "Pomona assets: Downtown dining",
+   "src": [
+    "dtpomona",
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "pom:Transit hub",
+   "label": "Pomona assets: Transit hub",
+   "src": [
+    "foothill",
+    "metrolink",
+    "sbcta_wvc",
+    "osm",
+    "census"
+   ]
+  },
+  {
+   "id": "pom:Civic",
+   "label": "Pomona assets: Civic",
+   "src": [
+    "pomona_city",
+    "osm"
+   ]
+  },
+  {
+   "id": "pom:Montclair",
+   "label": "Pomona assets: Montclair",
+   "src": [
+    "osm",
+    "google"
+   ]
+  },
+  {
+   "id": "nh:Pomona",
+   "label": "Pomona hotels",
+   "src": [
+    "hotelmap",
+    "google"
+   ]
+  },
+  {
+   "id": "nh:Claremont",
+   "label": "Claremont hotels",
+   "src": [
+    "hotelmap",
+    "kayak",
+    "google"
+   ]
+  },
+  {
+   "id": "nh:Montclair",
+   "label": "Montclair hotels",
+   "src": [
+    "hotelmap",
+    "google"
+   ]
+  },
+  {
+   "id": "fp",
+   "label": "Fairplex campus detail",
+   "src": [
+    "osm",
+    "fp_map2017",
+    "fp_venues",
+    "fairplex",
+    "metrolink"
+   ]
+  },
+  {
+   "id": "g:tr",
+   "label": "Transit connects",
+   "src": [
+    "sbcta_wvc",
+    "omnitrans",
+    "metrolink",
+    "metro",
+    "osm",
+    "foothill",
+    "brightline",
+    "ceqanet",
+    "sbcta_rcpn"
+   ]
+  },
+  {
+   "id": "tr:wvc",
+   "label": "West Valley Connector route",
+   "src": [
+    "sbcta_wvc",
+    "omnitrans",
+    "ont_holt_otb",
+    "osm"
+   ]
+  },
+  {
+   "id": "tr:wvcs",
+   "label": "West Valley Connector stations",
+   "src": [
+    "sbcta_wvc"
+   ]
+  },
+  {
+   "id": "tr:riv",
+   "label": "Metrolink Riverside Line",
+   "src": [
+    "osm",
+    "metrolink"
+   ]
+  },
+  {
+   "id": "tr:sbl",
+   "label": "Metrolink San Bernardino Line",
+   "src": [
+    "osm",
+    "metrolink"
+   ]
+  },
+  {
+   "id": "tr:aline",
+   "label": "Metro A Line",
+   "src": [
+    "osm",
+    "metro",
+    "metrolink"
+   ]
+  },
+  {
+   "id": "tr:rs",
+   "label": "Metrolink and Metro A Line stations",
+   "src": [
+    "metrolink",
+    "metro",
+    "foothill",
+    "osm"
+   ]
+  },
+  {
+   "id": "tr:gap",
+   "label": "The gap: Pomona Transit Center to Fairplex",
+   "src": [
+    "osm",
+    "metrolink",
+    "fairplex",
+    "fp_map2017",
+    "sbcta_wvc",
+    "foothill"
+   ]
+  },
+  {
+   "id": "tr:gap2",
+   "label": "The A Line gap: Pomona North to the Transit Center",
+   "src": [
+    "osm",
+    "metrolink",
+    "metro"
+   ]
+  },
+  {
+   "id": "tr:hsr",
+   "label": "High-speed rail and its links",
+   "src": [
+    "brightline",
+    "railwayage",
+    "ceqanet",
+    "sbcta_rcpn",
+    "metrolink",
+    "osm"
+   ]
+  },
+  {
+   "id": "g:biz",
+   "label": "Downtown Ontario places",
+   "src": [
+    "osm",
+    "doia",
+    "shoponholt",
+    "census",
+    "ont_city",
+    "google"
+   ]
+  },
+  {
+   "id": "biz:Restaurant",
+   "label": "Downtown Ontario places: Restaurant",
+   "src": [
+    "osm",
+    "doia",
+    "ont_city",
+    "census",
+    "google"
+   ]
+  },
+  {
+   "id": "biz:Cafe or bakery",
+   "label": "Downtown Ontario places: Cafe or bakery",
+   "src": [
+    "osm",
+    "doia",
+    "shoponholt",
+    "census",
+    "google"
+   ]
+  },
+  {
+   "id": "biz:Bar or brewery",
+   "label": "Downtown Ontario places: Bar or brewery",
+   "src": [
+    "osm",
+    "doia",
+    "census",
+    "google"
+   ]
+  },
+  {
+   "id": "biz:Retail",
+   "label": "Downtown Ontario places: Retail",
+   "src": [
+    "osm",
+    "doia",
+    "shoponholt",
+    "census",
+    "google"
+   ]
+  },
+  {
+   "id": "biz:Civic or cultural",
+   "label": "Downtown Ontario places: Civic or cultural",
+   "src": [
+    "osm",
+    "doia",
+    "shoponholt",
+    "census",
+    "google"
+   ]
+  },
+  {
+   "id": "g:city",
+   "label": "Corridor and boundaries",
+   "src": [
+    "osm",
+    "boe",
+    "ont_holt_otb",
+    "metrolink",
+    "ont_airport",
+    "fairplex"
+   ]
+  },
+  {
+   "id": "spine",
+   "label": "Holt spine (centerline)",
+   "src": [
+    "osm",
+    "ont_holt_otb",
+    "ont_holt_sheet"
+   ]
+  },
+  {
+   "id": "city:Ontario",
+   "label": "Ontario city limits",
+   "src": [
+    "boe"
+   ]
+  },
+  {
+   "id": "city:Montclair",
+   "label": "Montclair city limits",
+   "src": [
+    "boe"
+   ]
+  },
+  {
+   "id": "city:Pomona",
+   "label": "Pomona city limits",
+   "src": [
+    "boe"
+   ]
+  },
+  {
+   "id": "mask",
+   "label": "Shade outside the corridor",
+   "src": [
+    "metrolink",
+    "ont_airport",
+    "fairplex"
+   ]
+  },
+  {
+   "id": "labels",
+   "label": "Place labels",
+   "src": [
+    "ont_airport",
+    "ont_cc_sheet",
+    "ont_city",
+    "boe",
+    "dtpomona",
+    "fairplex"
+   ]
+  }
+ ]
+}
