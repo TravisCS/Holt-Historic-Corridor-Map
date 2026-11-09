@@ -134,6 +134,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .leaflet-div-icon{background:transparent;border:0}
 .mk{background:var(--ont);color:#fff;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 10px var(--serif);box-shadow:0 1px 3px rgba(0,0,0,.55);box-sizing:border-box;font-variant-numeric:tabular-nums}
 .mk.plan{background:rgba(31,37,34,.85);color:#fff;border:1.5px dashed #fff}
+.mk.num{border-radius:999px;font-size:10px;line-height:1;text-shadow:0 0 2px rgba(0,0,0,.65)}
 .mk.oth{outline:1.5px dashed rgba(255,255,255,.7);outline-offset:1px}
 .am{width:12px;height:12px;border-radius:2px;background:var(--pom);border:2px solid #fff;outline:1px solid rgba(0,0,0,.55);transform:rotate(45deg);box-shadow:0 1px 3px rgba(0,0,0,.55);position:relative;box-sizing:border-box}
 .am.sq{border-radius:3px}
@@ -146,7 +147,8 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 #rpList a.far{opacity:.72}#rpList a.far .nm::after{content:" (off the map)";color:var(--muted);font-weight:400;font-size:.85em}
 .cl{display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(20,24,22,.72);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);font:700 10.5px var(--serif);color:#fff;box-sizing:border-box;cursor:pointer}
 .cl span{font-variant-numeric:tabular-nums}
-.cl.h{border-color:var(--ont)}.cl.b{border-color:var(--biz)}.cl.p,.cl.o{background:#fff;color:#141816;border-width:3px;border-radius:4px;transform:rotate(45deg)}.cl.p span,.cl.o span{transform:rotate(-45deg)}.cl.p{border-color:var(--pom)}.cl.o{border-color:var(--ont)}
+.cl.h{border-color:var(--ont)}
+.cl.rooms{border-radius:999px}.cl.b{border-color:var(--biz)}.cl.p,.cl.o{background:#fff;color:#141816;border-width:3px;border-radius:4px;transform:rotate(45deg)}.cl.p span,.cl.o span{transform:rotate(-45deg)}.cl.p{border-color:var(--pom)}.cl.o{border-color:var(--ont)}
 @media (pointer:coarse){.bz,.am,.wvm,.stm{position:relative}.bz::before,.am::before,.wvm::before,.stm::before{content:"";position:absolute;inset:-7px}}
 .leaflet-marker-icon:active .bz,.leaflet-marker-icon:active .mk{filter:brightness(1.25)}
 .lm{background:rgba(31,37,34,.85);color:var(--ink);border:1px solid var(--rule);border-radius:10px;padding:0 7px;font:italic 10.5px var(--serif);white-space:nowrap;transform:translate(-50%,0);opacity:.95}
@@ -547,7 +549,10 @@ function clusterSummary(cls,ms){const n=ms.length;let head='',sub='';
  else if(cls==='b'){head=plural(n,'business','businesses')+' along Holt';sub=countBy(ms,r=>r.cat).slice(0,4).map(([c,k])=>k+' '+c.toLowerCase()).join(', ');}
  else{head=plural(n,(cls==='p'?'Pomona':'Ontario')+' place')+(cls==='p'?' (Pomona draws)':' (Ontario hosts)');sub=countBy(ms,r=>r.cat).slice(0,4).map(([c,k])=>k+' '+c).join(', ');}
  return `<b>${esc(head)}</b>${sub?'<br>'+esc(sub):''}<br><span class="dim">${someNames(ms,3)}</span><br><i>Click to zoom in</i>`;}
-function clusterGroup(cls,radius){const g=L.markerClusterGroup({maxClusterRadius:radius||30,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,showCoverageOnHover:false,iconCreateFunction:c=>{const n=c.getChildCount();let d=Math.min(32,16+Math.round(Math.sqrt(n)*3));if(cls==='p'||cls==='o')d=Math.round(d*.8);return L.divIcon({className:'',html:`<div class="cl ${cls}" style="width:${d}px;height:${d}px"><span>${n}</span></div>`,iconSize:[d,d],iconAnchor:[d/2,d/2]});}});
+function clusterGroup(cls,radius,rooms){const g=L.markerClusterGroup({...(rooms?{clusterPane:hotelPane()}:{}),maxClusterRadius:radius||30,disableClusteringAtZoom:15,spiderfyOnMaxZoom:true,showCoverageOnHover:false,iconCreateFunction:c=>{const n=c.getChildCount();let d=Math.min(32,16+Math.round(Math.sqrt(n)*3));if(cls==='p'||cls==='o')d=Math.round(d*.8);
+  // Hotel district tab: a hotel group shows its total rooms, so every number on the map is a room count
+  if(rooms){const t=c.getAllChildMarkers().reduce((a,m)=>a+((m._rdata&&m._rdata.r)||0),0),lab=t.toLocaleString(),w=Math.max(d,lab.length*6.5+12);return L.divIcon({className:'',html:`<div class="cl ${cls} rooms" style="width:${w}px;height:${d}px" title="${n} hotels, ${lab} rooms"><span>${lab}</span></div>`,iconSize:[w,d],iconAnchor:[w/2,d/2]});}
+  return L.divIcon({className:'',html:`<div class="cl ${cls}" style="width:${d}px;height:${d}px"><span>${n}</span></div>`,iconSize:[d,d],iconAnchor:[d/2,d/2]});}});
  g.on('clustermouseover',e=>{const c=e.layer;const n=c.getChildCount();const d=Math.min(32,16+Math.round(Math.sqrt(n)*3));c.bindTooltip(clusterSummary(cls,c.getAllChildMarkers()),{direction:'top',offset:[0,-d/2],className:'cltip',opacity:1}).openTooltip();});
  g.on('clustermouseout',e=>{e.layer.unbindTooltip();});
  return g;}
@@ -561,10 +566,15 @@ function hotelCard(h){const other=h.city!=='Ontario';const cityTxt=other?h.city:
  else if(!h.plan)rates=`<p class="seas"><i>Room rates</i>No rate snapshot for this property. ${book}${book?' &middot; ':''}<a href="https://www.google.com/travel/hotels?q=${encodeURIComponent(h.n+', '+cityTxt+', CA')}" target="_blank" rel="noopener">Compare rates on Google Hotels</a></p>`;
  const badge=h.city==='Ontario'?(h.shuttle?'<span class="badge">ONT courtesy shuttle</span>':(h.plan?'':'<span class="badge off">No airport shuttle listed</span>')):`<span class="badge mc">${esc(h.city)}</span>`;
  return `<h2>${nameHTML(h)}</h2><p class="addr">${esc(h.a)}${h.a.includes(cityTxt)?'':', '+cityTxt}. ${esc(h.cls||tier)}.<br>${gmaps(h.n,h.a+(h.a.includes(cityTxt)?'':', '+cityTxt)+', CA')}</p>${badge}<div class="kv"><div><b>${h.r==null?'?':h.r}</b><span>Rooms</span></div><div><b>${meet}</b><span>Sq ft meeting</span></div><div><b style="font-size:1rem">${esc(tier)}</b><span>Tier</span></div></div>${rates}${h.s?`<p class="seas"><i>Seasonal availability</i>${esc(h.s)}</p>`:''}${h.note?`<p class="seas"><i>Notes</i>${esc(h.note)}</p>`:''}<p class="note">${h.plan?'Announced count; not yet open.':'Published inventory as cited; placed by address, approximate.'}</p>${hotelSrc(h)}`;}
-function hotelMarker(h){const d=Math.round(10+Math.sqrt(h.r||60)*0.5);const other=h.city!=='Ontario';
- const icon=L.divIcon({className:'',html:`<div class="mk${h.plan?' plan':''}${other?' oth':''}" style="width:${d}px;height:${d}px;${h.plan?'':'background:'+CAT[h.t].c}"></div>`,iconSize:[d,d],iconAnchor:[d/2,d/2],popupAnchor:[0,-d/2]});
- const m=L.marker([h.lat,h.lng],{icon});h._m=m;m._rdata=h;h.a2=h.a+(h.a.includes(h.city)?'':', '+h.city)+', CA';h.gq=h.n+', '+h.city+', CA';m.bindPopup(hotelCard(h),POP);m.bindTooltip(`${esc(h.n)}${h.r!=null?' ('+h.r+' rooms)':''}`,{direction:'top',offset:[0,-d/2]});return m;}
-const hotC=clusterGroup('h',28).addTo(map);const nhC=clusterGroup('h',28).addTo(map);
+// On the Hotel district tab each hotel dot shows its room count (the dot widens into a pill for three digits)
+const ROOMNUM=SECTION==='hotels';
+// Room numbers sit above stations and asset diamonds so they stay readable
+function hotelPane(){if(!map.getPane('hotelPane')){map.createPane('hotelPane').style.zIndex=640;}return 'hotelPane';}
+function hotelMarker(h){let d=Math.round(10+Math.sqrt(h.r||60)*0.5);const other=h.city!=='Ontario';
+ const num=ROOMNUM&&h.r!=null;let w=d;if(num){d=Math.max(d,18);w=Math.max(d,String(h.r).length*6+8);}
+ const icon=L.divIcon({className:'',html:`<div class="mk${h.plan?' plan':''}${other?' oth':''}${num?' num':''}" style="width:${w}px;height:${d}px;${h.plan?'':'background:'+CAT[h.t].c}">${num?h.r:''}</div>`,iconSize:[w,d],iconAnchor:[w/2,d/2],popupAnchor:[0,-d/2]});
+ const m=L.marker([h.lat,h.lng],ROOMNUM?{icon,pane:hotelPane()}:{icon});h._m=m;m._rdata=h;h.a2=h.a+(h.a.includes(h.city)?'':', '+h.city)+', CA';h.gq=h.n+', '+h.city+', CA';m.bindPopup(hotelCard(h),POP);m.bindTooltip(`${esc(h.n)}${h.r!=null?' ('+h.r+' rooms)':''}`,{direction:'top',offset:[0,-d/2]});return m;}
+const hotC=clusterGroup('h',ROOMNUM?44:28,ROOMNUM).addTo(map);const nhC=clusterGroup('h',ROOMNUM?44:28,ROOMNUM).addTo(map);
 const ONTH=ALLH.filter(h=>h.city==='Ontario'),NHH=ALLH.filter(h=>h.city!=='Ontario');
 const tierLayers={},nhLayers={};
 subGroup('hotelToggles','tAllHotels',Object.keys(CAT).map(k=>{const g=L.layerGroup();tierLayers[k]=g;const hs=ONTH.filter(h=>h.t===k);hs.forEach(h=>g.addLayer(hotelMarker(h)));return {key:k,layer:g,sw:k==='plan'?'<span class="sw rd" style="background:transparent;border-style:dashed"></span>':swatch('rd',CAT[k].c),html:CAT[k].l.split(' / ')[0],n:hs.length};}),hotC);
