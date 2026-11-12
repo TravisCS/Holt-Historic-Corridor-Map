@@ -2,6 +2,8 @@
 
 Every link in `map.html`, the data files and the README was inventoried (816 occurrences, 453 distinct addresses), requested by a script, then opened by AI research agents (Claude Sonnet, run by Claude Code) to confirm it answers and points at the place or source named. Links the script could not reach were opened in a browser. Lines are schematic positions; this audit checks links, not facts.
 
+Note, November 11, 2026: one README link checked in this audit (verdict OK) has since been removed from the project, and its row is left out of the table below. The counts are as checked on November 2.
+
 ## Result
 
 | Verdict | Count | Meaning |

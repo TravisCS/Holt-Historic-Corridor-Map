@@ -10140,5 +10140,6 @@
   "2026-11-03",
   "2026-11-07"
  ],
- "added_2026_11_07": "Ontario Mills, Victoria Gardens and Toyota Arena were added to the map on November 6, 2026. Their 12 card links were checked on November 7 the same way: certify_links.py, a web browser for the two simon.com pages (bot check, not completed) and for the Toyota Arena page text, the OpenStreetMap API for the three OpenStreetMap objects, and a page-title match against each place name."
+ "added_2026_11_07": "Ontario Mills, Victoria Gardens and Toyota Arena were added to the map on November 6, 2026. Their 12 card links were checked on November 7 the same way: certify_links.py, a web browser for the two simon.com pages (bot check, not completed) and for the Toyota Arena page text, the OpenStreetMap API for the three OpenStreetMap objects, and a page-title match against each place name.",
+ "removed_2026_11_11": "One README link checked on November 3, 2026 (verified) was removed from the project on November 11, 2026, and its entry is left out of the links list, which now holds 469 of the 470 links checked. The summary counts are as checked."
 }
