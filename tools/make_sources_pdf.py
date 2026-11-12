@@ -32,6 +32,7 @@ def _days(ds):  # ["2026-11-03", "2026-11-07"] -> "November 3 and 7, 2026"
         return f"{month} {' and '.join(str(int(d[8:])) for d in ds)}, {ds[0][:4]}"
     return " and ".join(long_date(d) for d in ds)
 CHECKED = _days(CERT.get("checked_dates") or [CERT["checked"]])
+UPD = CERT.get("carried_2026_11_12")  # corrections carried over from the Holt Corridor Simple map
 
 # ---- the map's one source list, read from map.html (JS object literals with single-quoted values)
 html = (ROOT / "map.html").read_text()
@@ -167,6 +168,7 @@ def spec():
       f"<b>Corrected.</b> {len(fixed)} source entries were changed so the publisher, title, date or address match what the source itself says, "
       f"and {len(rl['fixed'])} card links were fixed. Each correction is marked under its entry. The November 2, 2026 link audit (453 links) is kept in the repository; "
       f"{len(CERT['compared_with_2026_11_02_audit']['ok_then_not_verified_now'])} links it passed now refuse automated readers in a browser too, and one hotel site it had repaired has since gone offline.",
+      *([f"<b>Updated on {long_date(UPD['checked'])}.</b> " + esc(UPD["pdf_note"])] if UPD else []),
       "<b>How to read an entry.</b> The first line is the reference exactly as the map's About sheet shows it, in APA style, with its link. Below it: what the map used the source for, "
       "the legend layers and cards that draw on it, what the source was compared with, any correction, and the check. Dates are the publisher's own; n.d. means the source gives none, "
       "and an information sheet without a printed date is dated by its posting.",

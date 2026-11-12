@@ -7,15 +7,15 @@
    "high-speed rail cards": 1
   },
   "doia": {
-   "downtown Ontario place cards": 15,
+   "downtown Ontario place cards": 16,
    "Ontario asset cards": 4
   },
   "dtpomona": {
    "Pomona asset cards": 30
   },
   "fairplex": {
-   "Fairplex campus cards": 14,
-   "Pomona asset cards": 3,
+   "Fairplex campus cards": 30,
+   "Pomona asset cards": 4,
    "transit cards": 1
   },
   "foothill": {
@@ -23,11 +23,11 @@
    "transit cards": 2
   },
   "fp_map2017": {
-   "Fairplex campus cards": 33,
+   "Fairplex campus cards": 35,
    "transit cards": 1
   },
   "fp_venues": {
-   "Fairplex campus cards": 31
+   "Fairplex campus cards": 36
   },
   "hotelscom": {
    "Ontario hotel cards": 4
@@ -48,7 +48,8 @@
    "transit cards": 2
   },
   "ont_airport": {
-   "Ontario asset cards": 6
+   "Ontario asset cards": 6,
+   "Ontario hotel cards": 1
   },
   "ont_cc_sheet": {
    "Ontario asset cards": 1,
@@ -56,7 +57,7 @@
   },
   "ont_city": {
    "downtown Ontario place cards": 1,
-   "Ontario asset cards": 16
+   "Ontario asset cards": 15
   },
   "ont_holt_otb": {
    "Ontario asset cards": 1,
@@ -75,7 +76,7 @@
    "transit cards": 1
   },
   "pomona_city": {
-   "Pomona asset cards": 3
+   "Pomona asset cards": 4
   },
   "railwayage": {
    "high-speed rail cards": 1

@@ -15,14 +15,14 @@
 <script src="layerinfo.js?v=f9730126"></script>
 <script>const GKEY="AIzaSyBWvYYvgtUkr9nOkHrSs_-xpbK3BLdRV44";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWvYYvgtUkr9nOkHrSs_-xpbK3BLdRV44&loading=async&callback=gmReady&v=weekly"></script>
-<script src="data/hotels.js?v=20261103g"></script>
-<script src="data/businesses.js?v=20261102e"></script>
-<script src="data/pomona.js?v=20261103g"></script>
-<script src="data/ontario.js?v=20261106f"></script>
-<script src="data/transit.js?v=20261103f"></script>
+<script src="data/hotels.js?v=20261112a"></script>
+<script src="data/businesses.js?v=20261112a"></script>
+<script src="data/pomona.js?v=20261112a"></script>
+<script src="data/ontario.js?v=20261112a"></script>
+<script src="data/transit.js?v=20261112a"></script>
 <script src="data/holt.js?v=20261102e"></script>
 <script src="data/city_limits.js?v=20261102e"></script>
-<script src="data/fairplex.js?v=20261103f"></script>
+<script src="data/fairplex.js?v=20261112a"></script>
 <style>
 :root{
   /* dark palette shared with the California BEAD map: dark panels, light ink, a cool blue accent */
@@ -336,15 +336,16 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
       <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
-      <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's capacity and exact position, Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
+      <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's seat count (Fairplex publishes none; the card gives the Associated Press's report of about 5,000 temporary seats) and its position (placed by this map at the center of the former racetrack infield), Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
       <li>On November 3, 2026 every source and every card link was checked again, and on November 7 the links for Ontario Mills, Victoria Gardens and Toyota Arena (added November 6): by script, in a web browser for the sites that refuse scripts, through the OpenStreetMap API for each OpenStreetMap object, and by reading each page for the name of the record that cites it. The result, with each source's check, is the <a href="Holt_Corridor_Sources.pdf" download target="_blank" rel="noopener">source list (PDF)</a>.</li>
+      <li>On November 12, 2026 the corrections checked for the Holt Corridor Simple map on November 11 and 12 were carried into this map's cards where it shows the same record: moved links were repointed, sources were added where a card's wording rests on them, and wording, figures and two marker positions were corrected. The links new to this map were requested by script that day; the other links were not requested again.</li>
       <li><b>Screenshot and right-click menu.</b> The Screenshot link under the title takes a picture of the map exactly as it looks, with any open card and panel, and opens it in a new tab with a download button, the time, a link back to the same view, the layers shown, the card's text and the credits (html2canvas <a href="#ref17" class="cite">[17]</a> through snapshot.js). Right-click the map (press and hold on a phone) to share the spot, copy a link that reopens the map there with a pin, copy its coordinates, open it in Google Maps, see what is there, or take a screenshot; it is the same menu as on the other maps by T. C. Smith.</li>
       <li><b>Where each layer comes from.</b> Every row in the Legend has a small + button. It opens a note on that layer: how far each source backs it, counted from the data, then each source with its date and link, what the layer is, why it matters and what to watch before relying on it. It never turns the layer on or off. Every card ends with a Sources list that names what each source gave to that card, links the pages read for it, and says what this map worked out itself. Both draw on the source list below.</li>
     </ul>
     <h3>Google connection</h3>
     <p class="note" style="margin-top:2px">The basemap and the live ratings come from Google under a key locked to this site. <button type="button" class="linkbtn" id="gcheck">Check Google connection</button></p><div id="gcheckOut"></div>
     <h3>Sources</h3>
-    <p><a class="srcpdf" href="Holt_Corridor_Sources.pdf" download target="_blank" rel="noopener">Download the source list (PDF)</a>: every source and card link, grouped by agency, as checked on November 3 and 7, 2026.</p>
+    <p><a class="srcpdf" href="Holt_Corridor_Sources.pdf" download target="_blank" rel="noopener">Download the source list (PDF)</a>: every source and card link, grouped by agency, as checked on November 3 and 7, 2026, with the November 12, 2026 corrections noted on its first page.</p>
     <ol class="bib" id="srcList"></ol>
   </div>
 </div>
@@ -439,7 +440,7 @@ function cardSources(o){if(!window.MapLayerInfo)return '';const a=MapLayerInfo.l
   if(S)a.add(k,(o.useBy&&o.useBy[k])||(k==='osm'?(o.osmUse||'position or outline'):(o.use||'facts on this card')),S.url===x.u?'':lnk(x.u,x.l));else other.push(lnk(x.u,x.l));});
  if(other.length)a.custom('pages',`<b>Other pages cited for this card</b>. <span class="mli-g">Used for: ${esc(o.otherUse||o.use||'facts on this card')}.</span> <span class="mli-ln">${other.join(' &middot; ')}</span>`);
  (o.tail||[]).forEach(put);
- return a.html({note:esc(o.note||''),retrieved:o.retrieved||'2026-11-01',more:'Every source is listed in <a href="#srcList" data-about>About the data</a> and in the <a href="'+SRC_PDF+'" download target="_blank" rel="noopener">source list (PDF)</a>.',className:'seas'});}
+ return a.html({note:esc(o.note||''),retrieved:o.retrieved||'2026-11-01',more:'Every source is listed in <a href="#srcList" data-about>About the data</a> and in the <a href="'+SRC_PDF+'" download target="_blank" rel="noopener">source list (PDF)</a>, which says what was checked and when: every source and card link on November 3 and 7, 2026, and the links added on November 12, 2026 that day.',className:'seas'});}
 function hotelSrc(h){const nb=h.city!=='Ontario',rk=h.rates&&h.rates.length&&h.rurl?srcKey(h.rurl):null;
  return cardSources({lead:[['hotelmap',h.plan?'name, announced room count and position':nb?'name, tier, rooms, meeting space, notes and position, from its neighbor-city list':'name, tier, rooms, meeting space'+(h.s?', seasonal note':'')+' and position'],
    h.gocal?['gocal','this hotel\'s listing',lnk(h.gocal,'This hotel on GOCAL'),h.gocal]:null,
@@ -845,7 +846,7 @@ const INFO={};
   'Regional shopping':['Ontario Mills, the outlet mall next to the airport, and Victoria Gardens, the outdoor town center in Rancho Cucamonga.','The two biggest shopping draws at the east end, both stops on the West Valley Connector.','Store counts are the centers\' own claims, and no current visitor count was found for either.'],
   'Arena':['Toyota Arena, the City of Ontario\'s 11,000-seat arena beside Ontario Mills.','Hockey, indoor soccer and concerts bring crowds who need hotels and dinner nearby.','Capacities and history come from Wikipedia; check the arena\'s own calendar for events.'],
   'Corridor':['One marker for the City of Ontario\'s Holt Corridor program. The orange spine is the road itself.','The City\'s own program for the road this map is built around.','The marker sits at Grove Avenue, mid-corridor; the card describes the whole Ontario stretch.']};
- const POM_TXT={'Fairplex':['Fairplex itself, the Knight Riders Cricket Ground and the Millard Sheets Art Center.','Fairplex is the corridor\'s biggest draw: the LA County Fair and more than 500 events a year.','The cricket ground\'s capacity and exact position are unverified, so its marker is approximate.'],
+ const POM_TXT={'Fairplex':['Fairplex itself, the Knight Riders Cricket Ground and the Millard Sheets Art Center.','Fairplex is the corridor\'s biggest draw: the LA County Fair and more than 300 year-round events, by Fairplex\'s 2024 Annual Report.','Fairplex publishes no seat count and no coordinates for the cricket ground. The "about 5,000" seats are temporary seating as reported by the Associated Press on July 2, 2026, and the marker stands at the center of the outline this map draws for the ground, the former racetrack infield.'],
   'Arts Colony':['The Pomona Arts Colony district and its galleries, museums, theaters and art schools.','The galleries and venues are a reason to visit Pomona beyond Fairplex.','Gallery hours and shows change; check each venue before a visit.'],
   'Downtown dining':['Restaurants, bars and coffee in downtown Pomona.','Where visitors eat and go out before or after an event.','Openings and closings change fast; the live Google status on each card is the best check.'],
   'Transit hub':['The Pomona Transit Center, where the West Valley Connector will begin.',`The western end of the West Valley Connector, and the start of the gap to Fairplex, ${gapNum('gap','rd')} miles by street.`,'Placed by the Census geocoder from the street address.'],
@@ -863,7 +864,7 @@ const INFO={};
   mix:`Two lists. ${POM.length} Pomona assets researched for this map, whose cards cite ${tP.n} pages, ${dtp} of them (${pc(dtp,tP.n)}) from the Downtown Pomona District's directories. And ${NHH.length} hotels in Pomona, Montclair and Claremont with ${nf(rooms(NHH))} rooms, carried over from the Ontario Hotel Map. The Fairplex campus detail (${nFP} features) has its own box below.`,
   what:'The Pomona side of the proposal: Fairplex, the Arts Colony and downtown Pomona dining, with the hotels nearest to them.',
   why:'Pomona draws: these are the reasons to visit. The box on this row turns the Pomona assets and these hotels on or off.',
-  care:'A snapshot as of November 1, 2026. Venue facts and hours change, and the cricket ground\'s capacity and exact position are unverified.'});
+  care:'A snapshot as of November 1, 2026. Venue facts and hours change. Fairplex publishes no seat count and no coordinates for the cricket ground: its seats are a press report and its marker is placed by this map, as its card says.'});
  assetRows('pom',POM,POMCAT,POM_TXT);
  const NH_WHY={Pomona:'The closest rooms to Fairplex, including the Sheraton on the Fairplex grounds.',Montclair:'The one Montclair hotel in the box, between the two downtowns.',Claremont:'Rooms on the Pomona side of the corridor, closer to Fairplex and the Arts Colony than the Ontario hotels.'};
  NHC.forEach(c=>{const hs=NHH.filter(h=>h.city===c),dp=dirPages(hs),nr=hs.filter(h=>h.r==null).length,big=biggest(hs,2);

@@ -613,11 +613,11 @@
   {
    "key": "foothill",
    "ref": "ref23",
-   "apa": "Foothill Transit (2026). Transit centers. www.foothilltransit.org/transit-center",
-   "apa_html": "Foothill Transit (2026). <i>Transit centers</i>. www.foothilltransit.org/transit-center",
+   "apa": "Foothill Transit (n.d.). Transit centers. www.foothilltransit.org/transit-center",
+   "apa_html": "Foothill Transit (n.d.). <i>Transit centers</i>. www.foothilltransit.org/transit-center",
    "owner": "Foothill Transit",
    "title": "Transit centers",
-   "date": "2026",
+   "date": "n.d.",
    "url": "https://www.foothilltransit.org/transit-center",
    "final_url": "https://www.foothilltransit.org/transit-center",
    "status": 200,
@@ -856,8 +856,8 @@
   {
    "key": "esri",
    "ref": "ref32",
-   "apa": "Esri (n.d.). World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services. ArcGIS Online; imagery from Maxar and Earthstar Geographics, streets from HERE, Garmin and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
-   "apa_html": "Esri (n.d.). <i>World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services</i>. ArcGIS Online; imagery from Maxar and Earthstar Geographics, streets from HERE, Garmin and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
+   "apa": "Esri (n.d.). World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services. ArcGIS Online; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
+   "apa_html": "Esri (n.d.). <i>World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services</i>. ArcGIS Online; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
    "owner": "Esri",
    "title": "World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services",
    "date": "n.d.",
@@ -891,14 +891,14 @@
     "status": 403,
     "card": "hotel: Best Western Plus Ontario Airport & Convention Center (official site)",
     "browser": "Refused in a web browser too (HTTP 403 from the site's own page, and the hotel page renders blank); kept as cited.",
-    "action": "kept on the card; the November 2, 2026 audit opened it"
+    "action": "kept on the card; the November 2, 2026 audit opened it; replaced on November 12, 2026 with the address it forwards to, which opened in a web browser that day"
    },
    {
     "url": "https://www.bestwestern.com/en_US/book/hotels-in-ontario/surestay-by-best-western-ontario-airport/propertyCode.52112.html",
     "status": 403,
     "card": "hotel: SureStay Hotel by Best Western Ontario Airport (official site)",
     "browser": "Refused in a web browser too (HTTP 403 from the site's own page, and the hotel page renders blank); kept as cited.",
-    "action": "kept on the card; the November 2, 2026 audit opened it"
+    "action": "kept on the card; the November 2, 2026 audit opened it; replaced on November 12, 2026 with the address it forwards to, which opened in a web browser that day"
    },
    {
     "url": "https://www.autozone.com/locations/ca/montclair/5183-holt-blvd.html",
@@ -1109,7 +1109,9 @@
    "kind": "source",
    "uses": [
     "About source ref5",
-    "transit line: West Valley Connector BRT (Omnitrans sbX Purple Line), service Spring 2027 (SBCTA West Valley Connector project page)"
+    "transit line: West Valley Connector BRT (Omnitrans sbX Purple Line), service Spring 2027 (SBCTA West Valley Connector project page)",
+    "ontario asset: Ontario Mills (SBCTA, West Valley Connector (stops include Ontario Mills))",
+    "ontario asset: Victoria Gardens (SBCTA, West Valley Connector (stops include Victoria Gardens))"
    ],
    "result": "verified",
    "detail": "The link answered with a web page (HTTP 200).",
@@ -1906,7 +1908,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.kayak.com/Ontario-Hotels-Delta-Hotels-by-Marriott-Ontario-Airport.367060.ksp."
   },
   {
    "key": "link010",
@@ -2158,7 +2160,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026."
   },
   {
    "key": "link023",
@@ -2338,7 +2340,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.bestwestern.com/en-us/book/hotel/ontario/best-western-plus-ontario-airport-convention-center/05343."
   },
   {
    "key": "link032",
@@ -2832,7 +2834,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/TownePlace-Suites-Ontario-Convention-Ctr-p61395527."
   },
   {
    "key": "link058",
@@ -3022,7 +3024,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.bestwestern.com/en-us/book/hotel/ontario/surestay-by-best-western-ontario-airport/52112."
   },
   {
    "key": "link068",
@@ -3193,7 +3195,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026."
   },
   {
    "key": "link077",
@@ -3212,7 +3214,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026."
   },
   {
    "key": "link078",
@@ -3231,7 +3233,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.wyndhamhotels.com/baymont/ontario-california/baymont-ontario."
   },
   {
    "key": "link079",
@@ -3879,7 +3881,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.hotelplanner.com/Property/156548/Reservations-Motel-6-Pomona-CA-Los-Angeles-Pomona-2470-South-Garey-Avenue-91766?gencall=1."
   },
   {
    "key": "link113",
@@ -3956,7 +3958,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.hotelplanner.com/Property/57247/Reservations-Motel-6-Claremont-CA-Claremont-840-South-Indian-Hill-Blvd-91711."
   },
   {
    "key": "link117",
@@ -4051,7 +4053,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026."
   },
   {
    "key": "link122",
@@ -4374,7 +4376,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://catalyst-cannabis.com/dispensary-locations/pomona-dispensary."
   },
   {
    "key": "link139",
@@ -4526,7 +4528,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.ocweekly.com/tacos-el-poblano-how-a-band-of-taqueros-from-izucar-de-matamoros-puebla-changed-baja-california-6626049/."
   },
   {
    "key": "link147",
@@ -5419,7 +5421,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://maps.roadtrippers.com/us/ontario-ca/food-drink/vinces-spaghetti-ontario."
   },
   {
    "key": "link194",
@@ -5457,7 +5459,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://comtires.com/."
   },
   {
    "key": "link196",
@@ -5780,7 +5782,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://abc30.com/videoClip/14389335/."
   },
   {
    "key": "link213",
@@ -6181,7 +6183,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.pitzer.edu/offices/casa."
   },
   {
    "key": "link234",
@@ -6743,7 +6745,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.greatamericanstations.com/stations/pomona-ca-pos/."
   },
   {
    "key": "link263",
@@ -6880,7 +6882,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.amoca.org/about/history/."
   },
   {
    "key": "link269",
@@ -6937,7 +6939,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.laconservancy.org/learn/historic-places/fox-theatre-pomona/."
   },
   {
    "key": "link272",
@@ -8159,7 +8161,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.ontariomuseum.org/museum/visit."
   },
   {
    "key": "link335",
@@ -8235,7 +8237,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.ontarioca.gov/CommunityLife/library."
   },
   {
    "key": "link339",
@@ -8963,7 +8965,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.pomonaswapmeet.com/event-info/directions-to-the-car-show/."
   },
   {
    "key": "link377",
@@ -9961,7 +9963,7 @@
    "service_name": null,
    "last_edit": null,
    "orig_url": null,
-   "note": null
+   "note": "No longer cited by a card since November 12, 2026; replaced by https://www.gosbcta.com/project/west-valley-connector-brt/."
   },
   {
    "key": "ont_ontario_mills",
@@ -10134,6 +10136,1354 @@
    "last_edit": null,
    "orig_url": null,
    "note": "Read through the OpenStreetMap API: Toyota Arena (building, last edited August 3, 2023)."
+  },
+  {
+   "key": "link427",
+   "url": "https://catalyst-cannabis.com/dispensary-locations/pomona-dispensary",
+   "kind": "record",
+   "uses": [
+    "business: Catalyst Cannabis Pomona (official site)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://catalyst-cannabis.com/dispensary-locations/pomona-dispensary",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link428",
+   "url": "https://www.loopnet.com/Listing/793-E-Holt-Ave-Pomona-CA/35912024",
+   "kind": "record",
+   "uses": [
+    "business: Seven Seven Motors (LoopNet listing, 793 E Holt Ave)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.loopnet.com/Listing/793-E-Holt-Ave-Pomona-CA/35912024",
+   "page_title": "793 E Holt Ave, Pomona, CA 91767 | LoopNet",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link429",
+   "url": "https://www.doordash.com/store/mamas-pupusas-pomona-35007001/",
+   "kind": "record",
+   "uses": [
+    "business: Mamas Pupusas (DoorDash listing (how it began))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.doordash.com/store/mamas-pupusas-pomona-35007001/",
+   "page_title": "Order Mamas Pupusas - Pomona, CA Menu Delivery [Menu & Prices] | Pomona - DoorDash",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link430",
+   "url": "https://www.ocweekly.com/tacos-el-poblano-how-a-band-of-taqueros-from-izucar-de-matamoros-puebla-changed-baja-california-6626049/",
+   "kind": "record",
+   "uses": [
+    "business: Taqueria El Poblano Estilo Tijuana (OC Weekly, chain history)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.ocweekly.com/tacos-el-poblano-how-a-band-of-taqueros-from-izucar-de-matamoros-puebla-changed-baja-california-6626049/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link431",
+   "url": "https://www.pomonavalleyauto.com/about-us",
+   "kind": "record",
+   "uses": [
+    "business: Pomona Valley Auto Sales (Dealer site, About Us (at this address since 1994))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.pomonavalleyauto.com/about-us",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link432",
+   "url": "https://www.parktreechc.org/about-us/",
+   "kind": "record",
+   "uses": [
+    "business: Parktree Community Health Center (Parktree, About Us (founded 1995, nonprofit, Federally Qualified Health Center))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.parktreechc.org/about-us/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link433",
+   "url": "https://www.thedonutwhole.com/christys-donuts-8/",
+   "kind": "record",
+   "uses": [
+    "business: Christy's Donuts (The Donut Whole, Christy's Donuts in Pomona (address 773 Indian Hill Blvd))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.thedonutwhole.com/christys-donuts-8/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link434",
+   "url": "https://startpage.mapquest.com/us/california/habachihana-grill-429728288",
+   "kind": "record",
+   "uses": [
+    "business: Habachihana Grill (Orchard Plaza) (MapQuest listing (gives the brand site, open daily))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://startpage.mapquest.com/us/california/habachihana-grill-429728288",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link435",
+   "url": "https://www.yelp.com/biz/starbelly-asian-kitchen-and-ramen-montclair-5",
+   "kind": "record",
+   "uses": [
+    "business: Starbelly Asian Kitchen & Ramen (Yelp page, marked CLOSED in its title (opened November 12, 2026))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.yelp.com/biz/starbelly-asian-kitchen-and-ramen-montclair-5",
+   "page_title": "STARBELLY ASIAN KITCHEN & RAMEN - CLOSED - Updated November 2026",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link436",
+   "url": "https://www.taqueria2potrillos.com/locations",
+   "kind": "record",
+   "uses": [
+    "business: Taqueria 2 Potrillos (official site)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.taqueria2potrillos.com/locations",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link437",
+   "url": "https://www.bppe.ca.gov/webapplications/annualReports/2018/document/d47236bb-2dce-438f-a84c-d35dc393f5b4",
+   "kind": "record",
+   "uses": [
+    "business: Rosston School of Hair Design (Rosston School of Hair Design, school catalog 2018 to 2019 (history), filed with the Bureau (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.bppe.ca.gov/webapplications/annualReports/2018/document/d47236bb-2dce-438f-a84c-d35dc393f5b4",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link438",
+   "url": "https://maps.roadtrippers.com/us/ontario-ca/food-drink/vinces-spaghetti-ontario",
+   "kind": "record",
+   "uses": [
+    "business: Vince's Spaghetti (official site)",
+    "business: Vince's Spaghetti (Roadtrippers listing)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://maps.roadtrippers.com/us/ontario-ca/food-drink/vinces-spaghetti-ontario",
+   "page_title": "Vince's Spaghetti, Ontario | Roadtrippers",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link439",
+   "url": "https://comtires.com/",
+   "kind": "record",
+   "uses": [
+    "business: Comtires (official site)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://comtires.com/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link440",
+   "url": "https://www.californiatransmission.com/",
+   "kind": "record",
+   "uses": [
+    "business: California Transmission (California Transmission, company site (Ontario shop address))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.californiatransmission.com/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link441",
+   "url": "https://lyndasrestaurants.com/",
+   "kind": "record",
+   "uses": [
+    "business: Pupuseria Gladys (Lynda's Restaurants, own site (lists this address))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://lyndasrestaurants.com/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link442",
+   "url": "https://abc30.com/videoClip/14389335/",
+   "kind": "record",
+   "uses": [
+    "business: Logan's Candies (ABC30)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://abc30.com/videoClip/14389335/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link443",
+   "url": "https://downtownontario.org/business-category/shopping/page/2",
+   "kind": "record",
+   "uses": [
+    "business: Herradura De Oro (Downtown Ontario business directory, shopping (address))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://downtownontario.org/business-category/shopping/page/2",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link444",
+   "url": "https://www.pitzer.edu/offices/casa",
+   "kind": "record",
+   "uses": [
+    "business: CASA Pitzer (official site)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.pitzer.edu/offices/casa",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link445",
+   "url": "https://californiathroughmylens.com/page-one-cafe-ontario/",
+   "kind": "record",
+   "uses": [
+    "business: Page One Cafe (California Through My Lens, Page One Cafe (2014 write-up))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://californiathroughmylens.com/page-one-cafe-ontario/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link446",
+   "url": "https://www.bizprofile.net/ca/ontario/andy-s-burgers-llc",
+   "kind": "record",
+   "uses": [
+    "business: Andy's Burgers (Bizprofile, Andy's Burgers, LLC (state filing summary, address))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.bizprofile.net/ca/ontario/andy-s-burgers-llc",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link447",
+   "url": "https://fairplex.com/wp-content/uploads/2024/08/Fairplex-2024-Event-Management-Guide.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Expo Hall 4 (Fairplex 2024 Event Management Guide (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/wp-content/uploads/2024/08/Fairplex-2024-Event-Management-Guide.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link448",
+   "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Expo Hall 4 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 5 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 6 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 7 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 9 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 10 (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Expo Hall 8 and the Fairplex Conference Center (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))",
+    "fairplex feature: Fairplex grounds (Fairplex 2027 rental rate sheet, prices effective January 1 to December 31, 2027 (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link449",
+   "url": "https://livingnewdeal.org/sites/los-angeles-county-fair-improvements-pomona-ca/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Millard Sheets Art Center (Expo Hall 3) (Living New Deal, Los Angeles County Fair Improvements, Pomona)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://livingnewdeal.org/sites/los-angeles-county-fair-improvements-pomona-ca/",
+   "page_title": "Los Angeles County Fair Improvements - Pomona CA - Living New Deal",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link450",
+   "url": "https://fairplex.com/business/film/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Sheraton Fairplex Suites and Conference Center (Fairplex, Filming at Fairplex)",
+    "fairplex feature: Fairplex Grandstand (Fairplex, Filming at Fairplex)",
+    "fairplex feature: Fairplex grounds (Fairplex, Filming at Fairplex)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/business/film/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link451",
+   "url": "https://fairplex.com/aboutus/media-center/press-releases/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex Grandstand (Fairplex, press releases (the page that lists the grandstand release))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/aboutus/media-center/press-releases/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link452",
+   "url": "https://fairplex.com/wp-content/uploads/2025/02/1.27.25-Grandstand-renovation-press-release.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex Grandstand (Fairplex press release, Fairplex Landmark Grandstand to Undergo Renovations, January 27, 2025 (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/wp-content/uploads/2025/02/1.27.25-Grandstand-renovation-press-release.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link453",
+   "url": "https://wtop.com/national/2026/07/los-angeles-knight-riders-play-first-game-in-new-stadium-as-olympic-cricket-buzz-grows/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Knight Riders Cricket Ground, in the former Fairplex Park infield (Associated Press report, as carried by WTOP (July 2, 2026))",
+    "pomona asset: Knight Riders Cricket Ground (Associated Press report, as carried by WTOP (July 2, 2026))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://wtop.com/national/2026/07/los-angeles-knight-riders-play-first-game-in-new-stadium-as-olympic-cricket-buzz-grows/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link454",
+   "url": "https://www.drf.com/news/los-alamitos-gets-fairplex-park-dates",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Knight Riders Cricket Ground, in the former Fairplex Park infield (Daily Racing Form, Los Alamitos gets Fairplex Park dates (June 19, 2014))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.drf.com/news/los-alamitos-gets-fairplex-park-dates",
+   "page_title": "Los Alamitos gets Fairplex Park dates",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link455",
+   "url": "https://railgiants.org/society-history/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: RailGiants Train Museum (RailGiants, society history (exhibit opened 1954))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://railgiants.org/society-history/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link456",
+   "url": "https://fairplex.com/aboutus/specificplan/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (Fairplex, Specific Plan)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/aboutus/specificplan/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link457",
+   "url": "https://fairplex.com/aboutus/annual-reports/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (Fairplex, annual reports (the page that hosts the 2024 Annual Report))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/aboutus/annual-reports/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link458",
+   "url": "https://fairplex.com/wp-content/uploads/2026/01/Fairplex-2024-Annual-Report.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (Fairplex 2024 Annual Report (PDF))",
+    "pomona asset: Fairplex (Fairplex 2024 Annual Report (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/wp-content/uploads/2026/01/Fairplex-2024-Annual-Report.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link459",
+   "url": "https://www.lacountyfair.com/wp-content/uploads/2022/11/Fairplex-Grounds-Map.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (Fairplex Map, file dated 2022, on the LA County Fair site (PDF; listed, not used for the placements))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.lacountyfair.com/wp-content/uploads/2022/11/Fairplex-Grounds-Map.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link460",
+   "url": "https://fairplex.com/wp-content/uploads/2022/05/2023-Fairplex-Map-scaled.jpg",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (Fairplex, Fairplex Map (image in a file named 2023; listed, not used for the placements))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://fairplex.com/wp-content/uploads/2022/05/2023-Fairplex-Map-scaled.jpg",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link461",
+   "url": "https://www.lacountyfair.com/wp-content/uploads/2026/04/LACF-2026-Map.pdf",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Fairplex grounds (LA County Fair 2026 map (PDF; listed, not used for the placements))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.lacountyfair.com/wp-content/uploads/2026/04/LACF-2026-Map.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link462",
+   "url": "https://www.pomonaswapmeet.com/event-info/directions-to-the-car-show/",
+   "kind": "record",
+   "uses": [
+    "fairplex feature: Gate 17 (Fairplex Drive at McKinley Avenue) (Pomona Swap Meet, general admission)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.pomonaswapmeet.com/event-info/directions-to-the-car-show/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link463",
+   "url": "https://www.kayak.com/Ontario-Hotels-Delta-Hotels-by-Marriott-Ontario-Airport.367060.ksp",
+   "kind": "record",
+   "uses": [
+    "hotel: Delta Hotels by Marriott Ontario Airport (rurl)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.kayak.com/Ontario-Hotels-Delta-Hotels-by-Marriott-Ontario-Airport.367060.ksp",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link464",
+   "url": "https://www.accessnewswire.com/newsroom/en/travel/ontario-airport-hotel-and-conference-center-to-debut-as-hyatt-regency-ontario-following-prop-1170697",
+   "kind": "record",
+   "uses": [
+    "hotel: Ontario Airport Hotel & Conference Center (Hotel press release, to debut as Hyatt Regency Ontario (ACCESS Newswire, May 27, 2026))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.accessnewswire.com/newsroom/en/travel/ontario-airport-hotel-and-conference-center-to-debut-as-hyatt-regency-ontario-following-prop-1170697",
+   "page_title": "Ontario Airport Hotel & Conference Center to Debut as Hyatt Regency Ontario Following Property-Wide Transformation",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link465",
+   "url": "https://www.cvent.com/venues/ontario/hotel/embassy-suites-by-hilton-ontario-airport/venue-a17ba5c7-e63a-483d-b83a-d9daff40dfdc",
+   "kind": "record",
+   "uses": [
+    "hotel: Embassy Suites by Hilton Ontario Airport (Cvent venue listing (182 guest rooms, 6,000 sq ft total meeting space))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.cvent.com/venues/ontario/hotel/embassy-suites-by-hilton-ontario-airport/venue-a17ba5c7-e63a-483d-b83a-d9daff40dfdc",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link466",
+   "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Azure-Hotel-Suites-Ontario-Airport-p50923225",
+   "kind": "record",
+   "uses": [
+    "hotel: Azure Hotel & Suites Ontario Airport (TravelAge West, Azure Hotel & Suites Ontario Airport)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelagewest.com/Hotels/Ontario-CA/Azure-Hotel-Suites-Ontario-Airport-p50923225",
+   "page_title": "Azure Hotel & Suites Ontario Airport- Ontario, CA Hotels | TravelAge West",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link467",
+   "url": "https://www.wyndhamhotels.com/trademark/ontario-california/azure-hotel-suites-ontario-ca",
+   "kind": "record",
+   "uses": [
+    "hotel: Azure Hotel & Suites Ontario Airport (official site)"
+   ],
+   "result": "verified",
+   "detail": "The script got HTTP 404 (page not found); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.wyndhamhotels.com/trademark/ontario-california/azure-hotel-suites-ontario-ca",
+   "page_title": "Azure Hotel & Suites, Trademark Collection by Wyndham | Ontario, CA Hotels",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link468",
+   "url": "https://www.bestwestern.com/en-us/book/hotel/ontario/best-western-plus-ontario-airport-convention-center/05343",
+   "kind": "record",
+   "uses": [
+    "hotel: Best Western Plus Ontario Airport & Convention Center (Best Western property page)",
+    "hotel: Best Western Plus Ontario Airport & Convention Center (official site)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.bestwestern.com/en-us/book/hotel/ontario/best-western-plus-ontario-airport-convention-center/05343",
+   "page_title": "Hotels In Ontario, CA Airport - Best Western Plus Ontario",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link469",
+   "url": "https://www.travelagewest.com/Hotels/Ontario-CA/SpringHill-Stes-Airport-Rancho-Cucamonga-p52016399",
+   "kind": "record",
+   "uses": [
+    "hotel: SpringHill Suites Ontario Airport (TravelAge West, SpringHill Suites Airport/Rancho Cucamonga)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelagewest.com/Hotels/Ontario-CA/SpringHill-Stes-Airport-Rancho-Cucamonga-p52016399",
+   "page_title": "SpringHill Stes Airport/Rancho Cucamonga- Ontario, CA Hotels | TravelAge West",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link470",
+   "url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Comfort-Suites-Ontario-Convention-Center-p8739991",
+   "kind": "record",
+   "uses": [
+    "hotel: Comfort Suites Ontario Airport Convention Center (Successful Meetings, Comfort Suites Ontario Convention Center (3 meeting rooms, 2,400 sq ft total event space, largest room 1,200 sq ft))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Comfort-Suites-Ontario-Convention-Center-p8739991",
+   "page_title": "Comfort Suites Ontario Convention Center - Ontario, CA Meeting Rooms & Event Space | Successful Meetings",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link471",
+   "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Everhome-Suites-Ontario-Airport-p61527215",
+   "kind": "record",
+   "uses": [
+    "hotel: Everhome Suites Ontario Airport (TravelAge West, Everhome Suites Ontario Airport)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelagewest.com/Hotels/Ontario-CA/Everhome-Suites-Ontario-Airport-p61527215",
+   "page_title": "Everhome Suites Ontario Airport- Ontario, CA Hotels | TravelAge West",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link472",
+   "url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Everhome-Suites-Ontario-Airport-p61527058",
+   "kind": "record",
+   "uses": [
+    "hotel: Everhome Suites Ontario Airport (Successful Meetings, Everhome Suites Ontario Airport (1 meeting room, 312 sq ft total event space))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Everhome-Suites-Ontario-Airport-p61527058",
+   "page_title": "Everhome Suites Ontario Airport - Ontario, CA Meeting Rooms & Event Space | Successful Meetings",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link473",
+   "url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/TownePlace-Suites-Ontario-Convention-Ctr-p61395527",
+   "kind": "record",
+   "uses": [
+    "hotel: Extended Studio Hotel Ontario (TownePlace Suites) (Successful Meetings, TownePlace Suites Ontario Convention Ctr (1,136 sq ft total event space; rooms of 624 and 512 sq ft listed, 1 meeting room counted))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/TownePlace-Suites-Ontario-Convention-Ctr-p61395527",
+   "page_title": "TownePlace Suites Ontario Convention Ctr - Ontario, CA Meeting Rooms & Event Space | Successful Meetings",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link474",
+   "url": "https://www.bestwestern.com/en-us/book/hotel/ontario/surestay-by-best-western-ontario-airport/52112",
+   "kind": "record",
+   "uses": [
+    "hotel: SureStay Hotel by Best Western Ontario Airport (official site)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.bestwestern.com/en-us/book/hotel/ontario/surestay-by-best-western-ontario-airport/52112",
+   "page_title": "SureStay by Best Western Ontario Airport | Ontario CA",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link475",
+   "url": "https://www.travelweekly-asia.com/Hotels/Ontario-CA/Motel-6-Ontario-p8399772",
+   "kind": "record",
+   "uses": [
+    "hotel: Motel 6 Ontario Convention Center-Airport (Travel Weekly property page)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelweekly-asia.com/Hotels/Ontario-CA/Motel-6-Ontario-p8399772",
+   "page_title": "Motel 6 Ontario- Tourist Class Ontario, CA Hotels: Travel Weekly Asia",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link476",
+   "url": "https://www.hotels.com/ho110988/motel-6-ontario-ca-convention-center-airport-ontario-united-states-of-america/",
+   "kind": "record",
+   "uses": [
+    "hotel: Motel 6 Ontario Convention Center-Airport (Hotels.com property page (Oct 19, 2026 check))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 429); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.hotels.com/ho110988/motel-6-ontario-ca-convention-center-airport-ontario-united-states-of-america/",
+   "page_title": "Motel 6 Ontario, CA - Convention Center - Airport, Los Angeles | Hotels.com",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link477",
+   "url": "https://thevendry.com/venue/440715/motel-6-ontario-ontario-ca",
+   "kind": "record",
+   "uses": [
+    "hotel: Motel 6 Ontario Convention Center-Airport (The Vendry venue listing (132 sleeping rooms; Travel Weekly Asia lists 91))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://thevendry.com/venue/440715/motel-6-ontario-ontario-ca",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link478",
+   "url": "https://www.wyndhamhotels.com/baymont/ontario-california/baymont-ontario",
+   "kind": "record",
+   "uses": [
+    "hotel: Baymont by Wyndham Ontario (official site)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.wyndhamhotels.com/baymont/ontario-california/baymont-ontario",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link479",
+   "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Ramada-Ontario-p51909385",
+   "kind": "record",
+   "uses": [
+    "hotel: Ramada by Wyndham Ontario Airport (TravelAge West, Ramada Ontario)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelagewest.com/Hotels/Ontario-CA/Ramada-Ontario-p51909385",
+   "page_title": "Ramada Ontario- Ontario, CA Hotels | TravelAge West",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link480",
+   "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Days-Inn-Ontario-Airport-p9206722",
+   "kind": "record",
+   "uses": [
+    "hotel: Days Inn by Wyndham Ontario Airport (TravelAge West, Days Inn Ontario Airport)"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.travelagewest.com/Hotels/Ontario-CA/Days-Inn-Ontario-Airport-p9206722",
+   "page_title": "Days Inn Ontario Airport- Ontario, CA Hotels | TravelAge West",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link481",
+   "url": "https://www.cvent.com/venues/ontario/hotel/days-inn-ontario-airport/venue-6a97e52c-5fc8-4194-8412-56cc7e1f30bb",
+   "kind": "record",
+   "uses": [
+    "hotel: Days Inn by Wyndham Ontario Airport (Cvent venue listing (50 guest rooms; TravelAge West lists 49))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.cvent.com/venues/ontario/hotel/days-inn-ontario-airport/venue-6a97e52c-5fc8-4194-8412-56cc7e1f30bb",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link482",
+   "url": "https://www.hotelplanner.com/Property/156548/Reservations-Motel-6-Pomona-CA-Los-Angeles-Pomona-2470-South-Garey-Avenue-91766?gencall=1",
+   "kind": "record",
+   "uses": [
+    "hotel: Motel 6 Pomona (HotelPlanner listing)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.hotelplanner.com/Property/156548/Reservations-Motel-6-Pomona-CA-Los-Angeles-Pomona-2470-South-Garey-Avenue-91766?gencall=1",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link483",
+   "url": "https://www.hotelplanner.com/Property/57247/Reservations-Motel-6-Claremont-CA-Claremont-840-South-Indian-Hill-Blvd-91711",
+   "kind": "record",
+   "uses": [
+    "hotel: Motel 6 Claremont (HotelPlanner listing)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.hotelplanner.com/Property/57247/Reservations-Motel-6-Claremont-CA-Claremont-840-South-Indian-Hill-Blvd-91711",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link484",
+   "url": "https://npgallery.nps.gov/AssetDetail/NRIS/05000843",
+   "kind": "record",
+   "uses": [
+    "ontario asset: Euclid Avenue historic downtown (National Park Service, Euclid Avenue National Register nomination (200-foot right of way, 60-foot median))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://npgallery.nps.gov/AssetDetail/NRIS/05000843",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link485",
+   "url": "https://www.ontariomuseum.org/arts-and-culture/ontario-arts-festival",
+   "kind": "record",
+   "uses": [
+    "ontario asset: Euclid Avenue historic downtown (City of Ontario, Ontario Arts Festival (2026))",
+    "ontario asset: Chaffey Community Museum of Art (City of Ontario, Ontario Arts Festival (2026))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.ontariomuseum.org/arts-and-culture/ontario-arts-festival",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link486",
+   "url": "https://www.ontariomuseum.org/museum/visit",
+   "kind": "record",
+   "uses": [
+    "ontario asset: Ontario Museum of History & Art (Ontario Museum of History & Art, visit)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.ontariomuseum.org/museum/visit",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link487",
+   "url": "https://www.chaffeymuseum.org/about",
+   "kind": "record",
+   "uses": [
+    "ontario asset: Chaffey Community Museum of Art (Chaffey Community Museum of Art, about (four galleries))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.chaffeymuseum.org/about",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link488",
+   "url": "https://www.ontarioca.gov/CommunityLife/library",
+   "kind": "record",
+   "uses": [
+    "ontario asset: Ovitt Family Community Library (official site)",
+    "ontario asset: Ovitt Family Community Library (City of Ontario library)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.ontarioca.gov/CommunityLife/library",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link489",
+   "url": "https://www.greatamericanstations.com/stations/pomona-ca-pos/",
+   "kind": "record",
+   "uses": [
+    "pomona asset: Pomona Transit Center (Amtrak Great American Stations, Pomona (POS))",
+    "transit station: Pomona Downtown (Pomona Transit Center) (Amtrak Great American Stations, Pomona (POS))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.greatamericanstations.com/stations/pomona-ca-pos/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link490",
+   "url": "https://www.amoca.org/about/history/",
+   "kind": "record",
+   "uses": [
+    "pomona asset: American Museum of Ceramic Art (AMOCA) (AMOCA, history and mission)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.amoca.org/about/history/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link491",
+   "url": "https://www.laconservancy.org/learn/historic-places/fox-theatre-pomona/",
+   "kind": "record",
+   "uses": [
+    "pomona asset: Fox Theater Pomona (Los Angeles Conservancy)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://www.laconservancy.org/learn/historic-places/fox-theatre-pomona/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link492",
+   "url": "https://thepolypost.com/la-verdad/2026/11/10/memories-marigolds/",
+   "kind": "record",
+   "uses": [
+    "pomona asset: Pomona Mercantile 1888 Gallery (The Poly Post, November 10, 2026 (calls it a snack bar))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://thepolypost.com/la-verdad/2026/11/10/memories-marigolds/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link493",
+   "url": "https://www.pomonaca.gov/government/mayor-city-council",
+   "kind": "record",
+   "uses": [
+    "pomona asset: Pomona City Hall (City of Pomona, Mayor and City Council (meeting schedule))"
+   ],
+   "result": "verified",
+   "detail": "The site refuses scripts (the script got HTTP 403); opened in a web browser on November 12, 2026 and the page loaded under the title shown.",
+   "http": "200",
+   "how": "browser",
+   "checked": "2026-11-12",
+   "final_url": "https://www.pomonaca.gov/government/mayor-city-council",
+   "page_title": "Mayor & City Council | City of Pomona, CA",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link494",
+   "url": "https://hopped.com/stories/articles/homage-brewing-celebrates-five-years-with-opening-of-their-second-location-in-chinatown",
+   "kind": "record",
+   "uses": [
+    "pomona asset: Bar Homage (Homage Brewing) (Hopped, Homage Brewing's five years and its Chinatown opening (Pomona storefront opened May 2016))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://hopped.com/stories/articles/homage-brewing-celebrates-five-years-with-opening-of-their-second-location-in-chinatown",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link495",
+   "url": "https://foothillgoldline.org/construction_phases/glendora-to-montclair/",
+   "kind": "record",
+   "uses": [
+    "transit line: Metro A Line (light rail, opened to Pomona September 19, 2025) (Foothill Gold Line Construction Authority, Glendora to Montclair (opened September 19, 2025))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://foothillgoldline.org/construction_phases/glendora-to-montclair/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link496",
+   "url": "https://foothillgoldline.org/wp-content/uploads/2025/09/2025-09-12-Agency-Statement-Claremont-and-Montclair-Segments-to-be-Built-Separately.pdf",
+   "kind": "record",
+   "uses": [
+    "transit line: Metro A Line (light rail, opened to Pomona September 19, 2025) (Foothill Gold Line Construction Authority, statement of September 12, 2025: Claremont and Montclair segments to be built separately (PDF))",
+    "transit station: Claremont (Metrolink) (Foothill Gold Line Construction Authority, statement of September 12, 2025: Claremont and Montclair segments to be built separately (PDF))",
+    "transit station: Montclair Transit Center (Montclair Transcenter) (Foothill Gold Line Construction Authority, statement of September 12, 2025: Claremont and Montclair segments to be built separately (PDF))"
+   ],
+   "result": "verified",
+   "detail": "The link answered with the PDF (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://foothillgoldline.org/wp-content/uploads/2025/09/2025-09-12-Agency-Statement-Claremont-and-Montclair-Segments-to-be-Built-Separately.pdf",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
   }
  ],
  "checked_dates": [
@@ -10141,5 +11491,611 @@
   "2026-11-07"
  ],
  "added_2026_11_07": "Ontario Mills, Victoria Gardens and Toyota Arena were added to the map on November 6, 2026. Their 12 card links were checked on November 7 the same way: certify_links.py, a web browser for the two simon.com pages (bot check, not completed) and for the Toyota Arena page text, the OpenStreetMap API for the three OpenStreetMap objects, and a page-title match against each place name.",
- "removed_2026_11_11": "One README link checked on November 3, 2026 (verified) was removed from the project on November 11, 2026, and its entry is left out of the links list, which now holds 469 of the 470 links checked. The summary counts are as checked."
+ "removed_2026_11_11": "One README link checked on November 3, 2026 (verified) was removed from the project on November 11, 2026, and its entry is left out of the links list, which now holds 469 of the 470 links checked. The summary counts are as checked.",
+ "carried_2026_11_12": {
+  "checked": "2026-11-12",
+  "checked_by": "Claude agents for T. C. Smith",
+  "what": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map where it shows the same record. The summary and record_links counts above are the November 3 and 7 checks, unchanged.",
+  "method": "Each carried value was taken from the simple map's corrected data files and its record of the checks (its sources-verified.json, rechecked_2026_11_11, and link-audit-2026-11-11.md); the facts were not researched again for this map. On ten business and gallery cards the simple map keeps the page a sentence rests on in its ownership field, which this map does not have, so that page was added to the card's sources here. The 70 addresses new to this map were requested with tools/certify_links.py on November 12, 2026: 49 answered the script, 20 refused it and 1 answered it with page not found. Those 21 were opened in a web browser the same day and all loaded under the expected title. For the links the script verified, verified means the address answered; the page was not read again for the name of the record.",
+  "counts": {
+   "cards_with_a_link_replaced_one_for_one": 25,
+   "cards_with_links_added": 47,
+   "distinct_addresses_added_on_those_cards": 56,
+   "cards_with_links_removed": 6,
+   "distinct_addresses_removed_on_those_cards": 6,
+   "addresses_new_to_this_map": 70,
+   "new_answered_the_script": 49,
+   "new_opened_in_a_browser": 21,
+   "cards_with_changed_wording_or_figures": 57,
+   "markers_moved": 2,
+   "records_renamed": 1,
+   "earlier_link_entries_no_longer_cited": 24
+  },
+  "replaced": [
+   {
+    "record": "data/businesses.js: Catalyst Cannabis Pomona",
+    "old": "https://luckyfarms.org/discover-why-catalyst-pomona-customer-are-making-the-move-to-lucky-farms/",
+    "new": "https://catalyst-cannabis.com/dispensary-locations/pomona-dispensary"
+   },
+   {
+    "record": "data/businesses.js: Taqueria El Poblano Estilo Tijuana",
+    "old": "https://www.ocweekly.com/?p=206685",
+    "new": "https://www.ocweekly.com/tacos-el-poblano-how-a-band-of-taqueros-from-izucar-de-matamoros-puebla-changed-baja-california-6626049/"
+   },
+   {
+    "record": "data/businesses.js: Vince's Spaghetti",
+    "old": "https://roadtrippers.com/us/ontario-ca/food-drink/vinces-spaghetti",
+    "new": "https://maps.roadtrippers.com/us/ontario-ca/food-drink/vinces-spaghetti-ontario"
+   },
+   {
+    "record": "data/businesses.js: Comtires",
+    "old": "https://comtiresco.com",
+    "new": "https://comtires.com/"
+   },
+   {
+    "record": "data/businesses.js: Logan's Candies",
+    "old": "https://abc30.com/logans-candies-candy-shop-canes-ontario/14389335/",
+    "new": "https://abc30.com/videoClip/14389335/"
+   },
+   {
+    "record": "data/businesses.js: CASA Pitzer",
+    "old": "https://www.pitzer.edu/casa-pitzer/",
+    "new": "https://www.pitzer.edu/offices/casa"
+   },
+   {
+    "record": "data/fairplex.js: Gate 17 (Fairplex Drive at McKinley Avenue)",
+    "old": "https://www.pomonaswapmeet.com/general-admission.php",
+    "new": "https://www.pomonaswapmeet.com/event-info/directions-to-the-car-show/"
+   },
+   {
+    "record": "data/hotels.js: Delta Hotels by Marriott Ontario Airport",
+    "old": "https://www.kayak.com/Ontario-Hotels-Ontario-Gateway-Hotel.367060.ksp",
+    "new": "https://www.kayak.com/Ontario-Hotels-Delta-Hotels-by-Marriott-Ontario-Airport.367060.ksp"
+   },
+   {
+    "record": "data/hotels.js: Best Western Plus Ontario Airport & Convention Center",
+    "old": "https://www.bestwestern.com/en_US/book/hotels-in-ontario/best-western-plus-ontario-airport-convention-center/propertyCode.05343.html",
+    "new": "https://www.bestwestern.com/en-us/book/hotel/ontario/best-western-plus-ontario-airport-convention-center/05343"
+   },
+   {
+    "record": "data/hotels.js: SpringHill Suites Ontario Airport",
+    "old": "https://www.travelagewest.com/Hotels/Ontario-CA/La-Quinta-Inn-Suites-Ontario-Airport-p51281001,Nearby-Hotels?v=D",
+    "new": "https://www.travelagewest.com/Hotels/Ontario-CA/SpringHill-Stes-Airport-Rancho-Cucamonga-p52016399"
+   },
+   {
+    "record": "data/hotels.js: Extended Studio Hotel Ontario (TownePlace Suites)",
+    "old": "https://www.kayak.com/Ontario-Hotels-Extended-Studio-Hotel-Ontario.1073012644.ksp",
+    "new": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/TownePlace-Suites-Ontario-Convention-Ctr-p61395527"
+   },
+   {
+    "record": "data/hotels.js: SureStay Hotel by Best Western Ontario Airport",
+    "old": "https://www.bestwestern.com/en_US/book/hotels-in-ontario/surestay-by-best-western-ontario-airport/propertyCode.52112.html",
+    "new": "https://www.bestwestern.com/en-us/book/hotel/ontario/surestay-by-best-western-ontario-airport/52112"
+   },
+   {
+    "record": "data/hotels.js: Baymont by Wyndham Ontario",
+    "old": "https://www.wyndhamhotels.com/baymont/ontario-california/baymont-ontario/overview",
+    "new": "https://www.wyndhamhotels.com/baymont/ontario-california/baymont-ontario"
+   },
+   {
+    "record": "data/hotels.js: Ramada by Wyndham Ontario Airport",
+    "old": "https://www.travelagewest.com/Hotels/Ontario-CA/Motel-6-Ontario-Airport-p6355816,Nearby-Hotels?v=D",
+    "new": "https://www.travelagewest.com/Hotels/Ontario-CA/Ramada-Ontario-p51909385"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Pomona",
+    "old": "https://www.hotelplanner.com/Hotels/135046/Reservations-Motel-6-Pomona-Ca-Los-Angeles-Pomona-2470-Soth-Garey-Ave-91766?gencall=1",
+    "new": "https://www.hotelplanner.com/Property/156548/Reservations-Motel-6-Pomona-CA-Los-Angeles-Pomona-2470-South-Garey-Avenue-91766?gencall=1"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Claremont",
+    "old": "https://www.hotelplanner.com/Hotels/9523/Reservations-Motel-6-Claremont-Claremont-840-South-Indian-Hill-Blvd-91711",
+    "new": "https://www.hotelplanner.com/Property/57247/Reservations-Motel-6-Claremont-CA-Claremont-840-South-Indian-Hill-Blvd-91711"
+   },
+   {
+    "record": "data/ontario.js: Ontario Museum of History & Art",
+    "old": "https://www.ontariomuseum.org/visit/",
+    "new": "https://www.ontariomuseum.org/museum/visit"
+   },
+   {
+    "record": "data/ontario.js: Ovitt Family Community Library",
+    "old": "https://www.ontarioca.gov/library",
+    "new": "https://www.ontarioca.gov/CommunityLife/library"
+   },
+   {
+    "record": "data/ontario.js: Ontario Mills",
+    "old": "https://www.gosbcta.com/project/west-valley-connector/",
+    "new": "https://www.gosbcta.com/project/west-valley-connector-brt/"
+   },
+   {
+    "record": "data/ontario.js: Victoria Gardens",
+    "old": "https://www.gosbcta.com/project/west-valley-connector/",
+    "new": "https://www.gosbcta.com/project/west-valley-connector-brt/"
+   },
+   {
+    "record": "data/pomona.js: Pomona Transit Center",
+    "old": "https://www.greatamericanstations.com/stations/POS",
+    "new": "https://www.greatamericanstations.com/stations/pomona-ca-pos/"
+   },
+   {
+    "record": "data/pomona.js: American Museum of Ceramic Art (AMOCA)",
+    "old": "https://amoca.org/?p=4689",
+    "new": "https://www.amoca.org/about/history/"
+   },
+   {
+    "record": "data/pomona.js: Fox Theater Pomona",
+    "old": "https://www.laconservancy.org/locations/fox-theatre-pomona/",
+    "new": "https://www.laconservancy.org/learn/historic-places/fox-theatre-pomona/"
+   },
+   {
+    "record": "data/pomona.js: Vlounge at the Fox",
+    "old": "https://www.downtownpomona.org/entertainment",
+    "new": "https://www.downtownpomona.org/eat-drink"
+   },
+   {
+    "record": "data/transit.js: Pomona Downtown (Pomona Transit Center)",
+    "old": "https://www.greatamericanstations.com/stations/POS",
+    "new": "https://www.greatamericanstations.com/stations/pomona-ca-pos/"
+   }
+  ],
+  "added": [
+   {
+    "record": "data/businesses.js: Seven Seven Motors",
+    "url": "https://www.loopnet.com/Listing/793-E-Holt-Ave-Pomona-CA/35912024"
+   },
+   {
+    "record": "data/businesses.js: Mamas Pupusas",
+    "url": "https://www.doordash.com/store/mamas-pupusas-pomona-35007001/"
+   },
+   {
+    "record": "data/businesses.js: Pomona Valley Auto Sales",
+    "url": "https://www.pomonavalleyauto.com/about-us"
+   },
+   {
+    "record": "data/businesses.js: Parktree Community Health Center",
+    "url": "https://www.parktreechc.org/about-us/"
+   },
+   {
+    "record": "data/businesses.js: Christy's Donuts",
+    "url": "https://www.thedonutwhole.com/christys-donuts-8/"
+   },
+   {
+    "record": "data/businesses.js: Habachihana Grill (Orchard Plaza)",
+    "url": "https://startpage.mapquest.com/us/california/habachihana-grill-429728288"
+   },
+   {
+    "record": "data/businesses.js: Starbelly Asian Kitchen & Ramen",
+    "url": "https://www.yelp.com/biz/starbelly-asian-kitchen-and-ramen-montclair-5"
+   },
+   {
+    "record": "data/businesses.js: Taqueria 2 Potrillos",
+    "url": "https://www.taqueria2potrillos.com/locations"
+   },
+   {
+    "record": "data/businesses.js: Rosston School of Hair Design",
+    "url": "https://www.bppe.ca.gov/webapplications/annualReports/2018/document/d47236bb-2dce-438f-a84c-d35dc393f5b4"
+   },
+   {
+    "record": "data/businesses.js: California Transmission",
+    "url": "https://www.californiatransmission.com/"
+   },
+   {
+    "record": "data/businesses.js: Pupuseria Gladys",
+    "url": "https://lyndasrestaurants.com/"
+   },
+   {
+    "record": "data/businesses.js: Herradura De Oro",
+    "url": "https://downtownontario.org/business-category/shopping/page/2"
+   },
+   {
+    "record": "data/businesses.js: Page One Cafe",
+    "url": "https://californiathroughmylens.com/page-one-cafe-ontario/"
+   },
+   {
+    "record": "data/businesses.js: Andy's Burgers",
+    "url": "https://www.bizprofile.net/ca/ontario/andy-s-burgers-llc"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 4",
+    "url": "https://fairplex.com/business/event-planning/"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 4",
+    "url": "https://fairplex.com/wp-content/uploads/2024/08/Fairplex-2024-Event-Management-Guide.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 4",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 5",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 6",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 7",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 9",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 10",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Expo Hall 8 and the Fairplex Conference Center",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Millard Sheets Art Center (Expo Hall 3)",
+    "url": "https://livingnewdeal.org/sites/los-angeles-county-fair-improvements-pomona-ca/"
+   },
+   {
+    "record": "data/fairplex.js: Sheraton Fairplex Suites and Conference Center",
+    "url": "https://fairplex.com/business/conference-center/"
+   },
+   {
+    "record": "data/fairplex.js: Sheraton Fairplex Suites and Conference Center",
+    "url": "https://fairplex.com/business/film/"
+   },
+   {
+    "record": "data/fairplex.js: Sheraton Fairplex Suites and Conference Center",
+    "url": "https://oac.cdlib.org/findaid/ark:/13030/c88g8tkd"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex Grandstand",
+    "url": "https://fairplex.com/aboutus/media-center/press-releases/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex Grandstand",
+    "url": "https://fairplex.com/business/film/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex Grandstand",
+    "url": "https://fairplex.com/wp-content/uploads/2025/02/1.27.25-Grandstand-renovation-press-release.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Knight Riders Cricket Ground, in the former Fairplex Park infield",
+    "url": "https://wtop.com/national/2026/07/los-angeles-knight-riders-play-first-game-in-new-stadium-as-olympic-cricket-buzz-grows/"
+   },
+   {
+    "record": "data/fairplex.js: Knight Riders Cricket Ground, in the former Fairplex Park infield",
+    "url": "https://www.drf.com/news/los-alamitos-gets-fairplex-park-dates"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex RV Park",
+    "url": "https://fairplex.com/wp-content/uploads/2022/10/revised-fairplex-master-grounds-map-with-parking-lot-sections.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex RV Park",
+    "url": "https://fairplex.com/wp-content/uploads/2022/10/revised-fairplex-master-grounds-map-with-parking-lot-sections.pdf"
+   },
+   {
+    "record": "data/fairplex.js: RailGiants Train Museum",
+    "url": "https://railgiants.org/society-history/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/business/film/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/aboutus/specificplan/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/aboutus/annual-reports/"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/wp-content/uploads/2026/01/Fairplex-2024-Annual-Report.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/wp-content/uploads/2026/10/Fairplex-2027-Rental-Rate-Sheet.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://www.lacountyfair.com/wp-content/uploads/2022/11/Fairplex-Grounds-Map.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://fairplex.com/wp-content/uploads/2022/05/2023-Fairplex-Map-scaled.jpg"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://www.lacountyfair.com/wp-content/uploads/2026/04/LACF-2026-Map.pdf"
+   },
+   {
+    "record": "data/fairplex.js: Fairplex grounds",
+    "url": "https://oac.cdlib.org/findaid/ark:/13030/c88g8tkd"
+   },
+   {
+    "record": "data/fairplex.js: The Farm at Fairplex",
+    "url": "https://fairplex.com/dining/mckinleys-grille-at-fairplex/"
+   },
+   {
+    "record": "data/hotels.js: Ontario Airport Hotel & Conference Center",
+    "url": "https://www.accessnewswire.com/newsroom/en/travel/ontario-airport-hotel-and-conference-center-to-debut-as-hyatt-regency-ontario-following-prop-1170697"
+   },
+   {
+    "record": "data/hotels.js: Embassy Suites by Hilton Ontario Airport",
+    "url": "https://www.cvent.com/venues/ontario/hotel/embassy-suites-by-hilton-ontario-airport/venue-a17ba5c7-e63a-483d-b83a-d9daff40dfdc"
+   },
+   {
+    "record": "data/hotels.js: Azure Hotel & Suites Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Azure-Hotel-Suites-Ontario-Airport-p50923225"
+   },
+   {
+    "record": "data/hotels.js: Azure Hotel & Suites Ontario Airport",
+    "url": "https://www.wyndhamhotels.com/trademark/ontario-california/azure-hotel-suites-ontario-ca"
+   },
+   {
+    "record": "data/hotels.js: Comfort Suites Ontario Airport Convention Center",
+    "url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Comfort-Suites-Ontario-Convention-Center-p8739991"
+   },
+   {
+    "record": "data/hotels.js: Comfort Suites Ontario Airport Convention Center",
+    "url": "https://www.flyontario.com/to-from-airport/parking-transport/shuttles"
+   },
+   {
+    "record": "data/hotels.js: Everhome Suites Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Everhome-Suites-Ontario-Airport-p61527215"
+   },
+   {
+    "record": "data/hotels.js: Everhome Suites Ontario Airport",
+    "url": "https://www.successfulmeetings.com/Meeting-Event-Venues/Ontario-CA/Convention-Hotel/Everhome-Suites-Ontario-Airport-p61527058"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Convention Center-Airport",
+    "url": "https://www.travelweekly-asia.com/Hotels/Ontario-CA/Motel-6-Ontario-p8399772"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Convention Center-Airport",
+    "url": "https://www.hotels.com/ho110988/motel-6-ontario-ca-convention-center-airport-ontario-united-states-of-america/"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Convention Center-Airport",
+    "url": "https://thevendry.com/venue/440715/motel-6-ontario-ontario-ca"
+   },
+   {
+    "record": "data/hotels.js: Days Inn by Wyndham Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Days-Inn-Ontario-Airport-p9206722"
+   },
+   {
+    "record": "data/hotels.js: Days Inn by Wyndham Ontario Airport",
+    "url": "https://www.cvent.com/venues/ontario/hotel/days-inn-ontario-airport/venue-6a97e52c-5fc8-4194-8412-56cc7e1f30bb"
+   },
+   {
+    "record": "data/ontario.js: Euclid Avenue historic downtown",
+    "url": "https://npgallery.nps.gov/AssetDetail/NRIS/05000843"
+   },
+   {
+    "record": "data/ontario.js: Euclid Avenue historic downtown",
+    "url": "https://www.ontariomuseum.org/arts-and-culture/ontario-arts-festival"
+   },
+   {
+    "record": "data/ontario.js: Ontario Town Square",
+    "url": "https://www.gocalevents.org/p/christmas-on-euclid"
+   },
+   {
+    "record": "data/ontario.js: Chaffey Community Museum of Art",
+    "url": "https://www.chaffeymuseum.org/about"
+   },
+   {
+    "record": "data/ontario.js: Chaffey Community Museum of Art",
+    "url": "https://www.ontariomuseum.org/arts-and-culture/ontario-arts-festival"
+   },
+   {
+    "record": "data/pomona.js: Fairplex",
+    "url": "https://fairplex.com/wp-content/uploads/2026/01/Fairplex-2024-Annual-Report.pdf"
+   },
+   {
+    "record": "data/pomona.js: Knight Riders Cricket Ground",
+    "url": "https://wtop.com/national/2026/07/los-angeles-knight-riders-play-first-game-in-new-stadium-as-olympic-cricket-buzz-grows/"
+   },
+   {
+    "record": "data/pomona.js: Pomona Mercantile 1888 Gallery",
+    "url": "https://thepolypost.com/la-verdad/2026/11/10/memories-marigolds/"
+   },
+   {
+    "record": "data/pomona.js: Pomona City Hall",
+    "url": "https://www.pomonaca.gov/government/mayor-city-council"
+   },
+   {
+    "record": "data/pomona.js: Bar Homage (Homage Brewing)",
+    "url": "https://hopped.com/stories/articles/homage-brewing-celebrates-five-years-with-opening-of-their-second-location-in-chinatown"
+   },
+   {
+    "record": "data/transit.js: Metro A Line (light rail, opened to Pomona September 19, 2025)",
+    "url": "https://foothillgoldline.org/construction_phases/glendora-to-montclair/"
+   },
+   {
+    "record": "data/transit.js: Metro A Line (light rail, opened to Pomona September 19, 2025)",
+    "url": "https://foothillgoldline.org/wp-content/uploads/2025/09/2025-09-12-Agency-Statement-Claremont-and-Montclair-Segments-to-be-Built-Separately.pdf"
+   },
+   {
+    "record": "data/transit.js: Claremont (Metrolink)",
+    "url": "https://foothillgoldline.org/wp-content/uploads/2025/09/2025-09-12-Agency-Statement-Claremont-and-Montclair-Segments-to-be-Built-Separately.pdf"
+   },
+   {
+    "record": "data/transit.js: Montclair Transit Center (Montclair Transcenter)",
+    "url": "https://foothillgoldline.org/wp-content/uploads/2025/09/2025-09-12-Agency-Statement-Claremont-and-Montclair-Segments-to-be-Built-Separately.pdf"
+   }
+  ],
+  "removed": [
+   {
+    "record": "data/hotels.js: Azure Hotel & Suites Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Motel-6-Ontario-Airport-p6355816,Nearby-Hotels?v=D"
+   },
+   {
+    "record": "data/hotels.js: Azure Hotel & Suites Ontario Airport",
+    "url": "https://www.wyndhamhotels.com/trademark/ontario-california/azure-hotel-suites-ontario-ca/overview"
+   },
+   {
+    "record": "data/hotels.js: Everhome Suites Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Motel-6-Ontario-Airport-p6355816,Nearby-Hotels?v=D"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Convention Center-Airport",
+    "url": "https://www.travelweekly-asia.com/Hotels/Ontario-CA/Motel-6-Ontario/Local-p53948724"
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Convention Center-Airport",
+    "url": "https://widgets.hotels.com/ho110988/motel-6-ontario-ca-convention-center-airport-ontario-united-states-of-america"
+   },
+   {
+    "record": "data/hotels.js: Days Inn by Wyndham Ontario Airport",
+    "url": "https://www.travelagewest.com/Hotels/Ontario-CA/Motel-6-Ontario-Airport-p6355816,Nearby-Hotels?v=D"
+   },
+   {
+    "record": "data/hotels.js: Ontario Inn & Suites (Montclair)",
+    "url": "https://www.hotelplanner.com/Hotels/53154-in-Montclair-CA.html"
+   },
+   {
+    "record": "data/ontario.js: Euclid Avenue historic downtown",
+    "url": "https://www.ontarioca.gov/news/ontario-arts-festival-returns-saturday-october-18-its-seventh-year"
+   }
+  ],
+  "card_wording_changed": [
+   "data/businesses.js: Catalyst Cannabis Pomona",
+   "data/businesses.js: Seven Seven Motors",
+   "data/businesses.js: Mamas Pupusas",
+   "data/businesses.js: Taqueria El Poblano Estilo Tijuana",
+   "data/businesses.js: Pomona Valley Auto Sales",
+   "data/businesses.js: Christy's Donuts",
+   "data/businesses.js: Habachihana Grill (Orchard Plaza)",
+   "data/businesses.js: Starbelly Asian Kitchen & Ramen",
+   "data/businesses.js: El Angel Meat Market",
+   "data/businesses.js: Taqueria 2 Potrillos",
+   "data/businesses.js: Ontario Ice Skating Center",
+   "data/businesses.js: Vince's Spaghetti",
+   "data/businesses.js: Comtires",
+   "data/businesses.js: California Transmission",
+   "data/businesses.js: Pupuseria Gladys",
+   "data/businesses.js: Untitled Art Gallery",
+   "data/businesses.js: Herradura De Oro",
+   "data/businesses.js: U.S. Bank",
+   "data/businesses.js: Cancha Verde",
+   "data/businesses.js: Unique Cafe",
+   "data/businesses.js: The Golden Web Boutique Shoppe",
+   "data/businesses.js: Euclid Family Dentistry",
+   "data/businesses.js: Newsboy Books",
+   "data/businesses.js: Wells Fargo",
+   "data/businesses.js: Page One Cafe",
+   "data/businesses.js: Andy's Burgers",
+   "data/fairplex.js: Expo Hall 5",
+   "data/fairplex.js: Expo Hall 8 and the Fairplex Conference Center",
+   "data/fairplex.js: Millard Sheets Art Center (Expo Hall 3)",
+   "data/fairplex.js: Sheraton Fairplex Suites and Conference Center",
+   "data/fairplex.js: Fairplex Grandstand",
+   "data/fairplex.js: Knight Riders Cricket Ground, in the former Fairplex Park infield",
+   "data/fairplex.js: RailGiants Train Museum",
+   "data/fairplex.js: Yellow Lot (section 13)",
+   "data/fairplex.js: Yellow Lot (section 12)",
+   "data/fairplex.js: Yellow Lot (section 11)",
+   "data/fairplex.js: Fairplex grounds",
+   "data/fairplex.js: The Farm at Fairplex",
+   "data/hotels.js: Ontario Airport Hotel & Conference Center",
+   "data/hotels.js: Hotel d'Lins Ontario Airport",
+   "data/hotels.js: Best Western Plus Ontario Airport & Convention Center",
+   "data/hotels.js: Comfort Suites Ontario Airport Convention Center",
+   "data/hotels.js: Everhome Suites Ontario Airport",
+   "data/hotels.js: Extended Studio Hotel Ontario (TownePlace Suites)",
+   "data/hotels.js: Sheraton Fairplex Suites & Conference Center",
+   "data/ontario.js: Euclid Avenue historic downtown",
+   "data/ontario.js: Chaffey Community Museum of Art",
+   "data/ontario.js: Craft Collective (Downtown Retail Pop-Up Program)",
+   "data/ontario.js: Toyota Arena",
+   "data/pomona.js: Fairplex",
+   "data/pomona.js: Knight Riders Cricket Ground",
+   "data/pomona.js: Pomona Mercantile 1888 Gallery",
+   "data/pomona.js: Vlounge at the Fox",
+   "data/pomona.js: Delicious Freedom USA",
+   "data/transit.js: Metro A Line (light rail, opened to Pomona September 19, 2025)",
+   "data/transit.js: Claremont (Metrolink)",
+   "data/transit.js: Montclair Transit Center (Montclair Transcenter)"
+  ],
+  "moved": [
+   {
+    "record": "data/hotels.js: Sheraton Fairplex Suites & Conference Center",
+    "from": [
+     34.0856,
+     -117.77
+    ],
+    "to": [
+     34.07941,
+     -117.76283
+    ]
+   },
+   {
+    "record": "data/pomona.js: Knight Riders Cricket Ground",
+    "from": [
+     34.0893,
+     -117.763
+    ],
+    "to": [
+     34.0854,
+     -117.7656
+    ]
+   }
+  ],
+  "renamed": [
+   {
+    "file": "data/businesses.js",
+    "from": "Taqueria 2 Portillos",
+    "to": "Taqueria 2 Potrillos"
+   }
+  ],
+  "earlier_entries_no_longer_cited": [
+   "link009",
+   "link022",
+   "link031",
+   "link057",
+   "link067",
+   "link076",
+   "link077",
+   "link078",
+   "link112",
+   "link116",
+   "link121",
+   "link138",
+   "link146",
+   "link193",
+   "link195",
+   "link212",
+   "link233",
+   "link262",
+   "link268",
+   "link271",
+   "link334",
+   "link338",
+   "link376",
+   "ont_ontario_mills"
+  ],
+  "source_updates": {
+   "esri": "On November 12, 2026 the entry was changed to name Vantor in place of Maxar and to add USGS, as the services themselves credit (read for the Holt Corridor Simple map on November 11, 2026); the imagery layer credit on the map was changed the same way.",
+   "foothill": "On November 12, 2026 the year was changed from 2026 to n.d.: the page gives no date of its own (read for the Holt Corridor Simple map on November 11, 2026)."
+  },
+  "worded_for_this_map": [
+   "data/businesses.js: Taqueria El Poblano Estilo Tijuana (description; the five-shop count is left out because no page gives it)",
+   "data/businesses.js: notes on Catalyst Cannabis Pomona, Comtires, California Transmission, Herradura De Oro and Andy's Burgers (where the address shown comes from)",
+   "data/businesses.js: Seven Seven Motors (the LoopNet page loaded under the address; what it says about a sale was not read, so the card says only that the address has a listing there)",
+   "data/pomona.js: Pomona Mercantile 1888 Gallery (snack bar, the word the simple map's record quotes from the article)",
+   "data/fairplex.js: Yellow Lot (section 12) (note, same wording as sections 11 and 13)",
+   "data/hotels.js: Sheraton Fairplex Suites & Conference Center (the date its dot was moved on this map)"
+  ],
+  "not_carried": [
+   "data/businesses.js: Next Level Cuts keeps \"Holt corridor, Pomona\": the Yelp page the simple map takes its address from refused the script and a web browser on November 12, 2026, and no record shows it was read.",
+   "Clauses the simple map prints that no page linked on either map backs were left out here: Global Transporters Inc (2025 rental listings), Pomona Valley Auto Sales (a customer review), La Tia Restaurante y Taqueria (reviewers say it relocated), Birreria Guadalajara (Yelp marks it closed), Pupuseria Gladys (a reviewer reports new ownership), Page One Cafe (later listings use other names), Habachihana Grill (the brand's own site does not list it).",
+   "The West Valley Connector trip time wording: the simple map was rewording it in an uncommitted change when this was written."
+  ],
+  "not_rechecked": "No link check of the whole map was run on November 12, 2026: only the addresses new to this map were requested.",
+  "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 57 cards changed, two markers moved and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
+ }
 }
