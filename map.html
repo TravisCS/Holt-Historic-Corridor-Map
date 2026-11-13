@@ -10,6 +10,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
+<script src="smoothzoom.js?v=87b6325c"></script>
 <script src="share.js?v=be8bf1ea"></script>
 <script src="snapshot.js?v=f273bb31"></script>
 <script src="layerinfo.js?v=f9730126"></script>
@@ -481,7 +482,7 @@ function spineSrc(){return cardSources({lead:[['ont_holt_otb','the Holt Corridor
  note:'Worked out by this map: the centerline, merged from the OpenStreetMap ways into one line. The tail into the Interstate 10 ramps was dropped and the east end runs straight to Vineyard Avenue.'});}
 
 /* ---------- map, locked to the corridor ---------- */
-const map=L.map('map',{zoomControl:true,maxBounds:BOUNDS.pad(0.04),maxBoundsViscosity:1.0,minZoom:11,maxZoom:20,worldCopyJump:false,attributionControl:true});
+const map=L.map('map',{zoomControl:true,maxBounds:BOUNDS.pad(0.04),maxBoundsViscosity:1.0,minZoom:11,maxZoom:20,worldCopyJump:false,attributionControl:true,smoothZoom:true});
 map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
 L.control.scale({position:'bottomleft',imperial:true,metric:true}).addTo(map);
 function lockZoom(){const z=Math.max(11,Math.floor(map.getBoundsZoom(BOUNDS,false)));map.setMinZoom(z);if(map.getZoom()<z)map.setZoom(z);}
@@ -651,8 +652,8 @@ FP.areas.slice().sort((a,b)=>fpArea(b.geom)-fpArea(a.geom)).forEach(x=>{const st
 FP.points.forEach(x=>{const st=FPCAT[x.cat]||FPCAT.other;const m=L.circleMarker([x.lat,x.lng],{radius:x.cat==='gate'?5:4,color:'#fff',weight:1.5,fillColor:st.c,fillOpacity:1});m.bindPopup(fpCard(x),POP);m.bindTooltip(`<span>${esc(x.short||x.n)}${x.tag?' <b>'+esc(x.tag)+'</b>':''}</span>`,{permanent:true,direction:x.dir||'right',offset:[6,0],className:'fpl'+(x.cat==='gate'?' lot':''),opacity:1});fpLabelClick(m);fpG.addLayer(m);});
 /* a click on a campus label opens that label's own card, never the outline under it */
 function fpLabelClick(l){l.on('tooltipopen',e=>{const el=e.tooltip.getElement();if(!el||el._fpc)return;el._fpc=1;L.DomEvent.disableClickPropagation(el);L.DomEvent.on(el,'click',ev=>{L.DomEvent.stop(ev);l.openPopup(l.getLatLng?l.getLatLng():l.getCenter());});});}
-function fpSync(){const on=fpWant&&map.getZoom()>=FPZ&&(FP.areas.length+FP.points.length)>0;if(on&&!map.hasLayer(fpG))fpG.addTo(map);if(!on&&map.hasLayer(fpG))map.removeLayer(fpG);}
-map.on('zoomend',fpSync);fpSync();
+function fpSync(){const on=fpWant&&Math.round(map.getZoom())>=FPZ&&(FP.areas.length+FP.points.length)>0;if(on&&!map.hasLayer(fpG))fpG.addTo(map);if(!on&&map.hasLayer(fpG))map.removeLayer(fpG);}
+map.on('zoomend zoomstep',fpSync);fpSync();
 document.getElementById('tFp').onchange=e=>{fpWant=e.target.checked;fpSync();};
 document.getElementById('fpCount').textContent=`${FP.areas.length+FP.points.length} features`;if(!(FP.areas.length+FP.points.length)){const r=document.getElementById('tFp').closest('label');r.previousElementSibling.hidden=true;r.hidden=true;r.nextElementSibling.hidden=true;}
 
@@ -664,7 +665,7 @@ document.getElementById('tSpine').onchange=e=>e.target.checked?spineG.addTo(map)
 const LM=[["Ontario International Airport",34.0545,-117.5980],["Convention Center",34.0675,-117.6062],["Downtown Ontario",34.0600,-117.6515],["Montclair",34.0700,-117.6950],["Downtown Pomona",34.0525,-117.7500],["Fairplex",34.0905,-117.7700]];
 const lmG=L.layerGroup().addTo(map);LM.forEach(l=>L.marker([l[1],l[2]],{icon:L.divIcon({className:'',html:`<div class="lm">${l[0]}</div>`,iconAnchor:[0,0]}),interactive:false}).addTo(lmG));
 document.getElementById('tLabels').onchange=e=>e.target.checked?lmG.addTo(map):map.removeLayer(lmG);
-const zlow=()=>{const el=document.getElementById('map');el.classList.toggle('zlow',map.getZoom()<13);el.classList.toggle('z15',map.getZoom()<16);};map.on('zoomend',zlow);zlow();
+const zlow=()=>{const el=document.getElementById('map');const z=Math.round(map.getZoom());el.classList.toggle('zlow',z<13);el.classList.toggle('z15',z<16);};map.on('zoomend zoomstep',zlow);zlow();
 const CITY_STYLE={'Ontario':{color:'#e6c84a',weight:2},'Montclair':{color:'#6ccfdc',weight:1.5,dashArray:'5 4'},'Pomona':{color:'#7fd39b',weight:1.5,dashArray:'5 4'}};
 const cityG=L.layerGroup().addTo(map);const cityLayers={};
 subGroup('cityToggles','tAllCity',Object.keys(CITY_STYLE).map(n=>{const g=L.layerGroup();cityLayers[n]=g;return {key:n,layer:g,sw:swatch(CITY_STYLE[n].dashArray?'dash':'ln',CITY_STYLE[n].color),html:n+' city limits',n:''};}),cityG);
