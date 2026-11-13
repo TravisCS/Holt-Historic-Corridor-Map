@@ -306,7 +306,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   </div>
 </div>
 
-<div id="basemap" class="card seg" role="group" aria-label="Basemap" title="Basemap: Google, or Esri when Google cannot load. Sources are in About the data."><button type="button" id="bmDark" aria-pressed="true">Dark streets</button><button type="button" id="bmPic" aria-pressed="false" title="Try-it only: the old picture base, to compare with the live-drawn one">Dark (pictures)</button><button type="button" id="bmSat" aria-pressed="false">Imagery</button></div>
+<div id="basemap" class="card seg" role="group" aria-label="Basemap" title="Basemap: Google, or Esri when Google cannot load. Sources are in About the data."><button type="button" id="bmDark" aria-pressed="true">Dark streets</button><button type="button" id="bmPic" aria-pressed="false" title="Try-it only: the old picture base, to compare with the live-drawn one">Dark (pictures)</button><button type="button" id="bmSat" aria-pressed="false">Imagery</button><button type="button" id="bmNat" aria-pressed="false" aria-label="National Geographic" title="National Geographic: Esri's National Geographic World Map. Its pictures stop at zoom 16 and are stretched closer in.">Nat Geo</button></div>
 <div id="north" class="card" aria-hidden="true">&#9650;<br>N</div>
 <div id="credit" class="card"><button id="credBtn" type="button" aria-expanded="false" aria-controls="credTxt" title="Show where the data comes from">Data</button><span id="credTxt" hidden>City of Ontario, City of Pomona, Fairplex, SBCTA, Omnitrans, Metrolink, LA Metro, GOCAL, OpenStreetMap, Board of Equalization. Basemap: Google Maps (Esri when Google is unavailable). The + beside each legend row gives the full sources.</span></div>
 
@@ -509,14 +509,17 @@ const esriDark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services
 const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:16});
 const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);darkGroup.addTo(map); /* the map opens on dark streets; Imagery is one click away, top right */
 let gSat=null,gRoad=null,useGoogle=false,satOn=false;
-let gVec=null,gvEl=null,gvOn=false,gvWant=true,gvFail=false;
-function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
-function gvShow(){return !!gVec&&gvOn&&gvWant&&!gvFail;}
+let gVec=null,gvEl=null,gvOn=false,gvWant=true,gvFail=false,natOn=true;
+/* National Geographic: Esri picture tiles, real in this corridor from zoom 12 to 16 (probed November 12, 2026) and stretched closer in */
+const NAT_MAXZ=16,natGeo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:NAT_MAXZ,attribution:'Base map: National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, increment P Corp.'});
+function currentBase(){return natOn?natGeo:satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
+function gvShow(){return !!gVec&&gvOn&&gvWant&&!gvFail&&!natOn;}
 /* the page behind the tiles takes the colour of the base on screen, so a zoom out never shows a dark frame or dark holes round a lighter map (imagery: its average colour as dimmed here) */
-function syncBackdrop(){document.getElementById('map').style.background=satOn?'#66645a':(gvShow()||useGoogle?'#1f2a33':'#474749');}
-function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});const gs=gvShow();if(gvEl){gvEl.style.display=gs?'':'none';if(gs){const want=satOn?'hybrid':'roadmap';if(gVec.getMapTypeId()!==want)gVec.setMapTypeId(want);gvEl.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}}document.getElementById('map').classList.toggle('gv',gs);if(!gs)currentBase().addTo(map);{const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!gs&&!gvWant));}document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&(gvWant||!document.getElementById('bmPic'))));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
-document.getElementById('bmDark').onclick=()=>{satOn=false;gvWant=true;setBase();};{const bp=document.getElementById('bmPic');if(bp)bp.onclick=()=>{satOn=false;gvWant=false;if(!gSat)gPictures();setBase();};}document.getElementById('bmSat').onclick=()=>{satOn=true;gvWant=true;setBase();};
+function syncBackdrop(){document.getElementById('map').style.background=natOn?'#d1cfba':satOn?'#66645a':(gvShow()||useGoogle?'#1f2a33':'#474749');}
+function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad,natGeo].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});const gs=gvShow();if(gvEl){gvEl.style.display=gs?'':'none';if(gs){const want=satOn?'hybrid':'roadmap';if(gVec.getMapTypeId()!==want)gVec.setMapTypeId(want);gvEl.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}}document.getElementById('map').classList.toggle('gv',gs);document.getElementById('map').classList.toggle('nat',natOn);if(!gs)currentBase().addTo(map);{const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!natOn&&!gs&&!gvWant));const bn=document.getElementById('bmNat');if(bn)bn.setAttribute('aria-pressed',String(natOn));}document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&!natOn&&(gvWant||!document.getElementById('bmPic'))));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
+document.getElementById('bmDark').onclick=()=>{satOn=false;natOn=false;gvWant=true;gStart();setBase();};{const bp=document.getElementById('bmPic');if(bp)bp.onclick=()=>{satOn=false;natOn=false;gvWant=false;if(!gSat)gPictures();setBase();};const bn=document.getElementById('bmNat');if(bn)bn.onclick=()=>{satOn=false;natOn=true;setBase();};}document.getElementById('bmSat').onclick=()=>{satOn=true;natOn=false;gvWant=true;gStart();setBase();};
 syncBackdrop();
+if(natOn)setBase();
 /* ---------- Google's live-drawn map as the base ----------
    One Google map, drawn on the visitor's screen (vector), sits under the Leaflet map and is moved with it on
    every frame, so streets and names are redrawn at every in-between zoom. Dark streets and Imagery are the same
@@ -553,7 +556,9 @@ function gPictures(){try{if(gSat||!L.gridLayer.googleMutant||!window.google||!go
  let ok=false;const arm=l=>l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;});}catch(_){}});arm(gSat);arm(gRoad);
  useGoogle=true;setBase();setTimeout(()=>{if(!ok)revertBase('no tiles after 8 s');},8000);
 }catch(e){console.warn('Google basemap unavailable',e);revertBase('error');}}
-window.onGoogleReady=function(){if(!window.google||!google.maps)return;if(!gvInit())gPictures();};
+/* Google's map is started when a Google base is wanted: at once when the map opens on one, otherwise on the first press of Dark streets or Imagery */
+function gStart(){if(gVec||gvFail||gSat||!window.google||!google.maps)return;if(!gvInit())gPictures();}
+window.onGoogleReady=function(){if(!natOn)gStart();};
 if(window._gmLoaded)window.onGoogleReady();
 
 /* shade outside the corridor box */
@@ -1019,7 +1024,7 @@ const INFO={};
   what:'Names over the main parts of the corridor.',why:'They help you find your place at a glance on the imagery.',
   care:'Positions are approximate and chosen to read well, not to mark exact sites.'});
  INFO.basemap=function(){return {label:'Basemap',kind:'basemap',src:['google','esri'],
-  mix:`Both bases are one Google map drawn in your browser, so streets and names stay sharp at every zoom: Google's dark colour scheme for Dark streets, its hybrid imagery for Imagery. Where that cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${gvShow()?'Google, drawn live:':useGoogle?'Google pictures:':'Esri pictures:'} ${satOn?'imagery':'dark streets'}.`,
+  mix:`Both bases are one Google map drawn in your browser, so streets and names stay sharp at every zoom: Google's dark colour scheme for Dark streets, its hybrid imagery for Imagery. Where that cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. National Geographic, where offered, is Esri's National Geographic World Map: pictures that are real here from zoom 12 to 16 and stretched closer in. Right now the map shows ${natOn?'Esri National Geographic pictures.':(gvShow()?'Google, drawn live: ':useGoogle?'Google pictures: ':'Esri pictures: ')+(satOn?'imagery.':'dark streets.')}`,
   what:'The background under every layer. Pick it with the Dark streets and Imagery buttons at the top right.',
   why:'Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
   care:'Google tiles load only on the published site, because the key is locked to it; anywhere else the map falls back to Esri. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
@@ -1086,7 +1091,7 @@ function shoot(map,opt){if(shoot.on)return;if(!window.MapSnapshot){mapNote(map,"
   opt.busy=function(b){if(b)mapNote(map,"Making the screenshot...",20000)};
   opt.done=function(how,err){shoot.on=false;mapNote(map,how==="tab"?"The screenshot opened in a new tab.":how==="download"?"Screenshot saved to your downloads.":(err&&err.message)||"The screenshot did not work here.",how==="error"?6000:3000)};
   MapSnapshot.take(map,opt).catch(function(){})}
-function baseName(){if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
+function baseName(){if(natOn)return 'Esri National Geographic World Map';if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
 function shotInfo(){var out=[],on=[];
  [].forEach.call(document.querySelectorAll('#legend input[type=checkbox]'),function(i){if(!i.checked)return;var lb=i.closest('label')||i.closest('summary'),t=lb?labelText(lb).replace(/\s*[+\u2212]$/,''):'';if(t&&on.indexOf(t)<0)on.push(t)});
  out.push({h:'Layers shown',items:on.length?on:['None']});
