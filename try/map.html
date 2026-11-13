@@ -261,8 +261,9 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 #titlecard:not(.min) .rows,#titlecard:not(.min) .kpis,#titlecard:not(.min) .upd,#titlecard:not(.min) .lists,#legend:not(.min) .body{animation:moFade .22s ease-out}
 </style>
 <style>
-/* Google's live-drawn base keeps its own logo and credit along the bottom edge: lift this map's bottom controls clear of them */
+/* Google's live-drawn base keeps its own logo, credit and links along the bottom edge: lift this map's bottom controls clear of them, and let those links take a click though the base itself ignores the pointer */
 #map.gv .leaflet-bottom{bottom:22px}
+#gvec .gm-style-cc,#gvec .gm-style-cc *,#gvec a[href*="google.com/maps"],#gvec a[href*="google.com/intl"]{pointer-events:auto}
 </style>
 </head>
 <body>
@@ -512,43 +513,47 @@ let gVec=null,gvEl=null,gvOn=false,gvWant=true,gvFail=false;
 function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
 function gvShow(){return !!gVec&&gvOn&&gvWant&&!gvFail;}
 /* the page behind the tiles takes the colour of the base on screen, so a zoom out never shows a dark frame or dark holes round a lighter map (imagery: its average colour as dimmed here) */
-function syncBackdrop(){document.getElementById('map').style.background=satOn?'#66645a':(useGoogle?'#1f2a33':'#474749');}
-function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});const gs=gvShow();if(gvEl){gvEl.style.display=gs?'':'none';if(gs){const want=satOn?'hybrid':'roadmap';if(gVec.getMapTypeId()!==want)gVec.setMapTypeId(want);gvEl.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}}document.getElementById('map').classList.toggle('gv',gs);if(!gs)currentBase().addTo(map);const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!gs&&!gvWant));document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&gvWant));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
-document.getElementById('bmDark').onclick=()=>{satOn=false;gvWant=true;setBase();};document.getElementById('bmPic').onclick=()=>{satOn=false;gvWant=false;setBase();};document.getElementById('bmSat').onclick=()=>{satOn=true;gvWant=true;setBase();};
+function syncBackdrop(){document.getElementById('map').style.background=satOn?'#66645a':(gvShow()||useGoogle?'#1f2a33':'#474749');}
+function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});const gs=gvShow();if(gvEl){gvEl.style.display=gs?'':'none';if(gs){const want=satOn?'hybrid':'roadmap';if(gVec.getMapTypeId()!==want)gVec.setMapTypeId(want);gvEl.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}}document.getElementById('map').classList.toggle('gv',gs);if(!gs)currentBase().addTo(map);{const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!gs&&!gvWant));}document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&(gvWant||!document.getElementById('bmPic'))));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
+document.getElementById('bmDark').onclick=()=>{satOn=false;gvWant=true;setBase();};{const bp=document.getElementById('bmPic');if(bp)bp.onclick=()=>{satOn=false;gvWant=false;if(!gSat)gPictures();setBase();};}document.getElementById('bmSat').onclick=()=>{satOn=true;gvWant=true;setBase();};
 syncBackdrop();
-/* ---------- Google's live-drawn map as the base (try-it) ----------
+/* ---------- Google's live-drawn map as the base ----------
    One Google map, drawn on the visitor's screen (vector), sits under the Leaflet map and is moved with it on
    every frame, so streets and names are redrawn at every in-between zoom. Dark streets and Imagery are the same
-   Google map in two types. The picture bases (Google tiles through GoogleMutant, then Esri) stay as the backup:
-   no WebGL, a raster-only answer from Google, or any error keeps them. Uses Google's demo map ID for this try. */
-let gOk=false,gDone=false;
+   Google map in two types. Picture tiles are only the backup: Google's (through GoogleMutant) when the drawn map
+   cannot run (no WebGL, a raster-only answer, an error, nothing after 8 s), then Esri's.
+   GMAPID is the vector Map ID from the owner's Google Cloud project; empty means Google's demo ID, for trying only. */
+const GMAPID='';
+let gvReady=false,gvRaf=0;
 function gvSync(){if(!gVec||!gvShow())return;const c=map.getCenter();gVec.moveCamera({center:{lat:c.lat,lng:c.lng},zoom:map.getZoom()});}
 /* Leaflet's own animated zoom (the + and - buttons, a double click) scales its panes over 0.25 s: follow the same curve */
 function gvBez(t){let u=t;for(let i=0;i<6;i++){const x=3*(1-u)*u*u*0.25+u*u*u-t,d=1.5*u-2.25*u*u+3*u*u;if(Math.abs(d)<1e-6)break;u-=x/d;}u=Math.max(0,Math.min(1,u));return 3*(1-u)*u*u+u*u*u;}
-let gvRaf=0;
 function gvAnim(e){if(!gVec||!gvShow())return;cancelAnimationFrame(gvRaf);const z0=map.getZoom(),S=Math.pow(2,e.zoom-z0),x0=map.project(map.getCenter(),z0),x1=map.project(e.center,z0),t0=performance.now();
  const step=()=>{const t=Math.min(1,(performance.now()-t0)/250),p=gvBez(t),k=1+(S-1)*p,x=x0.multiplyBy(1-p).add(x1.multiplyBy(S*p)).divideBy(k),c=map.unproject(x,z0);gVec.moveCamera({center:{lat:c.lat,lng:c.lng},zoom:z0+Math.log(k)/Math.LN2});if(t<1&&map._animatingZoom)gvRaf=requestAnimationFrame(step);};step();}
-function gvTry(){if(!gVec||!gvReady||gvOn||gvFail)return;if(!(gOk||gDone))return;
+function gvTry(){if(!gVec||!gvReady||gvOn||gvFail)return;
  const old=currentBase(),cs=(old.getLayers?old.getLayers():[old]).map(l=>l.getContainer&&l.getContainer()).filter(Boolean);
  gvEl.style.visibility='';const c=map.getCenter();gVec.moveCamera({center:{lat:c.lat,lng:c.lng},zoom:map.getZoom()});
  const done=()=>{gvOn=true;setBase();cs.forEach(x=>{x.style.transition='';x.style.opacity='';});};
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){done();return;}
  cs.forEach(x=>{x.style.transition='opacity .45s ease';x.style.opacity='0';});setTimeout(done,480);}
-let gvReady=false;
-function gvInit(){try{const cv=document.createElement('canvas');if(!(cv.getContext('webgl2')||cv.getContext('webgl')))return;
+function gvGiveUp(why){if(gvFail||gvOn)return;gvFail=true;console.warn('Google live-drawn basemap not used ('+why+'); using picture tiles');if(gvEl)gvEl.style.display='none';gPictures();}
+/* returns true when the drawn map was started; the caller starts the picture tiles when it was not */
+function gvInit(){try{const cv=document.createElement('canvas');if(!(cv.getContext('webgl2')||cv.getContext('webgl')))return false;
  const host=document.getElementById('map');gvEl=document.createElement('div');gvEl.id='gvec';gvEl.style.cssText='position:absolute;inset:0;z-index:0;pointer-events:none;visibility:hidden';host.insertBefore(gvEl,host.firstChild);
  const c=map.getCenter();
- gVec=new google.maps.Map(gvEl,{center:{lat:c.lat,lng:c.lng},zoom:map.getZoom(),mapId:(google.maps.Map&&google.maps.Map.DEMO_MAP_ID)||'DEMO_MAP_ID',renderingType:'VECTOR',colorScheme:'DARK',isFractionalZoomEnabled:true,disableDefaultUI:true,gestureHandling:'none',keyboardShortcuts:false,clickableIcons:false,disableDoubleClickZoom:true,tilt:0,heading:0,backgroundColor:'#1f2a33'});
- google.maps.event.addListenerOnce(gVec,'tilesloaded',()=>{try{const rt=gVec.getRenderingType?gVec.getRenderingType():'';window._gvType=rt;if(rt&&rt!=='VECTOR'){gvFail=true;console.warn('Google answered with a picture map ('+rt+'); keeping the picture basemap');return;}}catch(e){}gvReady=true;gvTry();});
- map.on('move zoom resize',gvSync);map.on('zoomanim',gvAnim);
-}catch(e){gvFail=true;console.warn('Google live-drawn basemap unavailable; keeping the picture basemap',e);}}
+ gVec=new google.maps.Map(gvEl,{center:{lat:c.lat,lng:c.lng},zoom:map.getZoom(),mapId:GMAPID||(google.maps.Map&&google.maps.Map.DEMO_MAP_ID)||'DEMO_MAP_ID',renderingType:'VECTOR',colorScheme:'DARK',isFractionalZoomEnabled:true,disableDefaultUI:true,gestureHandling:'none',keyboardShortcuts:false,clickableIcons:false,disableDoubleClickZoom:true,tilt:0,heading:0,backgroundColor:'#1f2a33'});
+ google.maps.event.addListenerOnce(gVec,'tilesloaded',()=>{let rt='';try{rt=gVec.getRenderingType?gVec.getRenderingType():'';}catch(e){}window._gvType=rt;if(rt&&rt!=='VECTOR'){gvGiveUp('Google answered with a '+rt+' map');return;}gvReady=true;gvTry();});
+ setTimeout(()=>{if(!gvReady)gvGiveUp('nothing after 8 s');},8000);
+ map.on('move zoom resize',gvSync);map.on('zoomanim',gvAnim);return true;
+}catch(e){gvFail=true;console.warn('Google live-drawn basemap unavailable',e);return false;}}
 function revertBase(why){if(!useGoogle)return;useGoogle=false;console.warn('Google basemap unavailable ('+why+'); using Esri instead');setBase();}
-window.gm_authFailure=function(){revertBase('auth');};
-window.onGoogleReady=function(){try{if(!L.gridLayer.googleMutant||!window.google||!google.maps)return;
+window.gm_authFailure=function(){gvFail=true;if(gvEl)gvEl.style.display='none';revertBase('auth');setBase();};
+function gPictures(){try{if(gSat||!L.gridLayer.googleMutant||!window.google||!google.maps)return;
  gSat=L.gridLayer.googleMutant({type:'hybrid',maxZoom:20});gRoad=L.gridLayer.googleMutant({type:'roadmap',maxZoom:20,styles:NIGHT});
- let ok=false;const arm=l=>l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;gOk=true;gvTry();});}catch(_){}});arm(gSat);arm(gRoad);
- useGoogle=true;setBase();setTimeout(()=>{if(!ok)revertBase('no tiles after 8 s');gDone=true;gvTry();},8000);gvInit();
-}catch(e){console.warn('Google basemap unavailable',e);revertBase('error');}};
+ let ok=false;const arm=l=>l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;});}catch(_){}});arm(gSat);arm(gRoad);
+ useGoogle=true;setBase();setTimeout(()=>{if(!ok)revertBase('no tiles after 8 s');},8000);
+}catch(e){console.warn('Google basemap unavailable',e);revertBase('error');}}
+window.onGoogleReady=function(){if(!window.google||!google.maps)return;if(!gvInit())gPictures();};
 if(window._gmLoaded)window.onGoogleReady();
 
 /* shade outside the corridor box */
@@ -835,7 +840,7 @@ document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.onclick=()=>{rpSort=
 /* ---------- Google self-test ---------- */
 document.getElementById('gcheck').onclick=async e=>{e.preventDefault();const out=document.getElementById('gcheckOut');out.textContent='Testing...';const lines=[];
  lines.push('Page: '+location.host+location.pathname);
- lines.push('Maps JavaScript API: '+(window.google&&google.maps?'loaded':'not loaded')+(useGoogle?', Google basemap on':', using Esri fallback'));
+ lines.push('Maps JavaScript API: '+(window.google&&google.maps?'loaded':'not loaded')+(gvShow()?', Google live-drawn basemap on':useGoogle?', Google picture basemap on':', using Esri fallback'));
  try{const res=await fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':'places.displayName,places.rating,places.userRatingCount'},body:JSON.stringify({textQuery:'Fairplex, Pomona, CA',maxResultCount:1})});
   const txt=await res.text();let j={};try{j=JSON.parse(txt);}catch(_){}
   if(res.ok){const pl=(j.places||[])[0];lines.push('Places API (New): OK, HTTP '+res.status+(pl?', found '+(pl.displayName&&pl.displayName.text)+' rated '+pl.rating+' ('+pl.userRatingCount+' reviews)':', no result'));}
@@ -1014,7 +1019,7 @@ const INFO={};
   what:'Names over the main parts of the corridor.',why:'They help you find your place at a glance on the imagery.',
   care:'Positions are approximate and chosen to read well, not to mark exact sites.'});
  INFO.basemap=function(){return {label:'Basemap',kind:'basemap',src:['google','esri'],
-  mix:`Imagery: Google's hybrid imagery when Google loads, otherwise Esri World Imagery with Esri place labels. Dark streets: Google's roadmap in a night style set by this map, otherwise Esri's Dark Gray Canvas. Right now the map shows ${useGoogle?'Google':'Esri'} ${satOn?'imagery':'dark streets'}.`,
+  mix:`Both bases are one Google map drawn in your browser, so streets and names stay sharp at every zoom: Google's dark colour scheme for Dark streets, its hybrid imagery for Imagery. Where that cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${gvShow()?'Google, drawn live:':useGoogle?'Google pictures:':'Esri pictures:'} ${satOn?'imagery':'dark streets'}.`,
   what:'The background under every layer. Pick it with the Dark streets and Imagery buttons at the top right.',
   why:'Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
   care:'Google tiles load only on the published site, because the key is locked to it; anywhere else the map falls back to Esri. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
@@ -1081,7 +1086,7 @@ function shoot(map,opt){if(shoot.on)return;if(!window.MapSnapshot){mapNote(map,"
   opt.busy=function(b){if(b)mapNote(map,"Making the screenshot...",20000)};
   opt.done=function(how,err){shoot.on=false;mapNote(map,how==="tab"?"The screenshot opened in a new tab.":how==="download"?"Screenshot saved to your downloads.":(err&&err.message)||"The screenshot did not work here.",how==="error"?6000:3000)};
   MapSnapshot.take(map,opt).catch(function(){})}
-function baseName(){return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
+function baseName(){if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
 function shotInfo(){var out=[],on=[];
  [].forEach.call(document.querySelectorAll('#legend input[type=checkbox]'),function(i){if(!i.checked)return;var lb=i.closest('label')||i.closest('summary'),t=lb?labelText(lb).replace(/\s*[+\u2212]$/,''):'';if(t&&on.indexOf(t)<0)on.push(t)});
  out.push({h:'Layers shown',items:on.length?on:['None']});
