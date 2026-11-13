@@ -5,9 +5,9 @@
  "tool": "tools/certify_links.py (byte-identical copy of the leaflet-layer-sources skill script)",
  "method": "Every link in map.html, the data files and README.md, plus the OpenStreetMap links the page builds from object ids, was requested by certify_links.py (the leaflet-layer-sources skill: first 2 KB with a browser user agent, ArcGIS services by their own ?f=json description). Links refused to scripts were opened in a web browser from the site's own page (same-origin fetch with a Range header). Every OpenStreetMap object was also read through the OpenStreetMap API. Page titles and text were fetched for every link that answered and matched against the name of the record that cites it; the pages that did not name their record were opened and read in a browser. CAPTCHA and security checks were never completed.",
  "summary": {
-  "links_checked": 470,
-  "about_sources": 32,
-  "verified": 461,
+  "links_checked": 477,
+  "about_sources": 33,
+  "verified": 468,
   "unverifiable": 9,
   "needed_browser": 70,
   "osm_api": 72,
@@ -856,26 +856,53 @@
   {
    "key": "esri",
    "ref": "ref32",
-   "apa": "Esri (n.d.). World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services. ArcGIS Online; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
-   "apa_html": "Esri (n.d.). <i>World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services</i>. ArcGIS Online; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. server.arcgisonline.com/ArcGIS/rest/services/",
+   "apa": "Esri (n.d.). National Geographic World Map, World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services. ArcGIS Online; the National Geographic map from National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA and increment P Corp.; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. Esri lists the National Geographic map as in mature support since July 2021 and retiring in December 2029 (read November 12, 2026). server.arcgisonline.com/ArcGIS/rest/services/",
+   "apa_html": "Esri (n.d.). <i>National Geographic World Map, World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services</i>. ArcGIS Online; the National Geographic map from National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA and increment P Corp.; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. Esri lists the National Geographic map as in mature support since July 2021 and retiring in December 2029 (read November 12, 2026). server.arcgisonline.com/ArcGIS/rest/services/",
    "owner": "Esri",
-   "title": "World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services",
+   "title": "National Geographic World Map, World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services",
    "date": "n.d.",
    "url": "https://server.arcgisonline.com/ArcGIS/rest/services/",
    "final_url": "https://server.arcgisonline.com/ArcGIS/rest/services/",
    "status": 200,
    "method": "service-json",
    "result": "fixed",
-   "checked_what": "The ArcGIS services directory answered (version 11.5); the World Imagery, World Boundaries and Places and World Dark Gray services each answered with their own description. No date is given.",
+   "checked_what": "The ArcGIS services directory answered (version 11.5); the World Imagery, World Boundaries and Places and World Dark Gray services each answered with their own description. No date is given. On November 12, 2026 the National Geographic World Map service answered with its own description and credit line, its tiles were fetched at three places in the corridor at zoom 11 to 18 (real pictures at 12 to 16, the service's grey stand-in from 17), and its ArcGIS Online listing was read: mature support as of July 2021, retiring in December 2029.",
    "fixed": "Date was 2026; the services state none, so n.d.",
    "note": "",
-   "use": "the basemap when Google cannot load",
+   "use": "the National Geographic basemap, and the backup basemaps when Google cannot load",
    "link_check": {
     "result": "verified",
     "detail": "The service answered with its own description.",
     "http": "200",
     "how": null,
     "checked": "2026-11-03",
+    "service_name": "",
+    "last_edit": null
+   }
+  },
+  {
+   "key": "ofm",
+   "ref": "ref33",
+   "apa": "OpenFreeMap (n.d.). Public vector tile service. Building shapes from OpenStreetMap contributors, in the OpenMapTiles layout; drawn in the browser by MapLibre GL JS. openfreemap.org/",
+   "apa_html": "OpenFreeMap (n.d.). <i>Public vector tile service</i>. Building shapes from OpenStreetMap contributors, in the OpenMapTiles layout; drawn in the browser by MapLibre GL JS. openfreemap.org/",
+   "owner": "OpenFreeMap",
+   "title": "Public vector tile service",
+   "date": "n.d.",
+   "url": "https://openfreemap.org/",
+   "final_url": "https://openfreemap.org/",
+   "status": 200,
+   "method": "page",
+   "result": "verified",
+   "checked_what": "The home page answered and describes the free public tile service. Its terms page (it says last updated October 14, 2026) was read: no key or registration, attribution required, offered as is, and it may change or stop without notice. The tile description at tiles.openfreemap.org/planet answered with the credit line OpenFreeMap, OpenMapTiles, OpenStreetMap, and building shapes drew over downtown Ontario at zoom 16 to 19. No date is given.",
+   "fixed": "",
+   "note": "The service makes no uptime promise. If it stops, the map simply shows no building shapes.",
+   "use": "the building shapes over the National Geographic basemap close in",
+   "link_check": {
+    "result": "verified",
+    "detail": "The link answered with a web page (HTTP 200).",
+    "http": "200",
+    "how": null,
+    "checked": "2026-11-12",
     "service_name": "",
     "last_edit": null
    }
@@ -11484,6 +11511,139 @@
    "last_edit": null,
    "orig_url": null,
    "note": "Added to this map on November 12, 2026 with the corrections carried over from the Holt Corridor Simple map."
+  },
+  {
+   "key": "link497",
+   "url": "https://openfreemap.org/",
+   "kind": "page link",
+   "uses": [
+    "map.html: SOURCES ref33"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://openfreemap.org/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link498",
+   "url": "https://openfreemap.org/tos/",
+   "kind": "page link",
+   "uses": [
+    "source check, OpenFreeMap terms"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://openfreemap.org/tos/",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link499",
+   "url": "https://tiles.openfreemap.org/planet",
+   "kind": "page link",
+   "uses": [
+    "map.html: building shapes (BLD.tiles)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://tiles.openfreemap.org/planet",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link500",
+   "url": "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer",
+   "kind": "page link",
+   "uses": [
+    "map.html: National Geographic basemap"
+   ],
+   "result": "verified",
+   "detail": "The service answered with its own description (layer “Layers”).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer",
+   "page_title": "",
+   "service_name": "Layers",
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link501",
+   "url": "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js",
+   "kind": "page link",
+   "uses": [
+    "map.html: building shapes (BLD.js)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link502",
+   "url": "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css",
+   "kind": "page link",
+   "uses": [
+    "map.html: building shapes (BLD.css)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 200).",
+   "http": "200",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
+  },
+  {
+   "key": "link503",
+   "url": "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js",
+   "kind": "page link",
+   "uses": [
+    "map.html: building shapes (BLD.plugin)"
+   ],
+   "result": "verified",
+   "detail": "The link answered with a web page (HTTP 206).",
+   "http": "206",
+   "how": null,
+   "checked": "2026-11-12",
+   "final_url": "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js",
+   "page_title": "",
+   "service_name": null,
+   "last_edit": null,
+   "orig_url": null,
+   "note": null
   }
  ],
  "checked_dates": [
@@ -12110,5 +12270,22 @@
   ],
   "not_rechecked": "No link check of the whole map was run on November 12, 2026: only the addresses new to this map were requested.",
   "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 58 cards changed, three markers moved (among them Hilton Garden Inn Pomona, moved about 2 kilometers east to the building OpenStreetMap maps at 2027 Rancho Valley Drive) and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
+ },
+ "basemap_2026_11_12": {
+  "checked": "2026-11-12",
+  "checked_by": "Claude for T. C. Smith",
+  "what": "The map now opens on Esri's National Geographic World Map, with building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in the browser by MapLibre GL JS) laid over it close in. Dark streets and Imagery are a Google map drawn in the browser. A source was added (OpenFreeMap, ref33) and the Esri entry (ref32) now names the National Geographic map.",
+  "method": "The seven new addresses were checked with tools/certify_links.py; the National Geographic tiles were fetched at three places in the corridor at zoom 11 to 18; Esri's ArcGIS Online listing and OpenFreeMap's terms page were read.",
+  "links_added": [
+   "https://openfreemap.org/",
+   "https://openfreemap.org/tos/",
+   "https://tiles.openfreemap.org/planet",
+   "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer",
+   "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js",
+   "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css",
+   "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"
+  ],
+  "google_terms": "Google's Maps Platform Terms of Service say Places content is not to be shown with or near a non-Google map (read November 12, 2026). Live Google ratings, review counts and photos are therefore fetched and shown only while Dark streets or Imagery, the Google views, is on screen.",
+  "pdf_note": "On November 12, 2026 the basemap changed: the map opens on Esri's National Geographic World Map, with OpenStreetMap building shapes from OpenFreeMap laid over it close in; Dark streets and Imagery are Google maps drawn in the browser. One source was added (OpenFreeMap) and the Esri entry now names the National Geographic map, which Esri lists as retiring in December 2029. Seven new addresses were checked that day, all verified. Live Google ratings and photos now show only on the Google views."
  }
 }

@@ -33,6 +33,7 @@ def _days(ds):  # ["2026-11-03", "2026-11-07"] -> "November 3 and 7, 2026"
     return " and ".join(long_date(d) for d in ds)
 CHECKED = _days(CERT.get("checked_dates") or [CERT["checked"]])
 UPD = CERT.get("carried_2026_11_12")  # corrections carried over from the Holt Corridor Simple map
+UPD2 = CERT.get("basemap_2026_11_12")  # the basemap change: National Geographic, building shapes, Google drawn maps
 
 # ---- the map's one source list, read from map.html (JS object literals with single-quoted values)
 html = (ROOT / "map.html").read_text()
@@ -51,9 +52,9 @@ for r in LEG["rows"]:
     for k in r["src"]:
         if r["label"] not in ON_MAP[k]:
             ON_MAP[k].append(r["label"])
-# the basemap has no legend row since November 6, 2026: it is the Dark streets / Imagery switch at the top right
-for k in ("google", "esri"):
-    ON_MAP[k].append("Basemap switch (Dark streets, Imagery)")
+# the basemap has no legend row since November 6, 2026: it is the Dark streets / Imagery / Nat Geo switch at the top right
+for k in ("google", "esri", "ofm"):
+    ON_MAP[k].append("Basemap switch (Dark streets, Imagery, Nat Geo)")
 CARDS = LEG.get("cards", {})
 
 # ---- levels and agencies
@@ -72,7 +73,7 @@ AGENCY = {
  "doia": (3, "Downtown Ontario Improvement Association"), "dtpomona": (3, "Downtown Pomona Owners Association (Downtown Pomona District)"),
  "gocal": (3, "Greater Ontario California (GOCAL)"),
  "fairplex": (4, "Fairplex"), "fp_venues": (4, "Fairplex"), "brightline": (4, "Brightline West"),
- "osm": (5, "OpenStreetMap contributors"), "google": (5, "Google"), "esri": (5, "Esri"), "kayak": (5, "Kayak"), "hotelscom": (5, "Hotels.com"),
+ "osm": (5, "OpenStreetMap contributors"), "ofm": (5, "OpenFreeMap"), "google": (5, "Google"), "esri": (5, "Esri"), "kayak": (5, "Kayak"), "hotelscom": (5, "Hotels.com"),
  "hotelmap": (6, "Smith, T. C."),
 }
 REPORTS = {"ont_hosp": (0, "City of Ontario"), "ont_holt_sheet": (0, "City of Ontario"), "ont_cc_sheet": (0, "City of Ontario"),
@@ -82,7 +83,9 @@ SOFTWARE = ["html2canvas"]
 LIBS = [  # loaded by the page from unpkg; not in the About list
  ("Agafonkin, V., and contributors (2023). <i>Leaflet</i> (Version 1.9.4) [Computer software, BSD 2-Clause License]. ", "https://leafletjs.com", "The map itself: panning, zooming, markers, lines and cards.", "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"),
  ("Leaflet contributors (2021). <i>Leaflet.markercluster</i> (Version 1.5.3) [Computer software, MIT License]. ", "https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js", "The numbered circles that group nearby markers.", None),
- ("Sánchez Ortega, I. (2024). <i>Leaflet.GridLayer.GoogleMutant</i> (Version 0.14.1) [Computer software]. ", "https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js", "Shows the Google basemap inside Leaflet.", None),
+ ("Sánchez Ortega, I. (2024). <i>Leaflet.GridLayer.GoogleMutant</i> (Version 0.14.1) [Computer software]. ", "https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js", "Shows Google picture tiles inside Leaflet, the backup when the drawn Google map cannot run.", None),
+ ("MapLibre contributors (2026). <i>MapLibre GL JS</i> (Version 5.24.1) [Computer software, BSD 3-Clause License]. ", "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js", "Draws the building shapes over the National Geographic basemap. Fetched only when a reader zooms in on that basemap.", "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css"),
+ ("MapLibre contributors (2026). <i>maplibre-gl-leaflet</i> (Version 0.1.4) [Computer software, ISC License]. ", "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js", "Places the MapLibre drawing inside the Leaflet map.", None),
 ]
 
 def apa(s):
@@ -169,6 +172,7 @@ def spec():
       f"and {len(rl['fixed'])} card links were fixed. Each correction is marked under its entry. The November 2, 2026 link audit (453 links) is kept in the repository; "
       f"{len(CERT['compared_with_2026_11_02_audit']['ok_then_not_verified_now'])} links it passed now refuse automated readers in a browser too, and one hotel site it had repaired has since gone offline.",
       *([f"<b>Updated on {long_date(UPD['checked'])}.</b> " + esc(UPD["pdf_note"])] if UPD else []),
+      *([f"<b>Basemap changed on {long_date(UPD2['checked'])}.</b> " + esc(UPD2["pdf_note"])] if UPD2 else []),
       "<b>How to read an entry.</b> The first line is the reference exactly as the map's About sheet shows it, in APA style, with its link. Below it: what the map used the source for, "
       "the legend layers and cards that draw on it, what the source was compared with, any correction, and the check. Dates are the publisher's own; n.d. means the source gives none, "
       "and an information sheet without a printed date is dated by its posting.",
