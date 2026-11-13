@@ -896,7 +896,7 @@
    "checked_what": "The home page answered and describes the free public tile service. The home page also says no key or registration is needed and that attribution is required. Its terms page (it says last updated October 14, 2026) says the service is offered as is and may change or stop without notice. The tile description at tiles.openfreemap.org/planet answered with the credit line OpenFreeMap, OpenMapTiles, OpenStreetMap, and building shapes drew over downtown Ontario at zoom 16 to 19. No date is given.",
    "fixed": "",
    "note": "The service makes no uptime promise. If it stops, the map simply shows no building shapes.",
-   "use": "the building shapes over the National Geographic basemap close in",
+   "use": "the building shapes over the National Geographic basemap close in, and the streets and street names past zoom 18",
    "link_check": {
     "result": "verified",
     "detail": "The link answered with a web page (HTTP 200).",
@@ -12709,7 +12709,7 @@
  "basemap_2026_11_12": {
   "checked": "2026-11-12",
   "checked_by": "Claude for T. C. Smith",
-  "what": "The map now opens on Esri's National Geographic World Map, with building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in the browser by MapLibre GL JS) laid over it close in. Dark streets and Imagery are a Google map drawn in the browser. A source was added (OpenFreeMap, ref33) and the Esri entry (ref32) now names the National Geographic map.",
+  "what": "The map now opens on Esri's National Geographic World Map, with building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in the browser by MapLibre GL JS) laid over it close in. Past zoom 18, where the stretched pictures can no longer be read, the streets and their names are drawn from the same tiles in their place (added later the same day). Dark streets and Imagery are a Google map drawn in the browser. A source was added (OpenFreeMap, ref33) and the Esri entry (ref32) now names the National Geographic map.",
   "method": "The seven new addresses were checked with tools/certify_links.py; the National Geographic tiles were fetched at three places in the corridor at zoom 11 to 18; Esri's ArcGIS Online listing and OpenFreeMap's home page and terms page were read.",
   "links_added": [
    "https://openfreemap.org/",

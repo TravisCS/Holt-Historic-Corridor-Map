@@ -87,7 +87,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 #legend h2{font-size:17px;margin:0;font-weight:700}
 #legend .head{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px 10px;border-bottom:1px solid var(--rule)}
 #legend .lhb{display:flex;gap:4px}#legend .lhb button{font-size:13px;padding:2px 8px;line-height:1.3;border-radius:8px}
-#legend .body{overflow:auto;overscroll-behavior:contain;padding:4px 10px 8px;scrollbar-width:thin;min-height:0;zoom:var(--lg-fs,1)}
+#legend .body{position:relative;overflow:auto;overscroll-behavior:contain;padding:4px 10px 8px;scrollbar-width:thin;min-height:0;zoom:var(--lg-fs,1)}
 #legend.min{width:auto}#legend.min .body,#legend.min .sz{display:none}#legend.min .head{border-bottom:0}
 #legend .tip{margin:4px 0 2px;padding:3px 7px;border-radius:6px;background:var(--chip);font-size:12.5px;line-height:1.3}
 .ltabs{display:flex;gap:4px;margin:6px 0 4px}.ltabs button{flex:1;background:var(--chip);border:1px solid var(--rule);border-radius:6px;padding:2px 6px;font-size:13px;cursor:pointer;color:var(--ink)}.ltabs button[aria-selected="true"]{background:var(--accent);color:#141816;font-weight:700}
@@ -195,7 +195,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 .rpanel .rsort{display:flex;gap:4px;padding:6px 10px;border-bottom:1px solid var(--rule);flex-wrap:wrap;align-items:center}.rpanel .rsort button{font-size:12.5px;padding:2px 8px}.rpanel .rsort button[aria-pressed="true"]{background:var(--accent);color:#141816;border-color:var(--accent)}
 .rpanel .rl{overflow:auto;flex:1;padding:4px 0;overscroll-behavior:contain;scrollbar-width:thin}.rpanel .rl a{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:5px 10px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule);cursor:pointer}@media (hover:hover){.rpanel .rl a:hover{background:var(--chip)}}.rpanel .rl .nm{font-weight:700;color:var(--link)}.rpanel .rl .cu{color:var(--muted);font-size:12.5px;grid-column:1}.rpanel .rl .rt{text-align:right;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}.rpanel .rl .rt small{color:var(--muted)}
 .rpanel .rh .btnrow{margin-top:6px}
-@media (max-width:760px){.rpanel{top:auto;height:60%;left:10px;right:10px;width:auto}}
+@media (max-width:760px){.rpanel{top:auto;height:60%;left:10px;right:10px;width:auto}.rpanel.rail{height:42%}}
 .kpanel{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:calc(10px + env(safe-area-inset-right,0px));max-height:calc(100% - 20px);width:min(360px,calc(100% - 20px));z-index:1200;display:none;flex-direction:column}
 .kpanel.open{display:flex}.kpanel .kh{padding:8px 10px 6px;border-bottom:1px solid var(--rule);position:relative}.kpanel .kh h2{margin:0 28px 2px 0;font-size:16px}
 .kpanel .kx{position:absolute;top:4px;right:6px;border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--muted)}
@@ -208,6 +208,8 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 .kpanel .ksw{flex:0 0 34px;text-align:center;line-height:1}.kpanel .kl{flex:1}
 .kpanel .khint{font-size:.92em;color:var(--muted);font-style:italic;margin:2px 0 8px}.kpanel .kall{font-size:.9em;color:var(--link);text-decoration:underline;cursor:pointer;margin-left:8px}
 @media (max-width:760px){.kpanel{top:auto;bottom:10px;max-height:70%;left:10px;right:10px;width:auto}}
+/* wide screens: an open list or key starts below the base map buttons, so the base can be changed while it is open */
+@media (min-width:761px){.rpanel,.kpanel{top:calc(50px + env(safe-area-inset-top,0px))}.kpanel{max-height:calc(100% - 60px)}}
 /* About sheet */
 #about{position:fixed;inset:0;z-index:1300;background:rgba(0,0,0,.5);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:calc(20px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 #about[hidden]{display:none}
@@ -244,7 +246,9 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
   #titlecard.min{right:auto}
   .leaflet-top.leaflet-left{top:calc(104px + env(safe-area-inset-top,0px))}
   body.tcmin .leaflet-top.leaflet-left{top:calc(36px + env(safe-area-inset-top,0px))}
-  #credit{max-width:calc(100vw - 90px)}
+  #credit{max-width:calc(100vw - 90px);bottom:calc(98px + env(safe-area-inset-bottom,0px))}
+  /* phones: the corner credit can run the full width in two lines, so the scale bar and the Data button sit above it */
+  .leaflet-bottom.leaflet-left{bottom:34px}
   /* phones: the basemap switch sits under the title row, and the open title box covers it */
   #basemap{z-index:790;top:calc(46px + env(safe-area-inset-top,0px))}#basemap button{padding:4px 9px;font-size:12.5px}
   #north{bottom:auto;right:auto;left:calc(12px + env(safe-area-inset-left,0px));top:calc(180px + env(safe-area-inset-top,0px))}
@@ -262,12 +266,13 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 </style>
 <style>
 /* Google's live-drawn base keeps its own logo, credit and links along the bottom edge: lift this map's bottom controls clear of them, and let those links take a click though the base itself ignores the pointer */
-#map.gv .leaflet-bottom{bottom:22px}
+#map.gv .leaflet-bottom{bottom:28px}
+/* on a Google view the corner credit sits above Google's own line, so the Legend moves up clear of it */
+body:has(#map.gv) #legend{bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 .gvec .gm-style-cc,.gvec .gm-style-cc *,.gvec a[href*="google.com/maps"],.gvec a[href*="google.com/intl"]{pointer-events:auto}
 </style>
 </head>
 <body>
-<div id="map"></div>
 
 <div id="titlecard" class="card">
   <div class="head"><div><h1>Holt Historic Corridor Map<span class="tfull">: Ontario to Pomona</span></h1><span class="tagmin">Independent map for a City of Ontario proposal, not a City or Fairplex product</span></div><button class="btn" id="tcMin" aria-expanded="true" title="Hide the controls" aria-label="Hide the controls">&minus;</button></div>
@@ -321,6 +326,9 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 <div class="ks"><div class="kst">Corridor and boundaries</div><div class="kr"><span class="ksw"><span style="color:#e8862a;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Holt spine (centerline)</div></div><div class="kr"><span class="ksw"><span style="color:#e6c84a;font-weight:700;font-size:1.2em">&#9644;</span></span><div class="kl">Ontario city limits</div></div><div class="kr"><span class="ksw"><span style="color:#6ccfdc;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Montclair city limits</div></div><div class="kr"><span class="ksw"><span style="color:#7fd39b;font-weight:700;font-size:1.2em">&#9476;</span></span><div class="kl">Pomona city limits</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:10px;background:rgba(0,0,0,.5);border:1px solid #888"></span></span><div class="kl">Shaded: outside the corridor box (the map will not pan there)</div></div><div class="kr"><span class="ksw"><span style="display:inline-block;width:14px;height:10px;background:rgba(140,195,220,.18);border:1.5px solid #8cc3dc"></span></span><div class="kl">Fairplex campus outlines and labels (halls, grandstand, lots, gates), shown from zoom 15</div></div></div>
 </div></div>
 
+<!-- the map sits after the panels in the page order, so the keyboard reaches the panels and the base map buttons first -->
+<div id="map"></div>
+
 <div id="about" hidden role="dialog" aria-modal="true" aria-labelledby="aboutH">
   <div class="sheet card">
     <button class="btn x" id="closeAbout">Close</button>
@@ -350,7 +358,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>High-speed rail and its links: Brightline West station, time and speed facts from <a href="https://www.brightlinewest.com/about-us/faq" target="_blank" rel="noopener">Brightline West's FAQ</a> and <a href="https://www.brightlinewest.com/overview/project" target="_blank" rel="noopener">project overview</a>; the ONT Connector from the state CEQA record <a href="https://ceqanet.lci.ca.gov/Project/2022070039" target="_blank" rel="noopener">SCH 2022070039</a>; the Rancho Cucamonga to Pomona North service from <a href="https://www.gosbcta.com/project/rancho-cucamonga-to-pomona-north-rail-connector-project/" target="_blank" rel="noopener">SBCTA's project page</a>. The rail lines on this layer are schematic, not engineered alignments, and no opening dates are stated beyond what those pages say.</li>
       <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
-      <li>The map opens on Esri's National Geographic World Map <a href="#ref32" class="cite">[32]</a>. Its pictures are real here to zoom 16; closer in they are stretched, and building shapes from OpenStreetMap, served by OpenFreeMap, are drawn over them <a href="#ref33" class="cite">[33]</a>. Dark streets and Imagery are Google maps, or Esri's when Google cannot load.</li>
+      <li>The map opens on Esri's National Geographic World Map <a href="#ref32" class="cite">[32]</a>. Its pictures are real here to zoom 16; closer in they are stretched, and building shapes from OpenStreetMap, served by OpenFreeMap, are drawn over them <a href="#ref33" class="cite">[33]</a>. Past zoom 18, where the stretched pictures can no longer be read, the streets and their names are drawn from the same OpenStreetMap tiles in their place. Dark streets and Imagery are Google maps, or Esri's when Google cannot load.</li>
       <li>When a hotel, business or dining card opens on the Dark streets or Imagery view, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>. On the National Geographic view they are not asked for or shown: the map owner reads Google's terms as not allowing its Places content beside another publisher's map.</li>
       <li>Some cards carry a photo that is not Google's: the map owner's own photos from the <a href="https://traviscs.github.io/Euclid-Avenue/" target="_blank" rel="noopener">Euclid Avenue photo walk</a>, or open-licence photos from Wikimedia Commons, resized for the card. Each is credited under the picture with its author, its licence and a link to its own page. Where a card has one, Google's photo is not asked for.</li>
       <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's seat count (Fairplex publishes none; the card gives the Associated Press's report of about 5,000 temporary seats) and its position (placed by this map at the center of the former racetrack infield), Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
@@ -411,7 +419,7 @@ const SOURCES=[
  {id:'ref30',name:'kayak',short:'Kayak',owner:'Kayak',year:'2026, October',title:'Hotel rate searches for two guests, taxes and fees included',url:'https://www.kayak.com/',use:'room rates (the October 2026 snapshot on most Ontario hotel cards) and one hotel listing'},
  {id:'ref31',name:'hotelscom',short:'Hotels.com',owner:'Hotels.com',year:'2026, October',title:'Hotel rate searches and property pages',url:'https://www.hotels.com/',use:'room rates and property facts for a few hotels'},
  {id:'ref32',name:'esri',short:'Esri',owner:'Esri',year:'n.d.',title:'National Geographic World Map, World Imagery, World Boundaries and Places, and World Dark Gray Canvas tile services',after:'. ArcGIS Online; the National Geographic map from National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA and increment P Corp.; imagery from Vantor and Earthstar Geographics, streets from HERE, Garmin, USGS and OpenStreetMap contributors. Esri lists the National Geographic map as in mature support since July 2021 and retiring in December 2029 (read November 12, 2026)',url:'https://server.arcgisonline.com/ArcGIS/rest/services/',use:'the National Geographic basemap, and the backup basemaps when Google cannot load'},
- {id:'ref33',name:'ofm',short:'OpenFreeMap',owner:'OpenFreeMap',year:'n.d.',title:'Public vector tile service',after:'. Building shapes from OpenStreetMap contributors, in the OpenMapTiles layout; drawn in the browser by MapLibre GL JS',url:'https://openfreemap.org/',use:'the building shapes over the National Geographic basemap close in'}
+ {id:'ref33',name:'ofm',short:'OpenFreeMap',owner:'OpenFreeMap',year:'n.d.',title:'Public vector tile service',after:'. Building shapes from OpenStreetMap contributors, in the OpenMapTiles layout; drawn in the browser by MapLibre GL JS',url:'https://openfreemap.org/',use:'the building shapes over the National Geographic basemap close in, and the streets and street names past zoom 18'}
 ];
 const SRC_PDF='Holt_Corridor_Sources.pdf'; /* the source list PDF beside this page (tools/make_sources_pdf.py) */
 const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -584,7 +592,18 @@ map.on('zoomend',()=>{if(natOn&&map.getZoom()>=NAT_WARM)gStart('light');});
 const BLD={js:'https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js',css:'https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css',plugin:'https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js',tiles:'https://tiles.openfreemap.org/planet'},BLD_WARM=14.5;
 let bld=null,bldBusy=false;
 /* MapLibre counts zoom one lower than Leaflet (512 px tiles): 14 here is Leaflet's 15 */
-function bldStyle(){return {version:8,sources:{omt:{type:'vector',url:BLD.tiles}},layers:[{id:'buildings',type:'fill',source:'omt','source-layer':'building',minzoom:14,paint:{'fill-color':'#9c8b70','fill-opacity':['interpolate',['linear'],['zoom'],14,0,15,0.42,17,0.58],'fill-outline-color':'#6f6250'}}]};}
+/* Past Leaflet zoom 18 the stretched pictures can no longer be read (16 times their size at zoom 20), so a drawn map in the same colours fades in over them
+   from the same OpenStreetMap tiles: ground, parks, water, streets and street names, under the building shapes. Whole by zoom 19. */
+function bldStyle(){const a=v=>['interpolate',['linear'],['zoom'],17.2,0,17.9,v],w=k=>['interpolate',['exponential',2],['zoom'],17,['match',['get','class'],['motorway','trunk'],9*k,'primary',8*k,'secondary',7*k,'tertiary',6*k,['minor','busway'],5*k,2.5*k],20,['match',['get','class'],['motorway','trunk'],72*k,'primary',64*k,'secondary',56*k,'tertiary',48*k,['minor','busway'],40*k,20*k]],
+  road=['all',['==',['geometry-type'],'LineString'],['!',['in',['get','class'],['literal',['rail','transit','path','ferry','pier','aerialway']]]]];
+ return {version:8,glyphs:'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',sources:{omt:{type:'vector',url:BLD.tiles}},layers:[
+  {id:'ground',type:'background',minzoom:17,paint:{'background-color':'#dcdac8','background-opacity':a(0.95)}},
+  {id:'park',type:'fill',source:'omt','source-layer':'park',minzoom:17,paint:{'fill-color':'#cddcab','fill-opacity':a(0.9)}},
+  {id:'water',type:'fill',source:'omt','source-layer':'water',minzoom:17,paint:{'fill-color':'#b7d5e6','fill-opacity':a(0.9)}},
+  {id:'road-edge',type:'line',source:'omt','source-layer':'transportation',minzoom:17,filter:road,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':['match',['get','class'],['motorway','trunk','primary','secondary','tertiary'],'#e3a1a4','#bdb7a0'],'line-opacity':a(1),'line-width':w(1.16)}},
+  {id:'road',type:'line',source:'omt','source-layer':'transportation',minzoom:17,filter:road,layout:{'line-cap':'round','line-join':'round'},paint:{'line-color':'#ffffff','line-opacity':a(1),'line-width':w(1)}},
+  {id:'buildings',type:'fill',source:'omt','source-layer':'building',minzoom:14,paint:{'fill-color':'#9c8b70','fill-opacity':['interpolate',['linear'],['zoom'],14,0,15,0.42,17,0.58],'fill-outline-color':'#6f6250'}},
+  {id:'road-name',type:'symbol',source:'omt','source-layer':'transportation_name',minzoom:17,layout:{'symbol-placement':'line','text-field':['get','name'],'text-font':['Noto Sans Regular'],'text-size':['interpolate',['linear'],['zoom'],17,12,20,17],'symbol-spacing':380},paint:{'text-color':'#45443c','text-halo-color':'#ffffff','text-halo-width':1.6,'text-opacity':a(1)}}]};}
 /* are building shapes on screen: the service answered, the base is National Geographic, and the zoom is past 15 (where they begin to show) */
 function bldShown(){return !!bld&&!!bld._ok&&!bld._hid&&map.getZoom()>15;}
 /* the credit OpenFreeMap asks for is in the corner only while the shapes are on screen (the map keeps the layer and hides it, so Leaflet would not take the credit away by itself) */
@@ -895,14 +914,14 @@ function showFeature(r){map.closePopup();goTo([r.lat,r.lng],17,()=>{const m=r._m
 function findMarker(r){let found=null;map.eachLayer(l=>{if(l._rdata===r)found=l;});if(!found){[hotC,nhC,bizC].forEach(c=>c.eachLayer(l=>{if(l._rdata===r)found=l;}));}return found;}
 function fitRows(rows){const pts=rows.filter(r=>r.lat).map(r=>[r.lat,r.lng]);if(!pts.length)return;const p=phone();goBounds(L.latLngBounds(pts),{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40],maxZoom:16});}
 function openRailPanel(bounds){const cb=document.querySelector('#trToggles input[data-k="hsr"]');if(cb&&!cb.checked){cb.checked=true;cb.onchange();}
- rpTitle='Las Vegas to Pomona by rail';rpRows=HSR.stops.filter(x=>x.lat);rpKind='rail';rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;
+ rpTitle='Las Vegas to Pomona by rail';rpRows=HSR.stops.filter(x=>x.lat);rpKind='rail';rp.classList.add('open','rail');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;
  document.getElementById('rpTitle').textContent=rpTitle;document.getElementById('rpSub').textContent='Brightline West ends at Rancho Cucamonga, one Metrolink stop east of the corridor. From that hub the rail runs west through the corridor to Pomona North, and a proposed tunnel would run south to ONT. Tap a stop inside the corridor to go there.';
  document.getElementById('rpRetry').style.display='none';document.querySelector('#rpanel .rsort').style.display='none';
  document.getElementById('rpList').innerHTML=HSR.stops.map((x,i)=>`<a data-i="${i}"${x.lat?' tabindex="0" role="button"':' class="far"'}><span class="nm">${i+1}. ${esc(x.n)}</span><span class="rt"><small>${esc(x.rt||'')}</small></span><span class="cu">${esc(x.cu||'')}</span></a>`).join('');
  document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const x=HSR.stops[+a.dataset.i];if(!x||!x.lat)return;map.closePopup();if(x.key==='hub'){const hub=[x.lat,x.lng];goTo(map.unproject(map.project(hub,15).add(L.point(phone()?0:185,40)),15),15,()=>setTimeout(()=>openCardInView(HSR._hub),150));}else goTo([x.lat,x.lng],x.key==='ontc'?15:16);if(phone())rp.classList.remove('open');});
- setLegend(false);const p=phone();map.fitBounds(bounds,{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40]});
+ setLegend(false);const p=phone();map.fitBounds(bounds,{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.44)]:[370,40]});
  if(!p){const hub=[HSR.hub.lat,HSR.hub.lng];if(map.latLngToContainerPoint(hub).x>map.getSize().x-370){map.setView(map.unproject(map.project(hub,15).add(L.point(185,0)),15),15,{animate:false});}}}
-function openRoster(title,rows,kind){document.querySelector('#rpanel .rsort').style.display='';rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);setLegend(false);fitRows(rows);}
+function openRoster(title,rows,kind){rp.classList.remove('rail');document.querySelector('#rpanel .rsort').style.display='';rpTitle=title;rpRows=rows;rpKind=kind;rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;renderRoster();if(kind!=='asset')liveList(title,rows);setLegend(false);fitRows(rows);}
 document.getElementById('rpClose').onclick=()=>rp.classList.remove('open');
 document.getElementById('rpRetry').onclick=()=>liveList(rpTitle,rpRows,true);
 document.getElementById('rpZoom').onclick=()=>{rp.classList.remove('open');if(rpRows.length)goBounds(L.latLngBounds(rpRows.filter(r=>r.lat).map(r=>[r.lat,r.lng])),{padding:[30,30],maxZoom:16});};
@@ -1090,7 +1109,7 @@ const INFO={};
   what:'Names over the main parts of the corridor.',why:'They help you find your place at a glance on the imagery.',
   care:'Positions are approximate and chosen to read well, not to mark exact sites.'});
  INFO.basemap=function(){return {label:'Basemap',kind:'basemap',src:['esri','ofm','google'],
-  mix:`National Geographic: Esri's National Geographic World Map, pictures that are real here to zoom 16. ${NAT_CLOSE==='google'?'Closer in they fade into a Google map drawn in your browser, with sharp streets and shaded buildings.':'Closer in the same pictures are stretched, and building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in your browser) are laid over them.'} Esri lists the National Geographic map as retiring in December 2029; if its pictures stop coming, the map moves to Dark streets. Dark streets and Imagery: a Google map drawn in your browser, in Google's dark colour scheme or as hybrid imagery. Where a drawn map cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${baseName()}.`,
+  mix:`National Geographic: Esri's National Geographic World Map, pictures that are real here to zoom 16. ${NAT_CLOSE==='google'?'Closer in they fade into a Google map drawn in your browser, with sharp streets and shaded buildings.':'Closer in the same pictures are stretched, and building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in your browser) are laid over them. Past zoom 18 the streets and their names are drawn the same way, in place of pictures too stretched to read.'} Esri lists the National Geographic map as retiring in December 2029; if its pictures stop coming, the map moves to Dark streets. Dark streets and Imagery: a Google map drawn in your browser, in Google's dark colour scheme or as hybrid imagery. Where a drawn map cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${baseName()}.`,
   what:'The background under every layer. Pick it with the Dark streets, Imagery and Nat Geo buttons at the top right. The map opens on National Geographic.',
   why:'National Geographic is a painted map with terrain and place names; Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
   care:'National Geographic loads anywhere and needs no key. Google\'s maps load only on the published site, because the key is locked to it; anywhere else Dark streets and Imagery fall back to Esri. Google\'s live ratings, review counts and photos show only on the Dark streets and Imagery views. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
@@ -1157,7 +1176,7 @@ function shoot(map,opt){if(shoot.on)return;if(!window.MapSnapshot){mapNote(map,"
   opt.busy=function(b){if(b)mapNote(map,"Making the screenshot...",20000)};
   opt.done=function(how,err){shoot.on=false;mapNote(map,how==="tab"?"The screenshot opened in a new tab.":how==="download"?"Screenshot saved to your downloads.":(err&&err.message)||"The screenshot did not work here.",how==="error"?6000:3000)};
   MapSnapshot.take(map,opt).catch(function(){})}
-function baseName(){if(gBaseOn.shot)return (satOn?'Esri World Imagery with place labels':'Esri Dark Gray Canvas')+', standing in for Google\'s map, which is not copied into pictures';if(natOn)return gvShow()?'Google roadmap, drawn live (National Geographic stops at zoom '+NAT_MAXZ+')':'Esri National Geographic World Map'+(bldShown()?', with OpenStreetMap building shapes':'');if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
+function baseName(){if(gBaseOn.shot)return (satOn?'Esri World Imagery with place labels':'Esri Dark Gray Canvas')+', standing in for Google\'s map, which is not copied into pictures';if(natOn)return gvShow()?'Google roadmap, drawn live (National Geographic stops at zoom '+NAT_MAXZ+')':(bldShown()&&map.getZoom()>=18.9?'OpenStreetMap streets and building shapes from OpenFreeMap, drawn over Esri\'s National Geographic World Map (its pictures stop at zoom 16)':'Esri National Geographic World Map'+(bldShown()?', with OpenStreetMap building shapes':''));if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
 function shotInfo(){var out=[],on=[];
  [].forEach.call(document.querySelectorAll('#legend input[type=checkbox]'),function(i){if(!i.checked)return;var lb=i.closest('label')||i.closest('summary'),t=lb?labelText(lb).replace(/\s*[+\u2212]$/,''):'';if(t&&on.indexOf(t)<0)on.push(t)});
  out.push({h:'Layers shown',items:on.length?on:['None']});
