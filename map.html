@@ -268,7 +268,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
 /* Google's live-drawn base keeps its own logo, credit and links along the bottom edge: lift this map's bottom controls clear of them, and let those links take a click though the base itself ignores the pointer */
 #map.gv .leaflet-bottom{bottom:28px}
 /* on a Google view the corner credit sits above Google's own line, so the Legend moves up clear of it */
-body:has(#map.gv) #legend{bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+body:has(#map.gv) #legend{bottom:calc(58px + env(safe-area-inset-bottom,0px))}body:has(#map.gv) #credit{bottom:calc(78px + env(safe-area-inset-bottom,0px))}
 .gvec .gm-style-cc,.gvec .gm-style-cc *,.gvec a[href*="google.com/maps"],.gvec a[href*="google.com/intl"]{pointer-events:auto}
 </style>
 </head>
