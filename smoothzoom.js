@@ -13,7 +13,8 @@
         page code that reacts to the zoom level:  map.on('zoomend zoomstep', fn)
         and inside fn compare Math.round(map.getZoom()), since the zoom is a fraction on the way.
    Zoom buttons, double click, keyboard and finger pinch on phones stay Leaflet's own.
-   No dependencies besides Leaflet. MIT licence. */
+   No dependencies besides Leaflet.
+   Written for the Holt Historic Corridor Map (T. C. Smith, 2026). */
 (function () {
   'use strict';
   if (!window.L || !L.Map || !L.Handler) return;

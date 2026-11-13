@@ -14,7 +14,8 @@
         map.glideTo([lat, lng], 17, {then: function () { ... }})
         map.glideToBounds(bounds, {padding: [30, 30], maxZoom: 16})
    People who ask their device for less motion get the old instant changes.
-   No dependencies besides Leaflet. MIT licence. */
+   No dependencies besides Leaflet.
+   Written for the Holt Historic Corridor Map (T. C. Smith, 2026). */
 (function () {
   'use strict';
   if (!window.L || !L.Map) return;
