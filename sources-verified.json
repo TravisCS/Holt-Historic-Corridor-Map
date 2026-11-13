@@ -11506,8 +11506,8 @@
    "addresses_new_to_this_map": 70,
    "new_answered_the_script": 49,
    "new_opened_in_a_browser": 21,
-   "cards_with_changed_wording_or_figures": 57,
-   "markers_moved": 2,
+   "cards_with_changed_wording_or_figures": 58,
+   "markers_moved": 3,
    "records_renamed": 1,
    "earlier_link_entries_no_longer_cited": 24
   },
@@ -12008,6 +12008,7 @@
    "data/hotels.js: Everhome Suites Ontario Airport",
    "data/hotels.js: Extended Studio Hotel Ontario (TownePlace Suites)",
    "data/hotels.js: Sheraton Fairplex Suites & Conference Center",
+   "data/hotels.js: Hilton Garden Inn Pomona",
    "data/ontario.js: Euclid Avenue historic downtown",
    "data/ontario.js: Chaffey Community Museum of Art",
    "data/ontario.js: Craft Collective (Downtown Retail Pop-Up Program)",
@@ -12042,6 +12043,17 @@
     "to": [
      34.0854,
      -117.7656
+    ]
+   },
+   {
+    "record": "data/hotels.js: Hilton Garden Inn Pomona",
+    "from": [
+     34.0332,
+     -117.7818
+    ],
+    "to": [
+     34.0349,
+     -117.7607
     ]
    }
   ],
@@ -12088,7 +12100,8 @@
    "data/businesses.js: Seven Seven Motors (the LoopNet page loaded under the address; what it says about a sale was not read, so the card says only that the address has a listing there)",
    "data/pomona.js: Pomona Mercantile 1888 Gallery (snack bar, the word the simple map's record quotes from the article)",
    "data/fairplex.js: Yellow Lot (section 12) (note, same wording as sections 11 and 13)",
-   "data/hotels.js: Sheraton Fairplex Suites & Conference Center (the date its dot was moved on this map)"
+   "data/hotels.js: Sheraton Fairplex Suites & Conference Center (the date its dot was moved on this map)",
+   "data/hotels.js: Hilton Garden Inn Pomona (the date its dot was moved and the address of the building it now stands on)"
   ],
   "not_carried": [
    "data/businesses.js: Next Level Cuts keeps \"Holt corridor, Pomona\": the Yelp page the simple map takes its address from refused the script and a web browser on November 12, 2026, and no record shows it was read.",
@@ -12096,6 +12109,6 @@
    "The West Valley Connector trip time wording: the simple map was rewording it in an uncommitted change when this was written."
   ],
   "not_rechecked": "No link check of the whole map was run on November 12, 2026: only the addresses new to this map were requested.",
-  "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 57 cards changed, two markers moved and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
+  "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 58 cards changed, three markers moved (among them Hilton Garden Inn Pomona, moved about 2 kilometers east to the building OpenStreetMap maps at 2027 Rancho Valley Drive) and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
  }
 }
