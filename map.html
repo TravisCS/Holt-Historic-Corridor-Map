@@ -13,7 +13,7 @@
 <script src="smoothzoom.js?v=4fe3e265"></script>
 <script src="motion.js?v=d3e759d8"></script>
 <script src="share.js?v=be8bf1ea"></script>
-<script src="snapshot.js?v=f273bb31"></script>
+<script src="snapshot.js?v=3e6a6d0a"></script>
 <script src="layerinfo.js?v=f9730126"></script>
 <script>const GKEY="AIzaSyBWvYYvgtUkr9nOkHrSs_-xpbK3BLdRV44";window.gmReady=function(){window._gmLoaded=true;if(window.onGoogleReady)window.onGoogleReady();};</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWvYYvgtUkr9nOkHrSs_-xpbK3BLdRV44&loading=async&callback=gmReady&v=weekly"></script>
@@ -146,7 +146,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .stm{width:12px;height:12px;border-radius:2px;background:#d9d9d9;border:1.5px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);position:relative;box-sizing:border-box}
 .stm.al{background:#4aa3ff}
 .hsm{width:14px;height:14px;border-radius:2px;background:var(--hsr);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);box-sizing:border-box}
-#rpList a.far{opacity:.72}#rpList a.far .nm::after{content:" (off the map)";color:var(--muted);font-weight:400;font-size:.85em}
+#rpList a:focus-visible{outline:2px solid #e8c15a;outline-offset:-2px}#rpList a.far{opacity:.72}#rpList a.far .nm::after{content:" (off the map)";color:var(--muted);font-weight:400;font-size:.85em}
 .cl{display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(20,24,22,.72);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.55);font:700 10.5px var(--serif);color:#fff;box-sizing:border-box;cursor:pointer}
 .cl span{font-variant-numeric:tabular-nums}
 .cl.h{border-color:var(--ont)}
@@ -349,7 +349,8 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li>High-speed rail and its links: Brightline West station, time and speed facts from <a href="https://www.brightlinewest.com/about-us/faq" target="_blank" rel="noopener">Brightline West's FAQ</a> and <a href="https://www.brightlinewest.com/overview/project" target="_blank" rel="noopener">project overview</a>; the ONT Connector from the state CEQA record <a href="https://ceqanet.lci.ca.gov/Project/2022070039" target="_blank" rel="noopener">SCH 2022070039</a>; the Rancho Cucamonga to Pomona North service from <a href="https://www.gosbcta.com/project/rancho-cucamonga-to-pomona-north-rail-connector-project/" target="_blank" rel="noopener">SBCTA's project page</a>. The rail lines on this layer are schematic, not engineered alignments, and no opening dates are stated beyond what those pages say.</li>
       <li>The Holt spine is the road's centerline merged from OpenStreetMap way geometry <a href="#ref4" class="cite">[4]</a>. The West Valley Connector alignment and stations follow SBCTA and Omnitrans <a href="#ref5" class="cite">[5]</a> <a href="#ref6" class="cite">[6]</a>; rail lines are drawn from OpenStreetMap track geometry and stations from Metrolink and LA Metro <a href="#ref7" class="cite">[7]</a> <a href="#ref8" class="cite">[8]</a>.</li>
       <li>City limits are the official boundaries from the Board of Equalization layer, loaded live with a saved copy as fallback <a href="#ref9" class="cite">[9]</a>.</li>
-      <li>When a hotel, business or dining card opens, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>.</li>
+      <li>The map opens on Esri's National Geographic World Map <a href="#ref32" class="cite">[32]</a>. Its pictures are real here to zoom 16; closer in they are stretched, and building shapes from OpenStreetMap, served by OpenFreeMap, are drawn over them <a href="#ref33" class="cite">[33]</a>. Dark streets and Imagery are Google maps, or Esri's when Google cannot load.</li>
+      <li>When a hotel, business or dining card opens on the Dark streets or Imagery view, its Google rating, review count, price band and current photo are fetched live from Google Places under the map owner's key and shown with a link to the Google listing; they are not stored in this repository <a href="#ref10" class="cite">[10]</a>. On the National Geographic view they are not asked for or shown: the map owner reads Google's terms as not allowing its Places content beside another publisher's map.</li>
       <li>Every link was checked by script and by AI research agents on November 2, 2026, and the ones that refuse scripts were opened in a browser; the full result, with every link and its verdict, is in the repository as <a href="https://github.com/TravisCS/Holt-Historic-Corridor-Map/blob/main/link-audit-2026-11-02.md" target="_blank" rel="noopener">link-audit-2026-11-02.md</a>. Thirteen links were dead, moved or pointed at the wrong page and were replaced, updated or removed; a few publisher pages block automated readers and were checked for form only. Items that could not be verified say so on their cards: the cricket ground's seat count (Fairplex publishes none; the card gives the Associated Press's report of about 5,000 temporary seats) and its position (placed by this map at the center of the former racetrack infield), Craft Collective's current status, the convention hotel's 650 versus 600-plus rooms, the Arts District North boundary, and the Town Square farmers market.</li>
       <li>On November 3, 2026 every source and every card link was checked again, and on November 7 the links for Ontario Mills, Victoria Gardens and Toyota Arena (added November 6): by script, in a web browser for the sites that refuse scripts, through the OpenStreetMap API for each OpenStreetMap object, and by reading each page for the name of the record that cites it. The result, with each source's check, is the <a href="Holt_Corridor_Sources.pdf" download target="_blank" rel="noopener">source list (PDF)</a>.</li>
       <li>On November 12, 2026 the corrections checked for the Holt Corridor Simple map on November 11 and 12 were carried into this map's cards where it shows the same record: moved links were repointed, sources were added where a card's wording rests on them, and wording, figures and two marker positions were corrected. The links new to this map were requested by script that day; the other links were not requested again.</li>
@@ -357,7 +358,7 @@ details.seas{margin:6px 0 0;padding:0}details.seas>summary{cursor:pointer;list-s
       <li><b>Where each layer comes from.</b> Every row in the Legend has a small + button. It opens a note on that layer: how far each source backs it, counted from the data, then each source with its date and link, what the layer is, why it matters and what to watch before relying on it. It never turns the layer on or off. Every card ends with a Sources list that names what each source gave to that card, links the pages read for it, and says what this map worked out itself. Both draw on the source list below.</li>
     </ul>
     <h3>Google connection</h3>
-    <p class="note" style="margin-top:2px">The basemap and the live ratings come from Google under a key locked to this site. <button type="button" class="linkbtn" id="gcheck">Check Google connection</button></p><div id="gcheckOut"></div>
+    <p class="note" style="margin-top:2px">The National Geographic view comes from Esri and needs no key. Dark streets, Imagery and the live ratings come from Google under a key locked to this site. <button type="button" class="linkbtn" id="gcheck">Check Google connection</button></p><div id="gcheckOut"></div>
     <h3>Sources</h3>
     <p><a class="srcpdf" href="Holt_Corridor_Sources.pdf" download target="_blank" rel="noopener">Download the source list (PDF)</a>: every source and card link, grouped by agency, as checked on November 3 and 7, 2026, with the November 12, 2026 corrections noted on its first page.</p>
     <ol class="bib" id="srcList"></ol>
@@ -507,16 +508,19 @@ const esriImg=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/
 const esriLab=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:16});
 const esriDark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:16,attribution:'Tiles &copy; Esri, HERE, Garmin, OpenStreetMap contributors'});
 const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:16});
-const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);darkGroup.addTo(map); /* the map opens on dark streets; Imagery is one click away, top right */
+const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]); /* the base on screen is put on the map by setBase(), once the base settings below are read */
 let gSat=null,gRoad=null,useGoogle=false,satOn=false;
 /* ---------- bases ----------
-   National Geographic: Esri picture tiles, real in this corridor from zoom 12 to 16 (probed November 12, 2026). Closer in
+   National Geographic: Esri picture tiles, real in this corridor from the widest view (zoom 11) to zoom 16 (probed November 12, 2026). Closer in
    they would only be stretched, so between zoom NAT_Z0 and NAT_Z1 they fade away over Google's live-drawn light map,
    which has sharp streets and shaded building shapes. Dark streets is Google's live-drawn dark map, Imagery its hybrid.
    A Google map is made only when first needed (GV.light: under National Geographic and for Imagery; GV.dark: Dark streets).
    Picture tiles are the backup throughout: Google's through GoogleMutant, then Esri's. */
 const NAT_MAXZ=16,NAT_Z0=16.2,NAT_Z1=16.8,NAT_WARM=14.5;
 const natGeo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:NAT_MAXZ,attribution:'Base map: National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, increment P Corp.'});
+/* a second copy of the same pictures sits under them: the few zoom 11 tiles that cover the whole area this map can show, loaded once and stretched.
+   On a fast zoom out the sharper levels arrive late, and this keeps a real map on screen in place of the bare page colour. */
+const natUnder=new (L.TileLayer.extend({_getTiledPixelBounds:function(){const b=BOUNDS.pad(0.08),z=this._tileZoom;return new L.Bounds(this._map.project(b.getNorthWest(),z),this._map.project(b.getSouthEast(),z));}}))('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',{crossOrigin:'anonymous',maxZoom:20,maxNativeZoom:11,zIndex:0});
 const NAT_CLOSE='buildings'; /* what happens closer in than the pictures reach: 'google' or 'buildings' */
 let natOn=true,gvWant=true,natA=1;
 /* Esri lists the National Geographic World Map as in mature support since July 2021 and retiring in December 2029 (read November 12, 2026). If its pictures stop coming, the map moves to Dark streets and says so. */
@@ -527,11 +531,11 @@ function gvUp(g){return !!g&&g.on&&!g.fail;}
 /* is a Google live-drawn map what is on screen now */
 function gvShow(){const g=GV[gvKind()];return gvUp(g)&&gvWant&&(!natOn||natA<0.5);}
 function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
-/* Google's terms: its Places content is not to be shown with or near a non-Google map. Live ratings, review counts and photos are fetched and shown only while a Google map is the base on screen. */
-function gBaseOn(){return !natOn&&(gvShow()||useGoogle);}
+/* Google's terms have a clause headed "No Use With Non-Google Maps"; Places content on a non-Google map is one of its examples. The map owner's reading (not legal advice): live ratings, review counts and photos are fetched and shown only while a Google map is the base on screen. */
+function gBaseOn(){return !natOn&&!gBaseOn.shot&&(gvShow()||useGoogle);}
 /* the page behind the tiles takes the colour of the base on screen, so a zoom out never shows a dark frame or dark holes round a lighter map (imagery: its average colour as dimmed here) */
 function syncBackdrop(){document.getElementById('map').style.background=natOn?'#d1cfba':satOn?'#66645a':(gvShow()||useGoogle?'#1f2a33':'#474749');}
-function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad,natGeo].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});natMix.cred=false;['light','dark'].forEach(k=>{const x=GV[k];if(gvUp(x))x.el.style.display='none';});const g=GV[gvKind()],ok=gvUp(g)&&gvWant;if(natOn){natGeo.addTo(map);natMix.cred=true;natMix();if(map.getZoom()>=NAT_WARM)gStart('light');}else if(ok){natA=1;g.el.style.display='';const want=satOn?'hybrid':'roadmap';if(g.map.getMapTypeId()!==want)g.map.setMapTypeId(want);g.el.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}else{natA=1;currentBase().addTo(map);}{const m=document.getElementById('map');m.classList.toggle('gv',gvShow());m.classList.toggle('nat',natOn);const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!natOn&&!gvWant));const bn=document.getElementById('bmNat');if(bn)bn.setAttribute('aria-pressed',String(natOn));}bldSync();{const gNow=gBaseOn();if(setBase._g!==undefined&&setBase._g!==gNow){try{if(!gNow)map.closePopup();else{const p=map._popup;if(p&&p.isOpen&&p.isOpen()){const el=p.getElement()&&p.getElement().querySelector('.leaflet-popup-content'),x=p._source&&p._source._rdata;if(el&&x){const n=el.querySelector('.gnote');if(n)n.remove();delete el.dataset.live;liveRatingInto(el,x);}}}if(rp.classList.contains('open')&&rpKind!=='rail'){renderRoster();if(gNow&&rpKind!=='asset')liveList(rpTitle,rpRows);}}catch(e){}}setBase._g=gNow;}document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&!natOn&&(gvWant||!document.getElementById('bmPic'))));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
+function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad,natGeo,natUnder].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});natMix.cred=false;['light','dark'].forEach(k=>{const x=GV[k];if(gvUp(x))x.el.style.display='none';else if(x&&x.ready&&!x.fail&&(natOn||!gvWant||k!==gvKind()))x.el.style.visibility='hidden';});const g=GV[gvKind()],ok=gvUp(g)&&gvWant;if(natOn){if(NAT_CLOSE==='buildings')natUnder.addTo(map);natGeo.addTo(map);natMix.cred=true;natMix();if(map.getZoom()>=NAT_WARM)gStart('light');}else if(ok){natA=1;g.el.style.display='';g.el.style.visibility='';const want=satOn?'hybrid':'roadmap';if(g.map.getMapTypeId()!==want)g.map.setMapTypeId(want);g.el.style.filter=satOn?'brightness(.82) saturate(.72)':'';gvSync();}else{natA=1;currentBase().addTo(map);}{const m=document.getElementById('map');m.classList.toggle('gv',gvShow());m.classList.toggle('nat',natOn);const bp=document.getElementById('bmPic');if(bp)bp.setAttribute('aria-pressed',String(!satOn&&!natOn&&!gvWant));const bn=document.getElementById('bmNat');if(bn)bn.setAttribute('aria-pressed',String(natOn));}bldSync();{const gNow=gBaseOn();if(setBase._g!==undefined&&setBase._g!==gNow){try{if(!gNow)map.closePopup();else{const p=map._popup;if(p&&p.isOpen&&p.isOpen()){const el=p.getElement()&&p.getElement().querySelector('.leaflet-popup-content'),x=p._source&&p._source._rdata;if(el&&x){const n=el.querySelector('.gnote');if(n)n.remove();liveRatingInto(el,x);}}}if(rp.classList.contains('open')&&rpKind!=='rail'){renderRoster();if(gNow&&rpKind!=='asset')liveList(rpTitle,rpRows);}}catch(e){}}setBase._g=gNow;}document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn&&!natOn&&(gvWant||!document.getElementById('bmPic'))));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
 document.getElementById('bmDark').onclick=()=>{satOn=false;natOn=false;gvWant=true;gStart('dark');setBase();};document.getElementById('bmSat').onclick=()=>{satOn=true;natOn=false;gvWant=true;gStart('light');setBase();};{const bp=document.getElementById('bmPic');if(bp)bp.onclick=()=>{satOn=false;natOn=false;gvWant=false;if(!gSat)gPictures();setBase();};const bn=document.getElementById('bmNat');if(bn)bn.onclick=()=>{satOn=false;natOn=true;gvWant=true;setBase();};}
 syncBackdrop();
 /* ---------- Google's live-drawn maps ---------- */
@@ -567,7 +571,7 @@ function gvMake(kind){try{const cv=document.createElement('canvas');if(!(cv.getC
 }catch(e){GV[kind]={el:document.createElement('div'),on:false,fail:true};console.warn('Google live-drawn basemap unavailable',e);return false;}}
 /* a Google map is started when its base is wanted: at once when the map opens on one, on the first press of its button,
    and for National Geographic when the reader comes within reach of zoom 16 */
-function gStart(kind){kind=kind||gvKind();if(natOn&&NAT_CLOSE!=='google')return;if(GV[kind]||!window.google||!google.maps)return;if(!gvMake(kind)&&!natOn&&!gSat)gPictures();}
+function gStart(kind){kind=kind||gvKind();if(gStart.bad||(natOn&&NAT_CLOSE!=='google'))return;if(GV[kind]||!window.google||!google.maps)return;if(!gvMake(kind)&&!natOn&&!gSat)gPictures();}
 map.on('move zoom resize',gvSync);map.on('zoomanim',gvAnim);map.on('zoom',()=>natMix());
 map.on('zoomend',()=>{if(natOn&&map.getZoom()>=NAT_WARM)gStart('light');});
 /* ---------- shaded buildings over National Geographic ----------
@@ -579,8 +583,12 @@ const BLD={js:'https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js',css:'ht
 let bld=null,bldBusy=false;
 /* MapLibre counts zoom one lower than Leaflet (512 px tiles): 14 here is Leaflet's 15 */
 function bldStyle(){return {version:8,sources:{omt:{type:'vector',url:BLD.tiles}},layers:[{id:'buildings',type:'fill',source:'omt','source-layer':'building',minzoom:14,paint:{'fill-color':'#9c8b70','fill-opacity':['interpolate',['linear'],['zoom'],14,0,15,0.42,17,0.58],'fill-outline-color':'#6f6250'}}]};}
+/* are building shapes on screen: the service answered, the base is National Geographic, and the zoom is past 15 (where they begin to show) */
+function bldShown(){return !!bld&&!!bld._ok&&!bld._hid&&map.getZoom()>15;}
+/* the credit OpenFreeMap asks for is in the corner only while the shapes are on screen (the map keeps the layer and hides it, so Leaflet would not take the credit away by itself) */
+function bldCred(){const want=bldShown(),ac=map.attributionControl;if(!ac||want===!!bldCred.on)return;bldCred.on=want;ac[want?'addAttribution':'removeAttribution']('<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>');}
 function bldSync(){const on=NAT_CLOSE==='buildings'&&natOn;
- if(bld){const c=bld.getContainer(),was=bld._hid;bld._hid=!on;if(c)c.style.display=on?'':'none';if(on&&was){bld._zooming=false;bld._update();}return;}
+ if(bld){const c=bld.getContainer(),was=bld._hid;bld._hid=!on;if(c)c.style.display=on?'':'none';if(on&&was){bld._zooming=false;bld._update();}bldCred();return;}
  if(!on||bldBusy||map.getZoom()<BLD_WARM)return;try{const cv=document.createElement('canvas');if(!(cv.getContext('webgl2')||cv.getContext('webgl')))return;}catch(e){return;}
  bldBusy=true;const add=(tag,attrs)=>new Promise((res,rej)=>{const el=document.createElement(tag);Object.assign(el,attrs);el.onload=res;el.onerror=rej;document.head.appendChild(el);});
  add('link',{rel:'stylesheet',href:BLD.css}).catch(()=>{});
@@ -588,20 +596,24 @@ function bldSync(){const on=NAT_CLOSE==='buildings'&&natOn;
   if(!map.getPane('bldg')){const p=map.createPane('bldg');p.style.zIndex=250;p.style.pointerEvents='none';}
   const Lay=L.MaplibreGL.extend({_update:function(e){if(this._hid)return;L.MaplibreGL.prototype._update.call(this,e);},_pinchZoom:function(e){if(this._hid)return;L.MaplibreGL.prototype._pinchZoom.call(this,e);}});
   /* preserveDrawingBuffer lets the Screenshot button copy the shapes into its picture */
-  bld=new Lay({style:bldStyle(),pane:'bldg',fadeDuration:150,canvasContextAttributes:{preserveDrawingBuffer:true}});bld.addTo(map);
+  bld=new Lay({style:bldStyle(),pane:'bldg',fadeDuration:150,attributionControl:false,canvasContextAttributes:{preserveDrawingBuffer:true}});bld.addTo(map);
   const gl=bld.getMaplibreMap();
+  /* the service has answered: its tile description or a tile arrived */
+  gl.on('sourcedata',e=>{if(!bld._ok&&e&&e.sourceId==='omt'&&(e.sourceDataType==='metadata'||e.tile)){bld._ok=true;bldCred();}});
   /* draw in the same frame the map zooms, so the shapes never slip against the pictures under them */
   map.on('zoom',()=>{if(!bld._hid){try{gl.redraw();}catch(e){}}});
   bldSync();
  }).catch(e=>{console.warn('Building shapes unavailable',e);});}
 map.on('zoomend',bldSync);
-if(natOn)setBase();
+setBase();
 function revertBase(why){if(!useGoogle)return;useGoogle=false;console.warn('Google basemap unavailable ('+why+'); using Esri instead');setBase();}
-window.gm_authFailure=function(){['light','dark'].forEach(k=>{const g=GV[k];if(g){g.fail=true;g.el.style.display='none';}});revertBase('auth');setBase();};
-function gPictures(){try{if(gSat||!L.gridLayer.googleMutant||!window.google||!google.maps)return;
+window.gm_authFailure=function(){gStart.bad=true; /* Google refused the key for this address: its maps are not tried again on this page */['light','dark'].forEach(k=>{const g=GV[k];if(g){g.fail=true;g.el.style.display='none';}});revertBase('auth');setBase();};
+function gPictures(){try{if(gStart.bad||gSat||!L.gridLayer.googleMutant||!window.google||!google.maps)return;
  gSat=L.gridLayer.googleMutant({type:'hybrid',maxZoom:20});gRoad=L.gridLayer.googleMutant({type:'roadmap',maxZoom:20,styles:NIGHT});
- let ok=false;const arm=l=>l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;});}catch(_){}});arm(gSat);arm(gRoad);
- useGoogle=true;setBase();setTimeout(()=>{if(!ok)revertBase('no tiles after 8 s');},8000);
+ /* the 8 s wait starts when a Google picture layer is put on the map and counts only while one is still there */
+ let ok=false,t8=null;const arm=l=>{l.on('spawned',e=>{try{google.maps.event.addListenerOnce(e.mapObject,'tilesloaded',()=>{ok=true;});}catch(_){}});
+  l.on('add',()=>{if(ok)return;clearTimeout(t8);t8=setTimeout(()=>{if(!ok&&(map.hasLayer(gSat)||map.hasLayer(gRoad)))revertBase('no tiles after 8 s');},8000);});};arm(gSat);arm(gRoad);
+ useGoogle=true;setBase();
 }catch(e){console.warn('Google basemap unavailable',e);revertBase('error');}}
 window.onGoogleReady=function(){if(!natOn)gStart();else if(map.getZoom()>=NAT_WARM)gStart('light');};
 if(window._gmLoaded)window.onGoogleReady();
@@ -785,7 +797,7 @@ const tc=document.getElementById('titlecard');function setTitle(open){tc.classLi
 document.getElementById('tcMin').onclick=()=>setTitle(tc.classList.contains('min'));
 const about=document.getElementById('about');function openAbout(){about.hidden=false;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}
 document.getElementById('openAbout').onclick=openAbout;document.getElementById('closeAbout').onclick=()=>about.hidden=true;about.addEventListener('click',e=>{if(e.target===about)about.hidden=true;});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){about.hidden=true;document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){/* one press closes one thing: the About sheet, then an open card, then the panels */if(!about.hidden){about.hidden=true;return;}if(map._popup&&map.hasLayer(map._popup)){map.closePopup();return;}document.getElementById('kpanel').classList.remove('open');rp.classList.remove('open');}});
 (()=>{const kp=document.getElementById('kpanel'),kb=document.getElementById('kpBody');const open=()=>{kp.classList.add('open');map.closePopup();rp.classList.remove('open');about.hidden=true;if(phone())setLegend(false);};
  document.getElementById('keyOpen').onclick=open;document.getElementById('kpClose').onclick=()=>kp.classList.remove('open');
  kb.addEventListener('click',e=>{const t=e.target.closest('.kst');if(!t)return;t.parentElement.classList.toggle('closed');});const kall=document.getElementById('kpAll');kall.onclick=()=>{const secs=[...kb.querySelectorAll('.ks')];const o=secs.some(x=>!x.classList.contains('closed'));secs.forEach(x=>x.classList.toggle('closed',o));kall.textContent=o?'Expand all':'Collapse all';};})();
@@ -801,7 +813,7 @@ map.on('popupopen',()=>{document.body.classList.add('card-open');map.setMaxBound
 map.on('popupclose',()=>{document.body.classList.remove('card-open');if(!map._popup||!map.hasLayer(map._popup)){map.setMaxBounds(LOCK);setTimeout(()=>{if(!(map._popup&&map.hasLayer(map._popup)))map.panInsideBounds(LOCK,{animate:true});},50);}});
 
 /* ---------- collapsible card sections ---------- */
-function foldSections(el){if(!el||el.dataset.folded)return;el.dataset.folded='1';const small=phone();const ps=[...el.querySelectorAll('p.seas')].filter(p=>p.firstElementChild&&p.firstElementChild.tagName==='I');
+function foldSections(el){if(!el||el.querySelector('.foldbar'))return;const small=phone();const ps=[...el.querySelectorAll('p.seas')].filter(p=>p.firstElementChild&&p.firstElementChild.tagName==='I');
  if(ps.length<2)return;
  ps.forEach(p=>{const lab=p.firstElementChild;const d=document.createElement('details');d.className='seas';if(!small)d.open=true;const sm=document.createElement('summary');sm.appendChild(lab);d.appendChild(sm);const body=document.createElement('div');body.className='sb';while(p.firstChild)body.appendChild(p.firstChild);d.appendChild(body);
   let nx=p.nextElementSibling;while(nx&&(nx.tagName==='TABLE'||(nx.tagName==='P'&&nx.className==='note'&&nx.nextElementSibling&&nx.nextElementSibling.className==='seas'))){const t=nx;nx=nx.nextElementSibling;body.appendChild(t);}
@@ -820,28 +832,31 @@ async function livePlace(name,addr,lat,lng,radius,attempt){const k=name+'|'+addr
   if((res.status===429||res.status===503)&&(attempt||0)<3){await new Promise(r=>setTimeout(r,1500*((attempt||0)+1)));return livePlace(name,addr,lat,lng,radius,(attempt||0)+1);}throw new Error(msg);}
  const j=await res.json();const pl=(j.places||[])[0]||null;PLACE_CACHE[k]=pl;return pl;}
 function livePhotoInto(el,pl){const ph=(pl.photos||[])[0];if(!ph||!ph.name)return;const url=`https://places.googleapis.com/v1/${ph.name}/media?maxWidthPx=640&key=${GKEY}`;
- let img=el.querySelector('img.hphoto');if(!img){img=document.createElement('img');img.className='hphoto';img.alt='';img.loading='lazy';el.insertBefore(img,el.firstChild);}
+ let img=el.querySelector('img.hphoto');if(!img){img=document.createElement('img');img.className='hphoto gphoto';img.alt='';img.loading='lazy';el.insertBefore(img,el.firstChild);}
  const prev=img.src;img.onerror=function(){if(prev&&prev!==url){img.onerror=function(){img.style.display='none';};img.src=prev;}else img.style.display='none';};img.onload=function(){img.style.display='';};img.src=url;
- const au=(ph.authorAttributions||[])[0];const cap=document.createElement('div');cap.className='note';cap.style.cssText='margin:-4px 0 6px;font-size:.72rem';cap.innerHTML='Photo: Google Maps'+(au?', <a href="'+esc(au.uri)+'" target="_blank" rel="noopener">'+esc(au.displayName)+'</a>':'')+', loaded live';img.after(cap);}
-function liveRatingInto(el,x){if(!el||el.dataset.live)return;el.dataset.live='1';const kv=el.querySelector('.kv');if(!kv)return;
- if(!gBaseOn()){delete el.dataset.live;if(!el.querySelector('.gnote')){const n0=document.createElement('div');n0.className='note gnote';n0.style.margin='2px 0 0';n0.innerHTML='<span style="color:#5f5b50">Google\'s live rating, review count and photo show on the Dark streets and Imagery views. The figures above are from the sources cited.</span>';kv.after(n0);}return;}
- const note=document.createElement('div');note.className='note';note.style.margin='2px 0 0';note.innerHTML='<span style="color:#5f5b50">Checking Google for the live rating&hellip;</span>';kv.after(note);
- livePlace(x.gname||x.n,x.a2||x.a,x.lat,x.lng).then(pl=>{if(!pl){note.innerHTML='<span style="color:#5f5b50">No Google listing found for this name and address; figures above are from the sources cited.</span>';return;}
+ const au=(ph.authorAttributions||[])[0];const cap=document.createElement('div');cap.className='note gphotocap';cap.style.cssText='margin:-4px 0 6px;font-size:.72rem';cap.innerHTML='Photo: Google Maps'+(au?', <a href="'+esc(au.uri)+'" target="_blank" rel="noopener">'+esc(au.displayName)+'</a>':'')+', loaded live';img.after(cap);}
+function liveRatingInto(el,x){if(!el||el.querySelector('.livenote'))return;const kv=el.querySelector('.kv');if(!kv)return;
+ if(!gBaseOn()){if(!el.querySelector('.gnote')){const n0=document.createElement('div');n0.className='note gnote';n0.style.margin='2px 0 0';n0.innerHTML='<span style="color:#5f5b50">'+(natOn?'Google\'s live rating, review count and photo show on the Dark streets and Imagery views.':'Google could not load on this view, so its live rating, review count and photo are not shown.')+' The figures above are from the sources cited.</span>';kv.after(n0);}return;}
+ const note=document.createElement('div');note.className='note livenote';note.style.margin='2px 0 0';note.innerHTML='<span style="color:#5f5b50">Checking Google for the live rating&hellip;</span>';kv.after(note);
+ livePlace(x.gname||x.n,x.a2||x.a,x.lat,x.lng).then(pl=>{/* a late answer for a card that was closed, opened again or moved off a Google view is dropped */if(!note.isConnected||!gBaseOn()){note.remove();return;}if(!pl){note.innerHTML='<span style="color:#5f5b50">No Google listing found for this name and address; figures above are from the sources cited.</span>';return;}
   livePhotoInto(el,pl);
   const closed=pl.businessStatus&&pl.businessStatus!=='OPERATIONAL';const gl=`<a href="${esc(pl.googleMapsUri)}" target="_blank" rel="noopener">View on Google Maps</a>`;
   if(pl.rating==null){note.innerHTML='Google lists this place but shows no rating yet. '+gl;return;}
   x.grt=pl.rating;x.grc=pl.userRatingCount||0;x.gp=PRICE[pl.priceLevel]||null;x._live=true;x._miss=false;
-  const row=document.createElement('div');row.className='kv';row.innerHTML=`<div><b>${pl.rating.toFixed(1)}</b><span>Rating (Google, live)</span></div><div><b>${(pl.userRatingCount||0).toLocaleString()}</b><span>Reviews (Google)</span></div><div>${PRICE[pl.priceLevel]?`<b style="font-size:1rem">${PRICE[pl.priceLevel]}</b><span>Price (Google)</span>`:`<b style="font-size:.95rem">${pl.businessStatus==='OPERATIONAL'?'Open':'?'}</b><span>Status (Google)</span>`}</div>`;kv.after(row);
+  const row=document.createElement('div');row.className='kv glive';row.innerHTML=`<div><b>${pl.rating.toFixed(1)}</b><span>Rating (Google, live)</span></div><div><b>${(pl.userRatingCount||0).toLocaleString()}</b><span>Reviews (Google)</span></div><div>${PRICE[pl.priceLevel]?`<b style="font-size:1rem">${PRICE[pl.priceLevel]}</b><span>Price (Google)</span>`:`<b style="font-size:.95rem">${pl.businessStatus==='OPERATIONAL'?'Open':'?'}</b><span>Status (Google)</span>`}</div>`;kv.after(row);
   note.innerHTML=`Rating, reviews and photo fetched live from Google Places just now; the figures above remain from the sources cited. ${gl}${closed?' <b style="color:#b3412f">Google lists this business as '+esc(pl.businessStatus.toLowerCase().replace(/_/g,' '))+'.</b>':''}`;row.after(note);
- }).catch(e=>{note.innerHTML='<span style="color:#5f5b50">Live Google rating unavailable right now; figures above are from the sources cited.</span>';console.warn(e);});}
+ }).catch(e=>{console.warn(e);if(!note.isConnected)return;note.innerHTML='<span style="color:#5f5b50">Live Google rating unavailable right now; figures above are from the sources cited.</span>';});}
 map.on('popupopen',e=>{const p=e.popup;const el=p.getElement()&&p.getElement().querySelector('.leaflet-popup-content');if(!el)return;const src=p._source;const x=src&&src._rdata;if(!x)return;liveRatingInto(el,x);});
 
 /* ---------- roster panel: any list, with live Google ratings ---------- */
 const rp=document.getElementById('rpanel');let rpRows=[],rpTitle='',rpKind='',rpSort='rt';const LIVE_DONE={};let LIVE_PROG={};
+/* a list row takes focus with Tab and opens with Enter or Space, as a click does */
+document.getElementById('rpList').addEventListener('keydown',e=>{const a=e.target&&e.target.closest&&e.target.closest('#rpList a');if(a&&(e.key==='Enter'||e.key===' ')){e.preventDefault();a.click();}});
 function liveList(key,rows,force){if(!gBaseOn()){if(rpTitle===key)renderRoster();return;}if((LIVE_DONE[key]&&!force))return;LIVE_DONE[key]=true;const todo=rows.filter(r=>r.lat&&(!r._live||r._miss));let i=0,done=0;LIVE_PROG[key]={done:0,total:todo.length};
  todo.forEach(r=>{if(r._miss){Object.keys(PLACE_CACHE).forEach(k=>{if(k.startsWith((r.gname||r.n)+'|'))delete PLACE_CACHE[k];});}});
  let t=null;const bump=()=>{done++;LIVE_PROG[key].done=done;clearTimeout(t);t=setTimeout(()=>{if(rpTitle===key)renderRoster();},done>=todo.length?0:400);};
- const worker=async()=>{while(i<todo.length){const r=todo[i++];try{let pl=await livePlace(r.gname||r.n,r.a2||r.a,r.lat,r.lng);
+ const worker=async()=>{while(i<todo.length){if(!gBaseOn()){LIVE_DONE[key]=false;break;}const r=todo[i++];try{let pl=await livePlace(r.gname||r.n,r.a2||r.a,r.lat,r.lng);
+   if((!pl||pl.rating==null)&&!gBaseOn()){LIVE_DONE[key]=false;break;}
    if(!pl||pl.rating==null){const alt=await livePlace((r.gname||r.n).replace(/\s*\(.*?\)\s*/g,' ').trim(),r.gq||(r.city||'')+', CA',r.lat,r.lng,6000);if(alt&&alt.rating!=null)pl=alt;}
    if(pl&&pl.rating!=null){r.grt=pl.rating;r.grc=pl.userRatingCount||0;r.gp=PRICE[pl.priceLevel]||null;r._miss=false;}else{r._miss=pl?'norating':'nomatch';}r._live=true;}catch(e){r._miss='error';r._err=String(e.message||e);}bump();}};
  for(let k=0;k<3;k++)worker();if(rpTitle===key)renderRoster();}
@@ -853,8 +868,8 @@ function renderRoster(){const rows=rpRows;if(!rows)return;const gOn=gBaseOn();co
  const em=rows.find(r=>r._err&&r._err.includes(':'));if(em&&!(pg&&pg.done<pg.total))sub+=' Google says: '+em._err.split(':').slice(1).join(':').trim();
  document.getElementById('rpSub').textContent=sub;
  document.getElementById('rpRetry').style.display=(gOn&&miss&&!(pg&&pg.done<pg.total))?'':'none';
- document.getElementById('rpList').innerHTML=rs.map(r=>`<a data-i="${rows.indexOf(r)}"><span class="nm">${esc(r.n)}</span><span class="rt">${!gOn?'':r.grt!=null?((r.grc||0)<20?'<span style="color:#9e9e9e">'+r.grt+'</span>':r.grt)+' <small>('+(r.grc||0).toLocaleString()+')</small>':(r._miss==='nomatch'?'<small>no Google match</small>':r._miss==='error'?'<small>lookup failed</small>':r._live?'<small>no rating</small>':'<small>&hellip;</small>')}${gOn&&r.gp?' <small>'+r.gp+'</small>':''}</span><span class="cu">${esc(r.cat||(CAT[r.t]?CAT[r.t].l.split(' / ')[0]:''))}${r.r!=null?', '+r.r+' rooms':''}${r.city?', '+esc(r.city):''}</span></a>`).join('');
- document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.rs===rpSort)));
+ document.getElementById('rpList').innerHTML=rs.map(r=>`<a data-i="${rows.indexOf(r)}" tabindex="0" role="button"><span class="nm">${esc(r.n)}</span><span class="rt">${!gOn?'':r.grt!=null?((r.grc||0)<20?'<span style="color:#9e9e9e">'+r.grt+'</span>':r.grt)+' <small>('+(r.grc||0).toLocaleString()+')</small>':(r._miss==='nomatch'?'<small>no Google match</small>':r._miss==='error'?'<small>lookup failed</small>':r._live?'<small>no rating</small>':'<small>&hellip;</small>')}${gOn&&r.gp?' <small>'+r.gp+'</small>':''}</span><span class="cu">${esc(r.cat||(CAT[r.t]?CAT[r.t].l.split(' / ')[0]:''))}${r.r!=null?', '+r.r+' rooms':''}${r.city?', '+esc(r.city):''}</span></a>`).join('');
+ {const eff=!gOn&&rpSort==='rt'?'az':rpSort; /* with no ratings on screen the rows run A to Z, and the Rating button steps out */document.querySelectorAll('#rpanel [data-rs]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.rs===eff));if(b.dataset.rs==='rt')b.style.display=gOn?'':'none';});}
  document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const r=rows[+a.dataset.i];if(!r)return;showFeature(r);if(phone())rp.classList.remove('open');});}
 /* A card opened from a list sits at the middle of the map, so a tall card starts with its top above the map and Leaflet's auto-pan has to move it down.
    That pan is animated and runs on animation frames. WebKit holds frames back for a view it counts as hidden (0 a second in the test window), and the
@@ -878,7 +893,7 @@ function openRailPanel(bounds){const cb=document.querySelector('#trToggles input
  rpTitle='Las Vegas to Pomona by rail';rpRows=HSR.stops.filter(x=>x.lat);rpKind='rail';rp.classList.add('open');map.closePopup();document.getElementById('kpanel').classList.remove('open');about.hidden=true;
  document.getElementById('rpTitle').textContent=rpTitle;document.getElementById('rpSub').textContent='Brightline West ends at Rancho Cucamonga, one Metrolink stop east of the corridor. From that hub the rail runs west through the corridor to Pomona North, and a proposed tunnel would run south to ONT. Tap a stop inside the corridor to go there.';
  document.getElementById('rpRetry').style.display='none';document.querySelector('#rpanel .rsort').style.display='none';
- document.getElementById('rpList').innerHTML=HSR.stops.map((x,i)=>`<a data-i="${i}"${x.lat?'':' class="far"'}><span class="nm">${i+1}. ${esc(x.n)}</span><span class="rt"><small>${esc(x.rt||'')}</small></span><span class="cu">${esc(x.cu||'')}</span></a>`).join('');
+ document.getElementById('rpList').innerHTML=HSR.stops.map((x,i)=>`<a data-i="${i}"${x.lat?' tabindex="0" role="button"':' class="far"'}><span class="nm">${i+1}. ${esc(x.n)}</span><span class="rt"><small>${esc(x.rt||'')}</small></span><span class="cu">${esc(x.cu||'')}</span></a>`).join('');
  document.querySelectorAll('#rpList a').forEach(a=>a.onclick=()=>{const x=HSR.stops[+a.dataset.i];if(!x||!x.lat)return;map.closePopup();if(x.key==='hub'){const hub=[x.lat,x.lng];goTo(map.unproject(map.project(hub,15).add(L.point(phone()?0:185,40)),15),15,()=>setTimeout(()=>openCardInView(HSR._hub),150));}else goTo([x.lat,x.lng],x.key==='ontc'?15:16);if(phone())rp.classList.remove('open');});
  setLegend(false);const p=phone();map.fitBounds(bounds,{paddingTopLeft:p?[16,70]:[60,150],paddingBottomRight:p?[16,Math.round(innerHeight*0.62)]:[370,40]});
  if(!p){const hub=[HSR.hub.lat,HSR.hub.lng];if(map.latLngToContainerPoint(hub).x>map.getSize().x-370){map.setView(map.unproject(map.project(hub,15).add(L.point(185,0)),15),15,{animate:false});}}}
@@ -892,9 +907,9 @@ document.querySelectorAll('#rpanel [data-rs]').forEach(b=>b.onclick=()=>{rpSort=
 document.getElementById('gcheck').onclick=async e=>{e.preventDefault();const out=document.getElementById('gcheckOut');out.textContent='Testing...';const lines=[];
  lines.push('Page: '+location.host+location.pathname);
  lines.push('Maps JavaScript API: '+(window.google&&google.maps?'loaded':'not loaded')+(gvShow()?', Google live-drawn basemap on':natOn?', National Geographic basemap on':useGoogle?', Google picture basemap on':', using Esri fallback'));
- try{const res=await fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':'places.displayName,places.rating,places.userRatingCount'},body:JSON.stringify({textQuery:'Fairplex, Pomona, CA',maxResultCount:1})});
+ try{const gOk=gBaseOn();const res=await fetch('https://places.googleapis.com/v1/places:searchText',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':gOk?'places.displayName,places.rating,places.userRatingCount':'places.id'},body:JSON.stringify({textQuery:'Fairplex, Pomona, CA',maxResultCount:1})});
   const txt=await res.text();let j={};try{j=JSON.parse(txt);}catch(_){}
-  if(res.ok){const pl=(j.places||[])[0];lines.push('Places API (New): OK, HTTP '+res.status+(pl?', found '+(pl.displayName&&pl.displayName.text)+' rated '+pl.rating+' ('+pl.userRatingCount+' reviews)':', no result'));}
+  if(res.ok){const pl=(j.places||[])[0];lines.push('Places API (New): OK, HTTP '+res.status+(!pl?', no result':gOk?', found '+(pl.displayName&&pl.displayName.text)+' rated '+pl.rating+' ('+pl.userRatingCount+' reviews)':', Google answered. Its ratings are asked for and shown only on the Dark streets and Imagery views'));}
   else lines.push('Places API (New): HTTP '+res.status+' '+((j.error&&(j.error.status+': '+j.error.message))||txt.slice(0,300)));
  }catch(err){lines.push('Places API (New): request failed before Google answered ('+err.message+')');}
  if(!/github\.io$/.test(location.host))lines.push('Note: the key is referrer-locked to the GitHub Pages site, so Google data is expected to fail on a local or other host.');
@@ -1070,13 +1085,13 @@ const INFO={};
   what:'Names over the main parts of the corridor.',why:'They help you find your place at a glance on the imagery.',
   care:'Positions are approximate and chosen to read well, not to mark exact sites.'});
  INFO.basemap=function(){return {label:'Basemap',kind:'basemap',src:['esri','ofm','google'],
-  mix:`National Geographic: Esri's National Geographic World Map, pictures that are real here from zoom 12 to 16. ${NAT_CLOSE==='google'?'Closer in they fade into a Google map drawn in your browser, with sharp streets and shaded buildings.':'Closer in the same pictures are stretched, and building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in your browser) are laid over them.'} Esri lists the National Geographic map as retiring in December 2029; if its pictures stop coming, the map moves to Dark streets. Dark streets and Imagery: a Google map drawn in your browser, in Google's dark colour scheme or as hybrid imagery. Where a drawn map cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${baseName()}.`,
-  what:'The background under every layer. Pick it with the Dark streets and Imagery buttons at the top right.',
-  why:'Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
-  care:'Google tiles load only on the published site, because the key is locked to it; anywhere else the map falls back to Esri. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
+  mix:`National Geographic: Esri's National Geographic World Map, pictures that are real here to zoom 16. ${NAT_CLOSE==='google'?'Closer in they fade into a Google map drawn in your browser, with sharp streets and shaded buildings.':'Closer in the same pictures are stretched, and building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in your browser) are laid over them.'} Esri lists the National Geographic map as retiring in December 2029; if its pictures stop coming, the map moves to Dark streets. Dark streets and Imagery: a Google map drawn in your browser, in Google's dark colour scheme or as hybrid imagery. Where a drawn map cannot run, Google's picture tiles are used (the roadmap in a night style set by this map), and where Google cannot load at all, Esri's Dark Gray Canvas and Esri World Imagery with place labels. Right now the map shows ${baseName()}.`,
+  what:'The background under every layer. Pick it with the Dark streets, Imagery and Nat Geo buttons at the top right. The map opens on National Geographic.',
+  why:'National Geographic is a painted map with terrain and place names; Imagery shows the ground as it is; dark streets keep the colored layers easy to read.',
+  care:'National Geographic loads anywhere and needs no key. Google\'s maps load only on the published site, because the key is locked to it; anywhere else Dark streets and Imagery fall back to Esri. Google\'s live ratings, review counts and photos show only on the Dark streets and Imagery views. Imagery dates vary by tile and are not shown. "Check Google connection" in About the data tests it.'};};
 })();
 if(window.MapLayerInfo){
- MapLayerInfo.KINDS.basemap=['Commercial basemap','Map tiles from Google, or from Esri when Google cannot load, shown as they come.',''];
+ MapLayerInfo.KINDS.basemap=['Commercial basemap','Map pictures from Esri (National Geographic), with OpenStreetMap building shapes from OpenFreeMap close in; or a Google map, or Esri\'s when Google cannot load. Shown as they come.',''];
  const infoOf=id=>{const x=INFO[id];return typeof x==='function'?x():(x||null);};
  const rowBox=id=>legend.querySelector('[data-info="'+String(id).replace(/["\\]/g,'\\$&')+'"]');
  const boxOf=id=>{const r=rowBox(id);return r&&r.querySelector('input[type=checkbox]');};
@@ -1137,7 +1152,7 @@ function shoot(map,opt){if(shoot.on)return;if(!window.MapSnapshot){mapNote(map,"
   opt.busy=function(b){if(b)mapNote(map,"Making the screenshot...",20000)};
   opt.done=function(how,err){shoot.on=false;mapNote(map,how==="tab"?"The screenshot opened in a new tab.":how==="download"?"Screenshot saved to your downloads.":(err&&err.message)||"The screenshot did not work here.",how==="error"?6000:3000)};
   MapSnapshot.take(map,opt).catch(function(){})}
-function baseName(){if(natOn)return gvShow()?'Google roadmap, drawn live (National Geographic stops at zoom '+NAT_MAXZ+')':'Esri National Geographic World Map'+(bld&&!bld._hid&&map.getZoom()>=15.5?', with OpenStreetMap building shapes':'');if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
+function baseName(){if(gBaseOn.shot)return (satOn?'Esri World Imagery with place labels':'Esri Dark Gray Canvas')+', standing in for Google\'s map, which is not copied into pictures';if(natOn)return gvShow()?'Google roadmap, drawn live (National Geographic stops at zoom '+NAT_MAXZ+')':'Esri National Geographic World Map'+(bldShown()?', with OpenStreetMap building shapes':'');if(gvShow())return satOn?'Google hybrid imagery, drawn live':'Google roadmap, dark scheme, drawn live';return satOn?(useGoogle?'Google hybrid imagery':'Esri World Imagery with place labels'):(useGoogle?'Google roadmap, night style':'Esri Dark Gray Canvas')}
 function shotInfo(){var out=[],on=[];
  [].forEach.call(document.querySelectorAll('#legend input[type=checkbox]'),function(i){if(!i.checked)return;var lb=i.closest('label')||i.closest('summary'),t=lb?labelText(lb).replace(/\s*[+\u2212]$/,''):'';if(t&&on.indexOf(t)<0)on.push(t)});
  out.push({h:'Layers shown',items:on.length?on:['None']});
@@ -1146,8 +1161,17 @@ function shotInfo(){var out=[],on=[];
  var c=map.getCenter();out.push({h:'View',items:['Center '+c.lat.toFixed(5)+', '+c.lng.toFixed(5),'Zoom '+map.getZoom(),'Basemap: '+baseName()]});
  out.push({h:'Credits',text:shotCredit()+' Full sources are in the map\'s About sheet.'});
  return out}
-function shotCredit(){return 'Map by T. C. Smith. Basemap: '+baseName()+'. Hotels, assets and businesses from official sites, OpenStreetMap and the Census geocoder; transit from SBCTA, Omnitrans, Metrolink and LA Metro; city limits from the Board of Equalization. WGS 84 / Web Mercator. Independent map for a City of Ontario proposal, not a City or Fairplex product.'}
-function takeShot(){shoot(map,{title:'Holt Historic Corridor Map: Ontario to Pomona',file:'Holt-Corridor-Map',link:function(){return pinLink(map)},info:shotInfo,credit:shotCredit(),hide:['#about']})}
+function shotCredit(){return 'Map by T. C. Smith. Basemap: '+baseName()+'.'+(natOn&&!gvShow()?' Base map credit: National Geographic, Esri, Garmin, HERE, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, increment P Corp.'+(bldShown()?' Building shapes: OpenFreeMap, OpenMapTiles, data from OpenStreetMap.':''):'')+' Hotels, assets and businesses from official sites, OpenStreetMap and the Census geocoder; transit from SBCTA, Omnitrans, Metrolink and LA Metro; city limits from the Board of Equalization. WGS 84 / Web Mercator. Independent map for a City of Ontario proposal, not a City or Fairplex product.'}
+/* Google's maps cannot be copied into a picture: the live-drawn one hands over an empty canvas, and its picture tiles are not shared for copying.
+   So for the moment of the shot Esri's matching map stands in, Google's live figures on an open card or list step out with it, and the caption names the map that is in the picture. */
+function shotBefore(){if(!gBaseOn())return null;const grp=satOn?satGroup:darkGroup,g=gvShow()?GV[gvKind()]:null,mut=!g&&useGoogle?currentBase():null;
+ return new Promise(res=>{let left=0,done=false;const go=()=>{if(done)return;done=true;if(g)g.el.style.display='none';if(mut&&map.hasLayer(mut))map.removeLayer(mut);gBaseOn.shot={grp:grp,g:g,mut:mut};
+   try{const p=map._popup,el=p&&map.hasLayer(p)&&p.getElement()&&p.getElement().querySelector('.leaflet-popup-content');if(el)el.querySelectorAll('.glive,.livenote,.gphoto,.gphotocap').forEach(n=>n.remove());if(rp.classList.contains('open')&&rpKind!=='rail')renderRoster();}catch(e){}
+   setTimeout(res,700);}; /* 700 ms: the new tiles finish fading in */
+  grp.eachLayer(l=>{left++;l.once('load',()=>{if(--left<=0)go();});});grp.addTo(map);setTimeout(go,6000);});}
+function shotAfter(){const s=gBaseOn.shot;if(!s)return;gBaseOn.shot=null;if(map.hasLayer(s.grp))map.removeLayer(s.grp);if(s.g)s.g.el.style.display='';if(s.mut)s.mut.addTo(map);
+ try{const p=map._popup,el=p&&map.hasLayer(p)&&p.getElement()&&p.getElement().querySelector('.leaflet-popup-content'),x=p&&p._source&&p._source._rdata;if(el&&x)liveRatingInto(el,x);if(rp.classList.contains('open')&&rpKind!=='rail'){renderRoster();if(rpKind!=='asset')liveList(rpTitle,rpRows);}}catch(e){}}
+function takeShot(){shoot(map,{title:'Holt Historic Corridor Map: Ontario to Pomona',file:'Holt-Corridor-Map',link:function(){return pinLink(map)},info:shotInfo,get credit(){return shotCredit()},hide:['#about'],before:shotBefore,after:shotAfter})}
 document.getElementById('shotBtn').addEventListener('click',takeShot);
 // right-click (or press and hold on a phone): the same menu as the other maps; "What's here?" does what a click does on the nearest marker, line or area
 if(window.MapShare)MapShare.attach(map,{title:'Holt Historic Corridor Map',extra:function(ll){return [['What\'s here?',function(){if(!clickNearest(map,ll))mapNote(map,'Nothing with a card at this spot. Click a marker, line or area for its card.')}],['Screenshot this view',takeShot]]}});

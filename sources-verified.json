@@ -893,7 +893,7 @@
    "status": 200,
    "method": "page",
    "result": "verified",
-   "checked_what": "The home page answered and describes the free public tile service. Its terms page (it says last updated October 14, 2026) was read: no key or registration, attribution required, offered as is, and it may change or stop without notice. The tile description at tiles.openfreemap.org/planet answered with the credit line OpenFreeMap, OpenMapTiles, OpenStreetMap, and building shapes drew over downtown Ontario at zoom 16 to 19. No date is given.",
+   "checked_what": "The home page answered and describes the free public tile service. The home page also says no key or registration is needed and that attribution is required. Its terms page (it says last updated October 14, 2026) says the service is offered as is and may change or stop without notice. The tile description at tiles.openfreemap.org/planet answered with the credit line OpenFreeMap, OpenMapTiles, OpenStreetMap, and building shapes drew over downtown Ontario at zoom 16 to 19. No date is given.",
    "fixed": "",
    "note": "The service makes no uptime promise. If it stops, the map simply shows no building shapes.",
    "use": "the building shapes over the National Geographic basemap close in",
@@ -12710,7 +12710,7 @@
   "checked": "2026-11-12",
   "checked_by": "Claude for T. C. Smith",
   "what": "The map now opens on Esri's National Geographic World Map, with building shapes from OpenStreetMap (OpenFreeMap tiles, drawn in the browser by MapLibre GL JS) laid over it close in. Dark streets and Imagery are a Google map drawn in the browser. A source was added (OpenFreeMap, ref33) and the Esri entry (ref32) now names the National Geographic map.",
-  "method": "The seven new addresses were checked with tools/certify_links.py; the National Geographic tiles were fetched at three places in the corridor at zoom 11 to 18; Esri's ArcGIS Online listing and OpenFreeMap's terms page were read.",
+  "method": "The seven new addresses were checked with tools/certify_links.py; the National Geographic tiles were fetched at three places in the corridor at zoom 11 to 18; Esri's ArcGIS Online listing and OpenFreeMap's home page and terms page were read.",
   "links_added": [
    "https://openfreemap.org/",
    "https://openfreemap.org/tos/",
@@ -12720,7 +12720,7 @@
    "https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css",
    "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"
   ],
-  "google_terms": "Google's Maps Platform Terms of Service say Places content is not to be shown with or near a non-Google map (read November 12, 2026). Live Google ratings, review counts and photos are therefore fetched and shown only while Dark streets or Imagery, the Google views, is on screen.",
-  "pdf_note": "On November 12, 2026 the basemap changed: the map opens on Esri's National Geographic World Map, with OpenStreetMap building shapes from OpenFreeMap laid over it close in; Dark streets and Imagery are Google maps drawn in the browser. One source was added (OpenFreeMap) and the Esri entry now names the National Geographic map, which Esri lists as retiring in December 2029. Seven new addresses were checked that day, all verified. Live Google ratings and photos now show only on the Google views."
+  "google_terms": "Google's Maps Platform Terms of Service have a clause headed \"No Use With Non-Google Maps\": Google's core map services are not to be used with or near a non-Google map, and Places content on a non-Google map is one of the examples it gives (read November 12, 2026). The map owner's reading: live Google ratings, review counts and photos are fetched and shown only while Dark streets or Imagery, the Google views, is on screen. This is a reading, not legal advice; whether a page that can switch between a Google map and another publisher's map meets the clause is not settled here.",
+  "pdf_note": "On November 12, 2026 the basemap changed: the map opens on Esri's National Geographic World Map, with OpenStreetMap building shapes from OpenFreeMap laid over it close in; Dark streets and Imagery are Google maps drawn in the browser. One source was added (OpenFreeMap) and the Esri entry now names the National Geographic map, which Esri lists as retiring in December 2029. Seven new addresses were checked that day, all verified; they are counted in the totals above, which stood at 470 checked and 461 verified before them. Live Google ratings and photos now show only on the Google views."
  }
 }

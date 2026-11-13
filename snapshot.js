@@ -138,16 +138,20 @@
     try { w = window.open("", "_blank"); } catch (e) {}
     if (w) { try { w.document.open(); w.document.write('<!doctype html><meta charset="utf-8"><title>Making the screenshot</title><body style="font:18px Times New Roman,serif;padding:24px">Making the screenshot of ' + esc(opt.title || document.title) + "..."); w.document.close(); } catch (e) {} }
     if (opt.busy) opt.busy(true);
-    return compose(map, opt).then(function (r) {
+    // opt.before (may return a promise) runs first and opt.after last, for a page that has to get its map ready for the picture
+    var after = function () { if (opt.after) { try { opt.after(); } catch (x) {} } };
+    return Promise.resolve().then(function () { return opt.before ? opt.before() : null; }).then(function () { return compose(map, opt); }).then(function (r) {
       var url; try { url = r.canvas.toDataURL("image/png"); } catch (e) { throw new Error("The basemap did not allow its tiles to be copied, so the picture could not be saved. Try another basemap."); }
       var file = (opt.file || "map") + "-" + stamp(r.when) + ".png";
       var info = opt.info ? opt.info() : [];
       if (w && !w.closed) { w.document.open(); w.document.write(page(opt, url, file, r, info)); w.document.close(); if (opt.done) opt.done("tab"); }
       else { var a = document.createElement("a"); a.href = url; a.download = file; document.body.appendChild(a); a.click(); a.remove(); if (opt.done) opt.done("download"); }
       if (opt.busy) opt.busy(false);
+      after();
       return r;
     }).catch(function (e) {
       if (opt.busy) opt.busy(false);
+      after();
       if (w && !w.closed) { try { w.document.body.textContent = String(e && e.message || e); } catch (x) {} }
       if (opt.done) opt.done("error", e);
       throw e;
