@@ -11666,8 +11666,8 @@
    "addresses_new_to_this_map": 70,
    "new_answered_the_script": 49,
    "new_opened_in_a_browser": 21,
-   "cards_with_changed_wording_or_figures": 58,
-   "markers_moved": 3,
+   "cards_with_changed_wording_or_figures": 89,
+   "markers_moved": 39,
    "records_renamed": 1,
    "earlier_link_entries_no_longer_cited": 24
   },
@@ -12180,7 +12180,38 @@
    "data/pomona.js: Delicious Freedom USA",
    "data/transit.js: Metro A Line (light rail, opened to Pomona September 19, 2025)",
    "data/transit.js: Claremont (Metrolink)",
-   "data/transit.js: Montclair Transit Center (Montclair Transcenter)"
+   "data/transit.js: Montclair Transit Center (Montclair Transcenter)",
+   "data/hotels.js: DoubleTree by Hilton Ontario Airport (position sentence)",
+   "data/hotels.js: Delta Hotels by Marriott Ontario Airport (position sentence)",
+   "data/hotels.js: Holiday Inn Ontario Airport (position sentence)",
+   "data/hotels.js: Embassy Suites by Hilton Ontario Airport (position sentence)",
+   "data/hotels.js: Azure Hotel & Suites Ontario Airport (position sentence)",
+   "data/hotels.js: Sheraton Ontario Airport Hotel (position sentence)",
+   "data/hotels.js: La Quinta Inn & Suites Ontario Airport (position sentence)",
+   "data/hotels.js: SpringHill Suites Ontario Airport (position sentence)",
+   "data/hotels.js: Holiday Inn Express & Suites Ontario Airport (position sentence)",
+   "data/hotels.js: Hampton Inn Ontario Airport (position sentence)",
+   "data/hotels.js: Home2 Suites by Hilton Ontario Airport (position sentence)",
+   "data/hotels.js: Ontario Airport Inn (position sentence)",
+   "data/hotels.js: Quality Inn Ontario Airport Convention Center (position sentence)",
+   "data/hotels.js: SureStay Hotel by Best Western Ontario Airport (position sentence)",
+   "data/hotels.js: Comfort Inn & Suites Near Ontario Airport (position sentence)",
+   "data/hotels.js: Baymont by Wyndham Ontario (position sentence)",
+   "data/hotels.js: Ramada by Wyndham Ontario Airport (position sentence)",
+   "data/hotels.js: Motel 6 Ontario Airport (position sentence)",
+   "data/hotels.js: Express Inn & Suites Ontario (position sentence)",
+   "data/hotels.js: Hotel Seville Ontario Airport/Chino (position sentence)",
+   "data/hotels.js: Comfort Inn Pomona (position sentence)",
+   "data/hotels.js: Motel 6 Claremont (position sentence)",
+   "data/businesses.js: The Kickin' Crab (position sentence)",
+   "data/businesses.js: Cardenas Markets (position sentence)",
+   "data/businesses.js: Fiesta Motors (position sentence)",
+   "data/businesses.js: Carco (position sentence)",
+   "data/businesses.js: United States Post Office, Ontario (position sentence)",
+   "data/businesses.js: Strum Brewing (position sentence)",
+   "data/businesses.js: Gloria's Cocina Mexicana (position sentence)",
+   "data/businesses.js: Ontario Health Center (San Bernardino County Public Health) (position sentence)",
+   "data/pomona.js: Pomona City Hall (position sentence)"
   ],
   "moved": [
    {
@@ -12214,6 +12245,402 @@
     "to": [
      34.0349,
      -117.7607
+    ]
+   },
+   {
+    "record": "data/hotels.js: DoubleTree by Hilton Ontario Airport",
+    "from": [
+     34.0637,
+     -117.6006
+    ],
+    "to": [
+     34.06623,
+     -117.60855
+    ]
+   },
+   {
+    "record": "data/hotels.js: Delta Hotels by Marriott Ontario Airport",
+    "from": [
+     34.063,
+     -117.5962
+    ],
+    "to": [
+     34.06343,
+     -117.60491
+    ]
+   },
+   {
+    "record": "data/hotels.js: Ontario Airport Hotel & Conference Center",
+    "from": [
+     34.0708,
+     -117.5766
+    ],
+    "to": [
+     34.07065,
+     -117.5746
+    ]
+   },
+   {
+    "record": "data/hotels.js: Holiday Inn Ontario Airport",
+    "from": [
+     34.0658,
+     -117.5948
+    ],
+    "to": [
+     34.06639,
+     -117.60217
+    ]
+   },
+   {
+    "record": "data/hotels.js: Embassy Suites by Hilton Ontario Airport",
+    "from": [
+     34.071,
+     -117.57
+    ],
+    "to": [
+     34.0655,
+     -117.57284
+    ]
+   },
+   {
+    "record": "data/hotels.js: Azure Hotel & Suites Ontario Airport",
+    "from": [
+     34.063,
+     -117.602
+    ],
+    "to": [
+     34.06417,
+     -117.60971
+    ]
+   },
+   {
+    "record": "data/hotels.js: Sheraton Ontario Airport Hotel",
+    "from": [
+     34.0668,
+     -117.6008
+    ],
+    "to": [
+     34.06874,
+     -117.61262
+    ]
+   },
+   {
+    "record": "data/hotels.js: Best Western Plus Ontario Airport & Convention Center",
+    "from": [
+     34.0636,
+     -117.6013
+    ],
+    "to": [
+     34.06522,
+     -117.61146
+    ]
+   },
+   {
+    "record": "data/hotels.js: La Quinta Inn & Suites Ontario Airport",
+    "from": [
+     34.0722,
+     -117.5728
+    ],
+    "to": [
+     34.07168,
+     -117.57266
+    ]
+   },
+   {
+    "record": "data/hotels.js: SpringHill Suites Ontario Airport",
+    "from": [
+     34.0706,
+     -117.5714
+    ],
+    "to": [
+     34.06555,
+     -117.57415
+    ]
+   },
+   {
+    "record": "data/hotels.js: Holiday Inn Express & Suites Ontario Airport",
+    "from": [
+     34.0402,
+     -117.5768
+    ],
+    "to": [
+     34.03076,
+     -117.57685
+    ]
+   },
+   {
+    "record": "data/hotels.js: Comfort Suites Ontario Airport Convention Center",
+    "from": [
+     34.0632,
+     -117.6043
+    ],
+    "to": [
+     34.06402,
+     -117.61284
+    ]
+   },
+   {
+    "record": "data/hotels.js: Hampton Inn Ontario Airport",
+    "from": [
+     34.068,
+     -117.588
+    ],
+    "to": [
+     34.06692,
+     -117.5851
+    ]
+   },
+   {
+    "record": "data/hotels.js: Extended Studio Hotel Ontario (TownePlace Suites)",
+    "from": [
+     34.0624,
+     -117.6047
+    ],
+    "to": [
+     34.06315,
+     -117.61294
+    ]
+   },
+   {
+    "record": "data/hotels.js: Home2 Suites by Hilton Ontario Airport",
+    "from": [
+     34.0684,
+     -117.5872
+    ],
+    "to": [
+     34.06647,
+     -117.5851
+    ]
+   },
+   {
+    "record": "data/hotels.js: Ontario Airport Inn",
+    "from": [
+     34.0668,
+     -117.6062
+    ],
+    "to": [
+     34.07111,
+     -117.61471
+    ]
+   },
+   {
+    "record": "data/hotels.js: Quality Inn Ontario Airport Convention Center",
+    "from": [
+     34.0676,
+     -117.6013
+    ],
+    "to": [
+     34.06846,
+     -117.60993
+    ]
+   },
+   {
+    "record": "data/hotels.js: SureStay Hotel by Best Western Ontario Airport",
+    "from": [
+     34.0665,
+     -117.579
+    ],
+    "to": [
+     34.0667,
+     -117.58264
+    ]
+   },
+   {
+    "record": "data/hotels.js: Comfort Inn & Suites Near Ontario Airport",
+    "from": [
+     34.0702,
+     -117.5748
+    ],
+    "to": [
+     34.07041,
+     -117.57798
+    ]
+   },
+   {
+    "record": "data/hotels.js: Baymont by Wyndham Ontario",
+    "from": [
+     34.0786,
+     -117.6076
+    ],
+    "to": [
+     34.07793,
+     -117.61846
+    ]
+   },
+   {
+    "record": "data/hotels.js: Ramada by Wyndham Ontario Airport",
+    "from": [
+     34.0671,
+     -117.6042
+    ],
+    "to": [
+     34.07032,
+     -117.61217
+    ]
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Ontario Airport",
+    "from": [
+     34.0786,
+     -117.6092
+    ],
+    "to": [
+     34.07697,
+     -117.62096
+    ]
+   },
+   {
+    "record": "data/hotels.js: Express Inn & Suites Ontario",
+    "from": [
+     34.0752,
+     -117.6272
+    ],
+    "to": [
+     34.0794,
+     -117.62832
+    ]
+   },
+   {
+    "record": "data/hotels.js: Hotel Seville Ontario Airport/Chino",
+    "from": [
+     34.0385,
+     -117.651
+    ],
+    "to": [
+     34.0296,
+     -117.64951
+    ]
+   },
+   {
+    "record": "data/hotels.js: Comfort Inn Pomona",
+    "from": [
+     34.0412,
+     -117.7503
+    ],
+    "to": [
+     34.04568,
+     -117.75003
+    ]
+   },
+   {
+    "record": "data/hotels.js: Motel 6 Claremont",
+    "from": [
+     34.0844,
+     -117.7188
+    ],
+    "to": [
+     34.08086,
+     -117.71742
+    ]
+   },
+   {
+    "record": "data/businesses.js: The Kickin' Crab",
+    "from": [
+     34.0632,
+     -117.6902
+    ],
+    "to": [
+     34.062457,
+     -117.691591
+    ]
+   },
+   {
+    "record": "data/businesses.js: Cardenas Markets",
+    "from": [
+     34.0632,
+     -117.69007
+    ],
+    "to": [
+     34.061873,
+     -117.690888
+    ]
+   },
+   {
+    "record": "data/businesses.js: Fiesta Motors",
+    "from": [
+     34.06342,
+     -117.65267
+    ],
+    "to": [
+     34.063596,
+     -117.653203
+    ]
+   },
+   {
+    "record": "data/businesses.js: Carco",
+    "from": [
+     34.06331,
+     -117.65246
+    ],
+    "to": [
+     34.063028,
+     -117.65263
+    ]
+   },
+   {
+    "record": "data/businesses.js: United States Post Office, Ontario",
+    "from": [
+     34.0633,
+     -117.65152
+    ],
+    "to": [
+     34.063049,
+     -117.652107
+    ]
+   },
+   {
+    "record": "data/businesses.js: Strum Brewing",
+    "from": [
+     34.06602,
+     -117.65131
+    ],
+    "to": [
+     34.066256,
+     -117.651398
+    ]
+   },
+   {
+    "record": "data/businesses.js: Gloria's Cocina Mexicana",
+    "from": [
+     34.06707,
+     -117.65131
+    ],
+    "to": [
+     34.067319,
+     -117.651651
+    ]
+   },
+   {
+    "record": "data/businesses.js: Newsboy Books",
+    "from": [
+     34.0648,
+     -117.65131
+    ],
+    "to": [
+     34.065068,
+     -117.651389
+    ]
+   },
+   {
+    "record": "data/businesses.js: Ontario Health Center (San Bernardino County Public Health)",
+    "from": [
+     34.06331,
+     -117.65021
+    ],
+    "to": [
+     34.06305,
+     -117.65026
+    ]
+   },
+   {
+    "record": "data/pomona.js: Pomona City Hall",
+    "from": [
+     34.05496,
+     -117.75014
+    ],
+    "to": [
+     34.05463,
+     -117.7512
     ]
    }
   ],
@@ -12269,7 +12696,15 @@
    "The West Valley Connector trip time wording: the simple map was rewording it in an uncommitted change when this was written."
   ],
   "not_rechecked": "No link check of the whole map was run on November 12, 2026: only the addresses new to this map were requested.",
-  "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 58 cards changed, three markers moved (among them Hilton Garden Inn Pomona, moved about 2 kilometers east to the building OpenStreetMap maps at 2027 Rancho Valley Drive) and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
+  "second_carry_positions": {
+   "date": "November 12, 2026",
+   "markers_moved": 36,
+   "hotels": 26,
+   "businesses": 9,
+   "places": 1,
+   "what": "A second carry from the Holt Corridor Simple map on November 12, 2026: 36 markers were moved to the positions the Simple map now holds. Each position is on or inside the building OpenStreetMap maps for the place, and was checked on the Simple map before it was carried. The position sentence of the Simple map was added to each card; on the nine businesses it replaces the earlier note that the position was placed by address or from the store's page, which no longer describes the position. Names and old and new points are in moved above (the last 36 entries)."
+  },
+  "pdf_note": "Corrections checked for the Holt Corridor Simple map on November 11 and 12, 2026 were carried into this map's cards where it shows the same record: on 25 cards a link was replaced with its new address, source links were added to cards whose wording rests on them, the wording or figures of 89 cards changed, 39 markers moved (among them Hilton Garden Inn Pomona, moved about 2 kilometers east to the building OpenStreetMap maps at 2027 Rancho Valley Drive, and, in a second carry on November 12, 2026, 26 hotels, 9 Holt businesses and Pomona City Hall, each set on or inside the building OpenStreetMap maps for it, as checked on the Simple map) and one business was renamed. The 70 addresses new to this map were requested by script that day; 49 answered, and the 21 that refused the script or answered it with page not found were opened in a web browser, where all of them loaded. The other links were not requested again, and the counts above are the November 3 and 7 checks. The Esri entry now names Vantor and the Foothill Transit entry is undated."
  },
  "basemap_2026_11_12": {
   "checked": "2026-11-12",
