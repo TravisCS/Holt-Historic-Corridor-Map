@@ -33,6 +33,7 @@ def _days(ds):  # ["2026-11-03", "2026-11-07"] -> "November 3 and 7, 2026"
     return " and ".join(long_date(d) for d in ds)
 CHECKED = _days(CERT.get("checked_dates") or [CERT["checked"]])
 UPD = CERT.get("carried_2026_11_12")  # corrections carried over from the Holt Corridor Simple map
+UPD3 = CERT.get("photos_2026_11_12")  # card photos that are not Google's: the owner's own and open-licence ones
 UPD2 = CERT.get("basemap_2026_11_12")  # the basemap change: National Geographic, building shapes, Google drawn maps
 
 # ---- the map's one source list, read from map.html (JS object literals with single-quoted values)
@@ -173,6 +174,7 @@ def spec():
       f"{len(CERT['compared_with_2026_11_02_audit']['ok_then_not_verified_now'])} links it passed now refuse automated readers in a browser too, and one hotel site it had repaired has since gone offline.",
       *([f"<b>Updated on {long_date(UPD['checked'])}.</b> " + esc(UPD["pdf_note"])] if UPD else []),
       *([f"<b>Basemap changed on {long_date(UPD2['checked'])}.</b> " + esc(UPD2["pdf_note"])] if UPD2 else []),
+      *([f"<b>Card photos added on {long_date(UPD3['checked'])}.</b> " + esc(UPD3["pdf_note"])] if UPD3 else []),
       "<b>How to read an entry.</b> The first line is the reference exactly as the map's About sheet shows it, in APA style, with its link. Below it: what the map used the source for, "
       "the legend layers and cards that draw on it, what the source was compared with, any correction, and the check. Dates are the publisher's own; n.d. means the source gives none, "
       "and an information sheet without a printed date is dated by its posting.",

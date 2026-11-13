@@ -12722,5 +12722,300 @@
   ],
   "google_terms": "Google's Maps Platform Terms of Service have a clause headed \"No Use With Non-Google Maps\": Google's core map services are not to be used with or near a non-Google map, and Places content on a non-Google map is one of the examples it gives (read November 12, 2026). The map owner's reading: live Google ratings, review counts and photos are fetched and shown only while Dark streets or Imagery, the Google views, is on screen. This is a reading, not legal advice; whether a page that can switch between a Google map and another publisher's map meets the clause is not settled here.",
   "pdf_note": "On November 12, 2026 the basemap changed: the map opens on Esri's National Geographic World Map, with OpenStreetMap building shapes from OpenFreeMap laid over it close in; Dark streets and Imagery are Google maps drawn in the browser. One source was added (OpenFreeMap) and the Esri entry now names the National Geographic map, which Esri lists as retiring in December 2029. Seven new addresses were checked that day, all verified; they are counted in the totals above, which stood at 470 checked and 461 verified before them. Live Google ratings and photos now show only on the Google views."
+ },
+ "photos_2026_11_12": {
+  "checked": "2026-11-12",
+  "checked_by": "Claude for T. C. Smith",
+  "what": "Card photos that are not Google's were added: 26 records, 25 picture files. 6 are the map owner's own photos from the Euclid Avenue photo walk; the rest are from Wikimedia Commons under the licence each file page states (Creative Commons Attribution or Attribution-ShareAlike, CC0, or a public domain tag). Each picture was looked at before use and resized to 640 px wide. No photo was taken from a business's own site.",
+  "method": "Photos were found by place-name searches of Wikimedia Commons and by matching the photo walk's stops and captions to records. Author, licence and date were read from each file page's own record through the Commons API. Each file page and licence address was requested with curl on November 12, 2026 (31 distinct addresses, 31 answered HTTP 200). The licence each uploader states was taken as given; the uploader's right to grant it was not traced.",
+  "photos": [
+   {
+    "record": "Unique Cafe",
+    "file": "photos/unique-cafe.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-231",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Herradura De Oro",
+    "file": "photos/herradura-de-oro.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-herr",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Newsboy Books",
+    "file": "photos/newsboy-books.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-215",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Downtown Ontario Improvement Association (DOIA)",
+    "file": "photos/doia.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-doia",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Ontario Town Square",
+    "file": "photos/ontario-town-square.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-town",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Ontario Museum of History & Art",
+    "file": "photos/ontario-museum.jpg",
+    "author": "T. C. Smith",
+    "licence": "the map owner's own photo",
+    "licence_url": "",
+    "page": "https://traviscs.github.io/Euclid-Avenue/#s-museum",
+    "page_http": "200",
+    "licence_http": "",
+    "note": "From the Euclid Avenue photo walk."
+   },
+   {
+    "record": "Ontario International Airport (ONT)",
+    "file": "photos/ont-airport.jpg",
+    "author": "TSchuckert",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Ontario_Terminal_Building.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken May 8, 2020."
+   },
+   {
+    "record": "ONT Terminal 2",
+    "file": "photos/ont-terminal-2.jpg",
+    "author": "Sdkb",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:LA-Ontario_International_Airport_terminal_2.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken April 27, 2023."
+   },
+   {
+    "record": "Ontario Convention Center",
+    "file": "photos/ontario-convention-center.jpg",
+    "author": "Mack Male",
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Ontario_Convention_Center.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken September 28, 2006."
+   },
+   {
+    "record": "Toyota Arena",
+    "file": "photos/toyota-arena.jpg",
+    "author": "Scottthezombie",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:CBBArena.JPG",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "The picture shows the building under its earlier name, Citizens Business Bank Arena."
+   },
+   {
+    "record": "Ontario Mills",
+    "file": "photos/ontario-mills.jpg",
+    "author": "NASA",
+    "licence": "Public domain",
+    "licence_url": "https://commons.wikimedia.org/wiki/File:Ontariomillss.png",
+    "page": "https://commons.wikimedia.org/wiki/File:Ontariomillss.png",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "An older aerial view from NASA World Wind."
+   },
+   {
+    "record": "Victoria Gardens",
+    "file": "photos/victoria-gardens.jpg",
+    "author": "Jordan W.",
+    "licence": "CC BY-SA 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Guasti_Gardens_plaza,_Victoria_Gardens_-_panoramio.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken February 6, 2009."
+   },
+   {
+    "record": "Euclid Avenue historic downtown",
+    "file": "photos/euclid-avenue-1905.jpg",
+    "author": "Brück & Sohn Kunstverlag Meißen",
+    "licence": "CC0",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "page": "https://commons.wikimedia.org/wiki/File:05741-Ontario-1905-Euclid_Ave,_Ontario,_Cal._Showing_Snow_Peak-Br%C3%BCck_%26_Sohn_Kunstverlag.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Postcard printed in 1905."
+   },
+   {
+    "record": "Ovitt Family Community Library",
+    "file": "photos/ovitt-library.jpg",
+    "author": "Rockero",
+    "licence": "Public domain",
+    "licence_url": "https://commons.wikimedia.org/wiki/File:Ontario_City_Library05apr2006.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Ontario_City_Library05apr2006.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken April 5, 2006."
+   },
+   {
+    "record": "Fairplex",
+    "file": "photos/fairplex.jpg",
+    "author": "TheRealThummer",
+    "licence": "Public domain",
+    "licence_url": "https://commons.wikimedia.org/wiki/File:L.A._County_Fair_at_Dusk.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:L.A._County_Fair_at_Dusk.JPG",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "The L.A. County Fair at dusk, September 17, 2008."
+   },
+   {
+    "record": "Pomona Transit Center",
+    "file": "photos/pomona-station.jpg",
+    "author": "PontiacAurora",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Downtown_Pomona_Metrolink_Station_Bridge.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken April 10, 2023."
+   },
+   {
+    "record": "Fox Theater Pomona",
+    "file": "photos/fox-theater-pomona.jpg",
+    "author": "Evan Wohrman",
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Pomona_Fox_Theater_Marquee.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken May 22, 2009."
+   },
+   {
+    "record": "American Museum of Ceramic Art (AMOCA)",
+    "file": "photos/amoca.jpg",
+    "author": "Cedar777",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:AMOCA.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken April 2, 2022."
+   },
+   {
+    "record": "Pomona City Hall",
+    "file": "photos/pomona-city-hall.jpg",
+    "author": "Cliffo",
+    "licence": "CC BY 2.5",
+    "licence_url": "https://creativecommons.org/licenses/by/2.5",
+    "page": "https://commons.wikimedia.org/wiki/File:Pomona..cityhall.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken December 11, 2004."
+   },
+   {
+    "record": "Pomona Downtown (Pomona Transit Center)",
+    "file": "photos/pomona-station.jpg",
+    "author": "PontiacAurora",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Downtown_Pomona_Metrolink_Station_Bridge.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken April 10, 2023."
+   },
+   {
+    "record": "Pomona North (Metrolink and Metro A Line)",
+    "file": "photos/pomona-north.jpg",
+    "author": "OrdinaryScarlett",
+    "licence": "CC BY-SA 4.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Pomona_North_station_platform,_August_2023.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken August 12, 2023."
+   },
+   {
+    "record": "La Verne / Fairplex (Metro A Line)",
+    "file": "photos/la-verne-fairplex.jpg",
+    "author": "OrdinaryScarlett",
+    "licence": "CC0",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "page": "https://commons.wikimedia.org/wiki/File:La_Verne_Fairplex_station_platform,_opening_day.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Opening day, September 19, 2025."
+   },
+   {
+    "record": "Claremont (Metrolink)",
+    "file": "photos/claremont.jpg",
+    "author": "OrdinaryScarlett",
+    "licence": "CC0",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "page": "https://commons.wikimedia.org/wiki/File:Claremont_station_(California),_March_2025.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken March 23, 2025."
+   },
+   {
+    "record": "Montclair Transit Center (Montclair Transcenter)",
+    "file": "photos/montclair-transcenter.jpg",
+    "author": "OrdinaryScarlett",
+    "licence": "CC0",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "page": "https://commons.wikimedia.org/wiki/File:Montclair_Transcenter,_March_2025.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken March 23, 2025."
+   },
+   {
+    "record": "Upland (Metrolink)",
+    "file": "photos/upland.jpg",
+    "author": "Frederick Dennstedt",
+    "licence": "CC BY-SA 2.0",
+    "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Upland_Metrolink_station.jpg",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken January 19, 2008."
+   },
+   {
+    "record": "Ontario East (Metrolink)",
+    "file": "photos/ontario-east.jpg",
+    "author": "Lvi56",
+    "licence": "CC BY 3.0",
+    "licence_url": "https://creativecommons.org/licenses/by/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:EOntarioStation.JPG",
+    "page_http": "200",
+    "licence_http": "200",
+    "note": "Taken May 10, 2010."
+   }
+  ],
+  "pdf_note": "On November 12, 2026 photos that are not Google's were added to 26 cards: the map owner's own photos from the Euclid Avenue photo walk and open-licence photos from Wikimedia Commons, each credited under the picture with its author, licence and page. Their 31 addresses were checked that day (31 answered) and are listed in sources-verified.json under photos_2026_11_12; they are not in the counts above."
  }
 }
