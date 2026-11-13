@@ -39,6 +39,7 @@
 
     addHooks: function () {
       var map = this._map, c = map._container, o = map.options.smoothZoom;
+      mutantFix();
       this._o = L.extend({}, this.defaults, typeof o === 'object' ? o : {});
       this._wasWheel = !!(map.scrollWheelZoom && map.scrollWheelZoom.enabled());
       if (this._wasWheel) map.scrollWheelZoom.disable();
@@ -246,7 +247,7 @@
      layer (the container still moves and scales by transform). Measured on that map: 15 to 17 frames
      over 30 ms in four swipes before, 5 or 6 after. */
   SmoothZoom.include({
-    _onLayer: function (e) { this._flat(e.layer); },
+    _onLayer: function (e) { mutantFix(); this._flat(e.layer); },
     _flat: function (l) {
       var k;
       if (!(l instanceof L.GridLayer) || l._szFlat) return;
@@ -267,6 +268,27 @@
       if (WEBKIT) el.style.mixBlendMode = 'normal';
     }
   });
+
+  /* ---- Leaflet.GoogleMutant ----
+     That layer asks "has Google got tiles at this level?" by comparing Google's whole zoom level with the
+     map's zoom. During a continuous zoom the map's zoom is a fraction, so the answer is always no: the
+     layer lowers its top level and throws away its tiles, once for every level passed. On a satellite
+     base the whole picture went dark until the zoom stopped (measured on a three-level zoom in and out:
+     six resets, six dark frames; none with this). The check now uses the rounded zoom, which is the
+     level the layer has just asked Google for. At rest nothing changes. */
+  function mutantFix() {
+    var GM = L.GridLayer && L.GridLayer.GoogleMutant;
+    if (!GM || GM.prototype._szZoomCheck) return;
+    GM.include({
+      _szZoomCheck: true,
+      _checkZoomLevels: function () {
+        var zoomLevel = Math.round(this._map.getZoom()), gMapZoomLevel = this._mutant.getZoom();
+        if (!zoomLevel || !gMapZoomLevel) return;
+        if (gMapZoomLevel !== zoomLevel || gMapZoomLevel > this.options.maxNativeZoom) this._setMaxNativeZoom(gMapZoomLevel);
+      }
+    });
+  }
+  mutantFix();
 
   L.Map.SmoothZoom = SmoothZoom;
   L.Map.mergeOptions({ smoothZoom: false });

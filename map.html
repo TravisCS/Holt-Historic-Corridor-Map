@@ -10,7 +10,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@0.14.1/dist/Leaflet.GoogleMutant.js"></script>
-<script src="smoothzoom.js?v=87b6325c"></script>
+<script src="smoothzoom.js?v=79d60673"></script>
 <script src="motion.js?v=8aad3fb1"></script>
 <script src="share.js?v=be8bf1ea"></script>
 <script src="snapshot.js?v=f273bb31"></script>
@@ -504,8 +504,8 @@ const esriDarkRef=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/servi
 const satGroup=L.layerGroup([esriImg,esriLab]);const darkGroup=L.layerGroup([esriDark,esriDarkRef]);darkGroup.addTo(map); /* the map opens on dark streets; Imagery is one click away, top right */
 let gSat=null,gRoad=null,useGoogle=false,satOn=false;
 function currentBase(){return satOn?(useGoogle?gSat:satGroup):(useGoogle?gRoad:darkGroup);}
-/* the page behind the tiles takes the colour of the base on screen, so a zoom out never shows a dark frame round a lighter map */
-function syncBackdrop(){document.getElementById('map').style.background=satOn?'':(useGoogle?'#1f2a33':'#474749');}
+/* the page behind the tiles takes the colour of the base on screen, so a zoom out never shows a dark frame or dark holes round a lighter map (imagery: its average colour as dimmed here) */
+function syncBackdrop(){document.getElementById('map').style.background=satOn?'#66645a':(useGoogle?'#1f2a33':'#474749');}
 function setBase(){syncBackdrop();[satGroup,darkGroup,gSat,gRoad].forEach(l=>{if(l&&map.hasLayer(l))map.removeLayer(l);});currentBase().addTo(map);document.getElementById('map').classList.toggle('img',satOn);document.getElementById('bmDark').setAttribute('aria-pressed',String(!satOn));document.getElementById('bmSat').setAttribute('aria-pressed',String(satOn));}
 document.getElementById('bmDark').onclick=()=>{satOn=false;setBase();};document.getElementById('bmSat').onclick=()=>{satOn=true;setBase();};
 syncBackdrop();
